@@ -32,7 +32,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbEmpleado = new System.Windows.Forms.GroupBox();
             this.btnCargar = new System.Windows.Forms.Button();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtNotas = new System.Windows.Forms.TextBox();
             this.cboReportaA = new System.Windows.Forms.ComboBox();
@@ -104,9 +103,9 @@
             this.tbpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.grbEmpleado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.grbBuscar.SuspendLayout();
             this.grbEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -116,6 +115,7 @@
             this.tbpModificar.SuspendLayout();
             this.tbpEliminar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -194,16 +194,6 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Visible = false;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
-            // 
-            // picFoto
-            // 
-            this.picFoto.Image = global::NorthwindTraders.Properties.Resources.FotoPerfil;
-            this.picFoto.Location = new System.Drawing.Point(352, 53);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(128, 128);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFoto.TabIndex = 61;
-            this.picFoto.TabStop = false;
             // 
             // label31
             // 
@@ -592,6 +582,7 @@
             // 
             this.txtBTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBTelefono.Location = new System.Drawing.Point(96, 239);
+            this.txtBTelefono.MaxLength = 24;
             this.txtBTelefono.Name = "txtBTelefono";
             this.txtBTelefono.Size = new System.Drawing.Size(120, 20);
             this.txtBTelefono.TabIndex = 10;
@@ -600,6 +591,7 @@
             // 
             this.txtBCodigoP.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBCodigoP.Location = new System.Drawing.Point(96, 191);
+            this.txtBCodigoP.MaxLength = 10;
             this.txtBCodigoP.Name = "txtBCodigoP";
             this.txtBCodigoP.Size = new System.Drawing.Size(120, 20);
             this.txtBCodigoP.TabIndex = 8;
@@ -608,6 +600,7 @@
             // 
             this.txtBRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBRegion.Location = new System.Drawing.Point(96, 167);
+            this.txtBRegion.MaxLength = 15;
             this.txtBRegion.Name = "txtBRegion";
             this.txtBRegion.Size = new System.Drawing.Size(120, 20);
             this.txtBRegion.TabIndex = 7;
@@ -616,6 +609,7 @@
             // 
             this.txtBCiudad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBCiudad.Location = new System.Drawing.Point(96, 143);
+            this.txtBCiudad.MaxLength = 15;
             this.txtBCiudad.Name = "txtBCiudad";
             this.txtBCiudad.Size = new System.Drawing.Size(120, 20);
             this.txtBCiudad.TabIndex = 6;
@@ -624,6 +618,7 @@
             // 
             this.txtBDomicilio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBDomicilio.Location = new System.Drawing.Point(96, 119);
+            this.txtBDomicilio.MaxLength = 60;
             this.txtBDomicilio.Name = "txtBDomicilio";
             this.txtBDomicilio.Size = new System.Drawing.Size(201, 20);
             this.txtBDomicilio.TabIndex = 5;
@@ -632,6 +627,7 @@
             // 
             this.txtBTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBTitulo.Location = new System.Drawing.Point(96, 95);
+            this.txtBTitulo.MaxLength = 30;
             this.txtBTitulo.Name = "txtBTitulo";
             this.txtBTitulo.Size = new System.Drawing.Size(201, 20);
             this.txtBTitulo.TabIndex = 4;
@@ -640,6 +636,7 @@
             // 
             this.txtBApellidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBApellidos.Location = new System.Drawing.Point(96, 71);
+            this.txtBApellidos.MaxLength = 20;
             this.txtBApellidos.Name = "txtBApellidos";
             this.txtBApellidos.Size = new System.Drawing.Size(201, 20);
             this.txtBApellidos.TabIndex = 3;
@@ -648,6 +645,7 @@
             // 
             this.txtBNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBNombres.Location = new System.Drawing.Point(96, 47);
+            this.txtBNombres.MaxLength = 10;
             this.txtBNombres.Name = "txtBNombres";
             this.txtBNombres.Size = new System.Drawing.Size(201, 20);
             this.txtBNombres.TabIndex = 2;
@@ -656,6 +654,7 @@
             // 
             this.txtBIdFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdFin.Location = new System.Drawing.Point(225, 24);
+            this.txtBIdFin.MaxLength = 10;
             this.txtBIdFin.Name = "txtBIdFin";
             this.txtBIdFin.Size = new System.Drawing.Size(72, 20);
             this.txtBIdFin.TabIndex = 1;
@@ -667,6 +666,7 @@
             // 
             this.txtBIdIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdIni.Location = new System.Drawing.Point(96, 24);
+            this.txtBIdIni.MaxLength = 10;
             this.txtBIdIni.Name = "txtBIdIni";
             this.txtBIdIni.Size = new System.Drawing.Size(72, 20);
             this.txtBIdIni.TabIndex = 0;
@@ -896,6 +896,16 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // picFoto
+            // 
+            this.picFoto.Image = global::NorthwindTraders.Properties.Resources.FotoPerfil;
+            this.picFoto.Location = new System.Drawing.Point(352, 53);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(128, 128);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFoto.TabIndex = 61;
+            this.picFoto.TabStop = false;
+            // 
             // FrmEmpleadosCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -904,14 +914,13 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Name = "FrmEmpleadosCrud";
-            this.Text = "Mantenimiento de empleados";
+            this.Text = "» Mantenimiento de empleados «";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmEmpleadosCrud_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmEmpleadosCrud_FormClosed);
             this.Load += new System.EventHandler(this.FrmEmpleadosCrud_Load);
             this.panel1.ResumeLayout(false);
             this.grbEmpleado.ResumeLayout(false);
             this.grbEmpleado.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.grbBuscar.ResumeLayout(false);
             this.grbBuscar.PerformLayout();
             this.grbEmpleados.ResumeLayout(false);
@@ -926,6 +935,7 @@
             this.tbpEliminar.ResumeLayout(false);
             this.tbpEliminar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

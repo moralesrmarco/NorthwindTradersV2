@@ -331,7 +331,7 @@ namespace NorthwindTraders
             if (tabcOperacion.SelectedTab != tbpListar)
                 if (txtId.Text != "" || txtNombres.Text != "" || txtApellidos.Text != "" || txtTitulo.Text != "" || txtTitCortesia.Text != "" || txtDomicilio.Text != "" || txtCiudad.Text != "" || txtRegion.Text != "" || txtCodigoP.Text != "" || txtPais.Text != "" || txtTelefono.Text != "" || txtExtension.Text != "" || dtpFNacimiento.Value != dtpFNacimiento.MinDate || dtpFContratacion.Value != dtpFContratacion.MinDate ||  txtNotas.Text.Trim() != "" || cboReportaA.SelectedIndex > 0)
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Esta seguro de querer cerrar el formulario?, si responde Si, se perderan los datos no guardados", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    DialogResult respuesta = MessageBox.Show(Utils.preguntaCerrar, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (respuesta == DialogResult.No)
                         e.Cancel = true;
                 }
@@ -466,7 +466,7 @@ namespace NorthwindTraders
             {
                 if (ValidarControles())
                 {
-                    Utils.ActualizarBarraDeEstado(this, "Insertando registro en la base de datos...");
+                    Utils.ActualizarBarraDeEstado(this, Utils.insertandoRegistro);
                     DeshabilitarControles();
                     btnOperacion.Enabled = false;
                     byte[] byteFoto = null;
@@ -548,7 +548,7 @@ namespace NorthwindTraders
             {
                 if (ValidarControles())
                 {
-                    Utils.ActualizarBarraDeEstado(this, "Modificando registro en la base de datos...");
+                    Utils.ActualizarBarraDeEstado(this, Utils.modificandoRegistro);
                     DeshabilitarControles();
                     btnOperacion.Enabled = false;
                     byte[] byteFoto = null;
@@ -632,7 +632,7 @@ namespace NorthwindTraders
                 if (respuesta == DialogResult.Yes)
                 {
                     btnOperacion.Enabled = false;
-                    Utils.ActualizarBarraDeEstado(this, "Eliminando registro en la base de datos...");
+                    Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
                     try
                     {
                         SqlCommand cmd = new SqlCommand("Sp_Empleados_Eliminar", cn);
@@ -644,6 +644,10 @@ namespace NorthwindTraders
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (SqlException ex) when (ex.Number == 547)
+                    {
+                        Utils.MsgCatchErrorRestriccionCF(this);
                     }
                     catch (SqlException ex)
                     {

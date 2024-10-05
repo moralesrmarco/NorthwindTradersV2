@@ -8,6 +8,19 @@ namespace NorthwindTraders
 {
     internal class Utils
     {
+        #region VariablesGlobales
+        public static string clbdd = "Consultando la base de datos... ";
+        public static string oueclbdd = "Ocurrio un error con la base de datos:\n";
+        public static string oue = "Ocurrio un error:\n";
+        public static string nwtr = "Northwind Traders Ver 2.";
+        public static string preguntaCerrar = "¿Esta seguro de querer cerrar el formulario?, si responde SI, se perderan los datos no guardados";
+        public static string insertandoRegistro = "Insertando registro en la base de datos...";
+        public static string modificandoRegistro = "Modificando registro en la base de datos...";
+        public static string eliminandoRegistro = "Eliminando registro en la base de datos...";
+        public static string errorRestriccionCF = "Error: No se puede eliminar el registro debido a una restricción de clave foránea";
+        #endregion
+
+
         public static void ValidaTxtBIdIni(TextBox txtBIdIni, TextBox txtBIdFin)
         {
             int numBIdIni = 0, numBIdFin = 0;
@@ -146,6 +159,13 @@ namespace NorthwindTraders
             Utils.ActualizarBarraDeEstado(form);
         }
 
+        public static void MsgCatchErrorRestriccionCF(Form form)
+        {
+            MessageBox.Show(Utils.errorRestriccionCF, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Utils.ActualizarBarraDeEstado(form);
+
+        }
+
         public static void ActualizarBarraDeEstado(Form form, string mensaje = "Activo.", bool error = false)
         {
             // se requiere en el archivo MDIPrincipal.cs declarar la propiedad:
@@ -240,11 +260,5 @@ namespace NorthwindTraders
 
         }
 
-        #region VariablesGlobales
-        public static string clbdd = "Consultando la base de datos... ";
-        public static string oueclbdd = "Ocurrio un error con la base de datos:\n";
-        public static string oue = "Ocurrio un error:\n";
-        public static string nwtr = "Northwind Traders Ver 2.";
-        #endregion
     }
 }

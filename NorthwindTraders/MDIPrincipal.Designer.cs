@@ -351,6 +351,7 @@
             this.tsmiMantenimientoDeClientes.Name = "tsmiMantenimientoDeClientes";
             this.tsmiMantenimientoDeClientes.Size = new System.Drawing.Size(322, 22);
             this.tsmiMantenimientoDeClientes.Text = "Mantenimiento de clientes";
+            this.tsmiMantenimientoDeClientes.Click += new System.EventHandler(this.tsmiMantenimientoDeClientes_Click);
             // 
             // tsmiDirectorioDeClientesYProveedoresPorCiudad
             // 
@@ -609,7 +610,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MDIPrincipal";
             this.ShowIcon = false;
-            this.Text = "Northwind Traders Ver. 2";
+            this.Text = "» Northwind Traders Ver. 2 «";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
