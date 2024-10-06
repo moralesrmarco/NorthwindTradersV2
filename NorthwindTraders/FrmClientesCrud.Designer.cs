@@ -357,7 +357,6 @@
             this.txtBId.Name = "txtBId";
             this.txtBId.Size = new System.Drawing.Size(64, 20);
             this.txtBId.TabIndex = 0;
-            this.txtBId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 

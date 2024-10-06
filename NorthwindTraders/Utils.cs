@@ -18,6 +18,7 @@ namespace NorthwindTraders
         public static string modificandoRegistro = "Modificando registro en la base de datos...";
         public static string eliminandoRegistro = "Eliminando registro en la base de datos...";
         public static string errorRestriccionCF = "Error: No se puede eliminar el registro debido a una restricción de clave foránea";
+        public static string errorClaveDuplicada = "Error: No se puede insertar una clave duplicada en el objeto. Infracción de la restricción PRIMARY KEY";
         #endregion
 
 
@@ -163,7 +164,12 @@ namespace NorthwindTraders
         {
             MessageBox.Show(Utils.errorRestriccionCF, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             Utils.ActualizarBarraDeEstado(form);
+        }
 
+        public static void MsgCatchErrorClaveDuplicada(Form form)
+        {
+            MessageBox.Show(Utils.errorClaveDuplicada, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Utils.ActualizarBarraDeEstado(form);
         }
 
         public static void ActualizarBarraDeEstado(Form form, string mensaje = "Activo.", bool error = false)

@@ -234,6 +234,7 @@ namespace NorthwindTraders
                 BorrarDatosBusqueda();
                 HabilitarControles();
                 txtId.Enabled = true;
+                txtId.ReadOnly = false;
                 btnOperacion.Text = "Registrar cliente";
                 btnOperacion.Enabled = true;
             }
@@ -327,6 +328,10 @@ namespace NorthwindTraders
                             MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
                             MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue registrado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (SqlException ex) when (ex.Number == 2627)
+                    {
+                        Utils.MsgCatchErrorClaveDuplicada(this);
                     }
                     catch (SqlException ex)
                     {
