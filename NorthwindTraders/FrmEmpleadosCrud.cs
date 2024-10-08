@@ -538,10 +538,7 @@ namespace NorthwindTraders
                     HabilitarControles();
                     btnOperacion.Enabled = true;
                     if (numRegs > 0)
-                    {
-                        btnLimpiar.PerformClick();
-                        LlenarDgv(null);
-                    }
+                        BuscaReg();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
@@ -613,12 +610,7 @@ namespace NorthwindTraders
                     LlenarCboReportaA();
                     LlenarCboPais();
                     if (numRegs > 0)
-                    {
-                        BorrarDatosBusqueda();
-                        txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
-                        btnBuscar.PerformClick();
-                        btnLimpiar.PerformClick();
-                    }
+                        BuscaReg();
                 }
             } 
             else if (tabcOperacion.SelectedTab == tbpEliminar)
@@ -664,12 +656,7 @@ namespace NorthwindTraders
                     LlenarCboReportaA();
                     LlenarCboPais();
                     if (numRegs > 0)
-                    {
-                        BorrarDatosBusqueda();
-                        txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
-                        btnBuscar.PerformClick();
-                        btnLimpiar.PerformClick();
-                    }
+                        BuscaReg();
                 }
             }
         }
@@ -694,6 +681,14 @@ namespace NorthwindTraders
                 picFoto.Image = image;
                 errorProvider1.SetError(btnCargar, "");
             }
+        }
+
+        private void BuscaReg()
+        {
+            BorrarDatosBusqueda();
+            txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
+            btnBuscar.PerformClick();
+            btnLimpiar.PerformClick();
         }
     }
 }
