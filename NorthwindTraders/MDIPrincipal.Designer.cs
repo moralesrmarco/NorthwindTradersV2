@@ -90,6 +90,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmiDirectorioDeClientesYProveedoresPorPais = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -341,7 +342,8 @@
             // 
             this.tsmiClientes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMantenimientoDeClientes,
-            this.tsmiDirectorioDeClientesYProveedoresPorCiudad});
+            this.tsmiDirectorioDeClientesYProveedoresPorCiudad,
+            this.tsmiDirectorioDeClientesYProveedoresPorPais});
             this.tsmiClientes.Name = "tsmiClientes";
             this.tsmiClientes.Size = new System.Drawing.Size(61, 20);
             this.tsmiClientes.Text = "Clientes";
@@ -358,6 +360,7 @@
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Name = "tsmiDirectorioDeClientesYProveedoresPorCiudad";
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Size = new System.Drawing.Size(322, 22);
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Text = "Directorio de clientes y proveedores por ciudad";
+            this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Click += new System.EventHandler(this.tsmiDirectorioDeClientesYProveedoresPorCiudad_Click);
             // 
             // toolsMenu
             // 
@@ -598,6 +601,12 @@
             this.tsslEstado.Size = new System.Drawing.Size(44, 17);
             this.tsslEstado.Text = "Activo.";
             // 
+            // tsmiDirectorioDeClientesYProveedoresPorPais
+            // 
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Name = "tsmiDirectorioDeClientesYProveedoresPorPais";
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Size = new System.Drawing.Size(322, 22);
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Text = "Directorio de clientes y proveedores por país";
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,6 +694,7 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslEstado;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDirectorioDeClientesYProveedoresPorPais;
     }
 }
 
