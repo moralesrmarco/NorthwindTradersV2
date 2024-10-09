@@ -102,7 +102,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Grb);
             this.Name = "FrmClientesyProveedoresDirectorioxPais";
-            this.Text = "Directorio de clientes y proveedores por país";
+            this.Text = "» Directorio de clientes y proveedores por país «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmClientesyProveedoresDirectorioxPais_FormClosed);
             this.Load += new System.EventHandler(this.FrmClientesyProveedoresDirectorioxPais_Load);
             this.Grb.ResumeLayout(false);
