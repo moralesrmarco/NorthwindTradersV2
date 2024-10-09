@@ -60,6 +60,7 @@
             this.tsmiClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDirectorioDeClientesYProveedoresPorPais = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tsmiDirectorioDeClientesYProveedoresPorPais = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -362,6 +362,13 @@
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Text = "Directorio de clientes y proveedores por ciudad";
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad.Click += new System.EventHandler(this.tsmiDirectorioDeClientesYProveedoresPorCiudad_Click);
             // 
+            // tsmiDirectorioDeClientesYProveedoresPorPais
+            // 
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Name = "tsmiDirectorioDeClientesYProveedoresPorPais";
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Size = new System.Drawing.Size(322, 22);
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Text = "Directorio de clientes y proveedores por país";
+            this.tsmiDirectorioDeClientesYProveedoresPorPais.Click += new System.EventHandler(this.tsmiDirectorioDeClientesYProveedoresPorPais_Click);
+            // 
             // toolsMenu
             // 
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -600,12 +607,6 @@
             this.tsslEstado.Name = "tsslEstado";
             this.tsslEstado.Size = new System.Drawing.Size(44, 17);
             this.tsslEstado.Text = "Activo.";
-            // 
-            // tsmiDirectorioDeClientesYProveedoresPorPais
-            // 
-            this.tsmiDirectorioDeClientesYProveedoresPorPais.Name = "tsmiDirectorioDeClientesYProveedoresPorPais";
-            this.tsmiDirectorioDeClientesYProveedoresPorPais.Size = new System.Drawing.Size(322, 22);
-            this.tsmiDirectorioDeClientesYProveedoresPorPais.Text = "Directorio de clientes y proveedores por país";
             // 
             // MDIPrincipal
             // 
