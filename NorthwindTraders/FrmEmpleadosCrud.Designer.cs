@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbEmpleado = new System.Windows.Forms.GroupBox();
             this.btnCargar = new System.Windows.Forms.Button();
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtNotas = new System.Windows.Forms.TextBox();
             this.cboReportaA = new System.Windows.Forms.ComboBox();
@@ -103,9 +104,9 @@
             this.tbpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.grbEmpleado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.grbBuscar.SuspendLayout();
             this.grbEmpleados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -115,7 +116,6 @@
             this.tbpModificar.SuspendLayout();
             this.tbpEliminar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -194,6 +194,16 @@
             this.btnCargar.UseVisualStyleBackColor = true;
             this.btnCargar.Visible = false;
             this.btnCargar.Click += new System.EventHandler(this.btnCargar_Click);
+            // 
+            // picFoto
+            // 
+            this.picFoto.Image = global::NorthwindTraders.Properties.Resources.FotoPerfil;
+            this.picFoto.Location = new System.Drawing.Point(352, 53);
+            this.picFoto.Name = "picFoto";
+            this.picFoto.Size = new System.Drawing.Size(128, 128);
+            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFoto.TabIndex = 61;
+            this.picFoto.TabStop = false;
             // 
             // label31
             // 
@@ -896,16 +906,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // picFoto
-            // 
-            this.picFoto.Image = global::NorthwindTraders.Properties.Resources.FotoPerfil;
-            this.picFoto.Location = new System.Drawing.Point(352, 53);
-            this.picFoto.Name = "picFoto";
-            this.picFoto.Size = new System.Drawing.Size(128, 128);
-            this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picFoto.TabIndex = 61;
-            this.picFoto.TabStop = false;
-            // 
             // FrmEmpleadosCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -921,6 +921,7 @@
             this.panel1.ResumeLayout(false);
             this.grbEmpleado.ResumeLayout(false);
             this.grbEmpleado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.grbBuscar.ResumeLayout(false);
             this.grbBuscar.PerformLayout();
             this.grbEmpleados.ResumeLayout(false);
@@ -935,7 +936,6 @@
             this.tbpEliminar.ResumeLayout(false);
             this.tbpEliminar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
