@@ -21,7 +21,6 @@ namespace NorthwindTraders
         public static string errorClaveDuplicada = "Error: No se puede insertar una clave duplicada en el objeto. Infracción de la restricción PRIMARY KEY";
         #endregion
 
-
         public static void ValidaTxtBIdIni(TextBox txtBIdIni, TextBox txtBIdFin)
         {
             int numBIdIni = 0, numBIdFin = 0;
@@ -172,7 +171,7 @@ namespace NorthwindTraders
             Utils.ActualizarBarraDeEstado(form);
         }
 
-        public static void ActualizarBarraDeEstado(Form form, string mensaje = "Activo.", bool error = false)
+        public static void ActualizarBarraDeEstado(Form form, string mensaje = "Listo.", bool error = false)
         {
             // se requiere en el archivo MDIPrincipal.cs declarar la propiedad:
             //public ToolStripStatusLabel ToolStripEstado
@@ -183,7 +182,7 @@ namespace NorthwindTraders
             MDIPrincipal mDIPrincipal = (MDIPrincipal)form.MdiParent;
             if (mDIPrincipal != null) // esta comprobación se requiere para que no marque error en los formularios heredados en el tiempo de diseño.
             {
-                if (mensaje != "Activo.")
+                if (mensaje != "Listo.")
                     if (error)
                         mDIPrincipal.ToolStripEstado.BackColor = Color.Red;
                     else
@@ -212,7 +211,7 @@ namespace NorthwindTraders
             if (mDIPrincipal != null)
             {
                 mDIPrincipal.ToolStripEstado.BackColor = SystemColors.Control;
-                mDIPrincipal.ToolStripEstado.Text = "Activo.";
+                mDIPrincipal.ToolStripEstado.Text = "Listo.";
                 mDIPrincipal.Refresh();
             }
         }

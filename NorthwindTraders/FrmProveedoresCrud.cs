@@ -446,7 +446,7 @@ namespace NorthwindTraders
                         if (numRegs > 0)
                             MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue eliminado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex)
                     {
