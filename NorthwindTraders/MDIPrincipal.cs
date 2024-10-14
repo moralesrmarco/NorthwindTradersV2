@@ -167,7 +167,12 @@ namespace NorthwindTraders
 
         private void tsmiProveedoresProductos_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmProveedoresProductos frmProveedoresProductos = new FrmProveedoresProductos
+            {
+                MdiParent = this
+            };
+            frmProveedoresProductos.Show();
         }
 
         private void tsmi2DirectorioDeClientesYProveedoresPorCiudad_Click(object sender, EventArgs e)
