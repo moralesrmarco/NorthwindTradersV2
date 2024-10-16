@@ -96,6 +96,10 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmiCategorias = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMantenimientoDeCategorías = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCategoriasProductos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi2ListadoDeProductosPorCategorías = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -110,6 +114,7 @@
             this.tsmiEmpleados,
             this.tsmiClientes,
             this.tsmiProveedores,
+            this.tsmiCategorias,
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu});
@@ -425,7 +430,7 @@
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.optionsToolStripMenuItem.Text = "&Opciones";
             // 
             // windowsMenu
@@ -653,6 +658,37 @@
             this.tsslEstado.Size = new System.Drawing.Size(44, 17);
             this.tsslEstado.Text = "Activo.";
             // 
+            // tsmiCategorias
+            // 
+            this.tsmiCategorias.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiMantenimientoDeCategorías,
+            this.tsmiCategoriasProductos,
+            this.tsmi2ListadoDeProductosPorCategorías});
+            this.tsmiCategorias.Name = "tsmiCategorias";
+            this.tsmiCategorias.Size = new System.Drawing.Size(75, 20);
+            this.tsmiCategorias.Text = "Categorías";
+            // 
+            // tsmiMantenimientoDeCategorías
+            // 
+            this.tsmiMantenimientoDeCategorías.Name = "tsmiMantenimientoDeCategorías";
+            this.tsmiMantenimientoDeCategorías.Size = new System.Drawing.Size(267, 22);
+            this.tsmiMantenimientoDeCategorías.Text = "Mantenimiento de categorías";
+            this.tsmiMantenimientoDeCategorías.Click += new System.EventHandler(this.tsmiMantenimientoDeCategorías_Click);
+            // 
+            // tsmiCategoriasProductos
+            // 
+            this.tsmiCategoriasProductos.Name = "tsmiCategoriasProductos";
+            this.tsmiCategoriasProductos.Size = new System.Drawing.Size(267, 22);
+            this.tsmiCategoriasProductos.Text = "Consulta de productos por categoría";
+            this.tsmiCategoriasProductos.Click += new System.EventHandler(this.tsmiCategoriasProductos_Click);
+            // 
+            // tsmi2ListadoDeProductosPorCategorías
+            // 
+            this.tsmi2ListadoDeProductosPorCategorías.Name = "tsmi2ListadoDeProductosPorCategorías";
+            this.tsmi2ListadoDeProductosPorCategorías.Size = new System.Drawing.Size(267, 22);
+            this.tsmi2ListadoDeProductosPorCategorías.Text = "Listado de productos por categoría";
+            this.tsmi2ListadoDeProductosPorCategorías.Click += new System.EventHandler(this.tsmi2ListadoDeProductosPorCategorías_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,6 +782,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiProveedoresProductos;
         private System.Windows.Forms.ToolStripMenuItem tsmi2DirectorioDeClientesYProveedoresPorCiudad;
         private System.Windows.Forms.ToolStripMenuItem tsmi2DirectorioDeClientesYProveedoresPorPais;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCategorias;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDeCategorías;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCategoriasProductos;
+        private System.Windows.Forms.ToolStripMenuItem tsmi2ListadoDeProductosPorCategorías;
     }
 }
 

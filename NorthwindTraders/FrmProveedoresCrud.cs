@@ -448,6 +448,10 @@ namespace NorthwindTraders
                         else
                             MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    catch (SqlException ex) when (ex.Number == 547)
+                    {
+                        Utils.MsgCatchErrorRestriccionCF(this);
+                    }
                     catch (SqlException ex)
                     {
                         Utils.MsgCatchOueclbdd(this, ex);

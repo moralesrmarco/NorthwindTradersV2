@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmCategoriasCrud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCategoriasCrud.Designer.cs">
+      <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmClientesCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreProcedures\Sp_Categorias.cs" />
     <Compile Include="StoreProcedures\Sp_Clientes.cs" />
     <Compile Include="StoreProcedures\Sp_ClientesProveedores_Ciudad.cs" />
     <Compile Include="StoreProcedures\Sp_ClientesProveedores_Pais.cs" />
@@ -99,6 +106,9 @@
     <Compile Include="StoreProcedures\Vw_ClientesProveedores_DirectorioPorCiudad.cs" />
     <Compile Include="StoreProcedures\Vw_ClientesProveedores_DirectorioPorPais.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="FrmCategoriasCrud.resx">
+      <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmClientesCrud.resx">
       <DependentUpon>FrmClientesCrud.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FotoPerfil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Categorias.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
