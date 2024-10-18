@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -340,9 +335,7 @@ namespace NorthwindTraders
                             MessageBox.Show($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
-                        {
                             MessageBox.Show($"La categoria con Id: {txtId.Text} y Nombre: {txtCategoria.Text} NO fue registrada en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
                     catch (SqlException ex)
                     {
@@ -361,9 +354,7 @@ namespace NorthwindTraders
                     btnCargar.Enabled = true;
                     picFoto.BackgroundImage = Properties.Resources.Categorias;
                     if (numRegs > 0)
-                    {
                         BuscaReg();
-                    }
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
@@ -389,7 +380,7 @@ namespace NorthwindTraders
                         cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
-                            MessageBox.Show($"La categoría con Id {txtId.Text} y Nombre: {txtCategoria.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
                             MessageBox.Show($"La categoría con Id: {txtId.Text} y Nombre: {txtCategoria.Text} NO fue modificada en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -450,9 +441,12 @@ namespace NorthwindTraders
                     {
                         cn.Close();
                     }
-                    picFoto.BackgroundImage = Properties.Resources.Categorias;
                     if (numRegs > 0)
+                    {
+                        picFoto.BackgroundImage = Properties.Resources.Categorias;
                         BuscaReg();
+                    }
+                        
                 }
             }
         }

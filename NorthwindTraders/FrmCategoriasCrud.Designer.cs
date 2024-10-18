@@ -61,8 +61,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCargar = new System.Windows.Forms.Button();
             this.btnOperacion = new System.Windows.Forms.Button();
-            this.picFoto = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.picFoto = new System.Windows.Forms.PictureBox();
             this.tabcOperacion.SuspendLayout();
             this.tbpConsultar.SuspendLayout();
             this.tbpRegistrar.SuspendLayout();
@@ -80,8 +80,8 @@
             this.grbCategorias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).BeginInit();
             this.grbCategoria.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // tabcOperacion
@@ -377,6 +377,7 @@
             // 
             this.txtCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCategoria.Location = new System.Drawing.Point(184, 40);
+            this.txtCategoria.MaxLength = 15;
             this.txtCategoria.Name = "txtCategoria";
             this.txtCategoria.Size = new System.Drawing.Size(200, 20);
             this.txtCategoria.TabIndex = 5;
@@ -450,6 +451,10 @@
             this.btnOperacion.Visible = false;
             this.btnOperacion.Click += new System.EventHandler(this.btnOperacion_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // picFoto
             // 
             this.picFoto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -463,10 +468,6 @@
             this.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFoto.TabIndex = 7;
             this.picFoto.TabStop = false;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
             // 
             // FrmCategoriasCrud
             // 
@@ -504,8 +505,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.Dgv)).EndInit();
             this.grbCategoria.ResumeLayout(false);
             this.grbCategoria.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFoto)).EndInit();
             this.ResumeLayout(false);
 
         }

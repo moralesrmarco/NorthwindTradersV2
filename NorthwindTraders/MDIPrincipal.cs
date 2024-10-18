@@ -207,7 +207,12 @@ namespace NorthwindTraders
 
         private void tsmiCategoriasProductos_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
+            {
+                MdiParent = this
+            };
+            frmCategoriasProductos.Show();
         }
 
         private void tsmi2ListadoDeProductosPorCategorías_Click(object sender, EventArgs e)
