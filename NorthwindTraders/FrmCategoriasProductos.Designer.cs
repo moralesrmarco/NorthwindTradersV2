@@ -117,7 +117,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmCategoriasProductos";
-            this.Text = "» Consulta de productos por proveedor «";
+            this.Text = "» Consulta de productos por categoría «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmCategoriasProductos_FormClosed);
             this.Load += new System.EventHandler(this.FrmCategoriasProductos_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
