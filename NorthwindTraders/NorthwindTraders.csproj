@@ -100,6 +100,12 @@
     <Compile Include="FrmProductosPorCategoriasListado.Designer.cs">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmProductosPorEncimaPrecioPromedio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductosPorEncimaPrecioPromedio.Designer.cs">
+      <DependentUpon>FrmProductosPorEncimaPrecioPromedio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProveedoresCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,7 @@
     <Compile Include="StoreProcedures\Vw_ClientesProveedores_DirectorioPorPais.cs" />
     <Compile Include="StoreProcedures\Vw_ProductosListaAlfabetica.cs" />
     <Compile Include="StoreProcedures\Vw_ProductosPorCategoriaListado.cs" />
+    <Compile Include="StoreProcedures\Vw_ProductosPorEncimaDelPrecioPromedio.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FrmCategoriasCrud.resx">
       <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosPorCategoriasListado.resx">
       <DependentUpon>FrmProductosPorCategoriasListado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductosPorEncimaPrecioPromedio.resx">
+      <DependentUpon>FrmProductosPorEncimaPrecioPromedio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProveedoresCrud.resx">
       <DependentUpon>FrmProveedoresCrud.cs</DependentUpon>

@@ -507,7 +507,7 @@
             // 
             this.tsmiConsultaAlfabeticaDeProductos.Name = "tsmiConsultaAlfabeticaDeProductos";
             this.tsmiConsultaAlfabeticaDeProductos.Size = new System.Drawing.Size(301, 22);
-            this.tsmiConsultaAlfabeticaDeProductos.Text = "Consulta alfabetica de productos";
+            this.tsmiConsultaAlfabeticaDeProductos.Text = "Consulta alfabética de productos";
             this.tsmiConsultaAlfabeticaDeProductos.Click += new System.EventHandler(this.tsmiConsultaAlfabeticaDeProductos_Click);
             // 
             // tsmiListadoDeProductosPorCategorias
@@ -522,6 +522,7 @@
             this.tsmiProductosPorEncimaPrecioProm.Name = "tsmiProductosPorEncimaPrecioProm";
             this.tsmiProductosPorEncimaPrecioProm.Size = new System.Drawing.Size(301, 22);
             this.tsmiProductosPorEncimaPrecioProm.Text = "Productos por encima del precio promedio";
+            this.tsmiProductosPorEncimaPrecioProm.Click += new System.EventHandler(this.tsmiProductosPorEncimaPrecioProm_Click);
             // 
             // tsmiPedidos
             // 

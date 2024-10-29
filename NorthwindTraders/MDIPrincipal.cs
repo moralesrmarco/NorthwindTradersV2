@@ -274,5 +274,15 @@ namespace NorthwindTraders
             };
             frmProductosConsultaAlfabetica.Show();
         }
+
+        private void tsmiProductosPorEncimaPrecioProm_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosPorEncimaPrecioPromedio frmProductosPorEncimaPrecioPromedio = new FrmProductosPorEncimaPrecioPromedio
+            {
+                MdiParent = this
+            };
+            frmProductosPorEncimaPrecioPromedio.Show();
+        }
     }
 }
