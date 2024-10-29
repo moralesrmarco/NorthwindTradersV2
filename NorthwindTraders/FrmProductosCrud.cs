@@ -388,7 +388,7 @@ namespace NorthwindTraders
             {
                 if (int.Parse(txtUInventario.Text) > 32767)
                 {
-                    errorProvider1.SetError(txtUInventario, "La cantidad no puede se mayor a 32767");
+                    errorProvider1.SetError(txtUInventario, "La cantidad no puede ser mayor a 32767");
                     e.Cancel = true;
                 }
                 else

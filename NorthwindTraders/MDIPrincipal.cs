@@ -234,5 +234,45 @@ namespace NorthwindTraders
             };
             frmProductosCrud.Show();
         }
+
+        private void tsmiConsultaDeProductosPorCategoría_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
+            {
+                MdiParent = this
+            };
+            frmCategoriasProductos.Show();
+        }
+
+        private void tsmiConsultaDeProductosPorProveedor_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProveedoresProductos frmProveedoresProductos = new FrmProveedoresProductos
+            {
+                MdiParent = this
+            };
+            frmProveedoresProductos.Show();
+        }
+
+        private void tsmiListadoDeProductosPorCategorias_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
+            {
+                MdiParent = this
+            };
+            frmProductosPorCategoriasListado.Show();
+        }
+
+        private void tsmiConsultaAlfabeticaDeProductos_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosConsultaAlfabetica frmProductosConsultaAlfabetica = new FrmProductosConsultaAlfabetica
+            {
+                MdiParent = this
+            };
+            frmProductosConsultaAlfabetica.Show();
+        }
     }
 }

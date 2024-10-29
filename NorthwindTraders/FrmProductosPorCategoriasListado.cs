@@ -33,7 +33,7 @@ namespace NorthwindTraders
             try
             {
                 Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                SqlCommand cmd = new SqlCommand("Select * from Vw_ProductosPorCategoriaListado", cn);
+                SqlCommand cmd = new SqlCommand("Select * from Vw_ProductosPorCategoriaListado order by Categoría, Producto", cn);
                 cmd.CommandType = CommandType.Text;
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable tbl = new DataTable();
