@@ -109,6 +109,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmiListadoDeProductos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -480,6 +481,7 @@
             // tsmiConsultasProductos
             // 
             this.tsmiConsultasProductos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiListadoDeProductos,
             this.tsmiConsultaDeProductosPorCategoría,
             this.tsmiConsultaDeProductosPorProveedor,
             this.tsmiConsultaAlfabeticaDeProductos,
@@ -769,6 +771,13 @@
             this.tsslEstado.Size = new System.Drawing.Size(35, 17);
             this.tsslEstado.Text = "Listo.";
             // 
+            // tsmiListadoDeProductos
+            // 
+            this.tsmiListadoDeProductos.Name = "tsmiListadoDeProductos";
+            this.tsmiListadoDeProductos.Size = new System.Drawing.Size(301, 22);
+            this.tsmiListadoDeProductos.Text = "Listado de productos";
+            this.tsmiListadoDeProductos.Click += new System.EventHandler(this.tsmiListadoDeProductos_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -875,6 +884,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiListadoDeProductosPorCategorias;
         private System.Windows.Forms.ToolStripMenuItem tsmiProductosPorEncimaPrecioProm;
         private System.Windows.Forms.ToolStripMenuItem tsmiPedidos;
+        private System.Windows.Forms.ToolStripMenuItem tsmiListadoDeProductos;
     }
 }
 
