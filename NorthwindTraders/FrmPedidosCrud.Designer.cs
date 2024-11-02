@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbDetalle = new System.Windows.Forms.GroupBox();
             this.dgvDetalle = new System.Windows.Forms.DataGridView();
@@ -126,7 +127,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.Numero_producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,6 +150,7 @@
             this.tabpRegistrar.SuspendLayout();
             this.tabpModificar.SuspendLayout();
             this.tabpEliminar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -176,13 +179,13 @@
             this.grbDetalle.TabIndex = 4;
             this.grbDetalle.TabStop = false;
             this.grbDetalle.Text = "»   Detalle del pedido:   «";
-            this.grbDetalle.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
+            this.grbDetalle.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
             // 
             // dgvDetalle
             // 
             this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Numero_producto,
+            this.Id,
             this.Producto,
             this.Precio,
             this.Cantidad,
@@ -252,7 +255,7 @@
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(194, 20);
             this.txtTotal.TabIndex = 10;
-            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label42
             // 
@@ -285,7 +288,7 @@
             this.grbProducto.TabIndex = 17;
             this.grbProducto.TabStop = false;
             this.grbProducto.Text = "»   Agregar producto:   «";
-            this.grbProducto.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
+            this.grbProducto.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
             // 
             // txtDescuento
             // 
@@ -331,6 +334,7 @@
             // cboCategoria
             // 
             this.cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoria.FormattingEnabled = true;
             this.cboCategoria.Location = new System.Drawing.Point(96, 16);
             this.cboCategoria.Name = "cboCategoria";
@@ -418,7 +422,7 @@
             this.grbTransportista.TabIndex = 16;
             this.grbTransportista.TabStop = false;
             this.grbTransportista.Text = "»   Transportista:   «";
-            this.grbTransportista.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
+            this.grbTransportista.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
             // 
             // txtFlete
             // 
@@ -693,6 +697,7 @@
             // cboEmpleado
             // 
             this.cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEmpleado.FormattingEnabled = true;
             this.cboEmpleado.Location = new System.Drawing.Point(104, 64);
             this.cboEmpleado.Name = "cboEmpleado";
@@ -800,6 +805,7 @@
             this.btnLimpiar.TabIndex = 16;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBuscar
             // 
@@ -809,6 +815,7 @@
             this.btnBuscar.TabIndex = 15;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label19
             // 
@@ -895,6 +902,7 @@
             this.dtpBFEnvioFin.ShowCheckBox = true;
             this.dtpBFEnvioFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFEnvioFin.TabIndex = 11;
+            this.dtpBFEnvioFin.ValueChanged += new System.EventHandler(this.dtpBFEnvioFin_ValueChanged);
             // 
             // dtpBFEnvioIni
             // 
@@ -906,6 +914,7 @@
             this.dtpBFEnvioIni.ShowCheckBox = true;
             this.dtpBFEnvioIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFEnvioIni.TabIndex = 10;
+            this.dtpBFEnvioIni.ValueChanged += new System.EventHandler(this.dtpBFEnvioIni_ValueChanged);
             // 
             // chkBFEnvioNull
             // 
@@ -918,6 +927,7 @@
             this.chkBFEnvioNull.TabIndex = 9;
             this.chkBFEnvioNull.Text = "Fecha = null";
             this.chkBFEnvioNull.UseVisualStyleBackColor = true;
+            this.chkBFEnvioNull.CheckedChanged += new System.EventHandler(this.chkBFEnvioNull_CheckedChanged);
             // 
             // label14
             // 
@@ -958,6 +968,7 @@
             this.dtpBFRequeridoFin.ShowCheckBox = true;
             this.dtpBFRequeridoFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFRequeridoFin.TabIndex = 8;
+            this.dtpBFRequeridoFin.ValueChanged += new System.EventHandler(this.dtpBFRequeridoFin_ValueChanged);
             // 
             // dtpBFRequeridoIni
             // 
@@ -969,6 +980,7 @@
             this.dtpBFRequeridoIni.ShowCheckBox = true;
             this.dtpBFRequeridoIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFRequeridoIni.TabIndex = 7;
+            this.dtpBFRequeridoIni.ValueChanged += new System.EventHandler(this.dtpBFRequeridoIni_ValueChanged);
             // 
             // chkBFRequeridoNull
             // 
@@ -981,6 +993,7 @@
             this.chkBFRequeridoNull.TabIndex = 6;
             this.chkBFRequeridoNull.Text = "Fecha = null";
             this.chkBFRequeridoNull.UseVisualStyleBackColor = true;
+            this.chkBFRequeridoNull.CheckedChanged += new System.EventHandler(this.chkBFRequeridoNull_CheckedChanged);
             // 
             // label11
             // 
@@ -1002,6 +1015,7 @@
             this.chkBFPedidoNull.TabIndex = 3;
             this.chkBFPedidoNull.Text = "Fecha = null";
             this.chkBFPedidoNull.UseVisualStyleBackColor = true;
+            this.chkBFPedidoNull.CheckedChanged += new System.EventHandler(this.chkBFPedidoNull_CheckedChanged);
             // 
             // label10
             // 
@@ -1033,6 +1047,7 @@
             this.dtpBFPedidoFin.ShowCheckBox = true;
             this.dtpBFPedidoFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFPedidoFin.TabIndex = 5;
+            this.dtpBFPedidoFin.ValueChanged += new System.EventHandler(this.dtpBFPedidoFin_ValueChanged);
             // 
             // dtpBFPedidoIni
             // 
@@ -1044,6 +1059,7 @@
             this.dtpBFPedidoIni.ShowCheckBox = true;
             this.dtpBFPedidoIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFPedidoIni.TabIndex = 4;
+            this.dtpBFPedidoIni.ValueChanged += new System.EventHandler(this.dtpBFPedidoIni_ValueChanged);
             // 
             // label8
             // 
@@ -1081,6 +1097,8 @@
             this.txtBIdFinal.Size = new System.Drawing.Size(66, 20);
             this.txtBIdFinal.TabIndex = 1;
             this.txtBIdFinal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBIdFinal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBIdFinal_KeyPress);
+            this.txtBIdFinal.Leave += new System.EventHandler(this.txtBIdFinal_Leave);
             // 
             // txtBIdInicial
             // 
@@ -1091,6 +1109,8 @@
             this.txtBIdInicial.Size = new System.Drawing.Size(66, 20);
             this.txtBIdInicial.TabIndex = 0;
             this.txtBIdInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBIdInicial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBIdInicial_KeyPress);
+            this.txtBIdInicial.Leave += new System.EventHandler(this.txtBIdInicial_Leave);
             // 
             // label6
             // 
@@ -1228,12 +1248,16 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Busque el pedido a eliminar y seleccionelo en la lista que se muestra";
             // 
-            // Numero_producto
+            // errorProvider1
             // 
-            this.Numero_producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Numero_producto.HeaderText = "Id";
-            this.Numero_producto.Name = "Numero_producto";
-            this.Numero_producto.Width = 43;
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 43;
             // 
             // Producto
             // 
@@ -1294,6 +1318,9 @@
             this.Controls.Add(this.panel1);
             this.Name = "FrmPedidosCrud";
             this.Text = "» Mantenimiento de pedidos «";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPedidosCrud_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPedidosCrud_FormClosed);
+            this.Load += new System.EventHandler(this.FrmPedidosCrud_Load);
             this.panel1.ResumeLayout(false);
             this.grbDetalle.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
@@ -1316,6 +1343,7 @@
             this.tabpModificar.PerformLayout();
             this.tabpEliminar.ResumeLayout(false);
             this.tabpEliminar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1420,7 +1448,8 @@
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Button btnGenerar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Numero_producto;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;

@@ -147,6 +147,12 @@ namespace NorthwindTraders
             Utils.DrawGroupBox(form, groupBox, e.Graphics, Color.Black, Color.Black);
         }
 
+        public static void GrbPaint2(Form form, object sender, PaintEventArgs e)
+        {
+            GroupBox groupBox = sender as GroupBox;
+            Utils.DrawGroupBox(form, groupBox, e.Graphics, Color.Black, Color.LightSlateGray);
+        }
+
         public static void MsgCatchOueclbdd(Form form, SqlException ex)
         {
             MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
