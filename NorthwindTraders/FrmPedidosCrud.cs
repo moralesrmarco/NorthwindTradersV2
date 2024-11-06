@@ -17,7 +17,7 @@ namespace NorthwindTraders
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
         bool EventoCargardo = true; // esta variable es necesaria para controlar el manejador de eventos de la celda del dgv, ojo no quitar
         int IdDetalle = 1;
-
+        #region OcultarTemporalmente
         public FrmPedidosCrud()
         {
             InitializeComponent();
@@ -56,6 +56,12 @@ namespace NorthwindTraders
 
         private void FrmPedidosCrud_Load(object sender, EventArgs e)
         {
+            dtpHoraRequerido.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            dtpHoraEnvio.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            //dtpHoraRequerido.Checked = false;
+            //dtpHoraEnvio.Checked = false;
+            dtpHoraRequerido.Enabled = false;
+            dtpHoraEnvio.Enabled = false;
             DeshabilitarControles();
             LlenarCboCliente();
             LlenarCboEmpleado();
@@ -87,6 +93,49 @@ namespace NorthwindTraders
             txtDirigidoa.ReadOnly = txtDomicilio.ReadOnly = txtCiudad.ReadOnly = txtRegion.ReadOnly = txtCP.ReadOnly = txtPais.ReadOnly = txtFlete.ReadOnly = false;
             txtCantidad.ReadOnly = txtDescuento.ReadOnly = false;
             btnAgregar.Enabled = btnGenerar.Enabled = true;
+        }
+
+        private bool ValidarControles()
+        {
+            bool valida = true;
+            if (cboCliente.SelectedIndex == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(cboCliente, "Ingrese el cliente");
+            }
+            if (cboEmpleado.SelectedIndex == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(cboEmpleado, "Ingrese el empleado");
+            }
+            if (dtpPedido.Checked == false)
+            {
+                valida = false;
+                errorProvider1.SetError(dtpPedido, "Ingrese la fecha de pedido");
+            }
+            if (dtpHoraPedido.Checked == false)
+            {
+                valida = false;
+                errorProvider1.SetError(dtpHoraPedido, "Ingrese la hora de pedido");
+            }
+            if (cboTransportista.SelectedIndex == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(cboTransportista, "Ingrese la compañía transportista");
+            }
+            string total = txtTotal.Text;
+            total = total.Replace("$", "");
+            if (txtTotal.Text == "" || decimal.Parse(total) == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(btnAgregar, "Ingrese el detalle del pedido");
+            }
+            if (cboProducto.SelectedIndex > 0)
+            {
+                valida = false;
+                errorProvider1.SetError(cboProducto, "Ha seleccionado un producto y no lo ha agregado al pedido");
+            }
+            return valida;
         }
 
         private void LlenarCboCliente()
@@ -323,7 +372,8 @@ namespace NorthwindTraders
             cboCliente.SelectedIndex = cboEmpleado.SelectedIndex = cboTransportista.SelectedIndex = cboCategoria.SelectedIndex = 0;
             cboProducto.DataSource = null;
             dtpPedido.Value = dtpRequerido.Value = dtpEnvio.Value = DateTime.Now;
-            dtpHoraPedido.Value = dtpHoraRequerido.Value = dtpHoraEnvio.Value = DateTime.Now;
+            dtpHoraPedido.Value = DateTime.Now;
+            dtpHoraRequerido.Value = dtpHoraEnvio.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             dtpRequerido.Checked = dtpEnvio.Checked = dtpHoraRequerido.Checked = dtpHoraEnvio.Checked = false;
             txtDirigidoa.Text = txtDomicilio.Text = txtCiudad.Text = txtRegion.Text = txtCP.Text = txtPais.Text = "";
             txtFlete.Text = txtPrecio.Text = "$0.00";
@@ -349,6 +399,7 @@ namespace NorthwindTraders
         private void BorrarDatosBusqueda()
         {
             txtBIdInicial.Text = txtBIdFinal.Text = txtBCliente.Text = txtBEmpleado.Text = txtBCompañiaT.Text = txtBDirigidoa.Text = "";
+            dtpBFPedidoIni.Value = dtpBFPedidoFin.Value = dtpBFRequeridoIni.Value = dtpBFRequeridoFin.Value = dtpBFEnvioIni.Value = dtpBFEnvioFin.Value = DateTime.Today;
             dtpBFPedidoIni.Checked = dtpBFPedidoFin.Checked = dtpBFRequeridoIni.Checked = dtpBFRequeridoFin.Checked = dtpBFEnvioIni.Checked = dtpBFEnvioFin.Checked = false;
             chkBFPedidoNull.Checked = chkBFRequeridoNull.Checked = chkBFEnvioNull.Checked = false;
         }
@@ -372,6 +423,7 @@ namespace NorthwindTraders
         {
             Utils.ValidaTxtBIdFin(txtBIdInicial, txtBIdFinal);
         }
+        #endregion
 
         private void dtpBFPedidoIni_ValueChanged(object sender, EventArgs e)
         {
@@ -382,7 +434,6 @@ namespace NorthwindTraders
             }
             else
                 dtpBFPedidoFin.Checked = false;
-            dtpBFPedidoFin.Value = dtpBFPedidoIni.Value;
         }
 
         private void dtpBFPedidoFin_ValueChanged(object sender, EventArgs e)
@@ -405,7 +456,6 @@ namespace NorthwindTraders
             }
             else
                 dtpBFRequeridoFin.Checked = false;
-            dtpBFRequeridoFin.Value = dtpBFRequeridoIni.Value;
         }
 
         private void dtpBFRequeridoFin_ValueChanged(object sender, EventArgs e)
@@ -428,7 +478,6 @@ namespace NorthwindTraders
             }
             else
                 dtpBFEnvioFin.Checked = false;
-            dtpBFEnvioFin.Value = dtpBFEnvioIni.Value;
         }
 
         private void dtpBFEnvioFin_ValueChanged(object sender, EventArgs e)
@@ -467,6 +516,299 @@ namespace NorthwindTraders
                 dtpBFEnvioIni.Checked = false;
                 dtpBFEnvioFin.Checked = false;
             }
+        }
+
+        private void dtpBFPedidoIni_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFPedidoIni.Checked && dtpBFPedidoFin.Checked)
+            {
+                if (dtpBFPedidoFin.Value < dtpBFPedidoIni.Value)
+                    dtpBFPedidoFin.Value = dtpBFPedidoIni.Value;
+            }
+        }
+
+        private void dtpBFPedidoFin_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFPedidoIni.Checked && dtpBFPedidoFin.Checked)
+            {
+                if (dtpBFPedidoFin.Value < dtpBFPedidoIni.Value)
+                    dtpBFPedidoIni.Value = dtpBFPedidoFin.Value;
+            }
+        }
+
+        private void dtpBFRequeridoIni_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFRequeridoIni.Checked && dtpBFRequeridoFin.Checked)
+                if (dtpBFRequeridoFin.Value < dtpBFRequeridoIni.Value)
+                    dtpBFRequeridoFin.Value = dtpBFRequeridoIni.Value;
+        }
+
+        private void dtpBFRequeridoFin_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFRequeridoIni.Checked && dtpBFRequeridoFin.Checked)
+                if (dtpBFRequeridoFin.Value < dtpBFRequeridoIni.Value)
+                    dtpBFRequeridoIni.Value = dtpBFRequeridoFin.Value;
+        }
+
+        private void dtpBFEnvioIni_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFEnvioIni.Checked && dtpBFEnvioFin.Checked)
+                if (dtpBFEnvioFin.Value < dtpBFEnvioIni.Value)
+                    dtpBFEnvioFin.Value = dtpBFEnvioIni.Value;
+        }
+
+        private void dtpBFEnvioFin_Leave(object sender, EventArgs e)
+        {
+            if (dtpBFEnvioIni.Checked && dtpBFEnvioFin.Checked)
+                if (dtpBFEnvioFin.Value < dtpBFEnvioIni.Value)
+                    dtpBFEnvioIni.Value = dtpBFEnvioFin.Value;
+        }
+        #region OcultarTemporalmente2
+        private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtPrecio.Text = "0.00";
+            if (cboCategoria.SelectedIndex != 0)
+            {
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    SqlCommand cmd = new SqlCommand("Sp_Productos_Seleccionar", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("Categoria", cboCategoria.SelectedValue);
+                    SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                    DataTable tbl = new DataTable();
+                    dap.Fill(tbl);
+                    cboProducto.DataSource = tbl;
+                    cboProducto.DisplayMember = "Producto";
+                    cboProducto.ValueMember = "Id";
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+            }
+            else
+            {
+                Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                DataTable tbl = new DataTable();
+                tbl.Columns.Add("Id", typeof(int));
+                tbl.Columns.Add("Producto", typeof(string));
+                DataRow dr = tbl.NewRow();
+                dr["Id"] = 0;
+                dr["Producto"] = "«--- Seleccione ---»";
+                tbl.Rows.Add(dr);
+                cboProducto.DataSource = tbl;
+                cboProducto.DisplayMember = "Producto";
+                cboProducto.ValueMember = "Id";
+                Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+            }
+        }
+
+        private void cboCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCliente.SelectedIndex > 0)
+            {
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    SqlCommand cmd = new SqlCommand($"Select Top 1 ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry from Orders Where CustomerId = '{cboCliente.SelectedValue}' order by OrderId Desc", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cn.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+                    if (rdr.Read())
+                    {
+                        txtDirigidoa.Text = (rdr["ShipName"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipName"));
+                        txtDomicilio.Text = (rdr["ShipAddress"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipAddress"));
+                        txtCiudad.Text = (rdr["ShipCity"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipCity"));
+                        txtRegion.Text = (rdr["ShipRegion"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipRegion"));
+                        txtCP.Text = (rdr["ShipPostalCode"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipPostalCode"));
+                        txtPais.Text = (rdr["ShipCountry"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipCountry"));
+                    }
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+            else
+                txtDirigidoa.Text = txtDomicilio.Text = txtCiudad.Text = txtRegion.Text = txtCP.Text = txtPais.Text = "";
+        }
+
+        private void cboProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboProducto.SelectedIndex > 0)
+            {
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    SqlCommand cmd = new SqlCommand($"Select UnitPrice from Products Where ProductId = {cboProducto.SelectedValue}", cn);
+                    cn.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+                    if (rdr.Read())
+                        txtPrecio.Text = rdr["UnitPrice"] == DBNull.Value ? "0.0" : rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")).ToString("c");
+                    else
+                        txtPrecio.Text = "$0.00";
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+        }
+
+        private void CalcularTotal()
+        {
+            decimal total = 0;
+            foreach (DataGridViewRow dgvr in dgvDetalle.Rows)
+            {
+                decimal importe = decimal.Parse(dgvr.Cells["Importe"].Value.ToString());
+                total += importe;
+            }
+            txtTotal.Text = string.Format("{0:c}", total);
+        }
+
+        private void txtDescuento_Enter(object sender, EventArgs e)
+        {
+            txtDescuento.Text = "";
+        }
+
+        private void txtDescuento_Leave(object sender, EventArgs e)
+        {
+            if (txtDescuento.Text.Trim() == "")
+                txtDescuento.Text = "0.00";
+        }
+
+        private void txtCantidad_Leave(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text.Trim() == "" || int.Parse(txtCantidad.Text) == 0) txtCantidad.Text = "1";
+        }
+
+        private void txtFlete_Enter(object sender, EventArgs e)
+        {
+            if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+            if (decimal.Parse(txtFlete.Text) == 0) txtFlete.Text = "";
+        }
+
+        private void txtFlete_Leave(object sender, EventArgs e)
+        {
+            if (txtFlete.Text.Trim() == "") txtFlete.Text = "0.00";
+            decimal flete = decimal.Parse(txtFlete.Text.Trim());
+            txtFlete.Text = flete.ToString("c");
+        }
+
+        #endregion
+
+        private void dtpPedido_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpPedido.Checked)
+            {
+                dtpHoraPedido.Value = DateTime.Now; // este es para que me ponga el componente del time
+                dtpHoraPedido.Enabled = true;
+            }
+            else
+            {
+                dtpHoraPedido.Value = DateTime.Today; // este es para que no me ponga el componente del time
+                dtpHoraPedido.Enabled = false;
+            }
+        }
+
+        private void dtpRequerido_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpRequerido.Checked)
+            {
+                dtpHoraRequerido.Value = Convert.ToDateTime(DateTime.Today.ToShortDateString() + " 12:00:00.000");
+                dtpHoraRequerido.Enabled = true;
+            }
+            else
+            {
+                dtpHoraRequerido.Value = DateTime.Today;
+                dtpHoraRequerido.Enabled = false;
+            }
+        }
+
+        private void dtpEnvio_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpEnvio.Checked)
+            {
+                dtpHoraEnvio.Value = Convert.ToDateTime(DateTime.Today.ToShortDateString() + " 12:00:00.000");
+                dtpHoraEnvio.Enabled = true;
+            }
+            else
+            {
+                dtpHoraEnvio.Value = DateTime.Today;
+                dtpHoraEnvio.Enabled = false;
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            BorrarMensajesError();
+            if (cboProducto.SelectedIndex <= 0)
+            {
+                errorProvider1.SetError(cboProducto, "Ingrese el producto");
+                return;
+            }
+            else
+                errorProvider1.SetError(cboProducto, "");
+            if (txtCantidad.Text.Trim() == "" || int.Parse(txtCantidad.Text) == 0)
+            {
+                errorProvider1.SetError(txtCantidad, "Ingrese la cantidd");
+                return;
+            }
+            else
+                errorProvider1.SetError(txtCantidad, "");
+            if (decimal.Parse(txtDescuento.Text) > 1 || decimal.Parse(txtDescuento.Text) < 0)
+            {
+                errorProvider1.SetError(txtDescuento, "El descuento no puede ser mayor que 1 o menor que 0");
+                return;
+            }
+            else
+                errorProvider1.SetError(txtDescuento, "");
+            txtPrecio.Text = txtPrecio.Text.Replace("$", "");
+            dgvDetalle.Rows.Add(new object[] { IdDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Eliminar", cboProducto.SelectedValue });
+            CalcularTotal();
+            ++IdDetalle;
+            cboCategoria.SelectedIndex = cboProducto.SelectedIndex = 0;
+            txtPrecio.Text = "$0.00";
+            txtCantidad.Text = "0";
+            txtDescuento.Text = "0.00";
+            cboCategoria.Focus();
+        }
+
+        private void dgvDetalle_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("c");
+            if (e.ColumnIndex == 3 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("n0");
+            if (e.ColumnIndex == 4 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("n2");
+            if (e.ColumnIndex == 5 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("c");
+        }
+
+        private void dgvDetalle_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

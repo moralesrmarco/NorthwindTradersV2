@@ -32,6 +32,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.grbDetalle = new System.Windows.Forms.GroupBox();
             this.dgvDetalle = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ProductoId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grbPedido = new System.Windows.Forms.GroupBox();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -128,14 +136,6 @@
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ProductoId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
@@ -198,6 +198,65 @@
             this.dgvDetalle.Name = "dgvDetalle";
             this.dgvDetalle.Size = new System.Drawing.Size(819, 226);
             this.dgvDetalle.TabIndex = 0;
+            this.dgvDetalle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalle_CellClick);
+            this.dgvDetalle.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetalle_CellFormatting);
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 43;
+            // 
+            // Producto
+            // 
+            this.Producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            // 
+            // Precio
+            // 
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 68;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 82;
+            // 
+            // Descuento
+            // 
+            this.Descuento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Descuento.HeaderText = "Descuento";
+            this.Descuento.Name = "Descuento";
+            this.Descuento.Width = 93;
+            // 
+            // Importe
+            // 
+            this.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            this.Importe.Width = 74;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Eliminar.Width = 57;
+            // 
+            // ProductoId
+            // 
+            this.ProductoId.HeaderText = "ProductoId";
+            this.ProductoId.Name = "ProductoId";
+            this.ProductoId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductoId.Visible = false;
             // 
             // grbPedido
             // 
@@ -299,6 +358,8 @@
             this.txtDescuento.Size = new System.Drawing.Size(124, 20);
             this.txtDescuento.TabIndex = 4;
             this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDescuento.Enter += new System.EventHandler(this.txtDescuento_Enter);
+            this.txtDescuento.Leave += new System.EventHandler(this.txtDescuento_Leave);
             // 
             // txtCantidad
             // 
@@ -309,6 +370,7 @@
             this.txtCantidad.Size = new System.Drawing.Size(128, 20);
             this.txtCantidad.TabIndex = 3;
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCantidad.Leave += new System.EventHandler(this.txtCantidad_Leave);
             // 
             // txtPrecio
             // 
@@ -330,6 +392,7 @@
             this.cboProducto.Name = "cboProducto";
             this.cboProducto.Size = new System.Drawing.Size(304, 21);
             this.cboProducto.TabIndex = 1;
+            this.cboProducto.SelectedIndexChanged += new System.EventHandler(this.cboProducto_SelectedIndexChanged);
             // 
             // cboCategoria
             // 
@@ -340,6 +403,7 @@
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(250, 21);
             this.cboCategoria.TabIndex = 0;
+            this.cboCategoria.SelectedIndexChanged += new System.EventHandler(this.cboCategoria_SelectedIndexChanged);
             // 
             // btnAgregar
             // 
@@ -350,6 +414,7 @@
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "+";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // label41
             // 
@@ -433,6 +498,8 @@
             this.txtFlete.Size = new System.Drawing.Size(128, 20);
             this.txtFlete.TabIndex = 7;
             this.txtFlete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFlete.Enter += new System.EventHandler(this.txtFlete_Enter);
+            this.txtFlete.Leave += new System.EventHandler(this.txtFlete_Leave);
             // 
             // txtCP
             // 
@@ -572,24 +639,20 @@
             // 
             // dtpHoraEnvio
             // 
-            this.dtpHoraEnvio.Checked = false;
             this.dtpHoraEnvio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpHoraEnvio.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraEnvio.Location = new System.Drawing.Point(656, 64);
             this.dtpHoraEnvio.Name = "dtpHoraEnvio";
-            this.dtpHoraEnvio.ShowCheckBox = true;
             this.dtpHoraEnvio.ShowUpDown = true;
             this.dtpHoraEnvio.Size = new System.Drawing.Size(114, 20);
             this.dtpHoraEnvio.TabIndex = 8;
             // 
             // dtpHoraRequerido
             // 
-            this.dtpHoraRequerido.Checked = false;
             this.dtpHoraRequerido.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpHoraRequerido.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraRequerido.Location = new System.Drawing.Point(656, 40);
             this.dtpHoraRequerido.Name = "dtpHoraRequerido";
-            this.dtpHoraRequerido.ShowCheckBox = true;
             this.dtpHoraRequerido.ShowUpDown = true;
             this.dtpHoraRequerido.Size = new System.Drawing.Size(114, 20);
             this.dtpHoraRequerido.TabIndex = 6;
@@ -600,7 +663,6 @@
             this.dtpHoraPedido.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtpHoraPedido.Location = new System.Drawing.Point(656, 16);
             this.dtpHoraPedido.Name = "dtpHoraPedido";
-            this.dtpHoraPedido.ShowCheckBox = true;
             this.dtpHoraPedido.ShowUpDown = true;
             this.dtpHoraPedido.Size = new System.Drawing.Size(114, 20);
             this.dtpHoraPedido.TabIndex = 4;
@@ -643,6 +705,7 @@
             this.dtpEnvio.ShowCheckBox = true;
             this.dtpEnvio.Size = new System.Drawing.Size(134, 20);
             this.dtpEnvio.TabIndex = 7;
+            this.dtpEnvio.ValueChanged += new System.EventHandler(this.dtpEnvio_ValueChanged);
             // 
             // dtpRequerido
             // 
@@ -655,6 +718,7 @@
             this.dtpRequerido.ShowCheckBox = true;
             this.dtpRequerido.Size = new System.Drawing.Size(134, 20);
             this.dtpRequerido.TabIndex = 5;
+            this.dtpRequerido.ValueChanged += new System.EventHandler(this.dtpRequerido_ValueChanged);
             // 
             // dtpPedido
             // 
@@ -666,6 +730,7 @@
             this.dtpPedido.ShowCheckBox = true;
             this.dtpPedido.Size = new System.Drawing.Size(134, 20);
             this.dtpPedido.TabIndex = 3;
+            this.dtpPedido.ValueChanged += new System.EventHandler(this.dtpPedido_ValueChanged);
             // 
             // label25
             // 
@@ -721,6 +786,7 @@
             this.cboCliente.Name = "cboCliente";
             this.cboCliente.Size = new System.Drawing.Size(250, 21);
             this.cboCliente.TabIndex = 1;
+            this.cboCliente.SelectedIndexChanged += new System.EventHandler(this.cboCliente_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -903,6 +969,7 @@
             this.dtpBFEnvioFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFEnvioFin.TabIndex = 11;
             this.dtpBFEnvioFin.ValueChanged += new System.EventHandler(this.dtpBFEnvioFin_ValueChanged);
+            this.dtpBFEnvioFin.Leave += new System.EventHandler(this.dtpBFEnvioFin_Leave);
             // 
             // dtpBFEnvioIni
             // 
@@ -915,6 +982,7 @@
             this.dtpBFEnvioIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFEnvioIni.TabIndex = 10;
             this.dtpBFEnvioIni.ValueChanged += new System.EventHandler(this.dtpBFEnvioIni_ValueChanged);
+            this.dtpBFEnvioIni.Leave += new System.EventHandler(this.dtpBFEnvioIni_Leave);
             // 
             // chkBFEnvioNull
             // 
@@ -969,6 +1037,7 @@
             this.dtpBFRequeridoFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFRequeridoFin.TabIndex = 8;
             this.dtpBFRequeridoFin.ValueChanged += new System.EventHandler(this.dtpBFRequeridoFin_ValueChanged);
+            this.dtpBFRequeridoFin.Leave += new System.EventHandler(this.dtpBFRequeridoFin_Leave);
             // 
             // dtpBFRequeridoIni
             // 
@@ -981,6 +1050,7 @@
             this.dtpBFRequeridoIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFRequeridoIni.TabIndex = 7;
             this.dtpBFRequeridoIni.ValueChanged += new System.EventHandler(this.dtpBFRequeridoIni_ValueChanged);
+            this.dtpBFRequeridoIni.Leave += new System.EventHandler(this.dtpBFRequeridoIni_Leave);
             // 
             // chkBFRequeridoNull
             // 
@@ -1048,6 +1118,7 @@
             this.dtpBFPedidoFin.Size = new System.Drawing.Size(95, 20);
             this.dtpBFPedidoFin.TabIndex = 5;
             this.dtpBFPedidoFin.ValueChanged += new System.EventHandler(this.dtpBFPedidoFin_ValueChanged);
+            this.dtpBFPedidoFin.Leave += new System.EventHandler(this.dtpBFPedidoFin_Leave);
             // 
             // dtpBFPedidoIni
             // 
@@ -1060,6 +1131,7 @@
             this.dtpBFPedidoIni.Size = new System.Drawing.Size(95, 20);
             this.dtpBFPedidoIni.TabIndex = 4;
             this.dtpBFPedidoIni.ValueChanged += new System.EventHandler(this.dtpBFPedidoIni_ValueChanged);
+            this.dtpBFPedidoIni.Leave += new System.EventHandler(this.dtpBFPedidoIni_Leave);
             // 
             // label8
             // 
@@ -1251,63 +1323,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Width = 43;
-            // 
-            // Producto
-            // 
-            this.Producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            // 
-            // Precio
-            // 
-            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 68;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 82;
-            // 
-            // Descuento
-            // 
-            this.Descuento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Descuento.HeaderText = "Descuento";
-            this.Descuento.Name = "Descuento";
-            this.Descuento.Width = 93;
-            // 
-            // Importe
-            // 
-            this.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Importe.HeaderText = "Importe";
-            this.Importe.Name = "Importe";
-            this.Importe.Width = 74;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Eliminar.Width = 57;
-            // 
-            // ProductoId
-            // 
-            this.ProductoId.HeaderText = "ProductoId";
-            this.ProductoId.Name = "ProductoId";
-            this.ProductoId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProductoId.Visible = false;
             // 
             // FrmPedidosCrud
             // 

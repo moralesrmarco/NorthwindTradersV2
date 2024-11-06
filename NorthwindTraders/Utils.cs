@@ -21,6 +21,8 @@ namespace NorthwindTraders
         public static string errorClaveDuplicada = "Error: No se puede insertar una clave duplicada en el objeto. Infracción de la restricción PRIMARY KEY";
         #endregion
 
+
+
         public static void ValidaTxtBIdIni(TextBox txtBIdIni, TextBox txtBIdFin)
         {
             int numBIdIni = 0, numBIdFin = 0;
