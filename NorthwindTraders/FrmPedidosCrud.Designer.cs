@@ -304,6 +304,7 @@
             this.btnGenerar.Text = "Generar pedido";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Visible = false;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // txtTotal
             // 
@@ -359,6 +360,7 @@
             this.txtDescuento.TabIndex = 4;
             this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDescuento.Enter += new System.EventHandler(this.txtDescuento_Enter);
+            this.txtDescuento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescuento_KeyPress);
             this.txtDescuento.Leave += new System.EventHandler(this.txtDescuento_Leave);
             // 
             // txtCantidad
@@ -370,7 +372,9 @@
             this.txtCantidad.Size = new System.Drawing.Size(128, 20);
             this.txtCantidad.TabIndex = 3;
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             this.txtCantidad.Leave += new System.EventHandler(this.txtCantidad_Leave);
+            this.txtCantidad.Validating += new System.ComponentModel.CancelEventHandler(this.txtCantidad_Validating);
             // 
             // txtPrecio
             // 
@@ -499,6 +503,7 @@
             this.txtFlete.TabIndex = 7;
             this.txtFlete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFlete.Enter += new System.EventHandler(this.txtFlete_Enter);
+            this.txtFlete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFlete_KeyPress);
             this.txtFlete.Leave += new System.EventHandler(this.txtFlete_Leave);
             // 
             // txtCP
@@ -1224,6 +1229,7 @@
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.Size = new System.Drawing.Size(1134, 221);
             this.dgvPedidos.TabIndex = 0;
+            this.dgvPedidos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPedidos_CellClick);
             // 
             // tabcOperacion
             // 
@@ -1238,6 +1244,7 @@
             this.tabcOperacion.SelectedIndex = 0;
             this.tabcOperacion.Size = new System.Drawing.Size(1141, 56);
             this.tabcOperacion.TabIndex = 0;
+            this.tabcOperacion.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabcOperacion_Selected);
             // 
             // tabpConsultar
             // 
