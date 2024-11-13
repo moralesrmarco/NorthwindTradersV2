@@ -38,7 +38,7 @@ namespace NorthwindTraders
         {
             if (tabcOperacion.SelectedTab != tabpConsultar)
             {
-                if (cboCliente.SelectedIndex > 0 || cboEmpleado.SelectedIndex > 0 || cboTransportista.SelectedIndex > 0 || cboCategoria.SelectedIndex > 0 || cboProducto.SelectedIndex > 0)
+                if (cboCliente.SelectedIndex > 0 || cboEmpleado.SelectedIndex > 0 || cboTransportista.SelectedIndex > 0 || cboCategoria.SelectedIndex > 0 || cboProducto.SelectedIndex > 0 || dgvDetalle.RowCount > 0) 
                 {
                     DialogResult respuesta = MessageBox.Show(Utils.preguntaCerrar, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (respuesta == DialogResult.No)
@@ -53,8 +53,6 @@ namespace NorthwindTraders
         {
             dtpHoraRequerido.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             dtpHoraEnvio.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            //dtpHoraRequerido.Checked = false;
-            //dtpHoraEnvio.Checked = false;
             dtpHoraRequerido.Enabled = false;
             dtpHoraEnvio.Enabled = false;
             DeshabilitarControles();
@@ -70,6 +68,7 @@ namespace NorthwindTraders
             dgvDetalle.Columns["Eliminar"].Visible = false;
             txtPrecio.Text = txtFlete.Text = "$0.00";
             txtDescuento.Text = "0.00";
+            txtUInventario.Text = "0";
         }
 
         private void DeshabilitarControles()
@@ -77,7 +76,7 @@ namespace NorthwindTraders
             cboCliente.Enabled = cboEmpleado.Enabled = cboTransportista.Enabled = cboCategoria.Enabled = cboProducto.Enabled = false;
             dtpPedido.Enabled = dtpHoraPedido.Enabled = dtpRequerido.Enabled = dtpHoraRequerido.Enabled = dtpEnvio.Enabled = dtpHoraEnvio.Enabled = false;
             txtDirigidoa.ReadOnly = txtDomicilio.ReadOnly = txtCiudad.ReadOnly = txtRegion.ReadOnly = txtCP.ReadOnly = txtPais.ReadOnly = txtFlete.ReadOnly = true;
-            txtCantidad.ReadOnly = txtDescuento.ReadOnly = true;
+            txtCantidad.Enabled = txtDescuento.Enabled = false;
             btnAgregar.Enabled = btnGenerar.Enabled = false;
         }
 
@@ -86,8 +85,17 @@ namespace NorthwindTraders
             cboCliente.Enabled = cboEmpleado.Enabled = cboTransportista.Enabled = cboCategoria.Enabled = cboProducto.Enabled = true;
             dtpPedido.Enabled = dtpHoraPedido.Enabled = dtpRequerido.Enabled = dtpHoraRequerido.Enabled = dtpEnvio.Enabled = dtpHoraEnvio.Enabled = true;
             txtDirigidoa.ReadOnly = txtDomicilio.ReadOnly = txtCiudad.ReadOnly = txtRegion.ReadOnly = txtCP.ReadOnly = txtPais.ReadOnly = txtFlete.ReadOnly = false;
-            txtCantidad.ReadOnly = txtDescuento.ReadOnly = false;
             btnAgregar.Enabled = btnGenerar.Enabled = true;
+        }
+
+        private void HabilitarControlesProducto()
+        {
+            txtCantidad.Enabled = txtDescuento.Enabled = true;
+        }
+
+        private void DeshabilitarControlesProducto()
+        {
+            txtCantidad.Enabled = txtDescuento.Enabled = false;
         }
 
         private bool ValidarControles()
@@ -372,7 +380,7 @@ namespace NorthwindTraders
             dtpRequerido.Checked = dtpEnvio.Checked = dtpHoraRequerido.Checked = dtpHoraEnvio.Checked = false;
             txtDirigidoa.Text = txtDomicilio.Text = txtCiudad.Text = txtRegion.Text = txtCP.Text = txtPais.Text = "";
             txtFlete.Text = txtPrecio.Text = "$0.00";
-            txtCantidad.Text = "0";
+            txtCantidad.Text = txtUInventario.Text = "0";
             txtDescuento.Text = "0.00";
             txtTotal.Text = "$0.00";
             dgvDetalle.Rows.Clear();
@@ -380,6 +388,7 @@ namespace NorthwindTraders
 
         private void BorrarMensajesError()
         {
+            errorProvider1.SetError(cboCategoria, "");
             errorProvider1.SetError(cboProducto, "");
             errorProvider1.SetError(txtCantidad, "");
             errorProvider1.SetError(txtDescuento, "");
@@ -560,7 +569,9 @@ namespace NorthwindTraders
 
         private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtPrecio.Text = "0.00";
+            txtPrecio.Text = "$0.00";
+            txtUInventario.Text = "0";
+            txtCantidad.Text = "0";
             if (cboCategoria.SelectedIndex != 0)
             {
                 try
@@ -650,13 +661,31 @@ namespace NorthwindTraders
                 try
                 {
                     Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                    SqlCommand cmd = new SqlCommand($"Select UnitPrice from Products Where ProductId = {cboProducto.SelectedValue}", cn);
+                    SqlCommand cmd = new SqlCommand($"Select UnitPrice, UnitsInStock from Products Where ProductId = {cboProducto.SelectedValue}", cn);
                     cn.Open();
                     SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
                     if (rdr.Read())
+                    {
                         txtPrecio.Text = rdr["UnitPrice"] == DBNull.Value ? "0.0" : rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")).ToString("c");
+                        txtUInventario.Text = rdr["UnitsInStock"] == DBNull.Value ? "0" : rdr.GetInt16(rdr.GetOrdinal("UnitsInStock")).ToString();
+                        if (int.Parse(txtUInventario.Text) == 0)
+                        {
+                            //DeshabilitarControlesProducto();
+                            MessageBox.Show("No hay este producto en existencia", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cboProducto.SelectedIndex = 0;
+                            txtPrecio.Text = "$0.00";
+                            txtUInventario.Text = "0";
+                            txtCantidad.Text = "0";
+                            txtDescuento.Text = "0.00";
+                        }
+                        else
+                            HabilitarControlesProducto();
+                    }
                     else
+                    {
                         txtPrecio.Text = "$0.00";
+                        txtUInventario.Text = "0";
+                    }
                     rdr.Close();
                     Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
                 }
@@ -760,6 +789,13 @@ namespace NorthwindTraders
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             BorrarMensajesError();
+            if (cboCategoria.SelectedIndex <= 0)
+            {
+                errorProvider1.SetError(cboCategoria, "Seleccione la categoría");
+                return;
+            }
+            else
+                errorProvider1.SetError(cboCategoria, "");
             if (cboProducto.SelectedIndex <= 0)
             {
                 errorProvider1.SetError(cboProducto, "Ingrese el producto");
@@ -769,7 +805,7 @@ namespace NorthwindTraders
                 errorProvider1.SetError(cboProducto, "");
             if (txtCantidad.Text.Trim() == "" || int.Parse(txtCantidad.Text) == 0)
             {
-                errorProvider1.SetError(txtCantidad, "Ingrese la cantidd");
+                errorProvider1.SetError(txtCantidad, "Ingrese la cantidad");
                 return;
             }
             else
@@ -781,13 +817,21 @@ namespace NorthwindTraders
             }
             else
                 errorProvider1.SetError(txtDescuento, "");
+            if (int.Parse(txtCantidad.Text) > int.Parse(txtUInventario.Text))
+            {
+                errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
+                return;
+            }
+            else
+                errorProvider1.SetError(txtCantidad, "");
+            DeshabilitarControlesProducto();
             txtPrecio.Text = txtPrecio.Text.Replace("$", "");
             dgvDetalle.Rows.Add(new object[] { IdDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Eliminar", cboProducto.SelectedValue });
             CalcularTotal();
             ++IdDetalle;
             cboCategoria.SelectedIndex = cboProducto.SelectedIndex = 0;
             txtPrecio.Text = "$0.00";
-            txtCantidad.Text = "0";
+            txtCantidad.Text = txtUInventario.Text = "0";
             txtDescuento.Text = "0.00";
             cboCategoria.Focus();
         }
@@ -834,6 +878,11 @@ namespace NorthwindTraders
                 }
                 else
                     errorProvider1.SetError(txtCantidad, "");
+                if (int.Parse(txtCantidad.Text) > int.Parse(txtUInventario.Text))
+                {
+                    errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
+                    e.Cancel = true;
+                }
             }
         }
 
@@ -1058,7 +1107,7 @@ namespace NorthwindTraders
             public string ShipCountry { get; set; }
         }
 
-        private class PedidoDB
+        private class PedidosDB
         {
             public int PedidoId { get; set; }
 
@@ -1080,7 +1129,7 @@ namespace NorthwindTraders
                         dt.Rows.Add(i, item.ProductId, item.UnitPrice, item.Quantity, item.Discount);
                         i++;
                     }
-                    SqlCommand cmd = new SqlCommand("Sp_Pedidos_Insertar", cn);
+                    SqlCommand cmd = new SqlCommand("Sp_Pedidos_Insertar_v2", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("OrderId", 0);
                     cmd.Parameters["OrderId"].Direction = ParameterDirection.Output;
@@ -1183,7 +1232,161 @@ namespace NorthwindTraders
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-
+            int numRegs = 0;
+            BorrarMensajesError();
+            if (tabcOperacion.SelectedTab == tabpRegistrar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        Utils.ActualizarBarraDeEstado(this, Utils.insertandoRegistro);
+                        DeshabilitarControles();
+                        btnGenerar.Enabled = false;
+                        List<PedidoDetalle> lstDetalle = new List<PedidoDetalle>();
+                        // llenado de elementos hijos
+                        foreach(DataGridViewRow dgvr in dgvDetalle.Rows)
+                        {
+                            PedidoDetalle detalle = new PedidoDetalle();
+                            detalle.ProductId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
+                            detalle.UnitPrice = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
+                            detalle.Quantity = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
+                            detalle.Discount = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
+                            lstDetalle.Add(detalle);
+                        }
+                        Pedido pedido = new Pedido();
+                        pedido.CustomerId = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
+                        if (!dtpPedido.Checked) pedido.OrderDate = null;
+                        else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
+                        if (!dtpRequerido.Checked) pedido.RequiredDate = null;
+                        else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
+                        if (!dtpEnvio.Checked) pedido.ShippedDate = null;
+                        else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
+                        pedido.ShipVia = (int)cboTransportista.SelectedValue;
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Add(pedido, lstDetalle, txtId, cboCliente.Text);
+                    }
+                }
+                catch (SqlException ex) when (ex.Number == 2627)
+                {
+                    MessageBox.Show($"Error, existe un producto duplicado en el pedido, elimine el producto duplicado y modifique la cantidad del producto", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                HabilitarControles();
+                btnGenerar.Enabled = true;
+                if (numRegs > 0)
+                {
+                    IdDetalle = 1;
+                    BorrarDatosPedido();
+                    BorrarDatosBusqueda();
+                    LlenarDgvPedidos(null);
+                }
+            }
+            else if (tabcOperacion.SelectedTab == tabpModificar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        Utils.ActualizarBarraDeEstado(this, Utils.modificandoRegistro);
+                        DeshabilitarControles();
+                        btnGenerar.Enabled = false;
+                        Pedido pedido = new Pedido();
+                        pedido.OrderId = int.Parse(txtId.Text);
+                        pedido.CustomerId = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
+                        if (!dtpPedido.Checked) pedido.OrderDate = null;
+                        else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
+                        if (!dtpRequerido.Checked) pedido.RequiredDate = null;
+                        else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
+                        if (!dtpEnvio.Checked) pedido.ShippedDate = null;
+                        else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
+                        pedido.ShipVia = (int)cboTransportista.SelectedValue;
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Update(pedido, cboCliente.Text);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                if (numRegs > 0)
+                {
+                    BorrarDatosBusqueda();
+                    txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
+                    btnBuscar.PerformClick();
+                    btnLimpiar.PerformClick();
+                }
+            }
+            else if (tabcOperacion.SelectedTab == tabpEliminar)
+            {
+                if (txtId.Text == "")
+                {
+                    MessageBox.Show("Seleccione el pedido a eliminar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                DialogResult respuesta = MessageBox.Show($"¿Esta seguro de eliminar el pedido con Id: {txtId.Text} del Cliente: {cboCliente.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
+                    btnGenerar.Enabled = false;
+                    try
+                    {
+                        Pedido pedido = new Pedido();
+                        pedido.OrderId = int.Parse(txtId.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Delete(pedido, cboCliente.Text);
+                    }
+                    catch (SqlException ex)
+                    {
+                        Utils.MsgCatchOueclbdd(this, ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.MsgCatchOue(this, ex);
+                    }
+                    if (numRegs > 0)
+                    {
+                        BorrarDatosBusqueda();
+                        txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
+                        btnBuscar.PerformClick();
+                        btnLimpiar.PerformClick();
+                    }
+                }
+                else
+                {
+                    BorrarDatosPedido();
+                    btnGenerar.Enabled = false;
+                }
+            }
         }
     }
 }

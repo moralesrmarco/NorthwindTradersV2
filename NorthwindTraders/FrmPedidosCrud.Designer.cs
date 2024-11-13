@@ -136,6 +136,8 @@
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label43 = new System.Windows.Forms.Label();
+            this.txtUInventario = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
@@ -331,6 +333,8 @@
             // 
             this.grbProducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbProducto.Controls.Add(this.txtUInventario);
+            this.grbProducto.Controls.Add(this.label43);
             this.grbProducto.Controls.Add(this.txtDescuento);
             this.grbProducto.Controls.Add(this.txtCantidad);
             this.grbProducto.Controls.Add(this.txtPrecio);
@@ -353,10 +357,10 @@
             // txtDescuento
             // 
             this.txtDescuento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescuento.Location = new System.Drawing.Point(504, 48);
+            this.txtDescuento.Location = new System.Drawing.Point(640, 48);
             this.txtDescuento.MaxLength = 4;
             this.txtDescuento.Name = "txtDescuento";
-            this.txtDescuento.Size = new System.Drawing.Size(124, 20);
+            this.txtDescuento.Size = new System.Drawing.Size(50, 20);
             this.txtDescuento.TabIndex = 4;
             this.txtDescuento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtDescuento.Enter += new System.EventHandler(this.txtDescuento_Enter);
@@ -366,10 +370,10 @@
             // txtCantidad
             // 
             this.txtCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(296, 48);
+            this.txtCantidad.Location = new System.Drawing.Point(472, 48);
             this.txtCantidad.MaxLength = 15;
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(128, 20);
+            this.txtCantidad.Size = new System.Drawing.Size(80, 20);
             this.txtCantidad.TabIndex = 3;
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
@@ -383,7 +387,7 @@
             this.txtPrecio.MaxLength = 15;
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.ReadOnly = true;
-            this.txtPrecio.Size = new System.Drawing.Size(128, 20);
+            this.txtPrecio.Size = new System.Drawing.Size(80, 20);
             this.txtPrecio.TabIndex = 2;
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -412,7 +416,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(672, 43);
+            this.btnAgregar.Location = new System.Drawing.Point(728, 43);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(30, 30);
             this.btnAgregar.TabIndex = 5;
@@ -423,7 +427,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(432, 52);
+            this.label41.Location = new System.Drawing.Point(568, 52);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(72, 13);
             this.label41.TabIndex = 4;
@@ -432,7 +436,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(232, 52);
+            this.label40.Location = new System.Drawing.Point(408, 52);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(61, 13);
             this.label40.TabIndex = 3;
@@ -1331,6 +1335,25 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(192, 52);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(142, 13);
+            this.label43.TabIndex = 6;
+            this.label43.Text = "Unidades en inventario:";
+            // 
+            // txtUInventario
+            // 
+            this.txtUInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUInventario.Location = new System.Drawing.Point(336, 48);
+            this.txtUInventario.Name = "txtUInventario";
+            this.txtUInventario.ReadOnly = true;
+            this.txtUInventario.Size = new System.Drawing.Size(50, 20);
+            this.txtUInventario.TabIndex = 7;
+            this.txtUInventario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // FrmPedidosCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1479,5 +1502,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
         private System.Windows.Forms.DataGridViewButtonColumn ProductoId;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox txtUInventario;
     }
 }
