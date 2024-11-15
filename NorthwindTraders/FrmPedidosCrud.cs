@@ -11,8 +11,10 @@ namespace NorthwindTraders
     {
 
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
+        private TabPage lastSelectedTab;
         bool EventoCargardo = true; // esta variable es necesaria para controlar el manejador de eventos de la celda del dgv, ojo no quitar
         int IdDetalle = 1;
+
         public FrmPedidosCrud()
         {
             InitializeComponent();
@@ -888,6 +890,8 @@ namespace NorthwindTraders
 
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
         {
+            // actualizar la pestaña actual
+            lastSelectedTab = e.TabPage;
             IdDetalle = 1;
             BorrarDatosPedido();
             BorrarMensajesError();
@@ -1215,7 +1219,7 @@ namespace NorthwindTraders
                 byte numRegs = 0;
                 using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    SqlCommand cmd = new SqlCommand("Sp_Pedidos_Eliminar", cn);
+                    SqlCommand cmd = new SqlCommand("Sp_Pedidos_Eliminar_V2", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("OrderId", pedido.OrderId);
                     cn.Open();
@@ -1386,6 +1390,16 @@ namespace NorthwindTraders
                     BorrarDatosPedido();
                     btnGenerar.Enabled = false;
                 }
+            }
+        }
+
+        private void tabcOperacion_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (lastSelectedTab == tabpRegistrar && e.TabPage != tabpRegistrar && dgvDetalle.RowCount > 0)
+            {
+                DialogResult respuesta = MessageBox.Show("Se han agregados productos al detalle del pedido, si cambia de pestaña se perderan los datos no guardados.\n¿Desea cambiar de pestaña?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (respuesta == DialogResult.No)
+                    e.Cancel = true;
             }
         }
     }

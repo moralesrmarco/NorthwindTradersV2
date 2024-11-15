@@ -45,6 +45,8 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label42 = new System.Windows.Forms.Label();
             this.grbProducto = new System.Windows.Forms.GroupBox();
+            this.txtUInventario = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -136,8 +138,6 @@
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label43 = new System.Windows.Forms.Label();
-            this.txtUInventario = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
@@ -353,6 +353,25 @@
             this.grbProducto.TabStop = false;
             this.grbProducto.Text = "»   Agregar producto:   «";
             this.grbProducto.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
+            // 
+            // txtUInventario
+            // 
+            this.txtUInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUInventario.Location = new System.Drawing.Point(336, 48);
+            this.txtUInventario.Name = "txtUInventario";
+            this.txtUInventario.ReadOnly = true;
+            this.txtUInventario.Size = new System.Drawing.Size(50, 20);
+            this.txtUInventario.TabIndex = 7;
+            this.txtUInventario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(192, 52);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(142, 13);
+            this.label43.TabIndex = 6;
+            this.label43.Text = "Unidades en inventario:";
             // 
             // txtDescuento
             // 
@@ -1248,6 +1267,7 @@
             this.tabcOperacion.SelectedIndex = 0;
             this.tabcOperacion.Size = new System.Drawing.Size(1141, 56);
             this.tabcOperacion.TabIndex = 0;
+            this.tabcOperacion.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabcOperacion_Selecting);
             this.tabcOperacion.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabcOperacion_Selected);
             // 
             // tabpConsultar
@@ -1334,25 +1354,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(192, 52);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(142, 13);
-            this.label43.TabIndex = 6;
-            this.label43.Text = "Unidades en inventario:";
-            // 
-            // txtUInventario
-            // 
-            this.txtUInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUInventario.Location = new System.Drawing.Point(336, 48);
-            this.txtUInventario.Name = "txtUInventario";
-            this.txtUInventario.ReadOnly = true;
-            this.txtUInventario.Size = new System.Drawing.Size(50, 20);
-            this.txtUInventario.TabIndex = 7;
-            this.txtUInventario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FrmPedidosCrud
             // 
