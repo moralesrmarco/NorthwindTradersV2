@@ -142,9 +142,12 @@
     <Compile Include="StoreProcedures\Sp_Clientes.cs" />
     <Compile Include="StoreProcedures\Sp_ClientesProveedores_Ciudad.cs" />
     <Compile Include="StoreProcedures\Sp_ClientesProveedores_Pais.cs" />
+    <Compile Include="StoreProcedures\Sp_DetallePedidos.cs" />
     <Compile Include="StoreProcedures\Sp_Empleados.cs" />
+    <Compile Include="StoreProcedures\Sp_Pedidos.cs" />
     <Compile Include="StoreProcedures\Sp_Productos.cs" />
     <Compile Include="StoreProcedures\Sp_Proveedores.cs" />
+    <Compile Include="StoreProcedures\Sp_Transportistas.cs" />
     <Compile Include="StoreProcedures\Vw_ClientesProveedores_DirectorioPorCiudad.cs" />
     <Compile Include="StoreProcedures\Vw_ClientesProveedores_DirectorioPorPais.cs" />
     <Compile Include="StoreProcedures\Vw_ProductosListaAlfabetica.cs" />
