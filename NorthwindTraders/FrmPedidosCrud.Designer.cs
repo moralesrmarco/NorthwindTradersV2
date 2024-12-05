@@ -138,6 +138,7 @@
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnListar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
@@ -849,6 +850,7 @@
             // 
             this.grbBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.grbBuscar.Controls.Add(this.btnListar);
             this.grbBuscar.Controls.Add(this.btnLimpiar);
             this.grbBuscar.Controls.Add(this.btnBuscar);
             this.grbBuscar.Controls.Add(this.label19);
@@ -1355,6 +1357,18 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnListar
+            // 
+            this.btnListar.AutoSize = true;
+            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.Location = new System.Drawing.Point(48, 408);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(243, 23);
+            this.btnListar.TabIndex = 31;
+            this.btnListar.Text = "Listar los últimos 20 pedidos registrados";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
             // FrmPedidosCrud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1505,5 +1519,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn ProductoId;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.TextBox txtUInventario;
+        private System.Windows.Forms.Button btnListar;
     }
 }
