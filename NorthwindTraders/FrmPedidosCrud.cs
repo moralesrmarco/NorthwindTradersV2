@@ -664,7 +664,7 @@ namespace NorthwindTraders
                     SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
                     if (rdr.Read())
                     {
-                        txtPrecio.Text = rdr["UnitPrice"] == DBNull.Value ? "0.0" : rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")).ToString("c");
+                        txtPrecio.Text = rdr["UnitPrice"] == DBNull.Value ? "$0.00" : rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")).ToString("c");
                         txtUInventario.Text = rdr["UnitsInStock"] == DBNull.Value ? "0" : rdr.GetInt16(rdr.GetOrdinal("UnitsInStock")).ToString();
                         if (int.Parse(txtUInventario.Text) == 0)
                         {
