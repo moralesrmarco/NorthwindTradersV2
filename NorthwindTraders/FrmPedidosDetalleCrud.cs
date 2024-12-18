@@ -793,19 +793,23 @@ namespace NorthwindTraders
             if (e.ColumnIndex == DgvDetalle.Columns["Modificar"].Index)
             {
                 DataGridViewRow dgvr = DgvDetalle.CurrentRow;
-                FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar();
-                frmPedidosDetalleModificar.PedidoId = int.Parse(txtId.Text);
-                frmPedidosDetalleModificar.ProductoId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
-                frmPedidosDetalleModificar.Producto = dgvr.Cells["Producto"].Value.ToString();
-                frmPedidosDetalleModificar.Precio = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
-                frmPedidosDetalleModificar.Cantidad = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
-                frmPedidosDetalleModificar.Descuento = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
-                frmPedidosDetalleModificar.Importe = decimal.Parse(dgvr.Cells["Importe"].Value.ToString());
-                DialogResult dialogResult = frmPedidosDetalleModificar.ShowDialog();
-                if (dialogResult == DialogResult.OK)
+                using (FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar())
                 {
-                    BorrarDatosDetallePedido();
-                    LlenarDatosDetallePedido();
+                    frmPedidosDetalleModificar.Owner = this;
+                    //FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar();
+                    frmPedidosDetalleModificar.PedidoId = int.Parse(txtId.Text);
+                    frmPedidosDetalleModificar.ProductoId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
+                    frmPedidosDetalleModificar.Producto = dgvr.Cells["Producto"].Value.ToString();
+                    frmPedidosDetalleModificar.Precio = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
+                    frmPedidosDetalleModificar.Cantidad = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
+                    frmPedidosDetalleModificar.Descuento = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
+                    frmPedidosDetalleModificar.Importe = decimal.Parse(dgvr.Cells["Importe"].Value.ToString());
+                    DialogResult dialogResult = frmPedidosDetalleModificar.ShowDialog();
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        BorrarDatosDetallePedido();
+                        LlenarDatosDetallePedido();
+                    }
                 }
             }
             DgvDetalle.Focus();

@@ -35,7 +35,7 @@ namespace NorthwindTraders
 
         private void FrmPedidosDetalleModificar_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (short.Parse(txtCantidad.Text) != CantidadOld || decimal.Parse(txtDescuento.Text) != DescuentoOld)
+            if (int.Parse(txtCantidad.Text.Replace(",", "")) != CantidadOld || decimal.Parse(txtDescuento.Text) != DescuentoOld)
             {
                 DialogResult respuesta = MessageBox.Show(Utils.preguntaCerrar, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (respuesta == DialogResult.No)
@@ -66,7 +66,7 @@ namespace NorthwindTraders
         {
             try
             {
-                //Utils.ActualizarBarraDeEstado(this.ParentForm.ParentForm, Utils.clbdd);
+                Utils.ActualizarBarraDeEstado(this.Owner, Utils.clbdd);
                 SqlCommand cmd = new SqlCommand($"Select Top 1 UnitsInStock From Products Where ProductId = {ProductoId}", cn);
                 cmd.CommandType = CommandType.Text;
                 cn.Open();
@@ -76,7 +76,7 @@ namespace NorthwindTraders
                 else
                     UInventario = null;
                 rdr.Close();
-                //Utils.ActualizarBarraDeEstado(this);
+                Utils.ActualizarBarraDeEstado(this.Owner);
             }
             catch (SqlException ex)
             {
@@ -94,73 +94,156 @@ namespace NorthwindTraders
 
         private void txtCantidad_Leave(object sender, EventArgs e)
         {
-            BorrarMensajesError();
             if (ValidarControles())
                 CalcularImporte();
         }
 
         private void txtDescuento_Leave(object sender, EventArgs e)
         {
-            BorrarMensajesError();
             if (ValidarControles())
                 CalcularImporte();
         }
 
-        private void BorrarMensajesError()
-        {
-            errorProvider1.SetError(txtCantidad, "");
-            errorProvider1.SetError(txtDescuento, "");
-        }
-
         private bool ValidarControles()
         {
+            txtCantidad.Text = txtCantidad.Text.Replace(",", "");
             bool valida = true;
-            try
-            {
-                if (txtCantidad.Text == "" || short.Parse(txtCantidad.Text.Replace(",", "")) == 0)
-                {
-                    valida = false;
-                    errorProvider1.SetError(txtCantidad, "Ingrese la cantidad");
-                }
-            }
-            catch (Exception ex) when (int.Parse(txtCantidad.Text) + int.Parse(txtUinventario.Text) > 32767)
-            {
-                valida = false;
-                errorProvider1.SetError(txtCantidad, "La cantidad más las unidades en inventario, no puede ser mayor a 32,767");
-                return valida;
-            }
-            if (UInventario != null)
-            {
-                if (short.Parse(txtCantidad.Text.Replace(",", "")) > short.Parse(txtUinventario.Text.Replace(",", "")))
-                {
-                    valida = false;
-                    errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
-                }
-            }
-            else
+            btnModificar.Enabled = false;
+            errorProvider1.Clear();
+
+            int cantidadInt = 0, unidadesInventario = 0;
+            short cantidad = 0, diferencia = 0;
+            decimal descuento = 0;
+
+            //Validar txtCantidad 
+            if (!short.TryParse(txtCantidad.Text.Replace(",", ""), out cantidad))
             {
                 valida = false;
-                errorProvider1.SetError(txtCantidad, "Es posible que el producto haya sido eliminado por otro usuario en la red");
+                errorProvider1.SetError(txtCantidad, "Ingrese una cantidad valida, la cantidad debe ser mayor que 1 y menor que 32,767");
             }
-            if (txtDescuento.Text == "")
+            if (valida && cantidad == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(txtCantidad, "Ingrese la cantidad");
+            }
+            // Validar descuento
+            if (string.IsNullOrWhiteSpace(txtDescuento.Text) || !decimal.TryParse(txtDescuento.Text, out descuento))
             {
                 valida = false;
                 errorProvider1.SetError(txtDescuento, "Ingrese el descuento");
             }
-            if (decimal.Parse(txtDescuento.Text) > 1 || decimal.Parse(txtDescuento.Text) < 0)
+            else if (descuento > 1 || descuento < 0)
             {
                 valida = false;
                 errorProvider1.SetError(txtDescuento, "El descuento no puede ser mayor que 1 o menor que 0");
             }
+            // hasta aqui voy bien
+            if (valida)
+            {
+                // Calcula la diferencia de cantidad
+                diferencia = (short)(cantidad - CantidadOld);
+
+                // Validar cantidad y unidades en inventario sean números válidos
+                if (!int.TryParse(txtCantidad.Text.Replace(",", ""), out cantidadInt) || !int.TryParse(txtUinventario.Text.Replace(",", ""), out unidadesInventario))
+                {
+                    valida = false;
+                    errorProvider1.SetError(txtCantidad, "Ingrese una cantidad válida");
+                }
+                // Verificar disponibilidad en el inventario
+                if (valida && UInventario != null)
+                {
+                    // Aquí manejamos el caso de devolver productos al inventario
+                    if (diferencia < 0)
+                    {
+                        // La validación es correcta al devolver productos
+                        if (unidadesInventario + Math.Abs(diferencia) > 32767)
+                        {
+                            valida = false;
+                            errorProvider1.SetError(txtCantidad, "La cantidad de producto devuelto mas las unidades en inventario exceden los 32,767 unidades");
+                        }
+                    }
+                    // Aquí manejamos el caso de retirar productos del inventario
+                    else if (diferencia > 0)
+                    {
+                        if (diferencia > unidadesInventario)
+                        {
+                            valida = false;
+                            errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
+                        }
+                    }
+                }
+                else if (UInventario == null)
+                {
+                    valida = false;
+                    errorProvider1.SetError(txtCantidad, "Es posible que el producto haya sido eliminado por otro usuario en la red");
+                }
+            }
+
+            // Habilitar el botón Modificar si las cantidades y descuentos son válidos y han cambiado
+            if (valida && (cantidad != CantidadOld || descuento != DescuentoOld))
+                btnModificar.Enabled = true;
             return valida;
         }
 
         private void CalcularImporte()
         {
-            Cantidad = short.Parse(txtCantidad.Text);
+            Cantidad = short.Parse(txtCantidad.Text.Replace(",", ""));
             Descuento = decimal.Parse(txtDescuento.Text);
             Importe = (Precio * Cantidad) * (1 - Descuento);
             txtImporte.Text = Importe.ToString("c");
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils.ValidarDigitosSinPunto(sender, e);
+        }
+
+        private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils.ValidarDigitosConPunto(sender, e);
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            byte numRegs = 0;
+            // No se realiza la validación porque ya se han realizado previamente en el evento leave de 
+            // txtdescuento y txtcantidad
+            try
+            {
+                btnModificar.Enabled = false;
+                Utils.ActualizarBarraDeEstado(this.Owner, Utils.modificandoRegistro);
+                SqlCommand cmd = new SqlCommand("Sp_PedidosDetalle_Actualizar_V2", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("OrderId", PedidoId);
+                cmd.Parameters.AddWithValue("ProductId", ProductoId);
+                cmd.Parameters.AddWithValue("Quantity", txtCantidad.Text);
+                cmd.Parameters.AddWithValue("Discount", txtDescuento.Text);
+                cmd.Parameters.AddWithValue("QuantityOld", CantidadOld);
+                cmd.Parameters.AddWithValue("DiscountOld", DescuentoOld); // en realidad en esta etapa ya no se utiliza el descuentoold, se deja por claritad en la logica.
+                cn.Open();
+                numRegs = (byte)cmd.ExecuteNonQuery();
+                if (numRegs == 0 )
+                    MessageBox.Show("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(this.Owner, ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(this.Owner, ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+            if (numRegs > 0)
+            {
+                CantidadOld = short.Parse(txtCantidad.Text);
+                DescuentoOld = decimal.Parse(txtDescuento.Text);
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }
