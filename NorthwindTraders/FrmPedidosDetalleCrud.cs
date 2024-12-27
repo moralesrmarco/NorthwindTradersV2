@@ -246,6 +246,7 @@ namespace NorthwindTraders
 
         private void BorrarDatosPedido()
         {
+            errorProvider1.Clear();
             txtId.Text = txtCliente.Text = "";
             cboCategoria.SelectedIndex = 0;
             cboProducto.DataSource = null;
@@ -257,10 +258,12 @@ namespace NorthwindTraders
 
         private void BorrarMensajesError()
         {
-            errorProvider1.SetError(cboCategoria, "");
-            errorProvider1.SetError(cboProducto, "");
-            errorProvider1.SetError(txtCantidad, "");
-            errorProvider1.SetError(txtDescuento, "");
+            //errorProvider1.SetError(cboCategoria, "");
+            //errorProvider1.SetError(cboProducto, "");
+            //errorProvider1.SetError(txtCantidad, "");
+            //errorProvider1.SetError(txtDescuento, "");
+            //errorProvider1.SetError(btnAgregar, "");
+            errorProvider1.Clear();
         }
 
         private bool ValidarControles()
@@ -296,24 +299,27 @@ namespace NorthwindTraders
                 valida = false;
                 errorProvider1.SetError(txtDescuento, "El descuento no puede ser mayor que 1 o menor que 0");
             }
-            int numProd = int.Parse(cboProducto.SelectedValue.ToString());
-            bool productoDuplicado = false;
-            foreach (DataGridViewRow dgvr in DgvDetalle.Rows)
+            if (cboProducto.SelectedIndex > 0)
             {
-                if (int.Parse(dgvr.Cells["ProductoId"].Value.ToString()) == numProd)
+                int numProd = int.Parse(cboProducto.SelectedValue.ToString());
+                bool productoDuplicado = false;
+                foreach (DataGridViewRow dgvr in DgvDetalle.Rows)
                 {
-                    productoDuplicado = true;
-                    break;
+                    if (int.Parse(dgvr.Cells["ProductoId"].Value.ToString()) == numProd)
+                    {
+                        productoDuplicado = true;
+                        break;
+                    }
                 }
-            }
-            if (productoDuplicado)
-            {
-                valida = false;
-                errorProvider1.SetError(cboProducto, "No se puede tener un producto duplicado en el detalle del pedido");
+                if (productoDuplicado)
+                {
+                    valida = false;
+                    errorProvider1.SetError(cboProducto, "No se puede tener un producto duplicado en el detalle del pedido");
+                }
             }
             string total = txtTotal.Text;
             total = total.Replace("$", "");
-            if (txtTotal.Text == "" || decimal.Parse(total) == 0)
+            if (txtTotal.Text == "" || (decimal.Parse(total) + (decimal.Parse(txtPrecio.Text.Replace("$", "")) * int.Parse(txtCantidad.Text) * (1 - decimal.Parse(txtDescuento.Text))) == 0 ))
             {
                 valida = false;
                 errorProvider1.SetError(btnAgregar, "Ingrese el detalle del pedido");
@@ -838,6 +844,11 @@ namespace NorthwindTraders
                     else
                         MessageBox.Show($"El producto: {productName} del Pedido: {pedidoDetalleDB.PedidoId}, NO se eliminó en la base de datos, es posible que el registro se haya eliminado por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            catch (SqlException ex) when (ex.Number == 220)
+            {
+                MessageBox.Show("Al tratar de devolver las unidades vendidas al inventario, la cantidad de unidades  excede las 32,767 unidades, rango máximo para un campo de tipo smallint", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utils.ActualizarBarraDeEstado(this);
             }
             catch (SqlException ex)
             {
