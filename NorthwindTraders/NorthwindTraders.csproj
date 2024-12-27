@@ -157,6 +157,7 @@
     <Compile Include="StoreProcedures\Sp_DetallePedidos.cs" />
     <Compile Include="StoreProcedures\Sp_Empleados.cs" />
     <Compile Include="StoreProcedures\Sp_Pedidos.cs" />
+    <Compile Include="StoreProcedures\Sp_PedidosDetalle.cs" />
     <Compile Include="StoreProcedures\Sp_Productos.cs" />
     <Compile Include="StoreProcedures\Sp_Proveedores.cs" />
     <Compile Include="StoreProcedures\Sp_Transportistas.cs" />
