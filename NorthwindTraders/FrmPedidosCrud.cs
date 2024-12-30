@@ -55,8 +55,6 @@ namespace NorthwindTraders
         {
             dtpHoraRequerido.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             dtpHoraEnvio.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            dtpHoraRequerido.Enabled = false;
-            dtpHoraEnvio.Enabled = false;
             DeshabilitarControles();
             LlenarCboCliente();
             LlenarCboEmpleado();

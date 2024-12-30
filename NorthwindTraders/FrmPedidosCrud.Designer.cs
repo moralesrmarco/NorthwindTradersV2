@@ -94,6 +94,7 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.grbBuscar = new System.Windows.Forms.GroupBox();
+            this.btnListar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
@@ -138,7 +139,6 @@
             this.tabpEliminar = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnListar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
@@ -892,6 +892,18 @@
             this.grbBuscar.Text = "»   Buscar un pedido:   «";
             this.grbBuscar.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
+            // btnListar
+            // 
+            this.btnListar.AutoSize = true;
+            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.Location = new System.Drawing.Point(48, 408);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(243, 23);
+            this.btnListar.TabIndex = 31;
+            this.btnListar.Text = "Listar los últimos 20 pedidos registrados";
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1356,18 +1368,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // btnListar
-            // 
-            this.btnListar.AutoSize = true;
-            this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.Location = new System.Drawing.Point(48, 408);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(243, 23);
-            this.btnListar.TabIndex = 31;
-            this.btnListar.Text = "Listar los últimos 20 pedidos registrados";
-            this.btnListar.UseVisualStyleBackColor = true;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // FrmPedidosCrud
             // 

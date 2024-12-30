@@ -112,6 +112,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.tsmiMantenimientoDePedidosV2 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -539,7 +540,8 @@
             // 
             this.tsmiPedidos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMantenimientoDePedidos,
-            this.tsmiMantenimientoDeDetalleDePedidos});
+            this.tsmiMantenimientoDeDetalleDePedidos,
+            this.tsmiMantenimientoDePedidosV2});
             this.tsmiPedidos.Name = "tsmiPedidos";
             this.tsmiPedidos.Size = new System.Drawing.Size(61, 20);
             this.tsmiPedidos.Text = "Pedidos";
@@ -800,6 +802,13 @@
             this.tsslEstado.Size = new System.Drawing.Size(39, 19);
             this.tsslEstado.Text = "Listo.";
             // 
+            // tsmiMantenimientoDePedidosV2
+            // 
+            this.tsmiMantenimientoDePedidosV2.Name = "tsmiMantenimientoDePedidosV2";
+            this.tsmiMantenimientoDePedidosV2.Size = new System.Drawing.Size(271, 22);
+            this.tsmiMantenimientoDePedidosV2.Text = "Mantenimiento de pedidos V2";
+            this.tsmiMantenimientoDePedidosV2.Click += new System.EventHandler(this.tsmiMantenimientoDePedidosV2_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -909,6 +918,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiListadoDeProductos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDeDetalleDePedidos;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidosV2;
     }
 }
 

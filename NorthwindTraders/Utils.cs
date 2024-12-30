@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -21,7 +22,74 @@ namespace NorthwindTraders
         public static string errorClaveDuplicada = "Error: No se puede insertar una clave duplicada en el objeto. Infracción de la restricción PRIMARY KEY";
         #endregion
 
+        public static void LlenarCbo(Form form, ComboBox cbo, string storedProcedure, string displayMember, string valueMember, SqlConnection cn, string parametroNombre, object parametroValor)
+        {
+            Utils.ActualizarBarraDeEstado(form, Utils.clbdd);
+            try
+            {
+                if (cn.State != ConnectionState.Open)
+                    cn.Open();
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue(parametroNombre, parametroValor);
+                    SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    dap.Fill(dt);
+                    cbo.DataSource = dt;
+                    cbo.DisplayMember = displayMember;
+                    cbo.ValueMember = valueMember;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(form, ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(form, ex);
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            Utils.ActualizarBarraDeEstado(form);
+        }
 
+        public static void LlenarCbo(Form form, ComboBox cbo, string storedProcedure, string displayMember, string valueMember, SqlConnection cn)
+        {
+            Utils.ActualizarBarraDeEstado(form, Utils.clbdd);
+            try
+            {
+                if (cn.State != ConnectionState.Open)
+                    cn.Open();
+                using (SqlCommand cmd = new SqlCommand(storedProcedure, cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlDataAdapter dap = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    dap.Fill(dt);
+                    cbo.DataSource = dt;
+                    cbo.DisplayMember = displayMember;
+                    cbo.ValueMember = valueMember;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(form, ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(form, ex);
+            }
+            finally
+            {
+                if (cn.State == ConnectionState.Open)
+                    cn.Close();
+            }
+            Utils.ActualizarBarraDeEstado(form);
+        }
 
         public static void ValidaTxtBIdIni(TextBox txtBIdIni, TextBox txtBIdFin)
         {
