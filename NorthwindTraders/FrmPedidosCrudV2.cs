@@ -56,7 +56,7 @@ namespace NorthwindTraders
         {
             dtpHoraRequerido.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             dtpHoraEnvio.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            //DeshabilitarControles();
+            DeshabilitarControles();
             Utils.LlenarCbo(this, cboCliente, "Sp_Clientes_Seleccionar", "Cliente", "Id", cn);
             Utils.LlenarCbo(this, cboEmpleado, "Sp_Empleados_Seleccionar", "Empleado", "Id", cn);
             Utils.LlenarCbo(this, cboTransportista, "Sp_Transportistas_Seleccionar", "Transportista", "Id", cn);
@@ -258,7 +258,10 @@ namespace NorthwindTraders
         {
             txtPrecio.Text = "$0.00";
             txtUInventario.Text = txtCantidad.Text = "0";
+            txtDescuento.Text = "0.00";
         }
+
+        private void InicializarValoresTransportar() => txtDirigidoa.Text = txtDomicilio.Text = txtCiudad.Text = txtRegion.Text = txtCP.Text = txtPais.Text = "";
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
@@ -479,6 +482,279 @@ namespace NorthwindTraders
                 cboProducto.ValueMember = "Id";
             }
             Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+        }
+
+        private void cboCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCliente.SelectedIndex > 0)
+            {
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    SqlCommand cmd = new SqlCommand($"Select Top 1 ShipName, ShipAddress, ShipCity, ShipRegion, ShipPostalCode, ShipCountry From Orders Where CustomerId = '{cboCliente.SelectedValue}' Order by OrderId Desc", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cn.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+                    if (rdr.Read())
+                    {
+                        txtDirigidoa.Text = (rdr["ShipName"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipName"));
+                        txtDomicilio.Text = (rdr["ShipAddress"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipAddress"));
+                        txtCiudad.Text = (rdr["ShipCity"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipCity"));
+                        txtRegion.Text = (rdr["ShipRegion"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipRegion"));
+                        txtCP.Text = (rdr["ShipPostalCode"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipPostalCode"));
+                        txtPais.Text = (rdr["ShipCountry"] == DBNull.Value) ? "" : rdr.GetString(rdr.GetOrdinal("ShipCountry"));
+                    }
+                    else
+                        InicializarValoresTransportar();
+                    rdr.Close();
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+            else
+                InicializarValoresTransportar();
+        }
+
+        private void cboProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboProducto.SelectedIndex > 0)
+            {
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    SqlCommand cmd = new SqlCommand($"Select UnitPrice, UnitsInStock From Products Where ProductId = {cboProducto.SelectedValue}", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cn.Open();
+                    SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+                    if (rdr.Read())
+                    {
+                        txtPrecio.Text = rdr["UnitPrice"] == DBNull.Value ? "$0.00" : rdr.GetDecimal(rdr.GetOrdinal("UnitPrice")).ToString("c");
+                        txtUInventario.Text = rdr["UnitsInStock"] == DBNull.Value ? "0" : rdr.GetInt16(rdr.GetOrdinal("UnitsInStock")).ToString();
+                        if (int.Parse(txtUInventario.Text) == 0)
+                        {
+                            DeshabilitarControlesProducto();
+                            MessageBox.Show("No hay este producto en existencia", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            cboProducto.SelectedIndex = 0;
+                            InicializarValoresProducto();
+                        }
+                        else
+                            HabilitarControlesProducto();
+                    }
+                    else
+                    {
+                        DeshabilitarControlesProducto();
+                        InicializarValoresProducto();
+                    }
+                    rdr.Close();
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+            else
+            {
+                DeshabilitarControlesProducto();
+                InicializarValoresProducto();
+            }
+        }
+
+        private void CalcularTotal()
+        {
+            decimal total = 0, importe = 0;
+            foreach (DataGridViewRow dgvr in dgvDetalle.Rows)
+            {
+                importe = decimal.Parse(dgvr.Cells["Importe"].Value.ToString());
+                total += importe;
+            }
+            txtTotal.Text = string.Format("{0:c}", total);
+        }
+
+        private void txtDescuento_Enter(object sender, EventArgs e)
+        {
+            txtDescuento.Text = "";
+        }
+
+        private void txtDescuento_Leave(object sender, EventArgs e)
+        {
+            if (txtDescuento.Text == "")
+                txtDescuento.Text = "0.00";
+        }
+
+        private void txtCantidad_Leave(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text == "" || int.Parse(txtCantidad.Text) == 0) txtCantidad.Text = "1";
+        }
+
+        private void txtFlete_Enter(object sender, EventArgs e)
+        {
+            if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+            if (decimal.Parse(txtFlete.Text) == 0) txtFlete.Text = "";
+        }
+
+        private void txtFlete_Leave(object sender, EventArgs e)
+        {
+            if (txtFlete.Text == "") txtFlete.Text = "0.00";
+            decimal flete = decimal.Parse(txtFlete.Text);
+            txtFlete.Text = flete.ToString("c");
+        }
+
+        private void dtpPedido_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpPedido.Checked)
+            {
+                dtpHoraPedido.Value = DateTime.Now; // este es para que me ponga el componente del time
+                dtpHoraPedido.Enabled = true;
+            }
+            else
+            {
+                dtpHoraPedido.Value = DateTime.Today; // este es para que no me ponga el componente del time
+                dtpHoraPedido.Enabled = false;
+            }
+        }
+
+        private void dtpRequerido_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpRequerido.Checked)
+            {
+                dtpHoraRequerido.Value = Convert.ToDateTime(DateTime.Today.ToShortDateString() + " 12:00:00.000");
+                dtpHoraRequerido.Enabled = true;
+            }
+            else
+            {
+                dtpHoraRequerido.Value = DateTime.Today;
+                dtpHoraRequerido.Enabled = false;
+            }
+        }
+
+        private void dtpEnvio_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpEnvio.Checked)
+            {
+                dtpHoraEnvio.Value = Convert.ToDateTime(DateTime.Today.ToShortDateString() + " 12:00:00.000");
+                dtpHoraEnvio.Enabled = true;
+            }
+            else
+            {
+                dtpHoraEnvio.Value = DateTime.Today;
+                dtpHoraEnvio.Enabled = false;
+            }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            BorrarMensajesError();
+            if (cboCategoria.SelectedIndex <= 0)
+            {
+                errorProvider1.SetError(cboCategoria, "Seleccione la categoría");
+                return;
+            }
+            if (cboProducto.SelectedIndex <= 0)
+            {
+                errorProvider1.SetError(cboProducto, "Seleccione el producto");
+                return;
+            }
+            if (txtCantidad.Text == "" || int.Parse(txtCantidad.Text) == 0)
+            {
+                errorProvider1.SetError(txtCantidad, "Ingrese la cantidad");
+                return;
+            }
+            if (decimal.Parse(txtDescuento.Text) > 1 || decimal.Parse(txtDescuento.Text) < 0)
+            {
+                errorProvider1.SetError(txtDescuento, "El descuento no puede ser mayor que 1 o menor que 0");
+                return;
+            }
+            if (int.Parse(txtCantidad.Text) > int.Parse(txtUInventario.Text))
+            {
+                errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
+                return;
+            }
+            int numProd = int.Parse(cboProducto.SelectedValue.ToString());
+            bool productoDuplicado = false;
+            foreach (DataGridViewRow dgvr in dgvDetalle.Rows)
+            {
+                if (int.Parse(dgvr.Cells["ProductoId"].Value.ToString()) == numProd)
+                {
+                    productoDuplicado = true;
+                    break;
+                }
+            }
+            if (productoDuplicado)
+            {
+                errorProvider1.SetError(cboProducto, "No se puede tener un producto duplicado en el detalle del pedido");
+                return;
+            }
+            DeshabilitarControlesProducto();
+            txtPrecio.Text = txtPrecio.Text.Replace("$", "");
+            dgvDetalle.Rows.Add(new object[] { IdDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Modificar", "Eliminar", cboProducto.SelectedValue });
+            CalcularTotal();
+            ++IdDetalle;
+            cboCategoria.SelectedIndex = cboProducto.SelectedIndex = 0;
+            InicializarValoresProducto();
+            cboCategoria.Focus();
+        }
+
+        private void dgvDetalle_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("c");
+            if (e.ColumnIndex == 3 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("n0");
+            if (e.ColumnIndex == 4 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("n2");
+            if (e.ColumnIndex == 5 && e.Value != null) e.Value = decimal.Parse(e.Value.ToString()).ToString("c");
+        }
+
+        private void txtFlete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils.ValidarDigitosConPunto(sender, e);
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils.ValidarDigitosSinPunto(sender, e);
+        }
+
+        private void txtDescuento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Utils.ValidarDigitosConPunto(sender, e);
+        }
+
+        private void txtCantidad_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtCantidad.Text != "")
+            {
+                if (int.Parse(txtCantidad.Text.Replace(",", "")) > 32767)
+                {
+                    errorProvider1.SetError(txtCantidad, "La cantidad no puede ser mayor a 32,767");
+                    e.Cancel = true;
+                    return;
+                }
+                else
+                    errorProvider1.SetError(txtCantidad, "");
+                if (int.Parse(txtCantidad.Text) > int.Parse(txtUInventario.Text))
+                {
+                    errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
