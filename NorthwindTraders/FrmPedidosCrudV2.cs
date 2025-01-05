@@ -756,5 +756,201 @@ namespace NorthwindTraders
                 }
             }
         }
+
+        private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
+        {
+            lastSelectedTab = e.TabPage; // actualizar la pestaña actual
+            IdDetalle = 1;
+            BorrarDatosPedido();
+            BorrarMensajesError();
+            if (tabcOperacion.SelectedTab == tabpRegistrar)
+            {
+                if (EventoCargardo)
+                {
+                    dgvPedidos.CellClick -= new DataGridViewCellEventHandler(dgvPedidos_CellClick);
+                    EventoCargardo = false;
+                }
+                BorrarDatosBusqueda();
+                HabilitarControles();
+                btnGenerar.Text = "Generar pedido";
+                btnGenerar.Visible = true;
+                btnGenerar.Enabled = true;
+                btnAgregar.Visible = true;
+                btnAgregar.Enabled = true;
+                dgvDetalle.Columns["Eliminar"].Visible = true;
+                grbProducto.Enabled = true;
+            }
+            else
+            {
+
+            }
+        }
+
+        private void dgvPedidos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (tabcOperacion.SelectedTab != tabpRegistrar)
+            {
+                BorrarDatosPedido();
+                DataGridViewRow dgvr = dgvPedidos.CurrentRow;
+                txtId.Text = dgvr.Cells["Id"].Value.ToString();
+                LlenarDatosPedido();
+                LlenarDatosDetallePedido();
+                DeshabilitarControles();
+                if (tabcOperacion.SelectedTab == tabpModificar)
+                {
+                    HabilitarControles();
+                    btnGenerar.Enabled = true;
+                }
+                else if (tabcOperacion.SelectedTab == tabpEliminar)
+                    btnGenerar.Enabled = true;
+            }
+        }
+
+        private void LlenarDatosPedido()
+        {
+            try
+            {
+                Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                cn.Open();
+                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
+                if (rdr.Read())
+                {
+                    cboCliente.SelectedIndexChanged -= new EventHandler(cboCliente_SelectedIndexChanged);
+                    cboCliente.SelectedValue = rdr["CustomerId"] == DBNull.Value ? 0 : rdr["CustomerId"];
+                    cboCliente.SelectedIndexChanged += new EventHandler(cboCliente_SelectedIndexChanged);
+                    cboEmpleado.SelectedValue = rdr["EmployeeId"] == DBNull.Value ? 0 : rdr["EmployeeId"];
+                    cboTransportista.SelectedValue = rdr["ShipVia"] == DBNull.Value ? 0 : rdr["ShipVia"];
+                    txtDirigidoa.Text = rdr["ShipName"] == DBNull.Value ? "" : rdr["ShipName"].ToString();
+                    txtDomicilio.Text = rdr["ShipAddress"] == DBNull.Value ? "" : rdr["ShipAddress"].ToString();
+                    txtCiudad.Text = rdr["ShipCity"] == DBNull.Value ? "" : rdr["ShipCity"].ToString();
+                    txtRegion.Text = rdr["ShipRegion"] == DBNull.Value ? "" : rdr["ShipRegion"].ToString();
+                    txtCP.Text = rdr["ShipPostalCode"] == DBNull.Value ? "" : rdr["ShipPostalCode"].ToString();
+                    txtPais.Text = rdr["ShipCountry"] == DBNull.Value ? "" : rdr["ShipCountry"].ToString();
+                    txtFlete.Text = rdr["Freight"] == DBNull.Value ? "" : rdr["Freight"].ToString();
+                    if (decimal.TryParse(txtFlete.Text, out decimal flete))
+                        txtFlete.Text = flete.ToString("c");
+                    if (DateTime.TryParse(rdr["OrderDate"].ToString(), out DateTime fecha))
+                        dtpPedido.Value = dtpHoraPedido.Value = fecha;
+                    else
+                    {
+                        dtpPedido.Value = dtpPedido.MinDate;
+                        dtpHoraPedido.Value = dtpHoraPedido.MinDate;
+                        dtpPedido.Checked = false;
+                    }
+                    if (DateTime.TryParse(rdr["RequiredDate"].ToString(), out fecha))
+                        dtpRequerido.Value = dtpHoraRequerido.Value = fecha;
+                    else
+                    {
+                        dtpRequerido.Value = dtpRequerido.MinDate;
+                        dtpHoraRequerido.Value = dtpHoraRequerido.MinDate;
+                        dtpRequerido.Checked = false;
+                    }
+                    if (DateTime.TryParse(rdr["ShippedDate"].ToString(), out fecha))
+                        dtpEnvio.Value = dtpHoraEnvio.Value = fecha;
+                    else
+                    {
+                        dtpEnvio.Value = dtpEnvio.MinDate;
+                        dtpHoraEnvio.Value = dtpHoraEnvio.MinDate;
+                        dtpEnvio.Checked = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"El pedido: {txtId.Text} fue eliminado por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                rdr.Close();
+                Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(this, ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(this, ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        private void LlenarDatosDetallePedido()
+        {
+            try
+            {
+                IdDetalle = 1;
+                Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                cn.Open();
+                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult);
+                PedidoDetalle pedidoDetalle;
+                if (rdr.Read())
+                {
+                    do
+                    {
+                        pedidoDetalle = new PedidoDetalle();
+                        pedidoDetalle.ProductId = (int)rdr["Id Producto"];
+                        pedidoDetalle.ProductName = rdr["Producto"].ToString();
+                        pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
+                        pedidoDetalle.Quantity = (short)rdr["Cantidad"];
+                        pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
+                        dgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "Modificar", "Eliminar", pedidoDetalle.ProductId });
+                        ++IdDetalle;
+                    } while (rdr.Read());
+                }
+                else
+                    MessageBox.Show("No se encontraron detalles para el pedido especificado", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                rdr.Close();
+                CalcularTotal();
+                Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(this, ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(this, ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        // se anidan las clases para evitar interfieran con otro código similar del sistema, solo son accesibles desde su tipo contenedor
+        private class PedidoDetalle
+        {
+            public int ProductId { get; set; }
+            public decimal UnitPrice { get; set; }
+            public short Quantity { get; set; }
+            public decimal Discount { get; set; }
+            public string ProductName { get; set; }
+        }
+
+        private class Pedido
+        {
+            public int OrderId { get; set; }
+            public string CustomerId { get; set; }
+            public int EmployeeId { get; set; }
+            public DateTime? OrderDate { get; set; }
+            public DateTime? RequiredDate { get; set; }
+            public DateTime? ShippedDate { get; set; }
+            public int ShipVia { get; set; }
+            public decimal Freight { get; set; }
+            public string ShipName { get; set; }
+            public string ShipAddress { get; set; }
+            public string ShipCity { get; set; }
+            public string ShipRegion { get; set; }
+            public string ShipPostalCode { get; set; }
+            public string ShipCountry { get; set; }
+        }
+
     }
 }
