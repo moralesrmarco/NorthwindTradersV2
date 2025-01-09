@@ -126,7 +126,17 @@ namespace NorthwindTraders
                 valida = false;
                 errorProvider1.SetError(cboProducto, "Ha seleccionado un producto y no lo ha agregado al pedido");
             }
-            // me falta ver la logica para validar el total y demas controles.
+            string total = txtTotal.Text.Replace("$", "");
+            if (txtTotal.Text == "" || decimal.Parse(total) == 0)
+            {
+                valida = false;
+                errorProvider1.SetError(btnAgregar, "Ingrese el detalle del pedido");
+            }
+            if (cboProducto.SelectedIndex > 0)
+            {
+                valida = false;
+                errorProvider1.SetError(cboProducto, "Ha seleccionado un producto y no lo ha agregado al pedido");
+            }
             return valida;
         }
 
@@ -782,7 +792,35 @@ namespace NorthwindTraders
             }
             else
             {
-
+                if (!EventoCargardo)
+                {
+                    dgvPedidos.CellClick += new DataGridViewCellEventHandler(dgvPedidos_CellClick);
+                    EventoCargardo = true;
+                }
+                DeshabilitarControles();
+                btnGenerar.Enabled = false;
+                dgvDetalle.Columns["Eliminar"].Visible = false;
+                dgvDetalle.Columns["Modificar"].Visible = false;
+                grbProducto.Enabled = false;
+                if (tabcOperacion.SelectedTab == tabpConsultar)
+                {
+                    btnGenerar.Visible = false;
+                    btnAgregar.Visible = false;
+                }
+                else if (tabcOperacion.SelectedTab == tabpModificar)
+                {
+                    btnGenerar.Text = "Modificar pedido";
+                    btnGenerar.Visible = true;
+                    btnAgregar.Visible = false;
+                    dgvDetalle.Columns["Eliminar"].Visible = true;
+                    dgvDetalle.Columns["Modificar"].Visible = true;
+                }
+                else if (tabcOperacion.SelectedTab == tabpEliminar)
+                {
+                    btnGenerar.Text = "Eliminar pedido";
+                    btnGenerar.Visible = true;
+                    btnAgregar.Visible = false;
+                }
             }
         }
 
@@ -832,29 +870,39 @@ namespace NorthwindTraders
                     txtFlete.Text = rdr["Freight"] == DBNull.Value ? "" : rdr["Freight"].ToString();
                     if (decimal.TryParse(txtFlete.Text, out decimal flete))
                         txtFlete.Text = flete.ToString("c");
-                    if (DateTime.TryParse(rdr["OrderDate"].ToString(), out DateTime fecha))
-                        dtpPedido.Value = dtpHoraPedido.Value = fecha;
+                    DateTime fecha;
+                    if (DateTime.TryParse(rdr["OrderDate"].ToString(), out fecha))
+                    {
+                        dtpPedido.Value = fecha;
+                        dtpHoraPedido.Value = fecha;
+                    }
                     else
                     {
                         dtpPedido.Value = dtpPedido.MinDate;
-                        dtpHoraPedido.Value = dtpHoraPedido.MinDate;
                         dtpPedido.Checked = false;
+                        dtpHoraPedido.Value = dtpHoraPedido.MinDate;
                     }
                     if (DateTime.TryParse(rdr["RequiredDate"].ToString(), out fecha))
-                        dtpRequerido.Value = dtpHoraRequerido.Value = fecha;
+                    {
+                        dtpRequerido.Value = fecha;
+                        dtpHoraRequerido.Value = fecha;
+                    }
                     else
                     {
                         dtpRequerido.Value = dtpRequerido.MinDate;
-                        dtpHoraRequerido.Value = dtpHoraRequerido.MinDate;
                         dtpRequerido.Checked = false;
+                        dtpHoraRequerido.Value = dtpHoraRequerido.MinDate;
                     }
                     if (DateTime.TryParse(rdr["ShippedDate"].ToString(), out fecha))
-                        dtpEnvio.Value = dtpHoraEnvio.Value = fecha;
+                    {
+                        dtpEnvio.Value = fecha;
+                        dtpHoraEnvio.Value = fecha;
+                    }
                     else
                     {
                         dtpEnvio.Value = dtpEnvio.MinDate;
-                        dtpHoraEnvio.Value = dtpHoraEnvio.MinDate;
                         dtpEnvio.Checked = false;
+                        dtpHoraEnvio.Value = dtpHoraEnvio.MinDate;
                     }
                 }
                 else
@@ -952,5 +1000,319 @@ namespace NorthwindTraders
             public string ShipCountry { get; set; }
         }
 
+        private class PedidosDB
+        {
+            public int PedidoId { get; set; }
+
+            public byte Add(Pedido pedido, List<PedidoDetalle> lst, TextBox textBox, string cliente)
+            {
+                // las excepciones generadas en este segmento de código son capturadas en un nivel superior, por eso no uso bloque try
+                byte numRegs = 0;
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Id");
+                    dt.Columns.Add("ProductId");
+                    dt.Columns.Add("UnitPrice");
+                    dt.Columns.Add("Quantity");
+                    dt.Columns.Add("Discount");
+                    int i = 1;
+                    foreach (var item in lst)
+                    {
+                        dt.Rows.Add(i, item.ProductId, item.UnitPrice, item.Quantity, item.Discount);
+                        ++i;
+                    }
+                    using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Insertar_v2", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("OrderId", 0);
+                        cmd.Parameters["OrderId"].Direction = ParameterDirection.Output;
+                        cmd.Parameters.AddWithValue("CustomerId", pedido.CustomerId);
+                        cmd.Parameters.AddWithValue("EmployeeId", pedido.EmployeeId);
+                        if (pedido.OrderDate == null) cmd.Parameters.AddWithValue("OrderDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("OrderDate", pedido.OrderDate);
+                        if (pedido.RequiredDate == null) cmd.Parameters.AddWithValue("RequiredDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("RequiredDate", pedido.RequiredDate);
+                        if (pedido.ShippedDate == null) cmd.Parameters.AddWithValue("ShippedDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShippedDate", pedido.ShippedDate);
+                        cmd.Parameters.AddWithValue("ShipVia", pedido.ShipVia);
+                        cmd.Parameters.AddWithValue("Freight", pedido.Freight);
+                        if (pedido.ShipName.Trim() == "") cmd.Parameters.AddWithValue("ShipName", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipName", pedido.ShipName);
+                        if (pedido.ShipAddress.Trim() == "") cmd.Parameters.AddWithValue("ShipAddress", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipAddress", pedido.ShipAddress);
+                        if (pedido.ShipCity.Trim() == "") cmd.Parameters.AddWithValue("ShipCity", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipCity", pedido.ShipCity);
+                        if (pedido.ShipRegion.Trim() == "") cmd.Parameters.AddWithValue("ShipRegion", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipRegion", pedido.ShipRegion);
+                        if (pedido.ShipPostalCode.Trim() == "") cmd.Parameters.AddWithValue("ShipPostalCode", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipPostalCode", pedido.ShipPostalCode);
+                        if (pedido.ShipCountry.Trim() == "") cmd.Parameters.AddWithValue("ShipCountry", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipCountry", pedido.ShipCountry);
+                        var sqlParameter = new SqlParameter("lstOrderDetails", SqlDbType.Structured);
+                        sqlParameter.TypeName = "dbo.OrderDetails";
+                        sqlParameter.Value = dt;
+                        cmd.Parameters.Add(sqlParameter);
+                        cn.Open();
+                        numRegs = (byte)cmd.ExecuteNonQuery();
+                        PedidoId = (int)cmd.Parameters["OrderId"].Value;
+                        textBox.Text = PedidoId.ToString();
+                        cn.Close();
+                        if (numRegs > 0) MessageBox.Show($"El pedido con Id: {PedidoId} del Cliente: {cliente}, se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                return numRegs;
+            }
+
+            public byte Update(Pedido pedido, string cliente)
+            {
+                // las excepciones generadas en este segmento de código son capturadas en un nivel superior, por eso no uso bloque try
+                byte numRegs = 0;
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Actualizar", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("OrderId", pedido.OrderId);
+                        cmd.Parameters.AddWithValue("CustomerId", pedido.CustomerId);
+                        cmd.Parameters.AddWithValue("EmployeeId", pedido.EmployeeId);
+                        if (pedido.OrderDate == null) cmd.Parameters.AddWithValue("OrderDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("OrderDate", pedido.OrderDate);
+                        if (pedido.RequiredDate == null) cmd.Parameters.AddWithValue("RequiredDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("RequiredDate", pedido.RequiredDate);
+                        if (pedido.ShippedDate == null) cmd.Parameters.AddWithValue("ShippedDate", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShippedDate", pedido.ShippedDate);
+                        cmd.Parameters.AddWithValue("ShipVia", pedido.ShipVia);
+                        cmd.Parameters.AddWithValue("Freight", pedido.Freight);
+                        if (pedido.ShipName.Trim() == "") cmd.Parameters.AddWithValue("ShipName", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipName", pedido.ShipName);
+                        if (pedido.ShipAddress.Trim() == "") cmd.Parameters.AddWithValue("ShipAddress", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipAddress", pedido.ShipAddress);
+                        if (pedido.ShipCity.Trim() == "") cmd.Parameters.AddWithValue("ShipCity", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipCity", pedido.ShipCity);
+                        if (pedido.ShipRegion.Trim() == "") cmd.Parameters.AddWithValue("ShipRegion", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipRegion", pedido.ShipRegion);
+                        if (pedido.ShipPostalCode.Trim() == "") cmd.Parameters.AddWithValue("ShipPostalCode", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipPostalCode", pedido.ShipPostalCode);
+                        if (pedido.ShipCountry.Trim() == "") cmd.Parameters.AddWithValue("ShipCountry", DBNull.Value);
+                        else cmd.Parameters.AddWithValue("ShipCountry", pedido.ShipCountry);
+                        cn.Open();
+                        numRegs = (byte)cmd.ExecuteNonQuery();
+                        cn.Close();
+                        if (numRegs > 0) MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cliente}, se actualizó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else MessageBox.Show("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                return numRegs;
+            }
+
+            public byte Delete(Pedido pedido, string cliente)
+            {
+                byte numRegs = 0;
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Eliminar_V2", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("OrderId", pedido.OrderId);
+                        cn.Open();
+                        numRegs = (byte)cmd.ExecuteNonQuery();
+                        cn.Close();
+                        if (numRegs > 0)
+                            MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cliente}, se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("No se pudo realizar la eliminación, es posible que el registro haya sido eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                return numRegs;
+            }
+        }
+
+        private void tabcOperacion_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (lastSelectedTab == tabpRegistrar && e.TabPage != tabpRegistrar && dgvDetalle.RowCount > 0)
+            {
+                DialogResult respuesta = MessageBox.Show("Se han agregado productos al detalle del pedido, si cambia de pestaña se perderan los datos no guardados.\n¿Desea cambiar de pestaña?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (respuesta == DialogResult.No)
+                    e.Cancel = true;
+            }
+        }
+
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+            byte numRegs = 0;
+            BorrarMensajesError();
+            if (tabcOperacion.SelectedTab == tabpRegistrar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        Utils.ActualizarBarraDeEstado(this, Utils.insertandoRegistro);
+                        DeshabilitarControles();
+                        DeshabilitarControlesProducto();
+                        btnGenerar.Enabled = false;
+                        List<PedidoDetalle> lstDetalle = new List<PedidoDetalle>();
+                        // llenado de elementos hijos
+                        foreach (DataGridViewRow dgvr in dgvDetalle.Rows)
+                        {
+                            PedidoDetalle detalle = new PedidoDetalle();
+                            detalle.ProductId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
+                            detalle.UnitPrice = decimal.Parse(dgvr.Cells["Precio"].Value.ToString());
+                            detalle.Quantity = short.Parse(dgvr.Cells["Cantidad"].Value.ToString());
+                            detalle.Discount = decimal.Parse(dgvr.Cells["Descuento"].Value.ToString());
+                            lstDetalle.Add(detalle);
+                        }
+                        Pedido pedido = new Pedido();
+                        pedido.CustomerId = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
+                        if (!dtpPedido.Checked) pedido.OrderDate = null;
+                        else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
+                        if (!dtpRequerido.Checked) pedido.RequiredDate = null;
+                        else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
+                        if (!dtpEnvio.Checked) pedido.ShippedDate = null;
+                        else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
+                        pedido.ShipVia = (int)cboTransportista.SelectedValue;
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Add(pedido, lstDetalle, txtId, cboCliente.Text);
+                    }
+                }
+                catch (SqlException ex) when (ex.Number == 547)
+                {
+                    MessageBox.Show("Algún producto en el pedido fue previamente eliminado por otro usuario de la red.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (SqlException ex) when (ex.Number == 2627)
+                {
+                    MessageBox.Show($"Error, existe un producto duplicado en el pedido, elimine el producto duplicado y modifique la cantidad del producto", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                HabilitarControles();
+                btnGenerar.Enabled = true;
+                if (numRegs > 0)
+                {
+                    IdDetalle = 1;
+                    BorrarDatosPedido();
+                    BorrarDatosBusqueda();
+                    LlenarDgvPedidos(null);
+                }
+            }
+            else if (tabcOperacion.SelectedTab == tabpModificar)
+            {
+                try
+                {
+                    if (ValidarControles())
+                    {
+                        Utils.ActualizarBarraDeEstado(this, Utils.modificandoRegistro);
+                        DeshabilitarControles();
+                        btnGenerar.Enabled = false;
+                        Pedido pedido = new Pedido();
+                        pedido.OrderId = int.Parse(txtId.Text);
+                        pedido.CustomerId = cboCliente.SelectedValue.ToString();
+                        pedido.EmployeeId = (int)cboEmpleado.SelectedValue;
+                        if (!dtpPedido.Checked) pedido.OrderDate = null;
+                        else pedido.OrderDate = Convert.ToDateTime(dtpPedido.Value.ToShortDateString() + " " + dtpHoraPedido.Value.ToLongTimeString());
+                        if (!dtpRequerido.Checked) pedido.RequiredDate = null;
+                        else pedido.RequiredDate = Convert.ToDateTime(dtpRequerido.Value.ToShortDateString() + " " + dtpHoraRequerido.Value.ToLongTimeString());
+                        if (!dtpEnvio.Checked) pedido.ShippedDate = null;
+                        else pedido.ShippedDate = Convert.ToDateTime(dtpEnvio.Value.ToShortDateString() + " " + dtpHoraEnvio.Value.ToLongTimeString());
+                        pedido.ShipVia = (int)cboTransportista.SelectedValue;
+                        pedido.ShipName = txtDirigidoa.Text;
+                        pedido.ShipAddress = txtDomicilio.Text;
+                        pedido.ShipCity = txtCiudad.Text;
+                        pedido.ShipRegion = txtRegion.Text;
+                        pedido.ShipPostalCode = txtCP.Text;
+                        pedido.ShipCountry = txtPais.Text;
+                        if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
+                        pedido.Freight = decimal.Parse(txtFlete.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Update(pedido, cboCliente.Text);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                if (numRegs > 0)
+                {
+                    BorrarDatosBusqueda();
+                    txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
+                    btnBuscar.PerformClick();
+                    btnLimpiar.PerformClick();
+                }
+            }
+            else if (tabcOperacion.SelectedTab == tabpEliminar)
+            {
+                if (txtId.Text == "")
+                {
+                    MessageBox.Show("Seleccione el pedido a eliminar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                DialogResult respuesta = MessageBox.Show($"¿Esta seguro de eliminar el pedido con Id: {txtId.Text} del Cliente: {cboCliente.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (respuesta == DialogResult.Yes)
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
+                    btnGenerar.Enabled = false;
+                    try
+                    {
+                        Pedido pedido = new Pedido();
+                        pedido.OrderId = int.Parse(txtId.Text);
+                        PedidosDB pedidosDB = new PedidosDB();
+                        numRegs = pedidosDB.Delete(pedido, cboCliente.Text);
+                    }
+                    catch (SqlException ex)
+                    {
+                        Utils.MsgCatchOueclbdd(this, ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utils.MsgCatchOue(this, ex);
+                    }
+                    if (numRegs > 0)
+                    {
+                        BorrarDatosBusqueda();
+                        txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
+                        btnBuscar.PerformClick();
+                        btnLimpiar.PerformClick();
+                    }
+                }
+                else
+                {
+                    BorrarDatosPedido();
+                    btnGenerar.Enabled = false;
+                }
+            }
+        }
+
+        private void dgvDetalle_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || (e.ColumnIndex != dgvDetalle.Columns["Eliminar"].Index & e.ColumnIndex != dgvDetalle.Columns["Modificar"].Index))
+                return;
+            if (e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index && tabcOperacion.SelectedTab == tabpRegistrar)
+                dgvDetalle.Rows.RemoveAt(e.RowIndex);
+            if (e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index && tabcOperacion.SelectedTab == tabpModificar)
+                MessageBox.Show("Aqui va el nuevo codigo 2");
+            if (e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index)
+                MessageBox.Show("Aqui va el nuevo codigo");
+            CalcularTotal();
+        }
     }
 }

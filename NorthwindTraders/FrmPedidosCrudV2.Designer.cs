@@ -115,17 +115,6 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.grbDetalle = new System.Windows.Forms.GroupBox();
-            this.dgvDetalle = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ProductoId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grbProducto = new System.Windows.Forms.GroupBox();
             this.txtUInventario = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
@@ -140,6 +129,17 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
+            this.grbDetalle = new System.Windows.Forms.GroupBox();
+            this.dgvDetalle = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descuento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ProductoId = new System.Windows.Forms.DataGridViewButtonColumn();
             this.grbTransportista.SuspendLayout();
             this.grbBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -152,9 +152,9 @@
             this.grbPedidos.SuspendLayout();
             this.grbPedido.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.grbProducto.SuspendLayout();
             this.grbDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
-            this.grbProducto.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnListar
@@ -913,6 +913,7 @@
             this.tabcOperacion.SelectedIndex = 0;
             this.tabcOperacion.Size = new System.Drawing.Size(1141, 56);
             this.tabcOperacion.TabIndex = 0;
+            this.tabcOperacion.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabcOperacion_Selecting);
             this.tabcOperacion.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabcOperacion_Selected);
             // 
             // dgvPedidos
@@ -949,6 +950,7 @@
             this.btnGenerar.Text = "Generar pedido";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Visible = false;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // txtTotal
             // 
@@ -1118,103 +1120,6 @@
             this.panel1.Size = new System.Drawing.Size(1184, 931);
             this.panel1.TabIndex = 1;
             // 
-            // grbDetalle
-            // 
-            this.grbDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbDetalle.Controls.Add(this.dgvDetalle);
-            this.grbDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbDetalle.Location = new System.Drawing.Point(336, 680);
-            this.grbDetalle.Name = "grbDetalle";
-            this.grbDetalle.Size = new System.Drawing.Size(825, 245);
-            this.grbDetalle.TabIndex = 5;
-            this.grbDetalle.TabStop = false;
-            this.grbDetalle.Text = "»   Detalle del pedido:   «";
-            // 
-            // dgvDetalle
-            // 
-            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Producto,
-            this.Precio,
-            this.Cantidad,
-            this.Descuento,
-            this.Importe,
-            this.Modificar,
-            this.Eliminar,
-            this.ProductoId});
-            this.dgvDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetalle.Location = new System.Drawing.Point(3, 16);
-            this.dgvDetalle.Name = "dgvDetalle";
-            this.dgvDetalle.Size = new System.Drawing.Size(819, 226);
-            this.dgvDetalle.TabIndex = 0;
-            this.dgvDetalle.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetalle_CellFormatting);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Width = 43;
-            // 
-            // Producto
-            // 
-            this.Producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            // 
-            // Precio
-            // 
-            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.Width = 68;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.Width = 82;
-            // 
-            // Descuento
-            // 
-            this.Descuento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Descuento.HeaderText = "Descuento";
-            this.Descuento.Name = "Descuento";
-            this.Descuento.Width = 93;
-            // 
-            // Importe
-            // 
-            this.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Importe.HeaderText = "Importe";
-            this.Importe.Name = "Importe";
-            this.Importe.Width = 74;
-            // 
-            // Modificar
-            // 
-            this.Modificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Modificar.HeaderText = "Modificar producto";
-            this.Modificar.Name = "Modificar";
-            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Modificar.Width = 107;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.Eliminar.HeaderText = "Eliminar producto";
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ProductoId
-            // 
-            this.ProductoId.HeaderText = "ProductoId";
-            this.ProductoId.Name = "ProductoId";
-            this.ProductoId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProductoId.Visible = false;
-            // 
             // grbProducto
             // 
             this.grbProducto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1375,6 +1280,104 @@
             this.label37.TabIndex = 0;
             this.label37.Text = "Categoría:";
             // 
+            // grbDetalle
+            // 
+            this.grbDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbDetalle.Controls.Add(this.dgvDetalle);
+            this.grbDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grbDetalle.Location = new System.Drawing.Point(336, 680);
+            this.grbDetalle.Name = "grbDetalle";
+            this.grbDetalle.Size = new System.Drawing.Size(825, 245);
+            this.grbDetalle.TabIndex = 5;
+            this.grbDetalle.TabStop = false;
+            this.grbDetalle.Text = "»   Detalle del pedido:   «";
+            // 
+            // dgvDetalle
+            // 
+            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Producto,
+            this.Precio,
+            this.Cantidad,
+            this.Descuento,
+            this.Importe,
+            this.Modificar,
+            this.Eliminar,
+            this.ProductoId});
+            this.dgvDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetalle.Location = new System.Drawing.Point(3, 16);
+            this.dgvDetalle.Name = "dgvDetalle";
+            this.dgvDetalle.Size = new System.Drawing.Size(819, 226);
+            this.dgvDetalle.TabIndex = 0;
+            this.dgvDetalle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalle_CellClick);
+            this.dgvDetalle.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetalle_CellFormatting);
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 43;
+            // 
+            // Producto
+            // 
+            this.Producto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            // 
+            // Precio
+            // 
+            this.Precio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.Width = 68;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.Width = 82;
+            // 
+            // Descuento
+            // 
+            this.Descuento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Descuento.HeaderText = "Descuento";
+            this.Descuento.Name = "Descuento";
+            this.Descuento.Width = 93;
+            // 
+            // Importe
+            // 
+            this.Importe.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            this.Importe.Width = 74;
+            // 
+            // Modificar
+            // 
+            this.Modificar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Modificar.HeaderText = "Modificar producto";
+            this.Modificar.Name = "Modificar";
+            this.Modificar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Modificar.Width = 107;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.Eliminar.HeaderText = "Eliminar producto";
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ProductoId
+            // 
+            this.ProductoId.HeaderText = "ProductoId";
+            this.ProductoId.Name = "ProductoId";
+            this.ProductoId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductoId.Visible = false;
+            // 
             // FrmPedidosCrudV2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1383,7 +1386,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Name = "FrmPedidosCrudV2";
-            this.Text = "» Mantenimiento de pedidos «";
+            this.Text = "» Mantenimiento de pedidos Ver. 2 «";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPedidosCrudV2_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPedidosCrudV2_FormClosed);
             this.Load += new System.EventHandler(this.FrmPedidosCrudV2_Load);
@@ -1406,10 +1409,10 @@
             this.grbPedido.ResumeLayout(false);
             this.grbPedido.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.grbDetalle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
             this.grbProducto.ResumeLayout(false);
             this.grbProducto.PerformLayout();
+            this.grbDetalle.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
             this.ResumeLayout(false);
 
         }
