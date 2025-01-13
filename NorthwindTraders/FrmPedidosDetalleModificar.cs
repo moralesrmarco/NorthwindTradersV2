@@ -60,6 +60,7 @@ namespace NorthwindTraders
             txtImporte.Text = Importe.ToString("c");
             CantidadOld = Cantidad;
             DescuentoOld = Descuento;
+            CalcularImporte();
         }
 
         private void ObtenerUInventario()
@@ -137,7 +138,6 @@ namespace NorthwindTraders
                 valida = false;
                 errorProvider1.SetError(txtDescuento, "El descuento no puede ser mayor que 1 o menor que 0");
             }
-            // hasta aqui voy bien
             if (valida)
             {
                 // Calcula la diferencia de cantidad
@@ -239,6 +239,8 @@ namespace NorthwindTraders
             }
             if (numRegs > 0)
             {
+                // Las siguientes dos lineas son necesarias para que se permita cerrar la ventana. 
+                // ya que se validan las variables en FrmPedidosDetalleModificar_FormClosing
                 CantidadOld = short.Parse(txtCantidad.Text);
                 DescuentoOld = decimal.Parse(txtDescuento.Text);
                 DialogResult = DialogResult.OK;

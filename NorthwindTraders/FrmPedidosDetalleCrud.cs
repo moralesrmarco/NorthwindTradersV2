@@ -802,7 +802,6 @@ namespace NorthwindTraders
                 using (FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar())
                 {
                     frmPedidosDetalleModificar.Owner = this;
-                    //FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar();
                     frmPedidosDetalleModificar.PedidoId = int.Parse(txtId.Text);
                     frmPedidosDetalleModificar.ProductoId = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
                     frmPedidosDetalleModificar.Producto = dgvr.Cells["Producto"].Value.ToString();
