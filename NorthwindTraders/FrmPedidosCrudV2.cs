@@ -568,7 +568,11 @@ namespace NorthwindTraders
                         txtUInventario.Text = rdr["UnitsInStock"] == DBNull.Value ? "0" : rdr.GetInt16(rdr.GetOrdinal("UnitsInStock")).ToString();
                         if (int.Parse(txtUInventario.Text) == 0)
                         {
+                            txtCantidad.Leave -= new EventHandler(txtCantidad_Leave);
+                            txtCantidad.Validating -= new CancelEventHandler(txtCantidad_Validating);
                             DeshabilitarControlesProducto();
+                            txtCantidad.Leave += new EventHandler(txtCantidad_Leave);
+                            txtCantidad.Validating += new CancelEventHandler(txtCantidad_Validating);
                             MessageBox.Show("No hay este producto en existencia", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             InicializarValoresProducto();
                             BorrarMensajesError();
