@@ -140,6 +140,7 @@
             this.Modificar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ProductoId = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.UInventario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbTransportista.SuspendLayout();
             this.grbBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -1305,7 +1306,8 @@
             this.Importe,
             this.Modificar,
             this.Eliminar,
-            this.ProductoId});
+            this.ProductoId,
+            this.UInventario});
             this.dgvDetalle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetalle.Location = new System.Drawing.Point(3, 16);
             this.dgvDetalle.Name = "dgvDetalle";
@@ -1377,6 +1379,12 @@
             this.ProductoId.Name = "ProductoId";
             this.ProductoId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ProductoId.Visible = false;
+            // 
+            // UInventario
+            // 
+            this.UInventario.HeaderText = "UInventario";
+            this.UInventario.Name = "UInventario";
+            this.UInventario.Visible = false;
             // 
             // FrmPedidosCrudV2
             // 
@@ -1507,15 +1515,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabpEliminar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
-        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
-        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
-        private System.Windows.Forms.DataGridViewButtonColumn ProductoId;
         private System.Windows.Forms.GroupBox grbProducto;
         private System.Windows.Forms.TextBox txtUInventario;
         private System.Windows.Forms.Label label43;
@@ -1530,5 +1529,15 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descuento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.DataGridViewButtonColumn Modificar;
+        private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
+        private System.Windows.Forms.DataGridViewButtonColumn ProductoId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UInventario;
     }
 }

@@ -60,7 +60,6 @@ namespace NorthwindTraders
             txtImporte.Text = Importe.ToString("c");
             CantidadOld = Cantidad;
             DescuentoOld = Descuento;
-            CalcularImporte();
         }
 
         private void ObtenerUInventario()

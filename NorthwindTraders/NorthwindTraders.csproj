@@ -106,6 +106,12 @@
     <Compile Include="FrmPedidosDetalleModificar.Designer.cs">
       <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPedidosDetalleModificar2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPedidosDetalleModificar2.Designer.cs">
+      <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProductosConsultaAlfabetica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosDetalleModificar.resx">
       <DependentUpon>FrmPedidosDetalleModificar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPedidosDetalleModificar2.resx">
+      <DependentUpon>FrmPedidosDetalleModificar2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProductosConsultaAlfabetica.resx">
       <DependentUpon>FrmProductosConsultaAlfabetica.cs</DependentUpon>
