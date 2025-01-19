@@ -1,0 +1,16 @@
+﻿CREATE   PROCEDURE [dbo].[SP_PEDIDOS_ELIMINAR]
+	@OrderId int
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+			DELETE [Order Details] WHERE OrderID = @OrderId
+			DELETE Orders WHERE OrderID = @OrderId
+		COMMIT TRANSACTION
+	END TRY
+	BEGIN CATCH
+		-- Debe llevar el punto y coma
+		ROLLBACK TRANSACTION;
+		THROW;
+	END CATCH
+END

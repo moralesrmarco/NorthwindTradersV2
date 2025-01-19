@@ -1,0 +1,7 @@
+﻿CREATE   PROCEDURE [dbo].[SP_EMPLEADOS_ELIMINAR]
+	@Id int
+AS
+BEGIN
+		DELETE Employees 
+		WHERE  EmployeeID = @Id
+END
