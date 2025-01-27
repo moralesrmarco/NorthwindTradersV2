@@ -215,6 +215,7 @@ namespace NorthwindTraders
             DgvDetalle.Columns["Modificar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             DgvDetalle.Columns["Eliminar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             DgvDetalle.Columns["Precio"].DefaultCellStyle.Format = "c";
+            DgvDetalle.Columns["Cantidad"].DefaultCellStyle.Format = "n0";
             DgvDetalle.Columns["Descuento"].DefaultCellStyle.Format = "n2";
             DgvDetalle.Columns["Importe"].DefaultCellStyle.Format = "c";
         }
@@ -846,7 +847,7 @@ namespace NorthwindTraders
             }
             catch (SqlException ex) when (ex.Number == 220)
             {
-                MessageBox.Show("Al tratar de devolver las unidades vendidas al inventario, la cantidad de unidades  excede las 32,767 unidades, rango máximo para un campo de tipo smallint", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Al tratar de devolver las unidades vendidas al inventario, la cantidad de unidades excede las 32,767 unidades, rango máximo para un campo de tipo smallint", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Utils.ActualizarBarraDeEstado(this);
             }
             catch (SqlException ex)
