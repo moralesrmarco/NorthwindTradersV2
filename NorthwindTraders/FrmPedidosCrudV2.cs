@@ -45,9 +45,7 @@ namespace NorthwindTraders
                     if (respuesta == DialogResult.No)
                         e.Cancel = true;
                     else
-                    {
                         e.Cancel = false;
-                    }
                 }
             }
         }

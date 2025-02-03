@@ -1293,6 +1293,7 @@
             this.grbDetalle.TabIndex = 5;
             this.grbDetalle.TabStop = false;
             this.grbDetalle.Text = "»   Detalle del pedido:   «";
+            this.grbDetalle.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
             // 
             // dgvDetalle
             // 
