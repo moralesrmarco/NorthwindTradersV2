@@ -82,6 +82,7 @@
             this.tsmiPedidos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDePedidos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeDetalleDePedidos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMantenimientoDePedidosV2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,7 +113,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tsmiMantenimientoDePedidosV2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -352,7 +353,8 @@
             // tsmiEmpleados
             // 
             this.tsmiEmpleados.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiMantenimientoDeEmpleados});
+            this.tsmiMantenimientoDeEmpleados,
+            this.reporteDeEmpleadosToolStripMenuItem});
             this.tsmiEmpleados.Name = "tsmiEmpleados";
             this.tsmiEmpleados.Size = new System.Drawing.Size(77, 20);
             this.tsmiEmpleados.Text = "Empleados";
@@ -559,6 +561,13 @@
             this.tsmiMantenimientoDeDetalleDePedidos.Size = new System.Drawing.Size(271, 22);
             this.tsmiMantenimientoDeDetalleDePedidos.Text = "Mantenimiento de detalle de pedidos";
             this.tsmiMantenimientoDeDetalleDePedidos.Click += new System.EventHandler(this.tsmiMantenimientoDeDetalleDePedidos_Click);
+            // 
+            // tsmiMantenimientoDePedidosV2
+            // 
+            this.tsmiMantenimientoDePedidosV2.Name = "tsmiMantenimientoDePedidosV2";
+            this.tsmiMantenimientoDePedidosV2.Size = new System.Drawing.Size(271, 22);
+            this.tsmiMantenimientoDePedidosV2.Text = "Mantenimiento de pedidos V2";
+            this.tsmiMantenimientoDePedidosV2.Click += new System.EventHandler(this.tsmiMantenimientoDePedidosV2_Click);
             // 
             // toolsMenu
             // 
@@ -802,12 +811,12 @@
             this.tsslEstado.Size = new System.Drawing.Size(39, 19);
             this.tsslEstado.Text = "Listo.";
             // 
-            // tsmiMantenimientoDePedidosV2
+            // reporteDeEmpleadosToolStripMenuItem
             // 
-            this.tsmiMantenimientoDePedidosV2.Name = "tsmiMantenimientoDePedidosV2";
-            this.tsmiMantenimientoDePedidosV2.Size = new System.Drawing.Size(271, 22);
-            this.tsmiMantenimientoDePedidosV2.Text = "Mantenimiento de pedidos V2";
-            this.tsmiMantenimientoDePedidosV2.Click += new System.EventHandler(this.tsmiMantenimientoDePedidosV2_Click);
+            this.reporteDeEmpleadosToolStripMenuItem.Name = "reporteDeEmpleadosToolStripMenuItem";
+            this.reporteDeEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.reporteDeEmpleadosToolStripMenuItem.Text = "Reporte de empleados";
+            this.reporteDeEmpleadosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosToolStripMenuItem_Click);
             // 
             // MDIPrincipal
             // 
@@ -919,6 +928,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDeDetalleDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidosV2;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosToolStripMenuItem;
     }
 }
 

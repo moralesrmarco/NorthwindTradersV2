@@ -133,11 +133,6 @@ namespace NorthwindTraders
                 valida = false;
                 errorProvider1.SetError(btnAgregar, "Ingrese el detalle del pedido");
             }
-            if (cboProducto.SelectedIndex > 0)
-            {
-                valida = false;
-                errorProvider1.SetError(cboProducto, "Ha seleccionado un producto y no lo ha agregado al pedido");
-            }
             return valida;
         }
 

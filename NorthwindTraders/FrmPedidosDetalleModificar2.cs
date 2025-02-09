@@ -23,7 +23,7 @@ namespace NorthwindTraders
 
         private void FrmPedidosDetalleModificar2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (int.Parse(txtCantidad.Text.Replace("&", "")) != CantidadOld || float.Parse(txtDescuento.Text) != DescuentoOld)
+            if (int.Parse(txtCantidad.Text.Replace(",", "")) != CantidadOld || float.Parse(txtDescuento.Text) != DescuentoOld)
             {
                 DialogResult respuesta = MessageBox.Show(Utils.preguntaCerrar, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (respuesta == DialogResult.No)
