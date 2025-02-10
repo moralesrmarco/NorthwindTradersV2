@@ -24,7 +24,7 @@ namespace NorthwindTraders
             ReportDataSource reportDataSource = new ReportDataSource("EmpleadoConReportsToDataSet", empleados);
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            reportViewer1.LocalReport.ReportPath = @"..\..\RptEmpleadosConFoto.rdlc"; // Asegúrate de que la ruta sea correcta
+            reportViewer1.LocalReport.ReportPath = @"RptEmpleadosConFoto.rdlc"; // Asegúrate de que la ruta sea correcta
             reportViewer1.RefreshReport();
         }
     }
