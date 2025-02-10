@@ -74,6 +74,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +86,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Empleado.cs" />
+    <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="FrmCategoriasCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +202,12 @@
     <Compile Include="FrmRptEmpleados.Designer.cs">
       <DependentUpon>FrmRptEmpleados.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptEmpleadosConFoto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
+      <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -278,6 +287,9 @@
     <EmbeddedResource Include="FrmRptEmpleados.resx">
       <DependentUpon>FrmRptEmpleados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
+      <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,6 +304,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RptEmpleados.rdlc" />
+    <EmbeddedResource Include="RptEmpleadosConFoto.rdlc" />
     <None Include="NorthwindDataSet.xsc">
       <DependentUpon>NorthwindDataSet.xsd</DependentUpon>
     </None>
@@ -304,6 +317,7 @@
       <DependentUpon>NorthwindDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EmpleadoConReportsTo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

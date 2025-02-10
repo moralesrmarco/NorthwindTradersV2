@@ -57,6 +57,7 @@
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEmpleados = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeEmpleados = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDirectorioDeClientesYProveedoresPorCiudad = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,7 +114,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.reporteDeEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeEmpleadosConFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -354,7 +355,8 @@
             // 
             this.tsmiEmpleados.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMantenimientoDeEmpleados,
-            this.reporteDeEmpleadosToolStripMenuItem});
+            this.reporteDeEmpleadosToolStripMenuItem,
+            this.reporteDeEmpleadosConFotoToolStripMenuItem});
             this.tsmiEmpleados.Name = "tsmiEmpleados";
             this.tsmiEmpleados.Size = new System.Drawing.Size(77, 20);
             this.tsmiEmpleados.Text = "Empleados";
@@ -362,9 +364,16 @@
             // tsmiMantenimientoDeEmpleados
             // 
             this.tsmiMantenimientoDeEmpleados.Name = "tsmiMantenimientoDeEmpleados";
-            this.tsmiMantenimientoDeEmpleados.Size = new System.Drawing.Size(233, 22);
+            this.tsmiMantenimientoDeEmpleados.Size = new System.Drawing.Size(240, 22);
             this.tsmiMantenimientoDeEmpleados.Text = "Mantenimiento de empleados";
             this.tsmiMantenimientoDeEmpleados.Click += new System.EventHandler(this.tsmiMantenimientoDeEmpleados_Click);
+            // 
+            // reporteDeEmpleadosToolStripMenuItem
+            // 
+            this.reporteDeEmpleadosToolStripMenuItem.Name = "reporteDeEmpleadosToolStripMenuItem";
+            this.reporteDeEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.reporteDeEmpleadosToolStripMenuItem.Text = "Reporte de empleados";
+            this.reporteDeEmpleadosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosToolStripMenuItem_Click);
             // 
             // tsmiClientes
             // 
@@ -811,12 +820,12 @@
             this.tsslEstado.Size = new System.Drawing.Size(39, 19);
             this.tsslEstado.Text = "Listo.";
             // 
-            // reporteDeEmpleadosToolStripMenuItem
+            // reporteDeEmpleadosConFotoToolStripMenuItem
             // 
-            this.reporteDeEmpleadosToolStripMenuItem.Name = "reporteDeEmpleadosToolStripMenuItem";
-            this.reporteDeEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
-            this.reporteDeEmpleadosToolStripMenuItem.Text = "Reporte de empleados";
-            this.reporteDeEmpleadosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosToolStripMenuItem_Click);
+            this.reporteDeEmpleadosConFotoToolStripMenuItem.Name = "reporteDeEmpleadosConFotoToolStripMenuItem";
+            this.reporteDeEmpleadosConFotoToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.reporteDeEmpleadosConFotoToolStripMenuItem.Text = "Reporte de empleados con foto";
+            this.reporteDeEmpleadosConFotoToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosConFotoToolStripMenuItem_Click);
             // 
             // MDIPrincipal
             // 
@@ -929,6 +938,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDeDetalleDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidosV2;
         private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosConFotoToolStripMenuItem;
     }
 }
 
