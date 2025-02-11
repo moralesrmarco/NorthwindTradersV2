@@ -386,6 +386,12 @@ namespace NorthwindTraders
                     cboReportaA.SelectedValue = dgvr.Cells["Reportaa"].Value.ToString();
                 else 
                     cboReportaA.SelectedValue = 0;
+                if (tabcOperacion.SelectedTab == tbpListar)
+                {
+                    btnOperacion.Visible = true;
+                    btnOperacion.Enabled = true;
+                    btnCargar.Visible = false;
+                }
                 if (tabcOperacion.SelectedTab == tbpModificar)
                 {
                     HabilitarControles();
@@ -434,8 +440,9 @@ namespace NorthwindTraders
                 btnCargar.Enabled = false;
                 if (tabcOperacion.SelectedTab == tbpListar)
                 {
-                    btnOperacion.Visible = false;
-                    btnOperacion.Enabled = false;
+                    btnOperacion.Text = "Imprimir empleado";
+                    btnOperacion.Visible = true;
+                    btnOperacion.Enabled = true;
                     btnCargar.Visible = false;
                     btnCargar.Enabled = false;
                 }
@@ -462,6 +469,12 @@ namespace NorthwindTraders
         {
             int numRegs = 0;
             BorrarMensajesError();
+            if (tabcOperacion.SelectedTab == tbpListar)
+            {
+                FrmRptEmpleado frmRptEmpleado = new FrmRptEmpleado();
+                frmRptEmpleado.Id = int.Parse(txtId.Text);
+                frmRptEmpleado.ShowDialog();
+            }
             if (tabcOperacion.SelectedTab == tbpRegistrar)
             {
                 if (ValidarControles())

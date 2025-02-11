@@ -231,12 +231,14 @@
                               <Value>Fecha de nacimiento: </Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Fields!BirthDate.Value</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -304,12 +306,14 @@
                               <Value>Fecha de contratación: </Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
                             <TextRun>
                               <Value>=Fields!HireDate.Value</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
+                                <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -873,7 +877,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1018,6 +1021,10 @@
           <Border>
             <Style>None</Style>
           </Border>
+          <PaddingLeft>8pt</PaddingLeft>
+          <PaddingRight>8pt</PaddingRight>
+          <PaddingTop>8pt</PaddingTop>
+          <PaddingBottom>8pt</PaddingBottom>
         </Style>
       </Tablix>
     </ReportItems>
@@ -1052,7 +1059,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Northwind Traders - Listado de empleados</Value>
+                  <Value>Northwind Traders - Reporte de empleados</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>

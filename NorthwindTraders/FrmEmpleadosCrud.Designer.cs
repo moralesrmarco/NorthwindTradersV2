@@ -228,7 +228,7 @@
             this.cboReportaA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboReportaA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboReportaA.FormattingEnabled = true;
-            this.cboReportaA.Location = new System.Drawing.Point(323, 274);
+            this.cboReportaA.Location = new System.Drawing.Point(323, 278);
             this.cboReportaA.Name = "cboReportaA";
             this.cboReportaA.Size = new System.Drawing.Size(144, 21);
             this.cboReportaA.TabIndex = 54;
@@ -256,7 +256,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(256, 277);
+            this.label30.Location = new System.Drawing.Point(256, 282);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(67, 13);
             this.label30.TabIndex = 59;
@@ -296,9 +296,8 @@
             this.btnOperacion.Name = "btnOperacion";
             this.btnOperacion.Size = new System.Drawing.Size(128, 23);
             this.btnOperacion.TabIndex = 55;
-            this.btnOperacion.Text = "Registrar empleado";
+            this.btnOperacion.Text = "Imprimir empleado";
             this.btnOperacion.UseVisualStyleBackColor = true;
-            this.btnOperacion.Visible = false;
             this.btnOperacion.Click += new System.EventHandler(this.btnOperacion_Click);
             // 
             // label16
