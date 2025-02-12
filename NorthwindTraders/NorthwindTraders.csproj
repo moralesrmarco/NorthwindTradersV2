@@ -196,6 +196,12 @@
     <Compile Include="FrmProveedoresProductos.Designer.cs">
       <DependentUpon>FrmProveedoresProductos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptClientes.Designer.cs">
+      <DependentUpon>FrmRptClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptEmpleado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,6 +296,9 @@
     <EmbeddedResource Include="FrmProveedoresProductos.resx">
       <DependentUpon>FrmProveedoresProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptClientes.resx">
+      <DependentUpon>FrmRptClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptEmpleado.resx">
       <DependentUpon>FrmRptEmpleado.cs</DependentUpon>
     </EmbeddedResource>
@@ -312,6 +321,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptEmpleado.rdlc" />
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">

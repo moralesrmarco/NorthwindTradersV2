@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTraders
 {
-    partial class FrmRptEmpleado
+    partial class FrmRptClientes
     {
         /// <summary>
         /// Required designer variable.
@@ -30,56 +30,53 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.employeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.northwindDataSet = new NorthwindTraders.NorthwindDataSet();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.employeeTableAdapter = new NorthwindTraders.NorthwindDataSetTableAdapters.EmployeeTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).BeginInit();
+            this.northwindDataSet = new NorthwindTraders.NorthwindDataSet();
+            this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customersTableAdapter = new NorthwindTraders.NorthwindDataSetTableAdapters.CustomersTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // employeeBindingSource
-            // 
-            this.employeeBindingSource.DataMember = "Employee";
-            this.employeeBindingSource.DataSource = this.northwindDataSet;
-            // 
-            // northwindDataSet
-            // 
-            this.northwindDataSet.DataSetName = "NorthwindDataSet";
-            this.northwindDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.employeeBindingSource;
+            reportDataSource1.Value = this.customersBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptEmpleado.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptClientes.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(800, 450);
             this.reportViewer1.TabIndex = 0;
             // 
-            // employeeTableAdapter
+            // northwindDataSet
             // 
-            this.employeeTableAdapter.ClearBeforeFill = true;
+            this.northwindDataSet.DataSetName = "NorthwindDataSet";
+            this.northwindDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // FrmRptEmpleado
+            // customersBindingSource
+            // 
+            this.customersBindingSource.DataMember = "Customers";
+            this.customersBindingSource.DataSource = this.northwindDataSet;
+            // 
+            // customersTableAdapter
+            // 
+            this.customersTableAdapter.ClearBeforeFill = true;
+            // 
+            // FrmRptClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.reportViewer1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FrmRptEmpleado";
-            this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "» Reporte de empleado «";
-            this.Load += new System.EventHandler(this.FrmRptEmpleado_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
+            this.Name = "FrmRptClientes";
+            this.Text = "» Reporte directorio de clientes «";
+            this.Load += new System.EventHandler(this.FrmRptClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -87,8 +84,8 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.BindingSource employeeBindingSource;
         private NorthwindDataSet northwindDataSet;
-        private NorthwindDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
+        private System.Windows.Forms.BindingSource customersBindingSource;
+        private NorthwindDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
     }
 }
