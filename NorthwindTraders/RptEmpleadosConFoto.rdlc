@@ -1096,6 +1096,7 @@
           <Style>
             <Border>
               <Style>Solid</Style>
+              <Width>1.5pt</Width>
             </Border>
           </Style>
         </Line>
@@ -1107,7 +1108,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.79375cm</Height>
+      <Height>0.60854cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1182,6 +1183,19 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Line Name="Line2">
+          <Top>0.08467cm</Top>
+          <Left>0.35073cm</Left>
+          <Height>0cm</Height>
+          <Width>18.98354cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+              <Width>1.5pt</Width>
+            </Border>
+          </Style>
+        </Line>
       </ReportItems>
       <Style>
         <Border>

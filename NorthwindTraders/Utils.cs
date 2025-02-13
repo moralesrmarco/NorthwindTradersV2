@@ -20,6 +20,7 @@ namespace NorthwindTraders
         public static string eliminandoRegistro = "Eliminando registro en la base de datos...";
         public static string errorRestriccionCF = "Error: No se puede eliminar el registro debido a una restricción de clave foránea";
         public static string errorClaveDuplicada = "Error: No se puede insertar una clave duplicada en el objeto. Infracción de la restricción PRIMARY KEY";
+        public static string errorCriterioSelec = "Error: Proporcione los criterios de selección";
         #endregion
 
         public static void LlenarCbo(Form form, ComboBox cbo, string storedProcedure, string displayMember, string valueMember, SqlConnection cn, string parametroNombre, object parametroValor)

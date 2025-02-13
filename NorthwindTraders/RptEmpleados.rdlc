@@ -848,13 +848,14 @@
         </Textbox>
         <Line Name="Line1">
           <Top>2.06057cm</Top>
-          <Left>0.33549cm</Left>
+          <Left>0.17674cm</Left>
           <Height>0cm</Height>
           <Width>19.20983cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
               <Style>Solid</Style>
+              <Width>1.5pt</Width>
             </Border>
           </Style>
         </Line>
@@ -866,7 +867,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.95167cm</Height>
+      <Height>0.59118cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -941,6 +942,19 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Line Name="Line2">
+          <Top>0.06838cm</Top>
+          <Left>0.1995cm</Left>
+          <Height>0cm</Height>
+          <Width>19.20983cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+              <Width>1.5pt</Width>
+            </Border>
+          </Style>
+        </Line>
       </ReportItems>
       <Style>
         <Border>

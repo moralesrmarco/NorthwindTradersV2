@@ -1258,8 +1258,8 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.32314cm</Top>
         <Left>4.15078cm</Left>
-        <Height>16.80312cm</Height>
-        <Width>12.82083cm</Width>
+        <Height>16.80313cm</Height>
+        <Width>12.82084cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1335,6 +1335,7 @@
           <Style>
             <Border>
               <Style>Solid</Style>
+              <Width>1.5pt</Width>
             </Border>
           </Style>
         </Line>
@@ -1346,7 +1347,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.82873cm</Height>
+      <Height>0.7101cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1421,6 +1422,19 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Line Name="Line2">
+          <Top>0.12332cm</Top>
+          <Left>0.26299cm</Left>
+          <Height>0cm</Height>
+          <Width>18.6925cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>Solid</Style>
+              <Width>1.5pt</Width>
+            </Border>
+          </Style>
+        </Line>
       </ReportItems>
       <Style>
         <Border>
