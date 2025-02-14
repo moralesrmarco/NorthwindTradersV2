@@ -480,8 +480,43 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Numero de clientes: " &amp; Count(Fields!CustomerID.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.85549cm</Top>
+        <Left>18.83583cm</Left>
+        <Height>0.6cm</Height>
+        <Width>7.19837cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>0.23622in</Height>
+    <Height>0.57303in</Height>
     <Style />
   </Body>
   <Width>10.31635in</Width>
@@ -542,9 +577,8 @@
         </Textbox>
         <Line Name="Line1">
           <Top>1.94822cm</Top>
-          <Left>0.37477cm</Left>
           <Height>0cm</Height>
-          <Width>25.50691cm</Width>
+          <Width>26.20354cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -929,9 +963,8 @@
         </Textbox>
         <Line Name="Line2">
           <Top>3.06503cm</Top>
-          <Left>0.37477cm</Left>
           <Height>0cm</Height>
-          <Width>25.50691cm</Width>
+          <Width>26.20354cm</Width>
           <ZIndex>14</ZIndex>
           <Style>
             <Border>
@@ -1013,7 +1046,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>19.20625cm</Left>
+          <Left>18.88875cm</Left>
           <Height>0.44125cm</Height>
           <Width>6.38938cm</Width>
           <ZIndex>1</ZIndex>
@@ -1029,9 +1062,8 @@
         </Textbox>
         <Line Name="Line3">
           <Top>0.09525cm</Top>
-          <Left>0.37477cm</Left>
           <Height>0cm</Height>
-          <Width>25.50691cm</Width>
+          <Width>26.20354cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1049,7 +1081,7 @@
     </PageFooter>
     <PageHeight>21.59cm</PageHeight>
     <PageWidth>27.94cm</PageWidth>
-    <LeftMargin>0.5cm</LeftMargin>
+    <LeftMargin>1cm</LeftMargin>
     <RightMargin>0.5cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0.5cm</BottomMargin>
