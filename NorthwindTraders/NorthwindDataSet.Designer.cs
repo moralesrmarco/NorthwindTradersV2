@@ -32,6 +32,8 @@ namespace NorthwindTraders {
         
         private VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTDataTable tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT;
         
+        private VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT;
+        
         private global::System.Data.DataRelation relationFK_Employees_Employees;
         
         private global::System.Data.DataRelation relationFK_Employees_Employees1;
@@ -75,6 +77,9 @@ namespace NorthwindTraders {
                 }
                 if ((ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT"] != null)) {
                     base.Tables.Add(new VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTDataTable(ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT"]));
+                }
+                if ((ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT"] != null)) {
+                    base.Tables.Add(new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable(ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -131,6 +136,16 @@ namespace NorthwindTraders {
         public VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTDataTable VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT {
             get {
                 return this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT {
+            get {
+                return this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT;
             }
         }
         
@@ -213,6 +228,9 @@ namespace NorthwindTraders {
                 if ((ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT"] != null)) {
                     base.Tables.Add(new VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTDataTable(ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT"]));
                 }
+                if ((ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT"] != null)) {
+                    base.Tables.Add(new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable(ds.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -270,6 +288,12 @@ namespace NorthwindTraders {
                     this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT.InitVars();
                 }
             }
+            this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT = ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable)(base.Tables["VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT"]));
+            if ((initTable == true)) {
+                if ((this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT != null)) {
+                    this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.InitVars();
+                }
+            }
             this.relationFK_Employees_Employees = this.Relations["FK_Employees_Employees"];
             this.relationFK_Employees_Employees1 = this.Relations["FK_Employees_Employees1"];
         }
@@ -290,6 +314,8 @@ namespace NorthwindTraders {
             base.Tables.Add(this.tableCustomers);
             this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT = new VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTDataTable();
             base.Tables.Add(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT);
+            this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT = new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable();
+            base.Tables.Add(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT);
             this.relationFK_Employees_Employees = new global::System.Data.DataRelation("FK_Employees_Employees", new global::System.Data.DataColumn[] {
                         this.tableEmployees.EmployeeIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEmployees.ReportsToColumn}, false);
@@ -321,6 +347,12 @@ namespace NorthwindTraders {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeVW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT() {
             return false;
         }
         
@@ -390,6 +422,9 @@ namespace NorthwindTraders {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTRowChangeEventHandler(object sender, VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEventHandler(object sender, VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2311,6 +2346,391 @@ namespace NorthwindTraders {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable : global::System.Data.TypedTableBase<VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow> {
+            
+            private global::System.Data.DataColumn columnCiudad;
+            
+            private global::System.Data.DataColumn columnPais;
+            
+            private global::System.Data.DataColumn columnNombreCompania;
+            
+            private global::System.Data.DataColumn columnNombreContacto;
+            
+            private global::System.Data.DataColumn columnRelacion;
+            
+            private global::System.Data.DataColumn columnTelefono;
+            
+            private global::System.Data.DataColumn columnDomicilio;
+            
+            private global::System.Data.DataColumn columnRegion;
+            
+            private global::System.Data.DataColumn columnCodigoPostal;
+            
+            private global::System.Data.DataColumn columnFax;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable() {
+                this.TableName = "VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CiudadColumn {
+                get {
+                    return this.columnCiudad;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PaisColumn {
+                get {
+                    return this.columnPais;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NombreCompaniaColumn {
+                get {
+                    return this.columnNombreCompania;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NombreContactoColumn {
+                get {
+                    return this.columnNombreContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RelacionColumn {
+                get {
+                    return this.columnRelacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TelefonoColumn {
+                get {
+                    return this.columnTelefono;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DomicilioColumn {
+                get {
+                    return this.columnDomicilio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RegionColumn {
+                get {
+                    return this.columnRegion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CodigoPostalColumn {
+                get {
+                    return this.columnCodigoPostal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FaxColumn {
+                get {
+                    return this.columnFax;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow this[int index] {
+                get {
+                    return ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEventHandler VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEventHandler VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEventHandler VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEventHandler VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow(VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow AddVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow(string Ciudad, string Pais, string NombreCompania, string NombreContacto, string Relacion, string Telefono, string Domicilio, string Region, string CodigoPostal, string Fax) {
+                VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow rowVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow = ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Ciudad,
+                        Pais,
+                        NombreCompania,
+                        NombreContacto,
+                        Relacion,
+                        Telefono,
+                        Domicilio,
+                        Region,
+                        CodigoPostal,
+                        Fax};
+                rowVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow);
+                return rowVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable cln = ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnCiudad = base.Columns["Ciudad"];
+                this.columnPais = base.Columns["Pais"];
+                this.columnNombreCompania = base.Columns["NombreCompania"];
+                this.columnNombreContacto = base.Columns["NombreContacto"];
+                this.columnRelacion = base.Columns["Relacion"];
+                this.columnTelefono = base.Columns["Telefono"];
+                this.columnDomicilio = base.Columns["Domicilio"];
+                this.columnRegion = base.Columns["Region"];
+                this.columnCodigoPostal = base.Columns["CodigoPostal"];
+                this.columnFax = base.Columns["Fax"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnCiudad = new global::System.Data.DataColumn("Ciudad", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCiudad);
+                this.columnPais = new global::System.Data.DataColumn("Pais", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPais);
+                this.columnNombreCompania = new global::System.Data.DataColumn("NombreCompania", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreCompania);
+                this.columnNombreContacto = new global::System.Data.DataColumn("NombreContacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreContacto);
+                this.columnRelacion = new global::System.Data.DataColumn("Relacion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRelacion);
+                this.columnTelefono = new global::System.Data.DataColumn("Telefono", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefono);
+                this.columnDomicilio = new global::System.Data.DataColumn("Domicilio", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDomicilio);
+                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegion);
+                this.columnCodigoPostal = new global::System.Data.DataColumn("CodigoPostal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCodigoPostal);
+                this.columnFax = new global::System.Data.DataColumn("Fax", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFax);
+                this.columnCiudad.MaxLength = 15;
+                this.columnPais.MaxLength = 15;
+                this.columnNombreCompania.AllowDBNull = false;
+                this.columnNombreCompania.MaxLength = 40;
+                this.columnNombreContacto.MaxLength = 62;
+                this.columnRelacion.AllowDBNull = false;
+                this.columnRelacion.MaxLength = 9;
+                this.columnTelefono.MaxLength = 24;
+                this.columnDomicilio.MaxLength = 60;
+                this.columnRegion.MaxLength = 15;
+                this.columnCodigoPostal.MaxLength = 10;
+                this.columnFax.MaxLength = 24;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow NewVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow() {
+                return ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanged != null)) {
+                    this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanged(this, new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent(((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanging != null)) {
+                    this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChanging(this, new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent(((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleted != null)) {
+                    this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleted(this, new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent(((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleting != null)) {
+                    this.VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowDeleting(this, new VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent(((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow(VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                NorthwindDataSet ds = new NorthwindDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class EmployeesRow : global::System.Data.DataRow {
@@ -3961,6 +4381,275 @@ namespace NorthwindTraders {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow : global::System.Data.DataRow {
+            
+            private VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT = ((VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Ciudad {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CiudadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Ciudad\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIOPOR" +
+                                "PAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CiudadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Pais {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.PaisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Pais\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIOPORPA" +
+                                "IS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.PaisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NombreCompania {
+                get {
+                    return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreCompaniaColumn]));
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreCompaniaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string NombreContacto {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreContacto\' de la tabla \'VW_CLIENTESPROVEEDORES_DIREC" +
+                                "TORIOPORPAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Relacion {
+                get {
+                    return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RelacionColumn]));
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RelacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Telefono {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.TelefonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Telefono\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIOP" +
+                                "ORPAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.TelefonoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Domicilio {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.DomicilioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Domicilio\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIO" +
+                                "PORPAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.DomicilioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Region {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RegionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Region\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIOPOR" +
+                                "PAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CodigoPostal {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CodigoPostalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CodigoPostal\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTO" +
+                                "RIOPORPAIS_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CodigoPostalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Fax {
+                get {
+                    try {
+                        return ((string)(this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.FaxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Fax\' de la tabla \'VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAI" +
+                                "S_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.FaxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCiudadNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CiudadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCiudadNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CiudadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPaisNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.PaisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPaisNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.PaisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNombreContactoNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNombreContactoNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.NombreContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsTelefonoNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.TelefonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetTelefonoNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.TelefonoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDomicilioNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.DomicilioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDomicilioNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.DomicilioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRegionNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RegionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRegionNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.RegionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCodigoPostalNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CodigoPostalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCodigoPostalNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.CodigoPostalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFaxNull() {
+                return this.IsNull(this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.FaxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFaxNull() {
+                this[this.tableVW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT.FaxColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -4082,6 +4771,40 @@ namespace NorthwindTraders {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPTRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent : global::System.EventArgs {
+            
+            private VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRowChangeEvent(VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPTRow Row {
                 get {
                     return this.eventRow;
                 }

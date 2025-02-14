@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9f69f422-c2f6-484a-8341-23fba194512c</rd:DataSourceID>
+      <rd:DataSourceID>48cc1128-966b-4a3f-8e04-6754c5328502</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -61,7 +61,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\marco\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>VW_CLIENTESPROVEEDORES_DIRECTORIOPORCIUDAD_RPT</rd:TableName>
+        <rd:TableName>VW_CLIENTESPROVEEDORES_DIRECTORIOPORPAIS_RPT</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -76,13 +76,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.48333cm</Width>
+                  <Width>0.86215cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.44073cm</Width>
+                  <Width>1.43117cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.83376cm</Width>
+                  <Width>4.18606cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.84481cm</Width>
@@ -91,7 +91,7 @@
                   <Width>1.98686cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.57236cm</Width>
+                  <Width>5.03472cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.7546cm</Width>
@@ -100,26 +100,26 @@
                   <Width>1.46356cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.78648cm</Width>
+                  <Width>2.62773cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.82865cm</Width>
+                  <Width>2.84254cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.44125cm</Height>
+                  <Height>0.57354cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Ciudad1">
+                        <Textbox Name="Pais1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Ciudad.Value</Value>
+                                  <Value>=Fields!Pais.Value</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -130,15 +130,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Ciudad1</rd:DefaultName>
+                          <rd:DefaultName>Pais1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
                         <ColSpan>10</ColSpan>
@@ -156,11 +154,11 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>0.57354cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox17">
+                        <Textbox Name="Textbox42">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -176,29 +174,27 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <rd:DefaultName>Textbox42</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Pais">
+                        <Textbox Name="Ciudad1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Pais.Value</Value>
+                                  <Value>=Fields!Ciudad.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -207,15 +203,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Pais</rd:DefaultName>
+                          <rd:DefaultName>Ciudad1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
                           </Style>
                         </Textbox>
                         <ColSpan>9</ColSpan>
@@ -232,11 +226,11 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.54708cm</Height>
+                  <Height>0.52062cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox29">
+                        <Textbox Name="Pais">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -244,9 +238,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style>
-                                    <FontSize>9pt</FontSize>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -254,7 +246,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <rd:DefaultName>Pais</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -271,7 +263,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox30">
+                        <Textbox Name="Textbox52">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -279,9 +271,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style>
-                                    <FontSize>9pt</FontSize>
-                                  </Style>
+                                  <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -289,7 +279,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox30</rd:DefaultName>
+                          <rd:DefaultName>Textbox52</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -599,27 +589,27 @@
             <TablixRowHierarchy>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="Ciudad">
+                  <Group Name="Pais">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!Ciudad.Value</GroupExpression>
+                      <GroupExpression>=Fields!Pais.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Ciudad.Value</Value>
+                      <Value>=Fields!Pais.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
                     <TablixMember />
                     <TablixMember>
-                      <Group Name="Pais">
+                      <Group Name="Ciudad">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!Pais.Value</GroupExpression>
+                          <GroupExpression>=Fields!Ciudad.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
                         <SortExpression>
-                          <Value>=Fields!Pais.Value</Value>
+                          <Value>=Fields!Ciudad.Value</Value>
                         </SortExpression>
                       </SortExpressions>
                       <TablixMembers>
@@ -637,8 +627,8 @@
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
             <DataSetName>DataSet1</DataSetName>
-            <Height>1.58833cm</Height>
-            <Width>25.99514cm</Width>
+            <Height>1.66771cm</Height>
+            <Width>26.0342cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -665,7 +655,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox71</rd:DefaultName>
-            <Top>1.9177cm</Top>
+            <Top>1.9606cm</Top>
             <Left>20.41555cm</Left>
             <Height>0.6cm</Height>
             <Width>5.51599cm</Width>
@@ -703,7 +693,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox72</rd:DefaultName>
-            <Top>2.71145cm</Top>
+            <Top>2.75435cm</Top>
             <Left>20.41555cm</Left>
             <Height>0.6cm</Height>
             <Width>5.50748cm</Width>
@@ -722,13 +712,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>1.7258in</Height>
+        <Height>1.50186in</Height>
         <Style />
       </Body>
-      <Width>10.23431in</Width>
+      <Width>10.24969in</Width>
       <Page>
         <PageHeader>
-          <Height>3.20146cm</Height>
+          <Height>2.9748cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -736,8 +726,7 @@
               <Source>Embedded</Source>
               <Value>northwinddb</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.11553cm</Top>
-              <Left>0.61384cm</Left>
+              <Left>0.6529cm</Left>
               <Height>1.56104cm</Height>
               <Width>1.64042cm</Width>
               <Style>
@@ -766,8 +755,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.66234cm</Top>
-              <Left>2.47134cm</Left>
+              <Top>0.54681cm</Top>
+              <Left>2.5104cm</Left>
               <Height>0.6cm</Height>
               <Width>23.26452cm</Width>
               <ZIndex>1</ZIndex>
@@ -782,9 +771,9 @@
               </Style>
             </Textbox>
             <Line Name="Line1">
-              <Top>1.88472cm</Top>
+              <Top>1.76919cm</Top>
               <Height>0cm</Height>
-              <Width>25.99514cm</Width>
+              <Width>25.95607cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -800,7 +789,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Ciudad</Value>
+                      <Value>País</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -810,8 +799,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox61</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>0.04306cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>0.0635cm</Left>
               <Height>0.6cm</Height>
               <Width>1.36229cm</Width>
               <ZIndex>3</ZIndex>
@@ -842,8 +831,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox62</rd:DefaultName>
-              <Top>1.93887cm</Top>
-              <Left>18.97803cm</Left>
+              <Top>1.82334cm</Top>
+              <Left>19.01709cm</Left>
               <Height>0.99688cm</Height>
               <Width>1.47746cm</Width>
               <ZIndex>4</ZIndex>
@@ -858,9 +847,9 @@
               </Style>
             </Textbox>
             <Line Name="Line3">
-              <Top>3.09033cm</Top>
+              <Top>2.9748cm</Top>
               <Height>0cm</Height>
-              <Width>25.99514cm</Width>
+              <Width>26.0342cm</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -876,7 +865,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>País</Value>
+                      <Value>Ciudad</Value>
                       <Style>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -886,10 +875,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox63</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>1.54728cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>0.98641cm</Left>
               <Height>0.6cm</Height>
-              <Width>1.09771cm</Width>
+              <Width>1.5389cm</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -918,8 +907,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox64</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>2.88479cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>2.35235cm</Left>
               <Height>0.6cm</Height>
               <Width>3.87303cm</Width>
               <ZIndex>7</ZIndex>
@@ -950,8 +939,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox65</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>6.73312cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>6.48643cm</Left>
               <Height>0.6cm</Height>
               <Width>3.61157cm</Width>
               <ZIndex>8</ZIndex>
@@ -982,8 +971,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox66</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>10.72568cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>10.41549cm</Left>
               <Height>0.6cm</Height>
               <Width>1.82811cm</Width>
               <ZIndex>9</ZIndex>
@@ -1014,8 +1003,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox67</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>13.65991cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>13.57197cm</Left>
               <Height>0.6cm</Height>
               <Width>1.78562cm</Width>
               <ZIndex>10</ZIndex>
@@ -1046,8 +1035,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox68</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>17.39608cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>17.40339cm</Left>
               <Height>0.6cm</Height>
               <Width>1.47944cm</Width>
               <ZIndex>11</ZIndex>
@@ -1078,8 +1067,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox69</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>20.92007cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>20.95913cm</Left>
               <Height>0.6cm</Height>
               <Width>1.65333cm</Width>
               <ZIndex>12</ZIndex>
@@ -1110,8 +1099,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox70</rd:DefaultName>
-              <Top>2.13995cm</Top>
-              <Left>24.18503cm</Left>
+              <Top>2.02442cm</Top>
+              <Left>24.0971cm</Left>
               <Height>0.6cm</Height>
               <Width>0.91582cm</Width>
               <ZIndex>13</ZIndex>
@@ -1133,14 +1122,14 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.71289cm</Height>
+          <Height>0.72157cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Line Name="Line2">
-              <Top>0.09525cm</Top>
+              <Top>0.10393cm</Top>
               <Height>0cm</Height>
-              <Width>25.91701cm</Width>
+              <Width>26.0342cm</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -1175,8 +1164,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox24</rd:DefaultName>
-              <Top>0.27164cm</Top>
-              <Left>0.88043cm</Left>
+              <Top>0.28032cm</Top>
+              <Left>0.95856cm</Left>
               <Height>0.44125cm</Height>
               <Width>7.95042cm</Width>
               <ZIndex>1</ZIndex>
@@ -1209,8 +1198,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox25</rd:DefaultName>
-              <Top>0.27164cm</Top>
-              <Left>18.57513cm</Left>
+              <Top>0.28032cm</Top>
+              <Left>18.65326cm</Left>
               <Height>0.44125cm</Height>
               <Width>6.38938cm</Width>
               <ZIndex>2</ZIndex>
@@ -1247,7 +1236,7 @@
       <DataType>String</DataType>
       <DefaultValue>
         <Values>
-          <Value>» Reporte directorio de clientes y proveedores por ciudad [ Todas las Ciudades ]  «</Value>
+          <Value>» Reporte directorio de clientes y proveedores por país [ Todos los Paises ]  «</Value>
         </Values>
       </DefaultValue>
       <Prompt>ReportParameter1</Prompt>
@@ -1294,5 +1283,5 @@ VFFi5wp5rdIyq/jdYwGcYZuQIL58x610L4h26ouW17fQftCmp6yWthCR1ORDWyBWbwWx7MRkAjBKqOiR
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>054cbc03-b150-4b1b-88ec-72780e298472</rd:ReportID>
+  <rd:ReportID>5f72c06c-4ad9-4795-bf93-4bbe30f2f4a4</rd:ReportID>
 </Report>

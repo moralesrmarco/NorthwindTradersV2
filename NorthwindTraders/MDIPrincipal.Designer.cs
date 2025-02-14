@@ -72,6 +72,7 @@
             this.tsmiProveedoresProductos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi2DirectorioDeClientesYProveedoresPorCiudad = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi2DirectorioDeClientesYProveedoresPorPais = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCategorias = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeCategorías = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCategoriasProductos = new System.Windows.Forms.ToolStripMenuItem();
@@ -447,6 +448,7 @@
             this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Name = "directorioDeClientesYProveedoresPorPaísToolStripMenuItem";
             this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Size = new System.Drawing.Size(322, 22);
             this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Text = "Directorio de clientes y proveedores por país";
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem_Click);
             // 
             // tsmiProveedores
             // 
@@ -454,7 +456,8 @@
             this.tsmiMantenimientoDeProveedores,
             this.tsmiProveedoresProductos,
             this.tsmi2DirectorioDeClientesYProveedoresPorCiudad,
-            this.tsmi2DirectorioDeClientesYProveedoresPorPais});
+            this.tsmi2DirectorioDeClientesYProveedoresPorPais,
+            this.reportesToolStripMenuItem1});
             this.tsmiProveedores.Name = "tsmiProveedores";
             this.tsmiProveedores.Size = new System.Drawing.Size(84, 20);
             this.tsmiProveedores.Text = "Proveedores";
@@ -486,6 +489,12 @@
             this.tsmi2DirectorioDeClientesYProveedoresPorPais.Size = new System.Drawing.Size(322, 22);
             this.tsmi2DirectorioDeClientesYProveedoresPorPais.Text = "Directorio de clientes y proveedores por país";
             this.tsmi2DirectorioDeClientesYProveedoresPorPais.Click += new System.EventHandler(this.tsmi2DirectorioDeClientesYProveedoresPorPais_Click);
+            // 
+            // reportesToolStripMenuItem1
+            // 
+            this.reportesToolStripMenuItem1.Name = "reportesToolStripMenuItem1";
+            this.reportesToolStripMenuItem1.Size = new System.Drawing.Size(322, 22);
+            this.reportesToolStripMenuItem1.Text = "Reportes";
             // 
             // tsmiCategorias
             // 
@@ -978,6 +987,7 @@
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorCiudadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorPaísToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem1;
     }
 }
 

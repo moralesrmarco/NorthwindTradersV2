@@ -6,18 +6,28 @@ using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
-    public partial class FrmRptClientesyProveedoresDirectorioxCiudad : Form
+    public partial class FrmRptClientesyProveedoresDirectorioxPais : Form
     {
 
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
 
-        public FrmRptClientesyProveedoresDirectorioxCiudad()
+        public FrmRptClientesyProveedoresDirectorioxPais()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
         }
 
-        private void FrmRptClientesyProveedoresDirectorioxCiudad_Load(object sender, EventArgs e)
+        private void GrbPaint(object sender, PaintEventArgs e)
+        {
+            Utils.GrbPaint(this, sender, e);
+        }
+
+        private void FrmRptClientesyProveedoresDirectorioxPais_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.ActualizarBarraDeEstado(this);
+        }
+
+        private void FrmRptClientesyProveedoresDirectorioxPais_Load(object sender, EventArgs e)
         {
             LlenarComboBox();
         }
@@ -27,14 +37,14 @@ namespace NorthwindTraders
             try
             {
                 Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                SqlCommand cmd = new SqlCommand("SP_CLIENTESPROVEEDORES_CIUDAD", cn);
+                SqlCommand cmd = new SqlCommand("SP_CLIENTESPROVEEDORES_PAIS", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
                 comboBox.DataSource = dt;
-                comboBox.DisplayMember = "CiudadPaís";
-                comboBox.ValueMember = "Ciudad";
+                comboBox.DisplayMember = "País";
+                comboBox.ValueMember = "IdPaís";
                 Utils.ActualizarBarraDeEstado(this);
             }
             catch (SqlException ex)
@@ -47,19 +57,9 @@ namespace NorthwindTraders
             }
         }
 
-        private void GrbPaint(object sender, PaintEventArgs e)
-        {
-            Utils.GrbPaint(this, sender, e);
-        }
-
-        private void FrmRptClientesyProveedoresDirectorioxCiudad_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Utils.ActualizarBarraDeEstado(this);
-        }
-
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            if (comboBox.SelectedIndex <= 0 | (checkBoxClientes.Checked == false & checkBoxProveedores.Checked == false))
+            if (comboBox.SelectedIndex <= 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
             {
                 MessageBox.Show(Utils.errorCriterioSelec, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -71,48 +71,48 @@ namespace NorthwindTraders
                 SqlCommand cmd = new SqlCommand();
                 if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
                 {
-                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Order by Ciudad, Pais, NombreCompania", cn);
-                    titulo = "» Reporte directorio de clientes y proveedores por ciudad [ Todas las ciudades ] «";
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Order by Pais, Ciudad, NombreCompania", cn);
+                    titulo = "» Reporte directorio de clientes y proveedores por país [ Todos los países ] «";
                 }
-                else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
+                else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked )
                 {
-                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Where Ciudad = '{comboBox.SelectedValue.ToString()}' Order by Pais, NombreCompania", cn);
-                    titulo = $"» Reporte directorio de clientes y proveedores por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Where Pais = '{comboBox.SelectedValue.ToString()}' Order by Ciudad, NombreCompania", cn);
+                    titulo = $"» Reporte directorio de clientes y proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 }
                 else if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
                 {
-                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Where Relacion = 'Cliente' Order by Ciudad, Pais, NombreCompania", cn);
-                    titulo = "» Reporte directorio de clientes por ciudad [ Todas las ciudades ] «";
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Where Relacion = 'Cliente' Order by Pais, Ciudad, NombreCompania", cn);
+                    titulo = "» Reporte directorio de clientes por país [ Todos los países ] «";
                 }
                 else if (comboBox.SelectedValue.ToString() == "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
                 {
-                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Where Relacion = 'Proveedor' Order by Ciudad, Pais, NombreCompania", cn);
-                    titulo = "» Reporte directorio de proveedores por ciudad [ Todas las ciudades ] «";
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Where Relacion = 'Proveedor' Order by Pais, Ciudad, NombreCompania", cn);
+                    titulo = "» Reporte directorio de proveedores por país [ Todos los países ] «";
                 }
                 else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
                 {
-                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Where Ciudad = '{comboBox.SelectedValue.ToString()}' And Relacion = 'Cliente' Order by Pais, NombreCompania", cn);
-                    titulo = $"» Reporte directorio de clientes por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Where Pais = '{comboBox.SelectedValue.ToString()}' And Relacion = 'Cliente' Order by Ciudad, NombreCompania", cn);
+                    titulo = $"» Reporte directorio de clientes por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 }
                 else if (comboBox.SelectedValue.ToString() != "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
                 {
-                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorCiudad_Rpt Where Ciudad = '{comboBox.SelectedValue.ToString()}' And Relacion = 'Proveedor' Order by Pais, NombreCompania", cn);
-                    titulo = $"» Reporte directorio de proveedores por ciudad [ Ciudad: {comboBox.SelectedValue.ToString()} ] «";
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais_Rpt Where Pais = '{comboBox.SelectedValue.ToString()}' And Relacion = 'Proveedor' Order by Ciudad, NombreCompania", cn);
+                    titulo = $"» Reporte directorio de proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
                 }
-                groupBox1.Text = titulo;
                 cmd.CommandType = CommandType.Text;
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
+                groupBox1.Text = titulo;
                 Utils.ActualizarBarraDeEstado(this);
                 if (dt.Rows.Count > 0)
                 {
                     ReportDataSource rds = new ReportDataSource("DataSet1", dt);
                     reportViewer1.LocalReport.DataSources.Clear();
                     reportViewer1.LocalReport.DataSources.Add(rds);
-                    // Crear y configurar el parámetro
-                    ReportParameter parameter = new ReportParameter("titulo", titulo);
-                    reportViewer1.LocalReport.SetParameters(new ReportParameter[] { parameter });
+                    ReportParameter rp = new ReportParameter("titulo", titulo);
+                    reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
+                    reportViewer1.LocalReport.Refresh();
                     reportViewer1.RefreshReport();
                 }
                 else
