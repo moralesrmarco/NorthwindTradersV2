@@ -56,13 +56,41 @@ namespace NorthwindTraders
         {
             try
             {
+                string titulo = string.Empty;
                 Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                SqlCommand cmd;
-                if (comboBox.SelectedValue.ToString() == "aaaaa")
-                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais order by País, Ciudad, [Nombre de compañía]", cn);
-                else
-                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais where País = '{comboBox.SelectedValue.ToString()}' order by Ciudad, [Nombre de compañía]", cn);
+                SqlCommand cmd = new SqlCommand();
+                if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais Order by País, Ciudad, [Nombre de compañía]", cn);
+                    titulo = "» Directorio de clientes y proveedores por país [ Todos los países ] «";
+                }
+                else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais Where País = '{comboBox.SelectedValue.ToString()}' Order by Ciudad, [Nombre de compañía]", cn);
+                    titulo = $"» Directorio de clientes y proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
+                }
+                else if (comboBox.SelectedValue.ToString() == "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais Where Relación = 'Cliente' Order by País, Ciudad, [Nombre de compañía]", cn);
+                    titulo = "» Directorio de clientes por país [ Todos los países ] «";
+                }
+                else if (comboBox.SelectedValue.ToString() == "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand("Select * from Vw_ClientesProveedores_DirectorioPorPais Where Relación = 'Proveedor' Order by País, Ciudad, [Nombre de compañía]", cn);
+                    titulo = "» Directorio de proveedores por país [ Todos los países ] «";
+                }
+                else if (comboBox.SelectedValue.ToString() != "aaaaa" & checkBoxClientes.Checked & !checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais Where País = '{comboBox.SelectedValue.ToString()}' And Relación = 'Cliente' Order by Ciudad, [Nombre de compañía]", cn);
+                    titulo = $"» Directorio de clientes por país [ País: {comboBox.SelectedValue.ToString()} ] «";
+                }
+                else if (comboBox.SelectedValue.ToString() != "aaaaa" & !checkBoxClientes.Checked & checkBoxProveedores.Checked)
+                {
+                    cmd = new SqlCommand($"Select * from Vw_ClientesProveedores_DirectorioPorPais Where País = '{comboBox.SelectedValue.ToString()}' And Relación = 'Proveedor' Order by Ciudad, [Nombre de compañía]", cn);
+                    titulo = $"» Directorio de proveedores por país [ País: {comboBox.SelectedValue.ToString()} ] «";
+                }
                 cmd.CommandType = CommandType.Text;
+                Grb.Text = titulo;
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable tbl = new DataTable();
                 dap.Fill(tbl);
@@ -82,8 +110,11 @@ namespace NorthwindTraders
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (comboBox.SelectedIndex == 0)
+            if (comboBox.SelectedIndex == 0 | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
+            {
+                MessageBox.Show(Utils.errorCriterioSelec, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
             LlenarDgv();
         }
 
@@ -108,13 +139,6 @@ namespace NorthwindTraders
         private void FrmClientesyProveedoresDirectorioxPais_FormClosed(object sender, FormClosedEventArgs e)
         {
             Utils.ActualizarBarraDeEstado(this);
-        }
-
-        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox.SelectedIndex == 0)
-                return;
-            LlenarDgv();
         }
     }
 }
