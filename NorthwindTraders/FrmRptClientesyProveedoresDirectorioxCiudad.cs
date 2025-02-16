@@ -104,7 +104,7 @@ namespace NorthwindTraders
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
-                Utils.ActualizarBarraDeEstado(this);
+                Utils.ActualizarBarraDeEstado(this, $"Se encontraron {dt.Rows.Count} registros");
                 if (dt.Rows.Count > 0)
                 {
                     ReportDataSource rds = new ReportDataSource("DataSet1", dt);

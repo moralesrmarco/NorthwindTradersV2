@@ -18,11 +18,16 @@ namespace NorthwindTraders
 
         private void FrmRptClientes_Load(object sender, EventArgs e)
         {
+            Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
             // TODO: esta línea de código carga datos en la tabla 'northwindDataSet.Customers' Puede moverla o quitarla según sea necesario.
             this.customersTableAdapter.Fill(this.northwindDataSet.Customers);
-
+            Utils.ActualizarBarraDeEstado(this, $"Se encontraron {this.northwindDataSet.Customers.Rows.Count} registros");
             this.reportViewer1.RefreshReport();
         }
 
+        private void FrmRptClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.ActualizarBarraDeEstado(this);
+        }
     }
 }

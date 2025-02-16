@@ -18,6 +18,7 @@ namespace NorthwindTraders
         {
             try
             {
+                Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
                 using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
                     // Crea un comando para ejecutar la consulta
@@ -26,7 +27,7 @@ namespace NorthwindTraders
                     // Crea una instancia del DataSet y llena los datos
                     NorthwindDataSet northwindDataSet = new NorthwindDataSet();
                     adapter.Fill(northwindDataSet, "Employees");
-
+                    Utils.ActualizarBarraDeEstado(this, $"Se encontraron {northwindDataSet.Tables["Employees"].Rows.Count} registros");
                     // Configura el origen de datos para el ReportViewer
                     ReportDataSource reportDataSource = new ReportDataSource();
                     reportDataSource.Name = "DataSet1";
@@ -41,6 +42,16 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(this, ex);
             }
+        }
+
+        private void GrbPaint(object sender, PaintEventArgs e)
+        {
+            Utils.GrbPaint(this, sender, e);
+        }
+
+        private void FrmRptEmpleados_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Utils.ActualizarBarraDeEstado(this);
         }
     }
 }

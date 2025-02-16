@@ -20,5 +20,10 @@ namespace NorthwindTraders
             this.employeeTableAdapter.Fill(this.northwindDataSet.Employee, Id);
             this.reportViewer1.RefreshReport();
         }
+
+        private void GrbPaint(object sender, PaintEventArgs e)
+        {
+            Utils.GrbPaint(this, sender, e);
+        }
     }
 }

@@ -104,7 +104,7 @@ namespace NorthwindTraders
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
                 groupBox1.Text = titulo;
-                Utils.ActualizarBarraDeEstado(this);
+                Utils.ActualizarBarraDeEstado(this, $"Se encontraron {dt.Rows.Count} registros");
                 if (dt.Rows.Count > 0)
                 {
                     ReportDataSource rds = new ReportDataSource("DataSet1", dt);
