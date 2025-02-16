@@ -375,7 +375,12 @@ namespace NorthwindTraders
 
         private void directorioDeClientesYProveedoresToolStripMenuItem3_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptClientesyProveedoresDirectorio frmRptClientesyProveedoresDirectorio = new FrmRptClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmRptClientesyProveedoresDirectorio.Show();
         }
 
         private void directorioDeClientesYProveedoresPorCiudadToolStripMenuItem3_Click(object sender, EventArgs e)
@@ -396,6 +401,16 @@ namespace NorthwindTraders
                 MdiParent = this
             };
             frmRptClientesyProveedoresDirectorioxPais.Show();
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptClientesyProveedoresDirectorio frmRptClientesyProveedoresDirectorio = new FrmRptClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmRptClientesyProveedoresDirectorio.Show();
         }
     }
 }

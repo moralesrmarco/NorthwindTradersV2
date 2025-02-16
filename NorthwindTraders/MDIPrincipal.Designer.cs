@@ -421,7 +421,7 @@
             this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem,
             this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(322, 22);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
             // directorioDeClientesToolStripMenuItem
@@ -853,6 +853,7 @@
             this.directorioDeClientesYProveedoresToolStripMenuItem.Name = "directorioDeClientesYProveedoresToolStripMenuItem";
             this.directorioDeClientesYProveedoresToolStripMenuItem.Size = new System.Drawing.Size(322, 22);
             this.directorioDeClientesYProveedoresToolStripMenuItem.Text = "Directorio de clientes y proveedores";
+            this.directorioDeClientesYProveedoresToolStripMenuItem.Click += new System.EventHandler(this.directorioDeClientesYProveedoresToolStripMenuItem_Click);
             // 
             // consultasToolStripMenuItem
             // 
