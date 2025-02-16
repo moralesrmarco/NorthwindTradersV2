@@ -45,14 +45,14 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="CustomerID">
+                    <Textbox Name="SupplierID">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!CustomerID.Value</Value>
+                              <Value>=Fields!SupplierID.Value</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Normal</FontWeight>
@@ -65,7 +65,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>CustomerID</rd:DefaultName>
+                      <rd:DefaultName>SupplierID</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>None</Style>
@@ -467,6 +467,11 @@
           <TablixMembers>
             <TablixMember>
               <Group Name="Detalles" />
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!CompanyName.Value</Value>
+                </SortExpression>
+              </SortExpressions>
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
@@ -487,7 +492,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Numero de clientes: " &amp; Count(Fields!CustomerID.Value, "DataSet1")</Value>
+                <Value>="Numero de proveedores: " &amp; Count(Fields!SupplierID.Value, "DataSet1")</Value>
                 <Style>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -501,9 +506,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>0.85549cm</Top>
-        <Left>18.83583cm</Left>
+        <Left>18.20083cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.19837cm</Width>
+        <Width>7.83337cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -522,7 +527,7 @@
   <Width>10.31635in</Width>
   <Page>
     <PageHeader>
-      <Height>3.00154cm</Height>
+      <Height>3.08091cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -530,7 +535,7 @@
           <Source>Embedded</Source>
           <Value>northwinddb</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.21079cm</Top>
+          <Top>0.24607cm</Top>
           <Left>0.35361cm</Left>
           <Height>1.56104cm</Height>
           <Width>1.64042cm</Width>
@@ -547,7 +552,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Northwind Traders - » Reporte directorio de clientes «</Value>
+                  <Value>Northwind Traders - » Reporte directorio de proveedores «</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -561,9 +566,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.7576cm</Top>
-          <Left>2.17042cm</Left>
+          <Left>2.27754cm</Left>
           <Height>0.6cm</Height>
-          <Width>21.53312cm</Width>
+          <Width>21.42601cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -962,7 +967,7 @@
           </Style>
         </Textbox>
         <Line Name="Line2">
-          <Top>2.93803cm</Top>
+          <Top>2.96978cm</Top>
           <Height>0cm</Height>
           <Width>26.20354cm</Width>
           <ZIndex>14</ZIndex>
@@ -1105,9 +1110,9 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="CustomerID">
-          <DataField>CustomerID</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="SupplierID">
+          <DataField>SupplierID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="CompanyName">
           <DataField>CompanyName</DataField>
@@ -1149,14 +1154,18 @@
           <DataField>Fax</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="HomePage">
+          <DataField>HomePage</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\marco\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>Customers</rd:TableName>
+        <rd:TableName>Suppliers</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>CustomersTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>SuppliersTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

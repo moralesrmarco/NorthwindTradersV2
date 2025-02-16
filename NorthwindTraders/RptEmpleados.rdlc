@@ -826,15 +826,15 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Left</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.86995cm</Top>
-          <Left>4.28308cm</Left>
+          <Left>2.32516cm</Left>
           <Height>0.6cm</Height>
-          <Width>8.90292cm</Width>
+          <Width>14.61792cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>

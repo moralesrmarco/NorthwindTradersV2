@@ -370,7 +370,12 @@ namespace NorthwindTraders
 
         private void directorioDeProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmRptProveedores frmRptProveedores = new FrmRptProveedores
+            {
+                MdiParent = this
+            };
+            frmRptProveedores.Show();
         }
 
         private void directorioDeClientesYProveedoresToolStripMenuItem3_Click(object sender, EventArgs e)
