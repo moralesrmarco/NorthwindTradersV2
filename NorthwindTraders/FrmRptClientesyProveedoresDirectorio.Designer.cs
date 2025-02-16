@@ -45,6 +45,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(10, 10);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -60,7 +61,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(780, 462);
-            this.splitContainer1.SplitterDistance = 62;
+            this.splitContainer1.SplitterDistance = 31;
             this.splitContainer1.TabIndex = 0;
             // 
             // checkBoxProveedores
@@ -69,13 +70,12 @@
             this.checkBoxProveedores.Checked = true;
             this.checkBoxProveedores.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxProveedores.Location = new System.Drawing.Point(324, 19);
+            this.checkBoxProveedores.Location = new System.Drawing.Point(324, 4);
             this.checkBoxProveedores.Name = "checkBoxProveedores";
             this.checkBoxProveedores.Size = new System.Drawing.Size(116, 20);
             this.checkBoxProveedores.TabIndex = 13;
             this.checkBoxProveedores.Text = "Proveedores";
             this.checkBoxProveedores.UseVisualStyleBackColor = true;
-            this.checkBoxProveedores.CheckedChanged += new System.EventHandler(this.checkBoxProveedores_CheckedChanged);
             // 
             // checkBoxClientes
             // 
@@ -83,17 +83,16 @@
             this.checkBoxClientes.Checked = true;
             this.checkBoxClientes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxClientes.Location = new System.Drawing.Point(208, 19);
+            this.checkBoxClientes.Location = new System.Drawing.Point(208, 4);
             this.checkBoxClientes.Name = "checkBoxClientes";
             this.checkBoxClientes.Size = new System.Drawing.Size(82, 20);
             this.checkBoxClientes.TabIndex = 12;
             this.checkBoxClientes.Text = "Clientes";
             this.checkBoxClientes.UseVisualStyleBackColor = true;
-            this.checkBoxClientes.CheckedChanged += new System.EventHandler(this.checkBoxClientes_CheckedChanged);
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(468, 16);
+            this.BtnBuscar.Location = new System.Drawing.Point(468, 1);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
             this.BtnBuscar.TabIndex = 11;
@@ -105,7 +104,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(88, 20);
+            this.label1.Location = new System.Drawing.Point(88, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 16);
             this.label1.TabIndex = 9;
@@ -119,7 +118,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(780, 396);
+            this.groupBox1.Size = new System.Drawing.Size(780, 427);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte directorio de clientes y proveedores «";
@@ -132,7 +131,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(10, 25);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(760, 361);
+            this.reportViewer1.Size = new System.Drawing.Size(760, 392);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptClientesyProveedoresDirectorio

@@ -417,5 +417,25 @@ namespace NorthwindTraders
             };
             frmRptClientesyProveedoresDirectorio.Show();
         }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorio frmClientesyProveedoresDirectorio = new FrmClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorio.Show();
+        }
+
+        private void directorioDeClientesYProveedoresToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmClientesyProveedoresDirectorio frmClientesyProveedoresDirectorio = new FrmClientesyProveedoresDirectorio
+            {
+                MdiParent = this
+            };
+            frmClientesyProveedoresDirectorio.Show();
+        }
     }
 }

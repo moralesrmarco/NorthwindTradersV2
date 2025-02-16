@@ -63,7 +63,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(969, 544);
-            this.splitContainer1.SplitterDistance = 61;
+            this.splitContainer1.SplitterDistance = 39;
             this.splitContainer1.TabIndex = 0;
             // 
             // checkBoxProveedores
@@ -72,7 +72,7 @@
             this.checkBoxProveedores.Checked = true;
             this.checkBoxProveedores.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxProveedores.Location = new System.Drawing.Point(580, 13);
+            this.checkBoxProveedores.Location = new System.Drawing.Point(580, 10);
             this.checkBoxProveedores.Name = "checkBoxProveedores";
             this.checkBoxProveedores.Size = new System.Drawing.Size(116, 20);
             this.checkBoxProveedores.TabIndex = 13;
@@ -85,7 +85,7 @@
             this.checkBoxClientes.Checked = true;
             this.checkBoxClientes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxClientes.Location = new System.Drawing.Point(485, 13);
+            this.checkBoxClientes.Location = new System.Drawing.Point(485, 10);
             this.checkBoxClientes.Name = "checkBoxClientes";
             this.checkBoxClientes.Size = new System.Drawing.Size(82, 20);
             this.checkBoxClientes.TabIndex = 12;
@@ -94,7 +94,7 @@
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(704, 10);
+            this.BtnBuscar.Location = new System.Drawing.Point(704, 7);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(75, 26);
             this.BtnBuscar.TabIndex = 11;
@@ -106,7 +106,7 @@
             // 
             this.comboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(174, 11);
+            this.comboBox.Location = new System.Drawing.Point(174, 8);
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(292, 24);
             this.comboBox.TabIndex = 10;
@@ -115,7 +115,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(41, 15);
+            this.label1.Location = new System.Drawing.Point(41, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 16);
             this.label1.TabIndex = 9;
@@ -129,7 +129,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(969, 479);
+            this.groupBox1.Size = new System.Drawing.Size(969, 501);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte directorio de clientes y proveedores por país «";
@@ -142,7 +142,7 @@
             this.reportViewer1.Location = new System.Drawing.Point(10, 25);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(949, 444);
+            this.reportViewer1.Size = new System.Drawing.Size(949, 466);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptClientesyProveedoresDirectorioxPais

@@ -93,25 +93,5 @@ namespace NorthwindTraders
                 Utils.MsgCatchOue(this, ex);
             }
         }
-
-        private void checkBoxClientes_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((checkBoxClientes.Checked & checkBoxProveedores.Checked) | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
-                groupBox1.Text = "» Reporte directorio de clientes y proveedores «";
-            else if (checkBoxClientes.Checked & !checkBoxProveedores.Checked)
-                groupBox1.Text = "» Reporte directorio de clientes «";
-            else if (!checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                groupBox1.Text = "» Reporte directorio de proveedores «";
-        }
-
-        private void checkBoxProveedores_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((checkBoxClientes.Checked & checkBoxProveedores.Checked) | (!checkBoxClientes.Checked & !checkBoxProveedores.Checked))
-                groupBox1.Text = "» Reporte directorio de clientes y proveedores «";
-            else if (checkBoxClientes.Checked & !checkBoxProveedores.Checked)
-                groupBox1.Text = "» Reporte directorio de clientes «";
-            else if (!checkBoxClientes.Checked & checkBoxProveedores.Checked)
-                groupBox1.Text = "» Reporte directorio de proveedores «";
-        }
     }
 }

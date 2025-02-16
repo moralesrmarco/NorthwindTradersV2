@@ -24,6 +24,7 @@ namespace NorthwindTraders
         private void FrmClientesyProveedoresDirectorioxCiudad_Load(object sender, EventArgs e)
         {
             LlenarComboBox();
+            Utils.ConfDgv(Dgv);
         }
 
         private void LlenarComboBox()
@@ -66,7 +67,6 @@ namespace NorthwindTraders
                 DataTable tbl = new DataTable();
                 dap.Fill(tbl);
                 Dgv.DataSource = tbl;
-                Utils.ConfDgv(Dgv);
                 ConfDgv();
                 Utils.ActualizarBarraDeEstado(this, $"Se encontraron {Dgv.RowCount} registros");
             }
