@@ -57,8 +57,6 @@
             this.statusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEmpleados = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeEmpleados = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeEmpleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteDeEmpleadosConFotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiMantenimientoDeClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +127,9 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.reportesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeEmpleadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -369,8 +370,7 @@
             // 
             this.tsmiEmpleados.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiMantenimientoDeEmpleados,
-            this.reporteDeEmpleadosToolStripMenuItem,
-            this.reporteDeEmpleadosConFotoToolStripMenuItem});
+            this.reportesToolStripMenuItem2});
             this.tsmiEmpleados.Name = "tsmiEmpleados";
             this.tsmiEmpleados.Size = new System.Drawing.Size(77, 20);
             this.tsmiEmpleados.Text = "Empleados";
@@ -381,20 +381,6 @@
             this.tsmiMantenimientoDeEmpleados.Size = new System.Drawing.Size(240, 22);
             this.tsmiMantenimientoDeEmpleados.Text = "Mantenimiento de empleados";
             this.tsmiMantenimientoDeEmpleados.Click += new System.EventHandler(this.tsmiMantenimientoDeEmpleados_Click);
-            // 
-            // reporteDeEmpleadosToolStripMenuItem
-            // 
-            this.reporteDeEmpleadosToolStripMenuItem.Name = "reporteDeEmpleadosToolStripMenuItem";
-            this.reporteDeEmpleadosToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.reporteDeEmpleadosToolStripMenuItem.Text = "Reporte de empleados";
-            this.reporteDeEmpleadosToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosToolStripMenuItem_Click);
-            // 
-            // reporteDeEmpleadosConFotoToolStripMenuItem
-            // 
-            this.reporteDeEmpleadosConFotoToolStripMenuItem.Name = "reporteDeEmpleadosConFotoToolStripMenuItem";
-            this.reporteDeEmpleadosConFotoToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
-            this.reporteDeEmpleadosConFotoToolStripMenuItem.Text = "Reporte de empleados con foto";
-            this.reporteDeEmpleadosConFotoToolStripMenuItem.Click += new System.EventHandler(this.reporteDeEmpleadosConFotoToolStripMenuItem_Click);
             // 
             // tsmiClientes
             // 
@@ -504,9 +490,9 @@
             // 
             this.consultasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.directorioDeClientesYProveedoresToolStripMenuItem2,
-            this.consultaDeProductosPorProveedorToolStripMenuItem,
             this.directorioDeClientesYProveedoresPorCiudadToolStripMenuItem2,
-            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem2});
+            this.directorioDeClientesYProveedoresPorPaísToolStripMenuItem2,
+            this.consultaDeProductosPorProveedorToolStripMenuItem});
             this.consultasToolStripMenuItem1.Name = "consultasToolStripMenuItem1";
             this.consultasToolStripMenuItem1.Size = new System.Drawing.Size(240, 22);
             this.consultasToolStripMenuItem1.Text = "Consultas";
@@ -953,6 +939,29 @@
             this.tsslEstado.Size = new System.Drawing.Size(39, 19);
             this.tsslEstado.Text = "Listo.";
             // 
+            // reportesToolStripMenuItem2
+            // 
+            this.reportesToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reporteDeEmpleadosToolStripMenuItem1,
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1});
+            this.reportesToolStripMenuItem2.Name = "reportesToolStripMenuItem2";
+            this.reportesToolStripMenuItem2.Size = new System.Drawing.Size(240, 22);
+            this.reportesToolStripMenuItem2.Text = "Reportes";
+            // 
+            // reporteDeEmpleadosToolStripMenuItem1
+            // 
+            this.reporteDeEmpleadosToolStripMenuItem1.Name = "reporteDeEmpleadosToolStripMenuItem1";
+            this.reporteDeEmpleadosToolStripMenuItem1.Size = new System.Drawing.Size(240, 22);
+            this.reporteDeEmpleadosToolStripMenuItem1.Text = "Reporte de empleados";
+            this.reporteDeEmpleadosToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeEmpleadosToolStripMenuItem1_Click);
+            // 
+            // reporteDeEmpleadosConFotoToolStripMenuItem1
+            // 
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1.Name = "reporteDeEmpleadosConFotoToolStripMenuItem1";
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1.Size = new System.Drawing.Size(240, 22);
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1.Text = "Reporte de empleados con foto";
+            this.reporteDeEmpleadosConFotoToolStripMenuItem1.Click += new System.EventHandler(this.reporteDeEmpleadosConFotoToolStripMenuItem1_Click);
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1058,8 +1067,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDeDetalleDePedidos;
         private System.Windows.Forms.ToolStripMenuItem tsmiMantenimientoDePedidosV2;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosConFotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorCiudadToolStripMenuItem;
@@ -1079,6 +1086,9 @@
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorCiudadToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem directorioDeClientesYProveedoresPorPaísToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reporteDeEmpleadosConFotoToolStripMenuItem1;
     }
 }
 

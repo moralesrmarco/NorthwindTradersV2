@@ -270,22 +270,10 @@ namespace NorthwindTraders
 
         private void reporteDeEmpleadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utils.CerrarFormularios();
-            FrmRptEmpleados frmRptEmpleados = new FrmRptEmpleados
-            {
-                MdiParent = this
-            };
-            frmRptEmpleados.Show();
         }
 
         private void reporteDeEmpleadosConFotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Utils.CerrarFormularios();
-            FrmRptEmpleadosConFoto frmRptEmpleadosConFoto = new FrmRptEmpleadosConFoto
-            {
-                MdiParent = this
-            };
-            frmRptEmpleadosConFoto.Show();
         }
 
         private void directorioDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,6 +424,26 @@ namespace NorthwindTraders
                 MdiParent = this
             };
             frmClientesyProveedoresDirectorio.Show();
+        }
+
+        private void reporteDeEmpleadosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptEmpleados frmRptEmpleados = new FrmRptEmpleados
+            {
+                MdiParent = this
+            };
+            frmRptEmpleados.Show();
+        }
+
+        private void reporteDeEmpleadosConFotoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptEmpleadosConFoto frmRptEmpleadosConFoto = new FrmRptEmpleadosConFoto
+            {
+                MdiParent = this
+            };
+            frmRptEmpleadosConFoto.Show();
         }
     }
 }

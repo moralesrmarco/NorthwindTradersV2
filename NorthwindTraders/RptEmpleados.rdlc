@@ -6,22 +6,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.60514cm</Width>
+              <Width>1.72508cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.95181cm</Width>
+              <Width>5.07175cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.94097cm</Width>
+              <Width>3.06091cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.83514cm</Width>
+              <Width>2.95508cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.36431cm</Width>
+              <Width>3.48425cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.57597cm</Width>
+              <Width>3.69591cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -207,12 +207,17 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha de nacimiento: </Value>
+                              <Value>Fecha de nacimiento:</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!BirthDate.Value</Value>
                               <Style>
@@ -247,12 +252,17 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha de contratación: </Value>
+                              <Value>Fecha de contratación:</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!HireDate.Value</Value>
                               <Style>
@@ -767,10 +777,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>0.51125cm</Top>
-        <Left>0.33549cm</Left>
+        <Top>0.03527cm</Top>
         <Height>2.4cm</Height>
-        <Width>19.27334cm</Width>
+        <Width>19.99298cm</Width>
         <Style>
           <Border>
             <Color>White</Color>
@@ -783,17 +792,17 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.28863in</Height>
+    <Height>0.95877in</Height>
     <Style>
       <Border>
         <Style>None</Style>
       </Border>
     </Style>
   </Body>
-  <Width>7.72001in</Width>
+  <Width>7.87126in</Width>
   <Page>
     <PageHeader>
-      <Height>2.15787cm</Height>
+      <Height>1.74307cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -801,7 +810,7 @@
           <Source>Embedded</Source>
           <Value>northwinddb</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.32314cm</Top>
+          <Top>0.00564cm</Top>
           <Left>0.36724cm</Left>
           <Height>1.56104cm</Height>
           <Width>1.64042cm</Width>
@@ -831,10 +840,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.86995cm</Top>
+          <Top>0.55245cm</Top>
           <Left>2.32516cm</Left>
           <Height>0.6cm</Height>
-          <Width>14.61792cm</Width>
+          <Width>15.40109cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -847,10 +856,9 @@
           </Style>
         </Textbox>
         <Line Name="Line1">
-          <Top>2.06057cm</Top>
-          <Left>0.17674cm</Left>
+          <Top>1.64782cm</Top>
           <Height>0cm</Height>
-          <Width>19.20983cm</Width>
+          <Width>19.99301cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -944,9 +952,8 @@
         </Textbox>
         <Line Name="Line2">
           <Top>0.06838cm</Top>
-          <Left>0.1995cm</Left>
           <Height>0cm</Height>
-          <Width>19.20983cm</Width>
+          <Width>19.99301cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -965,9 +972,9 @@
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
     <LeftMargin>1cm</LeftMargin>
-    <RightMargin>1cm</RightMargin>
-    <TopMargin>1cm</TopMargin>
-    <BottomMargin>1cm</BottomMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>0.5cm</TopMargin>
+    <BottomMargin>0.5cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
@@ -978,7 +985,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>bf004b67-f3b7-42c6-9fbb-6871a4e4b60b</rd:DataSourceID>
+      <rd:DataSourceID>dbc99f6e-4495-4c39-9909-afe7338c0e03</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1063,7 +1070,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\marco\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV3LinqToSql\NorthwindTradersV3LinqToSql\NorthwindDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Employees</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
