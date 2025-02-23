@@ -630,20 +630,16 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ReportsTo">
+                    <Textbox Name="ReportsToLastName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Reporta a: </Value>
-                              <Style>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value>=Fields!ReportsTo.Value</Value>
+                              <Value>=IIf(IsNothing(Fields!ReportsToLastName.Value) AndAlso IsNothing(Fields!ReportsToFirstName.Value), 
+     "Reporta a: N/A", 
+     "Reporta a: " &amp; Fields!ReportsToLastName.Value &amp; ", " &amp; Fields!ReportsToFirstName.Value)</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -652,7 +648,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ReportsTo</rd:DefaultName>
+                      <rd:DefaultName>ReportsToLastName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -664,6 +660,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -985,7 +982,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>dbc99f6e-4495-4c39-9909-afe7338c0e03</rd:DataSourceID>
+      <rd:DataSourceID>35907da6-804f-4f75-93e9-b774f0627e3e</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1067,10 +1064,18 @@
           <DataField>PhotoPath</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ReportsToFirstName">
+          <DataField>ReportsToFirstName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ReportsToLastName">
+          <DataField>ReportsToLastName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV3LinqToSql\NorthwindTradersV3LinqToSql\NorthwindDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Employees</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
