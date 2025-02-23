@@ -48,14 +48,27 @@ namespace NorthwindTraders
                         Extension = rdr.IsDBNull(13) ? null : rdr.GetString(13),
                         Notes = rdr.IsDBNull(15) ? null : rdr.GetString(15),
                         ReportsTo = rdr.IsDBNull(16) ? (int?)null : rdr.GetInt32(16),
-                        ReportsToName = rdr.IsDBNull(17) ? null : rdr.GetString(17)
+                        ReportsToName = rdr.IsDBNull(17) ? "N/A" : rdr.GetString(17)
                     };
                     // Leer los datos binarios (foto)
                     if (!rdr.IsDBNull(14))
                     {
-                        long dataLength = rdr.GetBytes(14, 0, null, 0, 0); // Obtener la longitud de los datos
-                        byte[] photoData = new byte[dataLength];
-                        rdr.GetBytes(14, 0, photoData, 0, (int)dataLength); // Leer los datos
+                        byte[] photoData;
+                        if (empleado.EmployeeID <= 9)
+                        {
+                            // Eliminar el encabezado OLE (78 bytes)
+                            const int OLEHeaderLength = 78;
+                            long dataLength = rdr.GetBytes(14, OLEHeaderLength, null, 0, 0); // Obtener la longitud de los datos
+                            photoData = new byte[dataLength];
+                            rdr.GetBytes(14, OLEHeaderLength, photoData, 0, (int)dataLength); // Leer los datos
+                        }
+                        else
+                        {
+                            long dataLength = rdr.GetBytes(14, 0, null, 0, 0); // Obtener la longitud de los datos
+                            photoData = new byte[dataLength];
+                            rdr.GetBytes(14, 0, photoData, 0, (int)dataLength); // Leer los datos
+                            
+                        }
                         empleado.Photo = photoData;
                     }
                     empleadoConReportsTo.Add(empleado);

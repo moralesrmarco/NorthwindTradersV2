@@ -6,22 +6,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.62626cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.47896cm</Width>
+              <Width>3.60522cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.59641cm</Width>
+              <Width>3.72267cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.18792cm</Width>
+              <Width>3.31418cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.05563cm</Width>
+              <Width>3.18189cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.42604cm</Width>
+              <Width>3.5523cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -58,6 +58,13 @@
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!EmployeeID.Value</Value>
                               <Style>
@@ -101,6 +108,11 @@
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!FirstName.Value</Value>
                               <Style>
@@ -189,11 +201,16 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Título de cortesia: </Value>
+                              <Value>Título de cortesia:</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!TitleOfCourtesy.Value</Value>
                               <Style>
@@ -228,12 +245,17 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha de nacimiento: </Value>
+                              <Value>Fecha de nacimiento:</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!BirthDate.Value</Value>
                               <Style>
@@ -303,12 +325,17 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha de contratación: </Value>
+                              <Value>Fecha de contratación:</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <Format>d' de 'MMMM' de 'yyyy</Format>
                               </Style>
                             </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
                             <TextRun>
                               <Value>=Fields!HireDate.Value</Value>
                               <Style>
@@ -1013,10 +1040,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>EmpleadoConReportsToDataSet</DataSetName>
-        <Top>0.1cm</Top>
-        <Left>0.31433cm</Left>
         <Height>4.9cm</Height>
-        <Width>19.24496cm</Width>
+        <Width>20.00252cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1028,13 +1053,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.04175in</Height>
+    <Height>1.92913in</Height>
     <Style />
   </Body>
-  <Width>7.75in</Width>
+  <Width>7.87501in</Width>
   <Page>
     <PageHeader>
-      <Height>2.05203cm</Height>
+      <Height>1.73453cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1042,8 +1067,7 @@
           <Source>Embedded</Source>
           <Value>northwinddb</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.07525cm</Top>
-          <Left>1.84562cm</Left>
+          <Left>0.57563cm</Left>
           <Height>1.56104cm</Height>
           <Width>1.64042cm</Width>
           <Style>
@@ -1072,10 +1096,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.5865cm</Top>
-          <Left>4.12104cm</Left>
+          <Top>0.49125cm</Top>
+          <Left>2.62626cm</Left>
           <Height>0.6cm</Height>
-          <Width>12.01221cm</Width>
+          <Width>14.8405cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1088,10 +1112,9 @@
           </Style>
         </Textbox>
         <Line Name="Line1">
-          <Top>1.9cm</Top>
-          <Left>0.31433cm</Left>
+          <Top>1.646cm</Top>
           <Height>0cm</Height>
-          <Width>18.98354cm</Width>
+          <Width>20.00251cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1136,7 +1159,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>0.31433cm</Left>
+          <Left>0.63184cm</Left>
           <Height>0.41479cm</Height>
           <Width>5.25167cm</Width>
           <Style>
@@ -1169,7 +1192,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox159</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>13.78162cm</Left>
+          <Left>13.78163cm</Left>
           <Height>0.41479cm</Height>
           <Width>5.46333cm</Width>
           <ZIndex>1</ZIndex>
@@ -1185,9 +1208,8 @@
         </Textbox>
         <Line Name="Line2">
           <Top>0.08467cm</Top>
-          <Left>0.35073cm</Left>
           <Height>0cm</Height>
-          <Width>18.98354cm</Width>
+          <Width>20.00251cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1203,9 +1225,9 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>0.5cm</LeftMargin>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
     <RightMargin>0.5cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0.5cm</BottomMargin>
