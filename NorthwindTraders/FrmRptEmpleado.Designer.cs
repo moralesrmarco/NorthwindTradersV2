@@ -94,6 +94,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "» Reporte de empleado «";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptEmpleado_FormClosed);
             this.Load += new System.EventHandler(this.FrmRptEmpleado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.employeeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.northwindDataSet)).EndInit();

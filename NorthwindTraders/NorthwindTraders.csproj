@@ -450,12 +450,12 @@
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_BUSCAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_ELIMINAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_ELIMINAR_V2.sql" />
-    <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_FOTOS_TMP.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_INSERTAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_INSERTAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_LISTAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_NOMBRES.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_NOMBRES_V2.sql" />
+    <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_OBTENER.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_PAIS.sql" />
     <Content Include="StoredProcedures\dbo.SP_EMPLEADOS_SELECCIONAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOSCLIENTE.sql" />

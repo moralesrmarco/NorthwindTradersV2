@@ -472,6 +472,7 @@ namespace NorthwindTraders
             if (tabcOperacion.SelectedTab == tbpListar)
             {
                 FrmRptEmpleado frmRptEmpleado = new FrmRptEmpleado();
+                frmRptEmpleado.Owner = this;
                 frmRptEmpleado.Id = int.Parse(txtId.Text);
                 frmRptEmpleado.ShowDialog();
             }

@@ -1111,29 +1111,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="ReportsToLastName">
+                    <Textbox Name="ReportsToName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ReportsToLastName.Value</Value>
-                              <Style />
-                            </TextRun>
-                            <TextRun>
-                              <Value>, </Value>
-                              <Style />
-                            </TextRun>
-                            <TextRun>
-                              <Value>=Fields!ReportsToFirstName.Value</Value>
+                              <Value>=Fields!ReportsToName.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>ReportsToLastName</rd:DefaultName>
+                      <rd:DefaultName>ReportsToName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1267,13 +1259,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>7.00706in</Height>
+    <Height>6.74263in</Height>
     <Style />
   </Body>
-  <Width>7.56633in</Width>
+  <Width>7.84758in</Width>
   <Page>
     <PageHeader>
-      <Height>1.91974cm</Height>
+      <Height>1.86682cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1282,7 +1274,7 @@
           <Value>northwinddb</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.03969cm</Top>
-          <Left>2.08703cm</Left>
+          <Left>0.81703cm</Left>
           <Height>1.56104cm</Height>
           <Width>1.64042cm</Width>
           <Style>
@@ -1306,15 +1298,15 @@
                 </TextRun>
               </TextRuns>
               <Style>
-                <TextAlign>Left</TextAlign>
+                <TextAlign>Center</TextAlign>
               </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.55094cm</Top>
-          <Left>5.68208cm</Left>
+          <Left>3.0627cm</Left>
           <Height>0.6cm</Height>
-          <Width>8.90292cm</Width>
+          <Width>13.90891cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -1327,10 +1319,9 @@
           </Style>
         </Textbox>
         <Line Name="Line1">
-          <Top>1.77712cm</Top>
-          <Left>0.34078cm</Left>
+          <Top>1.74537cm</Top>
           <Height>0cm</Height>
-          <Width>18.6925cm</Width>
+          <Width>19.93285cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1375,7 +1366,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>0.29531cm</Top>
-          <Left>0.34078cm</Left>
+          <Left>0.97578cm</Left>
           <Height>0.41479cm</Height>
           <Width>6.33646cm</Width>
           <Style>
@@ -1424,9 +1415,8 @@
         </Textbox>
         <Line Name="Line2">
           <Top>0.12332cm</Top>
-          <Left>0.26299cm</Left>
           <Height>0cm</Height>
-          <Width>18.6925cm</Width>
+          <Width>19.93285cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -1442,9 +1432,9 @@
         </Border>
       </Style>
     </PageFooter>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>0.5cm</LeftMargin>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
     <RightMargin>0.5cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0.5cm</BottomMargin>
@@ -1548,10 +1538,14 @@
           <DataField>ReportsToLastName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ReportsToName">
+          <DataField>ReportsToName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\marco\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
         <rd:TableName>Employee</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

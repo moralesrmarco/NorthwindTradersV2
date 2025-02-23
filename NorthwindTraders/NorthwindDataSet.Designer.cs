@@ -1075,6 +1075,8 @@ namespace NorthwindTraders {
             
             private global::System.Data.DataColumn columnReportsToLastName;
             
+            private global::System.Data.DataColumn columnReportsToName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EmployeeDataTable() {
@@ -1270,6 +1272,14 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReportsToNameColumn {
+                get {
+                    return this.columnReportsToName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1324,7 +1334,8 @@ namespace NorthwindTraders {
                         EmployeeRow parentEmployeeRowByFK_Employees_Employees1, 
                         string PhotoPath, 
                         string ReportsToFirstName, 
-                        string ReportsToLastName) {
+                        string ReportsToLastName, 
+                        string ReportsToName) {
                 EmployeeRow rowEmployeeRow = ((EmployeeRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1346,7 +1357,8 @@ namespace NorthwindTraders {
                         null,
                         PhotoPath,
                         ReportsToFirstName,
-                        ReportsToLastName};
+                        ReportsToLastName,
+                        ReportsToName};
                 if ((parentEmployeeRowByFK_Employees_Employees1 != null)) {
                     columnValuesArray[16] = parentEmployeeRowByFK_Employees_Employees1[0];
                 }
@@ -1392,6 +1404,7 @@ namespace NorthwindTraders {
                 this.columnPhotoPath = base.Columns["PhotoPath"];
                 this.columnReportsToFirstName = base.Columns["ReportsToFirstName"];
                 this.columnReportsToLastName = base.Columns["ReportsToLastName"];
+                this.columnReportsToName = base.Columns["ReportsToName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1437,6 +1450,8 @@ namespace NorthwindTraders {
                 base.Columns.Add(this.columnReportsToFirstName);
                 this.columnReportsToLastName = new global::System.Data.DataColumn("ReportsToLastName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReportsToLastName);
+                this.columnReportsToName = new global::System.Data.DataColumn("ReportsToName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReportsToName);
                 this.columnEmployeeID.AutoIncrement = true;
                 this.columnEmployeeID.AutoIncrementSeed = -1;
                 this.columnEmployeeID.AutoIncrementStep = -1;
@@ -4060,6 +4075,22 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ReportsToName {
+                get {
+                    try {
+                        return ((string)(this[this.tableEmployee.ReportsToNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ReportsToName\' de la tabla \'Employee\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEmployee.ReportsToNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public EmployeeRow EmployeeRowParent {
                 get {
                     return ((EmployeeRow)(this.GetParentRow(this.Table.ParentRelations["FK_Employees_Employees1"])));
@@ -4271,6 +4302,18 @@ namespace NorthwindTraders {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetReportsToLastNameNull() {
                 this[this.tableEmployee.ReportsToLastNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsReportsToNameNull() {
+                return this.IsNull(this.tableEmployee.ReportsToNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetReportsToNameNull() {
+                this[this.tableEmployee.ReportsToNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
