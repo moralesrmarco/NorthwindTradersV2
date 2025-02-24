@@ -232,6 +232,12 @@
     <Compile Include="FrmRptEmpleado.Designer.cs">
       <DependentUpon>FrmRptEmpleado.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptEmpleado2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptEmpleado2.Designer.cs">
+      <DependentUpon>FrmRptEmpleado2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptEmpleados.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +349,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptEmpleado.resx">
       <DependentUpon>FrmRptEmpleado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptEmpleado2.resx">
+      <DependentUpon>FrmRptEmpleado2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptEmpleados.resx">
       <DependentUpon>FrmRptEmpleados.cs</DependentUpon>

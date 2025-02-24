@@ -445,5 +445,15 @@ namespace NorthwindTraders
             };
             frmRptEmpleadosConFoto.Show();
         }
+
+        private void reporteDeEmpleadosConFoto2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptEmpleado2 frmRptEmpleado2 = new FrmRptEmpleado2
+            {
+                MdiParent = this
+            };
+            frmRptEmpleado2.Show();
+        }
     }
 }
