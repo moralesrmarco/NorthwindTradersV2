@@ -44,7 +44,7 @@
             this.groupBox1.Size = new System.Drawing.Size(780, 430);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "» Reporte de empleado «";
+            this.groupBox1.Text = "» Reporte de empleados «";
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
@@ -66,7 +66,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmRptEmpleado2";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Text = "» Reporte de empleado «";
+            this.Text = "» Reporte de empleados «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptEmpleado2_FormClosed);
             this.Load += new System.EventHandler(this.FrmRptEmpleado2_Load);
             this.groupBox1.ResumeLayout(false);

@@ -216,10 +216,13 @@
             // 
             // txtNotas
             // 
+            this.txtNotas.BackColor = System.Drawing.SystemColors.MenuBar;
             this.txtNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNotas.Location = new System.Drawing.Point(256, 189);
             this.txtNotas.Multiline = true;
             this.txtNotas.Name = "txtNotas";
+            this.txtNotas.ReadOnly = true;
+            this.txtNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtNotas.Size = new System.Drawing.Size(352, 80);
             this.txtNotas.TabIndex = 53;
             // 
