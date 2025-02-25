@@ -62,7 +62,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(969, 544);
+            this.splitContainer1.Size = new System.Drawing.Size(780, 430);
             this.splitContainer1.SplitterDistance = 39;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -129,7 +129,7 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(969, 501);
+            this.groupBox1.Size = new System.Drawing.Size(780, 387);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte directorio de clientes y proveedores por país «";
@@ -142,14 +142,14 @@
             this.reportViewer1.Location = new System.Drawing.Point(10, 25);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(949, 466);
+            this.reportViewer1.Size = new System.Drawing.Size(760, 352);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptClientesyProveedoresDirectorioxPais
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 564);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmRptClientesyProveedoresDirectorioxPais";

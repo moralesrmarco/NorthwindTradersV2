@@ -48,6 +48,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -64,7 +65,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(951, 508);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 43;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -74,7 +75,7 @@
             this.checkBoxProveedores.Checked = true;
             this.checkBoxProveedores.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxProveedores.Location = new System.Drawing.Point(720, 16);
+            this.checkBoxProveedores.Location = new System.Drawing.Point(555, 16);
             this.checkBoxProveedores.Name = "checkBoxProveedores";
             this.checkBoxProveedores.Size = new System.Drawing.Size(116, 20);
             this.checkBoxProveedores.TabIndex = 8;
@@ -87,7 +88,7 @@
             this.checkBoxClientes.Checked = true;
             this.checkBoxClientes.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxClientes.Location = new System.Drawing.Point(625, 16);
+            this.checkBoxClientes.Location = new System.Drawing.Point(460, 16);
             this.checkBoxClientes.Name = "checkBoxClientes";
             this.checkBoxClientes.Size = new System.Drawing.Size(82, 20);
             this.checkBoxClientes.TabIndex = 7;
@@ -96,7 +97,7 @@
             // 
             // BtnBuscar
             // 
-            this.BtnBuscar.Location = new System.Drawing.Point(842, 15);
+            this.BtnBuscar.Location = new System.Drawing.Point(677, 15);
             this.BtnBuscar.Name = "BtnBuscar";
             this.BtnBuscar.Size = new System.Drawing.Size(75, 23);
             this.BtnBuscar.TabIndex = 6;
@@ -110,7 +111,7 @@
             this.comboBox.FormattingEnabled = true;
             this.comboBox.Location = new System.Drawing.Point(166, 14);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(440, 24);
+            this.comboBox.Size = new System.Drawing.Size(271, 24);
             this.comboBox.TabIndex = 5;
             // 
             // label1
@@ -131,7 +132,7 @@
             this.groupBox1.Location = new System.Drawing.Point(10, 10);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(931, 441);
+            this.groupBox1.Size = new System.Drawing.Size(780, 383);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte directorio de clientes y proveedores por ciudad «";
@@ -147,14 +148,14 @@
             this.reportViewer1.Location = new System.Drawing.Point(10, 25);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(911, 406);
+            this.reportViewer1.Size = new System.Drawing.Size(760, 348);
             this.reportViewer1.TabIndex = 0;
             // 
             // FrmRptClientesyProveedoresDirectorioxCiudad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 508);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmRptClientesyProveedoresDirectorioxCiudad";
