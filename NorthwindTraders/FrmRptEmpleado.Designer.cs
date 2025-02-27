@@ -92,7 +92,7 @@
             this.Name = "FrmRptEmpleado";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "» Reporte de empleado «";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptEmpleado_FormClosed);
             this.Load += new System.EventHandler(this.FrmRptEmpleado_Load);

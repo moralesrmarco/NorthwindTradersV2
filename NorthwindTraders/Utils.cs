@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -231,10 +232,23 @@ namespace NorthwindTraders
             Utils.ActualizarBarraDeEstado(form);
         }
 
+        public static void MsgCatchOueclbdd(SqlException ex)
+        {
+            MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
+
         public static void MsgCatchOue(Form form, Exception ex)
         {
             MessageBox.Show(Utils.oue + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             Utils.ActualizarBarraDeEstado(form);
+        }
+
+        public static void MsgCatchOue(Exception ex)
+        {
+            MessageBox.Show(Utils.oue + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MDIPrincipal.ActualizarBarraDeEstado();
         }
 
         public static void MsgCatchErrorRestriccionCF(Form form)

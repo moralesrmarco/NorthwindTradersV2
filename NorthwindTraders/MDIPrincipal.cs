@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
     public partial class MDIPrincipal : Form
     {
+
         private int childFormNumber = 0;
+        public static MDIPrincipal Instance { get; private set; }
 
         public ToolStripStatusLabel ToolStripEstado
         {
@@ -13,9 +16,39 @@ namespace NorthwindTraders
             set { tsslEstado = value; }
         }
 
+        public static void ActualizarBarraDeEstado(string mensaje = "Listo.", bool error = false)
+        {
+            if (Instance != null && !Instance.IsDisposed)
+            {
+                if (mensaje != "Listo.")
+                {
+                    if (error)
+                        Instance.ToolStripEstado.BackColor = System.Drawing.Color.Red;
+                    else
+                        Instance.ToolStripEstado.BackColor = SystemColors.ActiveCaption;
+                }
+                else
+                {
+                    if (error)
+                    {
+                        Instance.ToolStripEstado.ForeColor = System.Drawing.Color.White;
+                        Instance.ToolStripEstado.Font = new Font(Instance.ToolStripEstado.Font, FontStyle.Bold);
+                    }
+                    else
+                    {
+                        Instance.ToolStripEstado.ForeColor = SystemColors.ControlText;
+                        Instance.ToolStripEstado.Font = new Font(Instance.ToolStripEstado.Font, FontStyle.Regular);
+                    }
+                }
+                Instance.ToolStripEstado.Text = mensaje;
+                Instance.Refresh();
+            }
+        }
+
         public MDIPrincipal()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -146,26 +179,6 @@ namespace NorthwindTraders
                 MdiParent = this
             };
             frmCategoriasCrud.Show();
-        }
-
-        private void tsmiCategoriasProductos_Click(object sender, EventArgs e)
-        {
-            Utils.CerrarFormularios();
-            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
-            {
-                MdiParent = this
-            };
-            frmCategoriasProductos.Show();
-        }
-
-        private void tsmi2ListadoDeProductosPorCategorías_Click(object sender, EventArgs e)
-        {
-            Utils.CerrarFormularios();
-            FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
-            {
-                MdiParent = this
-            };
-            frmProductosPorCategoriasListado.Show();
         }
 
         private void tsmiMantenimientoDeProductos_Click(object sender, EventArgs e)
@@ -454,6 +467,41 @@ namespace NorthwindTraders
                 MdiParent = this
             };
             frmRptEmpleado2.Show();
+        }
+
+        private void consultaDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmCategoriasProductos frmCategoriasProductos = new FrmCategoriasProductos
+            {
+                MdiParent = this
+            };
+            frmCategoriasProductos.Show();
+        }
+
+        private void listadoDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmProductosPorCategoriasListado frmProductosPorCategoriasListado = new FrmProductosPorCategoriasListado
+            {
+                MdiParent = this
+            };
+            frmProductosPorCategoriasListado.Show();
+        }
+
+        private void reporteDeCategoríasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptCategorias frmRptCategorias = new FrmRptCategorias
+            {
+                MdiParent = this
+            };
+            frmRptCategorias.Show();
+        }
+
+        private void reporteDeProductosPorCategoríaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

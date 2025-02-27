@@ -86,6 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categoria.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="FrmCategoriasCrud.cs">
@@ -201,6 +202,12 @@
     </Compile>
     <Compile Include="FrmProveedoresProductos.Designer.cs">
       <DependentUpon>FrmProveedoresProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptCategorias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptCategorias.Designer.cs">
+      <DependentUpon>FrmRptCategorias.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRptClientes.cs">
       <SubType>Form</SubType>
@@ -335,6 +342,9 @@
     <EmbeddedResource Include="FrmProveedoresProductos.resx">
       <DependentUpon>FrmProveedoresProductos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptCategorias.resx">
+      <DependentUpon>FrmRptCategorias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptClientes.resx">
       <DependentUpon>FrmRptClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,10 +385,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RptCategorias.rdlc" />
     <EmbeddedResource Include="RptEmpleados.rdlc" />
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
     <EmbeddedResource Include="RptProveedores.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />

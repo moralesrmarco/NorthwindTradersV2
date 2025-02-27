@@ -681,7 +681,7 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ReportsToName" msprop:Generator_UserColumnName="ReportsToName" msprop:Generator_ColumnPropNameInTable="ReportsToNameColumn" msprop:Generator_ColumnPropNameInRow="ReportsToName" msprop:Generator_ColumnVarNameInTable="columnReportsToName" type="xs:string" minOccurs="0" />
+              <xs:element name="ReportsToName" msprop:Generator_ColumnPropNameInTable="ReportsToNameColumn" msprop:Generator_ColumnPropNameInRow="ReportsToName" msprop:Generator_UserColumnName="ReportsToName" msprop:Generator_ColumnVarNameInTable="columnReportsToName" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1004,6 +1004,28 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Categories" msprop:Generator_RowEvHandlerName="CategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="CategoriesRowDeleted" msprop:Generator_RowDeletingName="CategoriesRowDeleting" msprop:Generator_RowEvArgName="CategoriesRowChangeEvent" msprop:Generator_TablePropName="Categories" msprop:Generator_RowChangedName="CategoriesRowChanged" msprop:Generator_RowChangingName="CategoriesRowChanging" msprop:Generator_TableClassName="CategoriesDataTable" msprop:Generator_RowClassName="CategoriesRow" msprop:Generator_TableVarName="tableCategories" msprop:Generator_UserTableName="Categories">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CategoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="CategoryID" msprop:Generator_ColumnPropNameInTable="CategoryIDColumn" msprop:Generator_ColumnVarNameInTable="columnCategoryID" msprop:Generator_UserColumnName="CategoryID" type="xs:int" />
+              <xs:element name="CategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_UserColumnName="CategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Description" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Picture" msprop:Generator_ColumnPropNameInRow="Picture" msprop:Generator_ColumnPropNameInTable="PictureColumn" msprop:Generator_ColumnVarNameInTable="columnPicture" msprop:Generator_UserColumnName="Picture" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1018,11 +1040,15 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
       <xs:selector xpath=".//mstns:Suppliers" />
       <xs:field xpath="mstns:SupplierID" />
     </xs:unique>
+    <xs:unique name="Categories_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Categories" />
+      <xs:field xpath="mstns:CategoryID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Employees_Employees" msdata:parent="Employees" msdata:child="Employees" msdata:parentkey="EmployeeID" msdata:childkey="ReportsTo" msprop:Generator_UserParentTable="Employees" msprop:Generator_UserChildTable="Employees" msprop:Generator_RelationVarName="relationFK_Employees_Employees" msprop:Generator_ChildPropName="GetEmployeesRows" msprop:Generator_ParentPropName="EmployeesRowParent" msprop:Generator_UserRelationName="FK_Employees_Employees" />
-      <msdata:Relationship name="FK_Employees_Employees1" msdata:parent="Employee" msdata:child="Employee" msdata:parentkey="EmployeeID" msdata:childkey="ReportsTo" msprop:Generator_UserParentTable="Employee" msprop:Generator_UserChildTable="Employee" msprop:Generator_RelationVarName="relationFK_Employees_Employees1" msprop:Generator_ChildPropName="GetEmployeeRows" msprop:Generator_ParentPropName="EmployeeRowParent" msprop:Generator_UserRelationName="FK_Employees_Employees1" />
+      <msdata:Relationship name="FK_Employees_Employees" msdata:parent="Employees" msdata:child="Employees" msdata:parentkey="EmployeeID" msdata:childkey="ReportsTo" msprop:Generator_UserParentTable="Employees" msprop:Generator_UserChildTable="Employees" msprop:Generator_RelationVarName="relationFK_Employees_Employees" msprop:Generator_ChildPropName="GetEmployeesRows" msprop:Generator_UserRelationName="FK_Employees_Employees" msprop:Generator_ParentPropName="EmployeesRowParent" />
+      <msdata:Relationship name="FK_Employees_Employees1" msdata:parent="Employee" msdata:child="Employee" msdata:parentkey="EmployeeID" msdata:childkey="ReportsTo" msprop:Generator_UserParentTable="Employee" msprop:Generator_UserChildTable="Employee" msprop:Generator_RelationVarName="relationFK_Employees_Employees1" msprop:Generator_ChildPropName="GetEmployeeRows" msprop:Generator_UserRelationName="FK_Employees_Employees1" msprop:Generator_ParentPropName="EmployeeRowParent" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
