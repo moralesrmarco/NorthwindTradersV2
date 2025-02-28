@@ -805,6 +805,7 @@
             </Textbox>
             <Line Name="Line1">
               <Top>1.97115cm</Top>
+              <Left>0.03969cm</Left>
               <Height>0cm</Height>
               <Width>25.95607cm</Width>
               <ZIndex>2</ZIndex>
@@ -1189,7 +1190,7 @@ postal</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox24</rd:DefaultName>
-              <Top>0.12699cm</Top>
+              <Top>0.12698cm</Top>
               <Left>1.29296cm</Left>
               <Height>0.44125cm</Height>
               <Width>7.95042cm</Width>
@@ -1222,7 +1223,7 @@ postal</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox25</rd:DefaultName>
-              <Top>0.16036cm</Top>
+              <Top>0.16035cm</Top>
               <Left>18.67016cm</Left>
               <Height>0.44125cm</Height>
               <Width>6.38938cm</Width>
@@ -1238,7 +1239,7 @@ postal</Value>
               </Style>
             </Textbox>
             <Line Name="Line3">
-              <Top>0.03174cm</Top>
+              <Top>0.03173cm</Top>
               <Left>0.03969cm</Left>
               <Height>0cm</Height>
               <Width>25.95607cm</Width>

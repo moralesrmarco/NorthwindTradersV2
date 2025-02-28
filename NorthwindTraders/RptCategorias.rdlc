@@ -335,7 +335,7 @@
         </SortExpressions>
         <Top>0.08541cm</Top>
         <Height>3.40014cm</Height>
-        <Width>20.05542cm</Width>
+        <Width>20.05543cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -374,7 +374,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Northwind Traders - Reporte de categorías</Value>
+                  <Value>Northwind Traders - » Reporte de categorías «</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
