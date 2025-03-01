@@ -40,6 +40,8 @@ namespace NorthwindTraders {
         
         private VW_PRODUCTOSPORCATEGORIALISTADO_RPTDataTable tableVW_PRODUCTOSPORCATEGORIALISTADO_RPT;
         
+        private SP_PRODUCTOS_ALL_RPTDataTable tableSP_PRODUCTOS_ALL_RPT;
+        
         private global::System.Data.DataRelation relationFK_Employees_Employees;
         
         private global::System.Data.DataRelation relationFK_Employees_Employees1;
@@ -95,6 +97,9 @@ namespace NorthwindTraders {
                 }
                 if ((ds.Tables["VW_PRODUCTOSPORCATEGORIALISTADO_RPT"] != null)) {
                     base.Tables.Add(new VW_PRODUCTOSPORCATEGORIALISTADO_RPTDataTable(ds.Tables["VW_PRODUCTOSPORCATEGORIALISTADO_RPT"]));
+                }
+                if ((ds.Tables["SP_PRODUCTOS_ALL_RPT"] != null)) {
+                    base.Tables.Add(new SP_PRODUCTOS_ALL_RPTDataTable(ds.Tables["SP_PRODUCTOS_ALL_RPT"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -196,6 +201,16 @@ namespace NorthwindTraders {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SP_PRODUCTOS_ALL_RPTDataTable SP_PRODUCTOS_ALL_RPT {
+            get {
+                return this.tableSP_PRODUCTOS_ALL_RPT;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -285,6 +300,9 @@ namespace NorthwindTraders {
                 if ((ds.Tables["VW_PRODUCTOSPORCATEGORIALISTADO_RPT"] != null)) {
                     base.Tables.Add(new VW_PRODUCTOSPORCATEGORIALISTADO_RPTDataTable(ds.Tables["VW_PRODUCTOSPORCATEGORIALISTADO_RPT"]));
                 }
+                if ((ds.Tables["SP_PRODUCTOS_ALL_RPT"] != null)) {
+                    base.Tables.Add(new SP_PRODUCTOS_ALL_RPTDataTable(ds.Tables["SP_PRODUCTOS_ALL_RPT"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -366,6 +384,12 @@ namespace NorthwindTraders {
                     this.tableVW_PRODUCTOSPORCATEGORIALISTADO_RPT.InitVars();
                 }
             }
+            this.tableSP_PRODUCTOS_ALL_RPT = ((SP_PRODUCTOS_ALL_RPTDataTable)(base.Tables["SP_PRODUCTOS_ALL_RPT"]));
+            if ((initTable == true)) {
+                if ((this.tableSP_PRODUCTOS_ALL_RPT != null)) {
+                    this.tableSP_PRODUCTOS_ALL_RPT.InitVars();
+                }
+            }
             this.relationFK_Employees_Employees = this.Relations["FK_Employees_Employees"];
             this.relationFK_Employees_Employees1 = this.Relations["FK_Employees_Employees1"];
         }
@@ -394,6 +418,8 @@ namespace NorthwindTraders {
             base.Tables.Add(this.tableCategories);
             this.tableVW_PRODUCTOSPORCATEGORIALISTADO_RPT = new VW_PRODUCTOSPORCATEGORIALISTADO_RPTDataTable();
             base.Tables.Add(this.tableVW_PRODUCTOSPORCATEGORIALISTADO_RPT);
+            this.tableSP_PRODUCTOS_ALL_RPT = new SP_PRODUCTOS_ALL_RPTDataTable();
+            base.Tables.Add(this.tableSP_PRODUCTOS_ALL_RPT);
             this.relationFK_Employees_Employees = new global::System.Data.DataRelation("FK_Employees_Employees", new global::System.Data.DataColumn[] {
                         this.tableEmployees.EmployeeIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableEmployees.ReportsToColumn}, false);
@@ -449,6 +475,12 @@ namespace NorthwindTraders {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeVW_PRODUCTOSPORCATEGORIALISTADO_RPT() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeSP_PRODUCTOS_ALL_RPT() {
             return false;
         }
         
@@ -530,6 +562,9 @@ namespace NorthwindTraders {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void VW_PRODUCTOSPORCATEGORIALISTADO_RPTRowChangeEventHandler(object sender, VW_PRODUCTOSPORCATEGORIALISTADO_RPTRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void SP_PRODUCTOS_ALL_RPTRowChangeEventHandler(object sender, SP_PRODUCTOS_ALL_RPTRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3967,6 +4002,426 @@ namespace NorthwindTraders {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SP_PRODUCTOS_ALL_RPTDataTable : global::System.Data.TypedTableBase<SP_PRODUCTOS_ALL_RPTRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnProductName;
+            
+            private global::System.Data.DataColumn columnQuantityPerUnit;
+            
+            private global::System.Data.DataColumn columnUnitPrice;
+            
+            private global::System.Data.DataColumn columnUnitsInStock;
+            
+            private global::System.Data.DataColumn columnUnitsOnOrder;
+            
+            private global::System.Data.DataColumn columnReorderLevel;
+            
+            private global::System.Data.DataColumn columnDiscontinued;
+            
+            private global::System.Data.DataColumn columnCategoryName;
+            
+            private global::System.Data.DataColumn columnCompanyName;
+            
+            private global::System.Data.DataColumn columnCategoryID;
+            
+            private global::System.Data.DataColumn columnSupplierID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTDataTable() {
+                this.TableName = "SP_PRODUCTOS_ALL_RPT";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SP_PRODUCTOS_ALL_RPTDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected SP_PRODUCTOS_ALL_RPTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProductNameColumn {
+                get {
+                    return this.columnProductName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn QuantityPerUnitColumn {
+                get {
+                    return this.columnQuantityPerUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UnitPriceColumn {
+                get {
+                    return this.columnUnitPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UnitsInStockColumn {
+                get {
+                    return this.columnUnitsInStock;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UnitsOnOrderColumn {
+                get {
+                    return this.columnUnitsOnOrder;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ReorderLevelColumn {
+                get {
+                    return this.columnReorderLevel;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiscontinuedColumn {
+                get {
+                    return this.columnDiscontinued;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CategoryNameColumn {
+                get {
+                    return this.columnCategoryName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CompanyNameColumn {
+                get {
+                    return this.columnCompanyName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CategoryIDColumn {
+                get {
+                    return this.columnCategoryID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SupplierIDColumn {
+                get {
+                    return this.columnSupplierID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTRow this[int index] {
+                get {
+                    return ((SP_PRODUCTOS_ALL_RPTRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_PRODUCTOS_ALL_RPTRowChangeEventHandler SP_PRODUCTOS_ALL_RPTRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_PRODUCTOS_ALL_RPTRowChangeEventHandler SP_PRODUCTOS_ALL_RPTRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_PRODUCTOS_ALL_RPTRowChangeEventHandler SP_PRODUCTOS_ALL_RPTRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event SP_PRODUCTOS_ALL_RPTRowChangeEventHandler SP_PRODUCTOS_ALL_RPTRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddSP_PRODUCTOS_ALL_RPTRow(SP_PRODUCTOS_ALL_RPTRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTRow AddSP_PRODUCTOS_ALL_RPTRow(string ProductName, string QuantityPerUnit, decimal UnitPrice, short UnitsInStock, short UnitsOnOrder, short ReorderLevel, bool Discontinued, string CategoryName, string CompanyName) {
+                SP_PRODUCTOS_ALL_RPTRow rowSP_PRODUCTOS_ALL_RPTRow = ((SP_PRODUCTOS_ALL_RPTRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        ProductName,
+                        QuantityPerUnit,
+                        UnitPrice,
+                        UnitsInStock,
+                        UnitsOnOrder,
+                        ReorderLevel,
+                        Discontinued,
+                        CategoryName,
+                        CompanyName,
+                        null,
+                        null};
+                rowSP_PRODUCTOS_ALL_RPTRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSP_PRODUCTOS_ALL_RPTRow);
+                return rowSP_PRODUCTOS_ALL_RPTRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SP_PRODUCTOS_ALL_RPTDataTable cln = ((SP_PRODUCTOS_ALL_RPTDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SP_PRODUCTOS_ALL_RPTDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnProductName = base.Columns["ProductName"];
+                this.columnQuantityPerUnit = base.Columns["QuantityPerUnit"];
+                this.columnUnitPrice = base.Columns["UnitPrice"];
+                this.columnUnitsInStock = base.Columns["UnitsInStock"];
+                this.columnUnitsOnOrder = base.Columns["UnitsOnOrder"];
+                this.columnReorderLevel = base.Columns["ReorderLevel"];
+                this.columnDiscontinued = base.Columns["Discontinued"];
+                this.columnCategoryName = base.Columns["CategoryName"];
+                this.columnCompanyName = base.Columns["CompanyName"];
+                this.columnCategoryID = base.Columns["CategoryID"];
+                this.columnSupplierID = base.Columns["SupplierID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductName);
+                this.columnQuantityPerUnit = new global::System.Data.DataColumn("QuantityPerUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuantityPerUnit);
+                this.columnUnitPrice = new global::System.Data.DataColumn("UnitPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnitPrice);
+                this.columnUnitsInStock = new global::System.Data.DataColumn("UnitsInStock", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnitsInStock);
+                this.columnUnitsOnOrder = new global::System.Data.DataColumn("UnitsOnOrder", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnitsOnOrder);
+                this.columnReorderLevel = new global::System.Data.DataColumn("ReorderLevel", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReorderLevel);
+                this.columnDiscontinued = new global::System.Data.DataColumn("Discontinued", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiscontinued);
+                this.columnCategoryName = new global::System.Data.DataColumn("CategoryName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCategoryName);
+                this.columnCompanyName = new global::System.Data.DataColumn("CompanyName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompanyName);
+                this.columnCategoryID = new global::System.Data.DataColumn("CategoryID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCategoryID);
+                this.columnSupplierID = new global::System.Data.DataColumn("SupplierID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupplierID);
+                this.columnId.AutoIncrement = true;
+                this.columnId.AutoIncrementSeed = -1;
+                this.columnId.AutoIncrementStep = -1;
+                this.columnId.AllowDBNull = false;
+                this.columnId.ReadOnly = true;
+                this.columnProductName.AllowDBNull = false;
+                this.columnProductName.MaxLength = 40;
+                this.columnQuantityPerUnit.MaxLength = 20;
+                this.columnDiscontinued.AllowDBNull = false;
+                this.columnCategoryName.MaxLength = 15;
+                this.columnCompanyName.MaxLength = 40;
+                this.columnCategoryID.AutoIncrement = true;
+                this.columnCategoryID.AutoIncrementSeed = -1;
+                this.columnCategoryID.AutoIncrementStep = -1;
+                this.columnCategoryID.ReadOnly = true;
+                this.columnSupplierID.AutoIncrement = true;
+                this.columnSupplierID.AutoIncrementSeed = -1;
+                this.columnSupplierID.AutoIncrementStep = -1;
+                this.columnSupplierID.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTRow NewSP_PRODUCTOS_ALL_RPTRow() {
+                return ((SP_PRODUCTOS_ALL_RPTRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SP_PRODUCTOS_ALL_RPTRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SP_PRODUCTOS_ALL_RPTRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SP_PRODUCTOS_ALL_RPTRowChanged != null)) {
+                    this.SP_PRODUCTOS_ALL_RPTRowChanged(this, new SP_PRODUCTOS_ALL_RPTRowChangeEvent(((SP_PRODUCTOS_ALL_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SP_PRODUCTOS_ALL_RPTRowChanging != null)) {
+                    this.SP_PRODUCTOS_ALL_RPTRowChanging(this, new SP_PRODUCTOS_ALL_RPTRowChangeEvent(((SP_PRODUCTOS_ALL_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SP_PRODUCTOS_ALL_RPTRowDeleted != null)) {
+                    this.SP_PRODUCTOS_ALL_RPTRowDeleted(this, new SP_PRODUCTOS_ALL_RPTRowChangeEvent(((SP_PRODUCTOS_ALL_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SP_PRODUCTOS_ALL_RPTRowDeleting != null)) {
+                    this.SP_PRODUCTOS_ALL_RPTRowDeleting(this, new SP_PRODUCTOS_ALL_RPTRowChangeEvent(((SP_PRODUCTOS_ALL_RPTRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveSP_PRODUCTOS_ALL_RPTRow(SP_PRODUCTOS_ALL_RPTRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                NorthwindDataSet ds = new NorthwindDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SP_PRODUCTOS_ALL_RPTDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class EmployeesRow : global::System.Data.DataRow {
@@ -6611,6 +7066,314 @@ namespace NorthwindTraders {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SP_PRODUCTOS_ALL_RPTRow : global::System.Data.DataRow {
+            
+            private SP_PRODUCTOS_ALL_RPTDataTable tableSP_PRODUCTOS_ALL_RPT;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SP_PRODUCTOS_ALL_RPTRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSP_PRODUCTOS_ALL_RPT = ((SP_PRODUCTOS_ALL_RPTDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Id {
+                get {
+                    return ((int)(this[this.tableSP_PRODUCTOS_ALL_RPT.IdColumn]));
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string ProductName {
+                get {
+                    return ((string)(this[this.tableSP_PRODUCTOS_ALL_RPT.ProductNameColumn]));
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.ProductNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string QuantityPerUnit {
+                get {
+                    try {
+                        return ((string)(this[this.tableSP_PRODUCTOS_ALL_RPT.QuantityPerUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'QuantityPerUnit\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.QuantityPerUnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal UnitPrice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSP_PRODUCTOS_ALL_RPT.UnitPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UnitPrice\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.UnitPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public short UnitsInStock {
+                get {
+                    try {
+                        return ((short)(this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsInStockColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UnitsInStock\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsInStockColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public short UnitsOnOrder {
+                get {
+                    try {
+                        return ((short)(this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsOnOrderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UnitsOnOrder\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsOnOrderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public short ReorderLevel {
+                get {
+                    try {
+                        return ((short)(this[this.tableSP_PRODUCTOS_ALL_RPT.ReorderLevelColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ReorderLevel\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.ReorderLevelColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Discontinued {
+                get {
+                    return ((bool)(this[this.tableSP_PRODUCTOS_ALL_RPT.DiscontinuedColumn]));
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.DiscontinuedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CategoryName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CategoryName\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string CompanyName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSP_PRODUCTOS_ALL_RPT.CompanyNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CompanyName\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.CompanyNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int CategoryID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CategoryID\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int SupplierID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSP_PRODUCTOS_ALL_RPT.SupplierIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SupplierID\' de la tabla \'SP_PRODUCTOS_ALL_RPT\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSP_PRODUCTOS_ALL_RPT.SupplierIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsQuantityPerUnitNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.QuantityPerUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetQuantityPerUnitNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.QuantityPerUnitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsUnitPriceNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.UnitPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetUnitPriceNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.UnitPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsUnitsInStockNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.UnitsInStockColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetUnitsInStockNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsInStockColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsUnitsOnOrderNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.UnitsOnOrderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetUnitsOnOrderNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.UnitsOnOrderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsReorderLevelNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.ReorderLevelColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetReorderLevelNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.ReorderLevelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCategoryNameNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.CategoryNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCategoryNameNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCompanyNameNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.CompanyNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCompanyNameNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.CompanyNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCategoryIDNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.CategoryIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCategoryIDNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.CategoryIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSupplierIDNull() {
+                return this.IsNull(this.tableSP_PRODUCTOS_ALL_RPT.SupplierIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSupplierIDNull() {
+                this[this.tableSP_PRODUCTOS_ALL_RPT.SupplierIDColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -6868,6 +7631,40 @@ namespace NorthwindTraders {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public VW_PRODUCTOSPORCATEGORIALISTADO_RPTRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class SP_PRODUCTOS_ALL_RPTRowChangeEvent : global::System.EventArgs {
+            
+            private SP_PRODUCTOS_ALL_RPTRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTRowChangeEvent(SP_PRODUCTOS_ALL_RPTRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public SP_PRODUCTOS_ALL_RPTRow Row {
                 get {
                     return this.eventRow;
                 }

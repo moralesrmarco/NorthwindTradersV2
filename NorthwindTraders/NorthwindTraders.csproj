@@ -257,6 +257,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProductos.Designer.cs">
+      <DependentUpon>FrmRptProductos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProductosPorCategorias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -375,6 +381,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProductos.resx">
+      <DependentUpon>FrmRptProductos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProductosPorCategorias.resx">
       <DependentUpon>FrmRptProductosPorCategorias.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,6 +408,7 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
     <EmbeddedResource Include="RptProveedores.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />
@@ -510,8 +520,10 @@
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ALL.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ALL_RPT.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR_V2.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR_V2_RPT.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ELIMINAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ELIMINAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_INSERTAR.sql" />
