@@ -269,6 +269,12 @@
     <Compile Include="FrmRptProductosPorCategorias.Designer.cs">
       <DependentUpon>FrmRptProductosPorCategorias.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptProductosPorProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProductosPorProveedor.Designer.cs">
+      <DependentUpon>FrmRptProductosPorProveedor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProveedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,11 +393,15 @@
     <EmbeddedResource Include="FrmRptProductosPorCategorias.resx">
       <DependentUpon>FrmRptProductosPorCategorias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProductosPorProveedor.resx">
+      <DependentUpon>FrmRptProductosPorProveedor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -410,6 +420,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
+    <EmbeddedResource Include="RptProductosPorProveedor.rdlc" />
     <EmbeddedResource Include="RptProveedores.rdlc" />
     <EmbeddedResource Include="RptClientes.rdlc" />
     <EmbeddedResource Include="RptClientesyProveedoresDirectorio.rdlc" />
@@ -517,6 +528,7 @@
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_INSERTAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR1.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR20.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PRODUCTOSPORPROVEEDOR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ALL.sql" />
