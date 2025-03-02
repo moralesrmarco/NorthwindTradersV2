@@ -12,6 +12,7 @@ namespace NorthwindTraders
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
         string strProcedure = "";
         string titulo = "» Reporte de productos «";
+        string subtitulo = "";
 
         public FrmRptProductos()
         {
@@ -39,22 +40,18 @@ namespace NorthwindTraders
         private void btnImprimirTodos_Click(object sender, EventArgs e)
         {
             strProcedure = "Sp_Productos_All_Rpt";
-            titulo = "» Reporte de todos los productos «";
-            groupBox1.Text = titulo;
             LlenarReporte(sender);
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             strProcedure = "Sp_Productos_Buscar_V2_RPT";
-            titulo = "» Reporte de productos filtrados «";
-            groupBox1.Text = titulo;
             LlenarReporte(sender);
         }
 
         private void txtIdInicial_KeyPress(object sender, KeyPressEventArgs e) => Utils.ValidarDigitosSinPunto(sender, e);
 
-        private void txtIdFinal_TextChanged(object sender, KeyPressEventArgs e) => Utils.ValidarDigitosSinPunto(sender, e);
+        private void txtIdFinal_KeyPress(object sender, KeyPressEventArgs e) => Utils.ValidarDigitosSinPunto(sender, e);
 
         private void txtIdInicial_Leave(object sender, EventArgs e) => Utils.ValidaTxtBIdIni(txtIdInicial, txtIdFinal);
 
@@ -67,7 +64,9 @@ namespace NorthwindTraders
         private void LlenarReporte(object sender)
         {
             try 
-            { 
+            {
+                titulo = "» Reporte de todos los productos «";
+                subtitulo = "";
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 SqlCommand cmd = new SqlCommand(strProcedure, cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -78,7 +77,23 @@ namespace NorthwindTraders
                     cmd.Parameters.AddWithValue("@Producto", txtProducto.Text);
                     cmd.Parameters.AddWithValue("@Categoria", cboCategoria.SelectedValue);
                     cmd.Parameters.AddWithValue("@Proveedor", cboProveedor.SelectedValue);
+                    titulo = "» Reporte de productos filtrados «";
+                    subtitulo = $"Filtrado por: ";
+                    if (txtIdInicial.Text != "" & txtIdFinal.Text != "")
+                        subtitulo += $" [ Id: {txtIdInicial.Text} al {txtIdFinal.Text} ] ";
+                    if (txtProducto.Text != "")
+                        subtitulo += $" [ Producto: {txtProducto.Text} ] ";
+                    if (cboCategoria.SelectedIndex > 0)
+                        subtitulo += $" [ Categoría: {cboCategoria.Text}] ";
+                    if (cboProveedor.SelectedIndex > 0)
+                        subtitulo += $" [ Proveedor: {cboProveedor.Text}] ";
+                    if (subtitulo == "Filtrado por: ")
+                    {
+                        titulo = "» Reporte de todos los productos «";
+                        subtitulo = "";
+                    }
                 }
+                groupBox1.Text = titulo;
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable tbl = new DataTable();
                 dap.Fill(tbl);
@@ -89,7 +104,8 @@ namespace NorthwindTraders
                     reportViewer1.LocalReport.DataSources.Clear();
                     reportViewer1.LocalReport.DataSources.Add(reportDataSource);
                     ReportParameter rp = new ReportParameter("titulo", titulo);
-                    reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp });
+                    ReportParameter rp2 = new ReportParameter("subtitulo", subtitulo);
+                    reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp2 });
                     reportViewer1.LocalReport.Refresh();
                     reportViewer1.RefreshReport();
                 }
@@ -98,6 +114,10 @@ namespace NorthwindTraders
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
                     reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                    reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                    ReportParameter rp = new ReportParameter("titulo", titulo);
+                    ReportParameter rp2 = new ReportParameter("subtitulo", subtitulo);
+                    reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp2 });
                     reportViewer1.LocalReport.Refresh();
                     reportViewer1.RefreshReport();
                     MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
