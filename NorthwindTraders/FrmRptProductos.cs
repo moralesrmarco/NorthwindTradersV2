@@ -106,7 +106,6 @@ namespace NorthwindTraders
                     ReportParameter rp = new ReportParameter("titulo", titulo);
                     ReportParameter rp2 = new ReportParameter("subtitulo", subtitulo);
                     reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp2 });
-                    reportViewer1.LocalReport.Refresh();
                     reportViewer1.RefreshReport();
                 }
                 else
@@ -114,11 +113,9 @@ namespace NorthwindTraders
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
                     reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-                    reportViewer1.LocalReport.DataSources.Add(reportDataSource);
                     ReportParameter rp = new ReportParameter("titulo", titulo);
                     ReportParameter rp2 = new ReportParameter("subtitulo", subtitulo);
                     reportViewer1.LocalReport.SetParameters(new ReportParameter[] { rp, rp2 });
-                    reportViewer1.LocalReport.Refresh();
                     reportViewer1.RefreshReport();
                     MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
