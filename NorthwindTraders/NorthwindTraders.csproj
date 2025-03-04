@@ -548,6 +548,7 @@
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_INSERTAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR1.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR20.sql" />
+    <Content Include="StoredProcedures\dbo.SP_ProdPorProvConDetProv.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOSPORPROVEEDOR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR_V2.sql" />
