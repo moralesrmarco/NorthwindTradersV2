@@ -683,7 +683,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!UnitsInStock.Value</Value>
+                              <Value>=Format(Fields!UnitsInStock.Value, "N0")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -718,7 +718,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!UnitsOnOrder.Value</Value>
+                              <Value>=Format(Fields!UnitsOnOrder.Value, "N0")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -753,7 +753,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!ReorderLevel.Value</Value>
+                              <Value>=Format(Fields!ReorderLevel.Value, "N0")</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                               </Style>
@@ -777,6 +777,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

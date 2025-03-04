@@ -257,6 +257,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptProdPorProvConDetProv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptProdPorProvConDetProv.Designer.cs">
+      <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -393,6 +399,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
+      <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProductos.resx">
       <DependentUpon>FrmRptProductos.cs</DependentUpon>
     </EmbeddedResource>
@@ -427,6 +436,7 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductosAlfabetico.rdlc" />
     <EmbeddedResource Include="RptProductos.rdlc" />
     <EmbeddedResource Include="RptProductosPorCategorias.rdlc" />
