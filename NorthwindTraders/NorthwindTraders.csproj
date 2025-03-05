@@ -257,6 +257,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptPedPorRangoFechaPed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptPedPorRangoFechaPed.Designer.cs">
+      <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptProdPorProvConDetProv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +405,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptPedPorRangoFechaPed.resx">
+      <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProdPorProvConDetProv.resx">
       <DependentUpon>FrmRptProdPorProvConDetProv.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +445,8 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
+    <EmbeddedResource Include="RptPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductosAlfabetico.rdlc" />
     <EmbeddedResource Include="RptProductos.rdlc" />
