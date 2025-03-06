@@ -22,8 +22,7 @@ namespace NorthwindTraders
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            //if (dateTimePicker1.Checked & dateTimePicker2.Checked)
-                MostrarReporte();
+            MostrarReporte();
         }
 
         private void MostrarReporte()
@@ -35,6 +34,7 @@ namespace NorthwindTraders
                 subtitulo = "[ Fecha de pedido inicial: Nulo ] - [ Fecha de pedido final: Nulo ]";
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             DataTable dt = ObtenerPedidosPorFechaPedido(dateTimePicker1.Value, dateTimePicker2.Value);
+            MDIPrincipal.ActualizarBarraDeEstado($"Se encontraron {dt.Rows.Count} registros");
             if (dt.Rows.Count > 0)
             {
                 ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
@@ -60,29 +60,34 @@ namespace NorthwindTraders
         private DataTable ObtenerPedidosPorFechaPedido(DateTime from, DateTime to)
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            try
             {
-                string query;
-                if (dateTimePicker1.Checked & dateTimePicker2.Checked)
-                    query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    string query;
+                    if (dateTimePicker1.Checked & dateTimePicker2.Checked)
+                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
                                 from Orders o join Customers c on c.CustomerID = o.CustomerID
                                 where OrderDate >= @from and OrderDate < @to " +
-                                "order by OrderDate Desc, c.CompanyName";
-                else 
-                    query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                                    "order by OrderDate Desc, c.CompanyName";
+                    else
+                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
                                 from Orders o join Customers c on c.CustomerID = o.CustomerID
                                 where OrderDate is null " +
-                                "order by c.CompanyName";
-                SqlCommand cmd = new SqlCommand(query, cn);
-                cmd.Parameters.Add("@from", SqlDbType.DateTime).Value = from.Date; // Inicio del día
-                cmd.Parameters.Add("@to", SqlDbType.DateTime).Value = to.Date.AddDays(1); // Final del día siguiente
-                cn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    dt.Load(reader);
+                                    "order by c.CompanyName";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.Add("@from", SqlDbType.DateTime).Value = from.Date; // Inicio del día
+                    cmd.Parameters.Add("@to", SqlDbType.DateTime).Value = to.Date.AddDays(1); // Final del día siguiente
+                    cn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        dt.Load(reader);
+                    }
                 }
             }
+            catch (SqlException ex) { Utils.MsgCatchOueclbdd(ex); }
+            catch (Exception ex) { Utils.MsgCatchOue(ex); }
             return dt;
         }
 
@@ -97,19 +102,24 @@ namespace NorthwindTraders
         private DataTable ObtenerDetallePedidoPorOrderID(int orderID) 
         {
             DataTable dt = new DataTable();
-            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn)) 
+            try
             {
-                string query = @"Select ProductName, od.UnitPrice, od.Quantity, (od.Quantity * od.UnitPrice) as Total 
-                                from [Order Details] od join products p on p.ProductId = od.ProductID
-                                where OrderID = " + orderID + "";
-                SqlCommand cmd = new SqlCommand(query,cn);
-                cn.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows) 
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    dt.Load(reader);
+                    string query = @"Select ProductName, od.UnitPrice, od.Quantity, od.Discount, (od.Quantity * od.UnitPrice) * ( 1 - od.Discount ) as Total 
+                                from [Order Details] od join products p on p.ProductId = od.ProductID
+                                where OrderID = " + orderID;
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        dt.Load(reader);
+                    }
                 }
             }
+            catch (SqlException ex) { Utils.MsgCatchOueclbdd(ex); }
+            catch (Exception ex) { Utils.MsgCatchOue(ex); }
             return dt;
         }
 

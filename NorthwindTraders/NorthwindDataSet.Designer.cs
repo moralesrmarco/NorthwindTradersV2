@@ -5812,6 +5812,8 @@ namespace NorthwindTraders {
             
             private global::System.Data.DataColumn columnTotal;
             
+            private global::System.Data.DataColumn columnDiscount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public OrderDetailsRptPedPorRangoFechaPedDataTable() {
@@ -5879,6 +5881,14 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DiscountColumn {
+                get {
+                    return this.columnDiscount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5914,13 +5924,14 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderDetailsRptPedPorRangoFechaPedRow AddOrderDetailsRptPedPorRangoFechaPedRow(string ProductName, decimal UnitPrice, short Quantity, decimal Total) {
+            public OrderDetailsRptPedPorRangoFechaPedRow AddOrderDetailsRptPedPorRangoFechaPedRow(string ProductName, decimal UnitPrice, short Quantity, decimal Total, string Discount) {
                 OrderDetailsRptPedPorRangoFechaPedRow rowOrderDetailsRptPedPorRangoFechaPedRow = ((OrderDetailsRptPedPorRangoFechaPedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ProductName,
                         UnitPrice,
                         Quantity,
-                        Total};
+                        Total,
+                        Discount};
                 rowOrderDetailsRptPedPorRangoFechaPedRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrderDetailsRptPedPorRangoFechaPedRow);
                 return rowOrderDetailsRptPedPorRangoFechaPedRow;
@@ -5947,6 +5958,7 @@ namespace NorthwindTraders {
                 this.columnUnitPrice = base.Columns["UnitPrice"];
                 this.columnQuantity = base.Columns["Quantity"];
                 this.columnTotal = base.Columns["Total"];
+                this.columnDiscount = base.Columns["Discount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5960,6 +5972,8 @@ namespace NorthwindTraders {
                 base.Columns.Add(this.columnQuantity);
                 this.columnTotal = new global::System.Data.DataColumn("Total", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal);
+                this.columnDiscount = new global::System.Data.DataColumn("Discount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDiscount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10124,6 +10138,23 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Discount {
+                get {
+                    try {
+                        return ((string)(this[this.tableOrderDetailsRptPedPorRangoFechaPed.DiscountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Discount\' de la tabla \'OrderDetailsRptPedPorRangoFechaPed" +
+                                "\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableOrderDetailsRptPedPorRangoFechaPed.DiscountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsProductNameNull() {
                 return this.IsNull(this.tableOrderDetailsRptPedPorRangoFechaPed.ProductNameColumn);
             }
@@ -10168,6 +10199,18 @@ namespace NorthwindTraders {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetTotalNull() {
                 this[this.tableOrderDetailsRptPedPorRangoFechaPed.TotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsDiscountNull() {
+                return this.IsNull(this.tableOrderDetailsRptPedPorRangoFechaPed.DiscountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetDiscountNull() {
+                this[this.tableOrderDetailsRptPedPorRangoFechaPed.DiscountColumn] = global::System.Convert.DBNull;
             }
         }
         
