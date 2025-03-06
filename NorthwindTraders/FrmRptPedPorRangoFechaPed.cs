@@ -22,12 +22,17 @@ namespace NorthwindTraders
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            MostrarReporte();
+            //if (dateTimePicker1.Checked & dateTimePicker2.Checked)
+                MostrarReporte();
         }
 
         private void MostrarReporte()
         {
-            string subtitulo = $"[ Fecha de pedido inicial: {dateTimePicker1.Value.ToShortDateString()} ] - [ Fecha de pedido final: {dateTimePicker2.Value.ToShortDateString()} ]";
+            string subtitulo;
+            if (dateTimePicker1.Checked & dateTimePicker2.Checked)
+                subtitulo = $"[ Fecha de pedido inicial: {dateTimePicker1.Value.ToShortDateString()} ] - [ Fecha de pedido final: {dateTimePicker2.Value.ToShortDateString()} ]";
+            else
+                subtitulo = "[ Fecha de pedido inicial: Nulo ] - [ Fecha de pedido final: Nulo ]";
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             DataTable dt = ObtenerPedidosPorFechaPedido(dateTimePicker1.Value, dateTimePicker2.Value);
             if (dt.Rows.Count > 0)
@@ -57,10 +62,17 @@ namespace NorthwindTraders
             DataTable dt = new DataTable();
             using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
             {
-                string query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                string query;
+                if (dateTimePicker1.Checked & dateTimePicker2.Checked)
+                    query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
                                 from Orders o join Customers c on c.CustomerID = o.CustomerID
                                 where OrderDate >= @from and OrderDate < @to " +
                                 "order by OrderDate Desc, c.CompanyName";
+                else 
+                    query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                                from Orders o join Customers c on c.CustomerID = o.CustomerID
+                                where OrderDate is null " +
+                                "order by c.CompanyName";
                 SqlCommand cmd = new SqlCommand(query, cn);
                 cmd.Parameters.Add("@from", SqlDbType.DateTime).Value = from.Date; // Inicio del día
                 cmd.Parameters.Add("@to", SqlDbType.DateTime).Value = to.Date.AddDays(1); // Final del día siguiente
@@ -99,6 +111,36 @@ namespace NorthwindTraders
                 }
             }
             return dt;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Checked)
+                dateTimePicker2.Checked = true;
+            else
+                dateTimePicker2.Checked = false;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            if (dateTimePicker2.Checked)
+                dateTimePicker1.Checked = true;
+            else
+                dateTimePicker1.Checked = false;
+        }
+
+        private void dateTimePicker1_Leave(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Checked && dateTimePicker2.Checked)
+                if (dateTimePicker2.Value < dateTimePicker1.Value)
+                    dateTimePicker2.Value = dateTimePicker1.Value;
+        }
+
+        private void dateTimePicker2_Leave(object sender, EventArgs e)
+        {
+            if (dateTimePicker1.Checked && dateTimePicker2.Checked)
+                if ( dateTimePicker2.Value < dateTimePicker1.Value)
+                    dateTimePicker1.Value = dateTimePicker2.Value;
         }
     }
 }

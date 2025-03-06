@@ -81,7 +81,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Fecha de pedido: " &amp; vbCrLf &amp; Fields!OrderDate.Value</Value>
+                                  <Value>="Fecha de pedido: " &amp; vbCrLf &amp; IIf(IsNothing(Fields!OrderDate.Value), "Nulo", Fields!OrderDate.Value)</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -116,7 +116,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Fecha requerido: " &amp; vbCrLf &amp; Fields!RequiredDate.Value</Value>
+                                  <Value>="Fecha requerido: " &amp; vbCrLf &amp; IIf(IsNothing(Fields!RequiredDate.Value), "Nulo", Fields!RequiredDate.Value)</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -140,6 +140,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -151,7 +152,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Fecha de envío: " &amp; vbCrLf &amp; Fields!ShippedDate.Value</Value>
+                                  <Value>="Fecha de envío: " &amp; vbCrLf &amp; IIf(IsNothing(Fields!ShippedDate.Value), "Nulo", Fields!ShippedDate.Value)</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
