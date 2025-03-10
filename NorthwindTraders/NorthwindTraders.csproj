@@ -257,6 +257,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptPedPorDifCriterios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptPedPorDifCriterios.Designer.cs">
+      <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptPedPorRangoFechaPed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,6 +411,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptPedPorDifCriterios.resx">
+      <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptPedPorRangoFechaPed.resx">
       <DependentUpon>FrmRptPedPorRangoFechaPed.cs</DependentUpon>
     </EmbeddedResource>
@@ -445,7 +454,9 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
+    <EmbeddedResource Include="RptPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptProdPorProvConDetProv.rdlc" />
     <EmbeddedResource Include="RptProductosAlfabetico.rdlc" />
@@ -553,6 +564,7 @@
     <Content Include="StoredProcedures\dbo.SP_PEDIDOSXVENDEDOR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_ACTUALIZAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_BUSCAR.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PEDIDOS_BUSCAR2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_ELIMINAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_ELIMINAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_INSERTAR.sql" />
