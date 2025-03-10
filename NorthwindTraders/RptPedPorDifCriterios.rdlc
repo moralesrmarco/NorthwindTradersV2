@@ -957,6 +957,7 @@
                               <Value>=Fields!Id.Value</Value>
                             </Parameter>
                           </Parameters>
+                          <NoRowsMessage>No se encontraron detalles del pedido</NoRowsMessage>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -964,6 +965,7 @@
                           </Style>
                         </Subreport>
                         <ColSpan>6</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

@@ -34,7 +34,7 @@ namespace NorthwindTraders
                 if (txtBIdInicial.Text != "")
                     subtitulo += $"[Id inicial: {txtBIdInicial.Text}] - [Id final: {txtBIdFinal.Text}] ";
                 if (txtBCliente.Text != "")
-                    subtitulo += $"[Cliente: {txtBCliente.Text}] ";
+                    subtitulo += $"[Cliente: %{txtBCliente.Text}%] ";
                 if (dtpBFPedidoIni.Checked)
                     subtitulo += $"[Fecha de pedido inicial: {dtpBFPedidoIni.Value.ToShortDateString()}] - [Fecha de pedido final: {dtpBFPedidoFin.Value.ToShortDateString()}] ";
                 if (chkBFPedidoNull.Checked)
@@ -48,13 +48,13 @@ namespace NorthwindTraders
                 if (chkBFEnvioNull.Checked)
                     subtitulo += "[Fecha de envío inicial: Nulo] - [Fecha de envío final: Nulo] ";
                 if (txtBEmpleado.Text != "")
-                    subtitulo += $"[Vendedor: {txtBEmpleado.Text}] ";
+                    subtitulo += $"[Vendedor: %{txtBEmpleado.Text}%] ";
                 if (txtBCompañiaT.Text != "")
-                    subtitulo += $"[Transportista: {txtBCompañiaT.Text}] ";
+                    subtitulo += $"[Transportista: %{txtBCompañiaT.Text}%] ";
                 if (txtBDirigidoa.Text != "")
-                    subtitulo += $"[Dirigido a: {txtBDirigidoa.Text}]";
+                    subtitulo += $"[Dirigido a: %{txtBDirigidoa.Text}%]";
                 if (subtitulo == "")
-                    subtitulo = "Ningun criterio  de selección especificado ( incluye todos los registros de pedidos )";
+                    subtitulo = "Ningun criterio  de selección fue especificado ( incluye todos los registros de pedidos )";
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 DataTable dt = ObtenerPedidos();
                 MDIPrincipal.ActualizarBarraDeEstado($"Se encontraron {dt.Rows.Count} registros");
@@ -79,7 +79,6 @@ namespace NorthwindTraders
                     MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (SqlException ex) { Utils.MsgCatchOueclbdd(ex); }
             catch (Exception ex) { Utils.MsgCatchOue(ex); }
         }
 
