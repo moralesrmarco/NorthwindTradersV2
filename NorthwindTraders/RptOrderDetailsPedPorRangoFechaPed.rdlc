@@ -56,10 +56,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>7.12491cm</Width>
+                  <Width>6.65924cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.6825cm</Width>
+                  <Width>3.14818cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.4285cm</Width>
@@ -407,7 +407,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -439,7 +439,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>="Número de productos: " &amp; Format(Count(Fields!ProductName.Value), "N0")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -473,14 +473,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Cantidad de unidades:</Value>
                                   <Style>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -507,15 +507,14 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!Quantity.Value, "DataSet1"), "N0")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -585,7 +584,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -635,7 +634,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.9525cm</Top>
-            <Left>1.74183cm</Left>
+            <Left>0.78933cm</Left>
             <Height>1.8cm</Height>
             <Width>18.20675cm</Width>
             <Style>
@@ -662,9 +661,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Left>0.78933cm</Left>
+            <Left>0.47183cm</Left>
             <Height>0.6cm</Height>
-            <Width>11.47958cm</Width>
+            <Width>6.97674cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -681,7 +680,7 @@
         <Height>1.17533in</Height>
         <Style />
       </Body>
-      <Width>7.85377in</Width>
+      <Width>7.47877in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>

@@ -140,7 +140,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -229,6 +228,7 @@
                               <Value>=Fields!OrderID.Value</Value>
                             </Parameter>
                           </Parameters>
+                          <NoRowsMessage>No se encontraron detalles del pedido</NoRowsMessage>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -236,6 +236,7 @@
                           </Style>
                         </Subreport>
                         <ColSpan>4</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

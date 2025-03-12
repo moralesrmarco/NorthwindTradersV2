@@ -257,6 +257,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptNotaRemision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptPedPorDifCriterios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision.resx">
+      <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptPedPorDifCriterios.resx">
       <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
     </EmbeddedResource>
@@ -454,6 +463,7 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptNotaRemision.rdlc" />
     <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptPedPorDifCriterios.rdlc" />
@@ -571,6 +581,7 @@
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_INSERTAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR1.sql" />
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_LISTAR20.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PEDIDOS_NOTAREMISION.sql" />
     <Content Include="StoredProcedures\dbo.SP_ProdPorProvConDetProv.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOSPORPROVEEDOR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR.sql" />
