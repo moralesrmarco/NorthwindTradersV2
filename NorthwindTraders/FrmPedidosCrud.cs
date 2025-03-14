@@ -1001,6 +1001,7 @@ namespace NorthwindTraders
                     HabilitarControles();
                     btnGenerar.Enabled = true;
                     btnNota.Visible = true;
+                    btnNota.Enabled = false;
                     btnNuevo.Visible = false;
                 }
                 else if (tabcOperacion.SelectedTab == tabpEliminar)
@@ -1350,13 +1351,10 @@ namespace NorthwindTraders
                 {
                     Utils.MsgCatchOue(this, ex);
                 }
-                //HabilitarControles();
-                //btnGenerar.Enabled = false;
                 if (numRegs > 0)
                 {
                     PedidoGenerado = true;
                     IdDetalle = 1;
-                    //BorrarDatosPedido();
                     btnNota.Enabled = true;
                     btnNota.Visible = true;
                     btnNuevo.Enabled = true;
@@ -1407,10 +1405,6 @@ namespace NorthwindTraders
                 }
                 if (numRegs > 0)
                 {
-                    //BorrarDatosBusqueda();
-                    //txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
-                    //btnBuscar.PerformClick();
-                    //btnLimpiar.PerformClick();
                     PedidoGenerado = true;
                     btnNota.Enabled = true;
                     btnNota.Visible = true;
@@ -1474,7 +1468,6 @@ namespace NorthwindTraders
         private void btnNota_Click(object sender, EventArgs e)
         {
             FrmRptNotaRemision frmRptNotaRemision = new FrmRptNotaRemision();
-            frmRptNotaRemision.Owner = this;
             frmRptNotaRemision.Id = int.Parse(txtId.Text);
             frmRptNotaRemision.ShowDialog();
         }

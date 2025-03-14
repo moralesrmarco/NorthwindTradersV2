@@ -22,25 +22,29 @@ namespace NorthwindTraders
 
         private void FrmRptNotaRemision_Load(object sender, EventArgs e)
         {
-            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-            DataTable dt = ObtenerPedido(Id);
-            MDIPrincipal.ActualizarBarraDeEstado($"Se encontró el Pedido con Id: {Id}");
-            if (dt.Rows.Count > 0)
+            try
             {
-                ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
-                reportViewer1.LocalReport.DataSources.Clear();
-                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-                reportViewer1.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(OrderDetailsSubReportProcessing);
-                reportViewer1.RefreshReport();
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                DataTable dt = ObtenerPedido(Id);
+                MDIPrincipal.ActualizarBarraDeEstado($"Se encontró el Pedido con Id: {Id}");
+                if (dt.Rows.Count > 0)
+                {
+                    ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                    reportViewer1.LocalReport.SubreportProcessing += new SubreportProcessingEventHandler(OrderDetailsSubReportProcessing);
+                    reportViewer1.RefreshReport();
+                }
+                else
+                {
+                    reportViewer1.LocalReport.DataSources.Clear();
+                    ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
+                    reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                    reportViewer1.RefreshReport();
+                    MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
-            {
-                reportViewer1.LocalReport.DataSources.Clear();
-                ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
-                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-                reportViewer1.RefreshReport();
-                MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            catch (Exception ex) { Utils.MsgCatchOue(ex); }
         }
 
         private DataTable ObtenerPedido(int id)

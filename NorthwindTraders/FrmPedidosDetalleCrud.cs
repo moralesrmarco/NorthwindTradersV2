@@ -226,6 +226,7 @@ namespace NorthwindTraders
             BorrarMensajesError();
             BorrarDatosBusqueda();
             DeshabilitarControles();
+            BtnNota.Enabled = false;
             DgvPedidos.Focus();
         }
 
@@ -234,6 +235,7 @@ namespace NorthwindTraders
             BorrarDatosPedido();
             BorrarMensajesError();
             DeshabilitarControles();
+            BtnNota.Enabled = false;
             LlenarDgvPedidos(sender);
             DgvPedidos.Focus();
         }
@@ -254,16 +256,12 @@ namespace NorthwindTraders
             txtPrecio.Text = "$0.00";
             txtCantidad.Text = txtUInventario.Text = "0";
             txtDescuento.Text = "0.00";
+            txtTotal.Text = "$0.00";
             DgvDetalle.Rows.Clear();
         }
 
         private void BorrarMensajesError()
         {
-            //errorProvider1.SetError(cboCategoria, "");
-            //errorProvider1.SetError(cboProducto, "");
-            //errorProvider1.SetError(txtCantidad, "");
-            //errorProvider1.SetError(txtDescuento, "");
-            //errorProvider1.SetError(btnAgregar, "");
             errorProvider1.Clear();
         }
 
@@ -334,6 +332,8 @@ namespace NorthwindTraders
             dtpBFPedidoIni.Checked = dtpBFPedidoFin.Checked = dtpBFRequeridoIni.Checked = dtpBFRequeridoFin.Checked = dtpBFEnvioIni.Checked = dtpBFEnvioFin.Checked = false;
             chkBFPedidoNull.Checked = chkBFRequeridoNull.Checked = chkBFEnvioNull.Checked = false;
         }
+
+        #region eventosDeControles
 
         private void txtBIdInicial_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -490,6 +490,8 @@ namespace NorthwindTraders
                     dtpBFEnvioIni.Value = dtpBFEnvioFin.Value;
         }
 
+        #endregion
+
         private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtPrecio.Text = "$0.00";
@@ -599,6 +601,7 @@ namespace NorthwindTraders
 
         private void DgvPedidos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            BtnNota.Enabled = false;
             BorrarDatosPedido();
             DataGridViewRow dgvr = DgvPedidos.CurrentRow;
             txtId.Text = dgvr.Cells["Id"].Value.ToString();
@@ -761,6 +764,7 @@ namespace NorthwindTraders
                     LlenarDatosDetallePedido();
                     HabilitarControles();
                     Utils.ActualizarBarraDeEstado(this, $"Se muestran {DgvPedidos.RowCount} registros de pedidos");
+                    BtnNota.Enabled = true;
                     DgvDetalle.Focus();
                 }
             }
@@ -796,6 +800,7 @@ namespace NorthwindTraders
                 int productId = (int)dgvr.Cells["ProductoId"].Value;
                 int orderId = int.Parse(txtId.Text);
                 EliminarProducto(productName, productId, orderId);
+                BtnNota.Enabled = true;
             }
             if (e.ColumnIndex == DgvDetalle.Columns["Modificar"].Index)
             {
@@ -813,6 +818,7 @@ namespace NorthwindTraders
                     DialogResult dialogResult = frmPedidosDetalleModificar.ShowDialog();
                     if (dialogResult == DialogResult.OK)
                     {
+                        BtnNota.Enabled = true;
                         BorrarDatosDetallePedido();
                         LlenarDatosDetallePedido();
                     }
@@ -865,6 +871,13 @@ namespace NorthwindTraders
                 HabilitarControles();
                 Utils.ActualizarBarraDeEstado(this, $"Se muestran {DgvPedidos.RowCount} registros de pedidos");
             }
+        }
+
+        private void BtnNota_Click(object sender, EventArgs e)
+        {
+            FrmRptNotaRemision frmRptNotaRemision = new FrmRptNotaRemision();
+            frmRptNotaRemision.Id = int.Parse(txtId.Text);
+            frmRptNotaRemision.ShowDialog();
         }
     }
 }
