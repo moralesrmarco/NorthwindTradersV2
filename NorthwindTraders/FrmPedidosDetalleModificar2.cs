@@ -104,7 +104,7 @@ namespace NorthwindTraders
                 // Verificar la disponibilidad en el inventario
                 if (valida && UInventario != null)
                 {
-                    if (short.Parse(txtCantidad.Text) > short.Parse(txtUinventario.Text))
+                    if (short.Parse(txtCantidad.Text) > short.Parse(txtUinventario.Text.Replace(",", "")))
                     {
                         errorProvider1.SetError(txtCantidad, "La cantidad de productos en el pedido excede el inventario disponible");
                         valida = false;
