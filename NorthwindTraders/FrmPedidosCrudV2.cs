@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -737,7 +736,7 @@ namespace NorthwindTraders
                 return;
             }
             DeshabilitarControlesProducto();
-            if (tabcOperacion.SelectedTab == tabpRegistrar)
+            if (tabcOperacion.SelectedTab == tabpRegistrar & !PedidoGenerado)
             {
                 txtPrecio.Text = txtPrecio.Text.Replace("$", "");
                 dgvDetalle.Rows.Add(new object[] { IdDetalle, cboProducto.Text, txtPrecio.Text, txtCantidad.Text, txtDescuento.Text, ((decimal.Parse(txtPrecio.Text) * decimal.Parse(txtCantidad.Text)) * (1 - decimal.Parse(txtDescuento.Text))).ToString(), "Modificar", "Eliminar", cboProducto.SelectedValue, txtUInventario.Text });
@@ -747,7 +746,7 @@ namespace NorthwindTraders
                 InicializarValoresProducto();
                 cboCategoria.Focus();
             }
-            else if (tabcOperacion.SelectedTab == tabpModificar)
+            else if (tabcOperacion.SelectedTab == tabpModificar | (tabcOperacion.SelectedTab == tabpRegistrar & PedidoGenerado))
             {
                 byte numRegs = 0;
                 try
@@ -1348,7 +1347,6 @@ namespace NorthwindTraders
                 {
                     Utils.MsgCatchOue(this, ex);
                 }
-                //HabilitarControles();
                 if (numRegs > 0)
                 {
                     PedidoGenerado = true;
@@ -1357,7 +1355,8 @@ namespace NorthwindTraders
                     btnNota.Visible = true;
                     btnNuevo.Enabled = true;
                     btnNuevo.Visible = true;
-                    //BorrarDatosPedido();
+                    cboCategoria.SelectedIndex = 0;
+                    cboCategoria.Enabled = true;
                     BorrarDatosBusqueda();
                     LlenarDgvPedidos(null);
                 }
@@ -1460,12 +1459,12 @@ namespace NorthwindTraders
         {
             if (e.RowIndex < 0 || (e.ColumnIndex != dgvDetalle.Columns["Eliminar"].Index & e.ColumnIndex != dgvDetalle.Columns["Modificar"].Index))
                 return;
-            if (e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index && tabcOperacion.SelectedTab == tabpRegistrar)
+            if (!PedidoGenerado & e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index & tabcOperacion.SelectedTab == tabpRegistrar)
             {
                 dgvDetalle.Rows.RemoveAt(e.RowIndex);
                 CalcularTotal();
             }
-            if (e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index && tabcOperacion.SelectedTab == tabpRegistrar)
+            if (!PedidoGenerado & e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index & tabcOperacion.SelectedTab == tabpRegistrar)
             {
                 DataGridViewRow dgvr = dgvDetalle.CurrentRow;
                 using (FrmPedidosDetalleModificar2 frmPedidosDetalleModificar2 = new FrmPedidosDetalleModificar2())
@@ -1490,7 +1489,7 @@ namespace NorthwindTraders
                     }
                 }
             }
-            if (e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index && tabcOperacion.SelectedTab == tabpModificar)
+            if ((e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index & tabcOperacion.SelectedTab == tabpModificar) | (PedidoGenerado & e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index & tabcOperacion.SelectedTab == tabpRegistrar))
             {
                 DataGridViewRow dgvr = dgvDetalle.CurrentRow;
                 string productName = dgvr.Cells["Producto"].Value.ToString();
@@ -1498,7 +1497,7 @@ namespace NorthwindTraders
                 int orderId = int.Parse(txtId.Text);
                 EliminarProducto(productName, productId, orderId);
             }
-            if (e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index && tabcOperacion.SelectedTab == tabpModificar)
+            if ((e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index & tabcOperacion.SelectedTab == tabpModificar) | (PedidoGenerado & e.ColumnIndex == dgvDetalle.Columns["Modificar"].Index & tabcOperacion.SelectedTab == tabpRegistrar))
             {
                 DataGridViewRow dgvr = dgvDetalle.CurrentRow;
                 using (FrmPedidosDetalleModificar frmPedidosDetalleModificar = new FrmPedidosDetalleModificar())
