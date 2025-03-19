@@ -787,6 +787,8 @@ namespace NorthwindTraders
                     LlenarDatosDetallePedido();
                     cboCategoria.Enabled = true;
                     btnAgregar.Enabled = true;
+                    btnNota.Enabled = true;
+                    btnNota.Visible = true;
                     Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros de pedidos");
                     dgvDetalle.Focus();
                 }
