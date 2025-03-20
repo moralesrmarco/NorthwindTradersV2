@@ -560,7 +560,7 @@
             // 
             this.btnListar.AutoSize = true;
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.Location = new System.Drawing.Point(71, 496);
+            this.btnListar.Location = new System.Drawing.Point(18, 496);
             this.btnListar.Margin = new System.Windows.Forms.Padding(4);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(363, 33);
@@ -595,12 +595,12 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(31, 412);
+            this.label19.Location = new System.Drawing.Point(41, 412);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(83, 17);
+            this.label19.Size = new System.Drawing.Size(73, 17);
             this.label19.TabIndex = 62;
-            this.label19.Text = "Dirigido a:";
+            this.label19.Text = "Enviar a:";
             // 
             // txtBDirigidoa
             // 
@@ -797,9 +797,9 @@
             this.label11.Location = new System.Drawing.Point(17, 171);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(132, 17);
+            this.label11.Size = new System.Drawing.Size(141, 17);
             this.label11.TabIndex = 50;
-            this.label11.Text = "Fecha requerido:";
+            this.label11.Text = "Fecha de entrega:";
             // 
             // chkBFPedidoNull
             // 

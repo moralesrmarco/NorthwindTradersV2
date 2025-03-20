@@ -164,7 +164,7 @@
             // 
             this.btnListar.AutoSize = true;
             this.btnListar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.Location = new System.Drawing.Point(33, 502);
+            this.btnListar.Location = new System.Drawing.Point(23, 502);
             this.btnListar.Margin = new System.Windows.Forms.Padding(4);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(363, 33);
@@ -223,7 +223,7 @@
             this.grbTransportista.Size = new System.Drawing.Size(1052, 148);
             this.grbTransportista.TabIndex = 16;
             this.grbTransportista.TabStop = false;
-            this.grbTransportista.Text = "»   Transportista:   «";
+            this.grbTransportista.Text = "»   Forma de envío:   «";
             this.grbTransportista.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint2);
             // 
             // txtFlete
@@ -273,12 +273,12 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(557, 113);
+            this.label36.Location = new System.Drawing.Point(475, 113);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(49, 17);
+            this.label36.Size = new System.Drawing.Size(129, 17);
             this.label36.TabIndex = 9;
-            this.label36.Text = "Flete:";
+            this.label36.Text = "Cargo por envío:";
             // 
             // label35
             // 
@@ -303,12 +303,12 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(523, 25);
+            this.label33.Location = new System.Drawing.Point(533, 25);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(83, 17);
+            this.label33.Size = new System.Drawing.Size(73, 17);
             this.label33.TabIndex = 6;
-            this.label33.Text = "Dirigido a:";
+            this.label33.Text = "Enviar a:";
             // 
             // txtPais
             // 
@@ -394,12 +394,12 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(24, 418);
+            this.label19.Location = new System.Drawing.Point(34, 418);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(83, 17);
+            this.label19.Size = new System.Drawing.Size(73, 17);
             this.label19.TabIndex = 29;
-            this.label19.Text = "Dirigido a:";
+            this.label19.Text = "Enviar a:";
             // 
             // txtBDirigidoa
             // 
@@ -666,9 +666,9 @@
             this.label11.Location = new System.Drawing.Point(11, 177);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(132, 17);
+            this.label11.Size = new System.Drawing.Size(141, 17);
             this.label11.TabIndex = 12;
-            this.label11.Text = "Fecha requerido:";
+            this.label11.Text = "Fecha de entrega:";
             // 
             // chkBFPedidoNull
             // 
@@ -1146,42 +1146,42 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(517, 84);
+            this.label25.Location = new System.Drawing.Point(499, 84);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(101, 17);
+            this.label25.Size = new System.Drawing.Size(124, 17);
             this.label25.TabIndex = 8;
-            this.label25.Text = "Fecha envío:";
+            this.label25.Text = "Fecha de envío:";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(491, 54);
+            this.label24.Location = new System.Drawing.Point(482, 54);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(132, 17);
+            this.label24.Size = new System.Drawing.Size(141, 17);
             this.label24.TabIndex = 7;
-            this.label24.Text = "Fecha requerido:";
+            this.label24.Text = "Fecha de entrega:";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(511, 25);
+            this.label23.Location = new System.Drawing.Point(489, 25);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(111, 17);
+            this.label23.Size = new System.Drawing.Size(134, 17);
             this.label23.TabIndex = 6;
-            this.label23.Text = "Fecha pedido:";
+            this.label23.Text = "Fecha de pedido:";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(48, 84);
+            this.label22.Location = new System.Drawing.Point(49, 84);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(84, 17);
+            this.label22.Size = new System.Drawing.Size(83, 17);
             this.label22.TabIndex = 4;
-            this.label22.Text = "Empleado:";
+            this.label22.Text = "Vendedor:";
             // 
             // cboCliente
             // 

@@ -203,6 +203,9 @@ namespace NorthwindTraders
             DgvPedidos.Columns["Fecha de pedido"].DefaultCellStyle.Format = "ddd dd\" de \"MMM\" de \"yyyy\n hh:mm:ss tt";
             DgvPedidos.Columns["Fecha requerido"].DefaultCellStyle.Format = "ddd dd\" de \"MMM\" de \"yyyy\n hh:mm:ss tt";
             DgvPedidos.Columns["Fecha de envío"].DefaultCellStyle.Format = "ddd dd\" de \"MMM\" de \"yyyy\n hh:mm:ss tt";
+
+            DgvPedidos.Columns["Fecha requerido"].HeaderText = "Fecha de entrega";
+            DgvPedidos.Columns["Dirigido a"].HeaderText = "Enviar a";
         }
 
         private void ConfDgvDetalle()
