@@ -256,7 +256,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Fecha requerido: " &amp; vbCrLf &amp; IIf(IsNothing(Fields!FechaRequerido.Value), "Nulo", Fields!FechaRequerido.Value)</Value>
+                                  <Value>="Fecha de entrega: " &amp; vbCrLf &amp; IIf(IsNothing(Fields!FechaRequerido.Value), "Nulo", Fields!FechaRequerido.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -416,7 +416,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Dirigido a: " &amp; vbCrLf &amp; Fields!DirigidoA.Value</Value>
+                                  <Value>="Enviar a: " &amp; vbCrLf &amp; Fields!DirigidoA.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -602,7 +602,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Flete: " &amp; vbCrLf &amp; Format(Fields!Flete.Value, "C2")</Value>
+                                  <Value EvaluationMode="Constant" />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -623,6 +623,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -956,6 +957,9 @@
                             <Parameter Name="OrderID">
                               <Value>=Fields!Id.Value</Value>
                             </Parameter>
+                            <Parameter Name="Cargo">
+                              <Value>=Fields!Flete.Value</Value>
+                            </Parameter>
                           </Parameters>
                           <NoRowsMessage>No se encontraron detalles del pedido</NoRowsMessage>
                           <Style>
@@ -965,7 +969,6 @@
                           </Style>
                         </Subreport>
                         <ColSpan>6</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

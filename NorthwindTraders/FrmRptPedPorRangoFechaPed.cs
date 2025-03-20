@@ -66,12 +66,12 @@ namespace NorthwindTraders
                 {
                     string query;
                     if (dateTimePicker1.Checked & dateTimePicker2.Checked)
-                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID, Freight
                                 from Orders o join Customers c on c.CustomerID = o.CustomerID
                                 where OrderDate >= @from and OrderDate < @to " +
                                     "order by OrderDate Desc, c.CompanyName";
                     else
-                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID
+                        query = @"Select OrderDate, RequiredDate, ShippedDate, c.CompanyName, o.OrderID, Freight
                                 from Orders o join Customers c on c.CustomerID = o.CustomerID
                                 where OrderDate is null " +
                                     "order by c.CompanyName";

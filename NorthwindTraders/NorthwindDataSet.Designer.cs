@@ -5581,6 +5581,8 @@ namespace NorthwindTraders {
             
             private global::System.Data.DataColumn columnOrderID;
             
+            private global::System.Data.DataColumn columnFreight;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public RptPedPorRangoFechaPedDataTable() {
@@ -5656,6 +5658,14 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn FreightColumn {
+                get {
+                    return this.columnFreight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5691,14 +5701,15 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RptPedPorRangoFechaPedRow AddRptPedPorRangoFechaPedRow(System.DateTime OrderDate, System.DateTime RequiredDate, System.DateTime ShippedDate, string CompanyName, int OrderID) {
+            public RptPedPorRangoFechaPedRow AddRptPedPorRangoFechaPedRow(System.DateTime OrderDate, System.DateTime RequiredDate, System.DateTime ShippedDate, string CompanyName, int OrderID, decimal Freight) {
                 RptPedPorRangoFechaPedRow rowRptPedPorRangoFechaPedRow = ((RptPedPorRangoFechaPedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         OrderDate,
                         RequiredDate,
                         ShippedDate,
                         CompanyName,
-                        OrderID};
+                        OrderID,
+                        Freight};
                 rowRptPedPorRangoFechaPedRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRptPedPorRangoFechaPedRow);
                 return rowRptPedPorRangoFechaPedRow;
@@ -5726,6 +5737,7 @@ namespace NorthwindTraders {
                 this.columnShippedDate = base.Columns["ShippedDate"];
                 this.columnCompanyName = base.Columns["CompanyName"];
                 this.columnOrderID = base.Columns["OrderID"];
+                this.columnFreight = base.Columns["Freight"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5741,6 +5753,8 @@ namespace NorthwindTraders {
                 base.Columns.Add(this.columnCompanyName);
                 this.columnOrderID = new global::System.Data.DataColumn("OrderID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOrderID);
+                this.columnFreight = new global::System.Data.DataColumn("Freight", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFreight);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10946,6 +10960,22 @@ namespace NorthwindTraders {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal Freight {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableRptPedPorRangoFechaPed.FreightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Freight\' de la tabla \'RptPedPorRangoFechaPed\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRptPedPorRangoFechaPed.FreightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsOrderDateNull() {
                 return this.IsNull(this.tableRptPedPorRangoFechaPed.OrderDateColumn);
             }
@@ -11002,6 +11032,18 @@ namespace NorthwindTraders {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetOrderIDNull() {
                 this[this.tableRptPedPorRangoFechaPed.OrderIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsFreightNull() {
+                return this.IsNull(this.tableRptPedPorRangoFechaPed.FreightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetFreightNull() {
+                this[this.tableRptPedPorRangoFechaPed.FreightColumn] = global::System.Convert.DBNull;
             }
         }
         

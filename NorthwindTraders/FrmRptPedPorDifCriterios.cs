@@ -1,4 +1,6 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿// https://www.youtube.com/watch?v=2-YkNo1Os3Y&list=PL_1AVI-bgZKQ2MSDejVmaaxNenhETwwx_&index=7
+// https://www.youtube.com/watch?v=7AvCaq7a1fc&list=PL_1AVI-bgZKQ2MSDejVmaaxNenhETwwx_&index=5
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -40,9 +42,9 @@ namespace NorthwindTraders
                 if (chkBFPedidoNull.Checked)
                     subtitulo += "[Fecha de pedido inicial: Nulo] - [Fecha de pedido final: Nulo] ";
                 if (dtpBFRequeridoIni.Checked)
-                    subtitulo += $"[Fecha requerido inicial: {dtpBFRequeridoIni.Value.ToShortDateString()}] - [Fecha requerido final: {dtpBFRequeridoFin.Value.ToShortDateString()}] ";
+                    subtitulo += $"[Fecha de entrega inicial: {dtpBFRequeridoIni.Value.ToShortDateString()}] - [Fecha de entrega final: {dtpBFRequeridoFin.Value.ToShortDateString()}] ";
                 if (chkBFRequeridoNull.Checked)
-                    subtitulo += "[Fecha requerido inicial: Nulo] - [Fecha requerido final: Nulo] ";
+                    subtitulo += "[Fecha de entrega inicial: Nulo] - [Fecha de entrega final: Nulo] ";
                 if (dtpBFEnvioIni.Checked)
                     subtitulo += $"[Fecha de envío inicial: {dtpBFEnvioIni.Value.ToShortDateString()}] - [Fecha de envío final: {dtpBFEnvioFin.Value.ToShortDateString()}] ";
                 if (chkBFEnvioNull.Checked)
@@ -52,7 +54,7 @@ namespace NorthwindTraders
                 if (txtBCompañiaT.Text != "")
                     subtitulo += $"[Transportista: %{txtBCompañiaT.Text}%] ";
                 if (txtBDirigidoa.Text != "")
-                    subtitulo += $"[Dirigido a: %{txtBDirigidoa.Text}%]";
+                    subtitulo += $"[Enviar a: %{txtBDirigidoa.Text}%]";
                 if (subtitulo == "")
                     subtitulo = "Ningun criterio  de selección fue especificado ( incluye todos los registros de pedidos )";
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
