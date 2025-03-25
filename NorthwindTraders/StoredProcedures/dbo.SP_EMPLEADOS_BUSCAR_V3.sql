@@ -1,4 +1,4 @@
-﻿ALTER   PROCEDURE [dbo].[SP_EMPLEADOS_BUSCAR_V2]
+﻿CREATE OR ALTER   PROCEDURE [dbo].[SP_EMPLEADOS_BUSCAR_V3]
 	@IdIni int,
 	@IdFin int,
 	@Nombres nvarchar(10),
@@ -12,10 +12,10 @@
 	@Telefono nvarchar(24)
 AS
 BEGIN
-		SELECT Employees.EmployeeID AS Id, Employees.FirstName AS Nombres, Employees.LastName AS Apellidos, Employees.Title AS Título, Employees.TitleOfCourtesy AS [Título de cortesia], 
-        Employees.BirthDate AS [Fecha de nacimiento], Employees.HireDate AS [Fecha de contratación], Employees.Address AS Domicilio, Employees.City AS Ciudad, Employees.Region AS Región, 
-        Employees.PostalCode AS [Código postal], Employees.Country AS País, Employees.HomePhone AS Teléfono, Employees.Extension AS Extensión, Employees.Photo AS Foto, Employees.Notes AS Notas, 
-        Employees.ReportsTo AS Reportaa, Employees_1.LastName + N', ' + Employees_1.FirstName AS [Reporta a], Employees.RowVersion
+		SELECT Employees.EmployeeID AS Id, Employees.FirstName AS Nombres, Employees.LastName AS Apellidos, Employees.Title AS Título, 
+        Employees.BirthDate AS [Fecha de nacimiento], Employees.City AS Ciudad,
+        Employees.Country AS País, Employees.Photo AS Foto, 
+        Employees_1.LastName + N', ' + Employees_1.FirstName AS [Reporta a]
 		FROM Employees LEFT OUTER JOIN
 		Employees AS Employees_1 ON Employees.ReportsTo = Employees_1.EmployeeID
 		WHERE

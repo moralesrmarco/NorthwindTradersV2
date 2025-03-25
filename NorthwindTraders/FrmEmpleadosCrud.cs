@@ -19,10 +19,7 @@ namespace NorthwindTraders
             WindowState = FormWindowState.Maximized;
         }
 
-        private void grbPaint(object sender, PaintEventArgs e)
-        {
-            Utils.GrbPaint(this, sender, e);
-        }
+        private void grbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
         private void FrmEmpleadosCrud_Load(object sender, EventArgs e)
         {
@@ -112,12 +109,12 @@ namespace NorthwindTraders
                 SqlCommand cmd;
                 if (sender == null)
                 {
-                    cmd = new SqlCommand("Sp_Empleados_Listar", cn);
+                    cmd = new SqlCommand("Sp_Empleados_Listar_V2", cn);
                     cmd.Parameters.AddWithValue("top100", 0);
                 }
                 else
                 {
-                    cmd = new SqlCommand("Sp_Empleados_Buscar_V2", cn);
+                    cmd = new SqlCommand("Sp_Empleados_Buscar_V3", cn);
                     cmd.Parameters.AddWithValue("IdIni", txtBIdIni.Text);
                     cmd.Parameters.AddWithValue("IdFin", txtBIdFin.Text);
                     cmd.Parameters.AddWithValue("Nombres", txtBNombres.Text);
@@ -155,18 +152,9 @@ namespace NorthwindTraders
         private void ConfDgvEmpleados(DataGridView dgv)
         {
             dgv.Columns["Id"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns["Título de cortesia"].Visible = false;
-            dgv.Columns["Fecha de contratación"].Visible = false;
-            dgv.Columns["Domicilio"].Visible = false;
-            dgv.Columns["Región"].Visible = false;
-            dgv.Columns["Código postal"].Visible = false;
-            dgv.Columns["Teléfono"].Visible = false;
-            dgv.Columns["Extensión"].Visible = false;
-            dgv.Columns["Notas"].Visible = false;
             dgv.Columns["Foto"].Width = 20;
             dgv.Columns["Foto"].DefaultCellStyle.Padding = new Padding(2, 2, 2, 2);
             ((DataGridViewImageColumn)dgv.Columns["Foto"]).ImageLayout = DataGridViewImageCellLayout.Zoom;
-            dgv.Columns["Reportaa"].Visible = false;
             dgv.Columns["Título"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns["Fecha de nacimiento"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns["Ciudad"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -272,7 +260,7 @@ namespace NorthwindTraders
             {
                 valida = false;
                 errorProvider1.SetError(txtTitulo, "Ingrese el título");
-            }    
+            }
             if (txtTitCortesia.Text == "")
             {
                 valida = false;
@@ -329,7 +317,7 @@ namespace NorthwindTraders
         private void FrmEmpleadosCrud_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (tabcOperacion.SelectedTab != tbpListar)
-                if (txtId.Text != "" || txtNombres.Text != "" || txtApellidos.Text != "" || txtTitulo.Text != "" || txtTitCortesia.Text != "" || txtDomicilio.Text != "" || txtCiudad.Text != "" || txtRegion.Text != "" || txtCodigoP.Text != "" || txtPais.Text != "" || txtTelefono.Text != "" || txtExtension.Text != "" || dtpFNacimiento.Value != dtpFNacimiento.MinDate || dtpFContratacion.Value != dtpFContratacion.MinDate ||  txtNotas.Text.Trim() != "" || cboReportaA.SelectedIndex > 0)
+                if (txtId.Text != "" || txtNombres.Text != "" || txtApellidos.Text != "" || txtTitulo.Text != "" || txtTitCortesia.Text != "" || txtDomicilio.Text != "" || txtCiudad.Text != "" || txtRegion.Text != "" || txtCodigoP.Text != "" || txtPais.Text != "" || txtTelefono.Text != "" || txtExtension.Text != "" || dtpFNacimiento.Value != dtpFNacimiento.MinDate || dtpFContratacion.Value != dtpFContratacion.MinDate || txtNotas.Text.Trim() != "" || cboReportaA.SelectedIndex > 0)
                 {
                     DialogResult respuesta = MessageBox.Show(Utils.preguntaCerrar, Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (respuesta == DialogResult.No)
@@ -344,48 +332,82 @@ namespace NorthwindTraders
                 DeshabilitarControles();
                 DataGridViewRow dgvr = dgv.CurrentRow;
                 txtId.Text = dgvr.Cells["Id"].Value.ToString();
-                txtNombres.Text = dgvr.Cells["Nombres"].Value.ToString();
-                txtApellidos.Text = dgvr.Cells["Apellidos"].Value.ToString();
-                txtTitulo.Text = dgvr.Cells["Título"].Value.ToString();
-                txtTitCortesia.Text = dgvr.Cells["Título de cortesia"].Value.ToString();
-                txtDomicilio.Text = dgvr.Cells["Domicilio"].Value.ToString();
-                txtCiudad.Text = dgvr.Cells["Ciudad"].Value.ToString();
-                txtRegion.Text = dgvr.Cells["Región"].Value.ToString();
-                txtCodigoP.Text = dgvr.Cells["Código postal"].Value.ToString();
-                txtPais.Text = dgvr.Cells["País"].Value.ToString();
-                txtTelefono.Text = dgvr.Cells["Teléfono"].Value.ToString();
-                txtExtension.Text = dgvr.Cells["Extensión"].Value.ToString();
-                if (dgvr.Cells["Fecha de nacimiento"].Value != DBNull.Value)
-                    dtpFNacimiento.Value = DateTime.Parse(dgvr.Cells["Fecha de nacimiento"].Value.ToString());
-                else
-                    dtpFNacimiento.Value = dtpFNacimiento.MinDate;
-                if (dgvr.Cells["Fecha de contratación"].Value != DBNull.Value)
-                    dtpFContratacion.Value = DateTime.Parse(dgvr.Cells["Fecha de contratación"].Value.ToString());
-                else
-                    dtpFContratacion.Value = dtpFContratacion.MinDate;
-                if (dgvr.Cells["Foto"].Value != DBNull.Value)
+                try
                 {
-                    byte[] foto = (byte[])dgvr.Cells["Foto"].Value;
-                    MemoryStream ms;
-                    if (int.Parse(txtId.Text) <= 9)
+                    SqlCommand cmd = new SqlCommand(@"SELECT Employees.EmployeeID AS Id, Employees.FirstName AS Nombres, Employees.LastName AS Apellidos, Employees.Title AS Título, Employees.TitleOfCourtesy AS [Título de cortesia], Employees.BirthDate AS [Fecha de nacimiento], Employees.HireDate AS [Fecha de contratación], Employees.Address AS Domicilio, Employees.City AS Ciudad, Employees.Region AS Región, Employees.PostalCode AS [Código postal], Employees.Country AS País, Employees.HomePhone AS Teléfono, Employees.Extension AS Extensión, Employees.Photo AS Foto, Employees.Notes AS Notas, Employees.ReportsTo AS Reportaa, Employees_1.LastName + N', ' + Employees_1.FirstName AS [Reporta a], Employees.RowVersion FROM Employees LEFT OUTER JOIN Employees AS Employees_1 ON Employees.ReportsTo = Employees_1.EmployeeID Where Employees.EmployeeID = @Id", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("Id", txtId.Text);
+                    if (cn.State != ConnectionState.Open)
+                        cn.Open();
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
                     {
-                        ms = new MemoryStream(foto, 78, foto.Length - 78);
-                        btnCargar.Enabled = false; // no se permite modificar porque desconozco el formato de la imagen.
+                        if (rdr.Read())
+                        {
+                            txtId.Tag = rdr["RowVersion"];
+                            txtNombres.Text = rdr["Nombres"].ToString();
+                            txtApellidos.Text = rdr["Apellidos"].ToString();
+                            txtTitulo.Text = rdr["Título"].ToString();
+                            txtTitCortesia.Text = rdr["Título de cortesia"].ToString();
+                            txtDomicilio.Text = rdr["Domicilio"].ToString();
+                            txtCiudad.Text = rdr["Ciudad"].ToString();
+                            txtRegion.Text = rdr["Región"].ToString();
+                            txtCodigoP.Text = rdr["Código postal"].ToString();
+                            txtPais.Text = rdr["País"].ToString();
+                            txtTelefono.Text = rdr["Teléfono"].ToString();
+                            txtExtension.Text = rdr["Extensión"].ToString();
+                            if (rdr["Fecha de nacimiento"] != DBNull.Value)
+                                dtpFNacimiento.Value = DateTime.Parse(rdr["Fecha de nacimiento"].ToString());
+                            else
+                                dtpFNacimiento.Value = dtpFNacimiento.MinDate;
+                            if (rdr["Fecha de contratación"] != DBNull.Value)
+                                dtpFContratacion.Value = DateTime.Parse(rdr["Fecha de contratación"].ToString());
+                            else
+                                dtpFContratacion.Value = dtpFContratacion.MinDate;
+                            if (rdr["Foto"] != DBNull.Value)
+                            {
+                                byte[] foto = (byte[])rdr["Foto"];
+                                MemoryStream ms;
+                                if (int.Parse(txtId.Text) <= 9)
+                                {
+                                    ms = new MemoryStream(foto, 78, foto.Length - 78);
+                                    btnCargar.Enabled = false; // no se permite modificar porque desconozco el formato de la imagen.
+                                }
+                                else
+                                {
+                                    ms = new MemoryStream(foto);
+                                    btnCargar.Enabled = true;
+                                }
+                                picFoto.Image = Image.FromStream(ms);
+                            }
+                            else
+                                picFoto.Image = null;
+                            txtNotas.Text = rdr["Notas"].ToString();
+                            if (rdr["Reportaa"] != DBNull.Value)
+                                cboReportaA.SelectedValue = rdr["Reportaa"].ToString();
+                            else
+                                cboReportaA.SelectedValue = 0;
+                        }
+                        else 
+                        { 
+                            MessageBox.Show($"No se encontró el empleado con Id: {txtId.Text}, es posible que otro usuario lo haya eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (cn.State == ConnectionState.Open) cn.Close();
+                            ActualizaDgv();
+                            return;
+                        }
                     }
-                    else
-                    {
-                        ms = new MemoryStream(foto);
-                        btnCargar.Enabled = true;
-                    }
-                    picFoto.Image = Image.FromStream(ms);
                 }
-                else 
-                    picFoto.Image = null;
-                txtNotas.Text = dgvr.Cells["Notas"].Value.ToString();
-                if (dgvr.Cells["Reportaa"].Value != DBNull.Value)
-                    cboReportaA.SelectedValue = dgvr.Cells["Reportaa"].Value.ToString();
-                else 
-                    cboReportaA.SelectedValue = 0;
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    if (cn.State == ConnectionState.Open) cn.Close();
+                }
                 if (tabcOperacion.SelectedTab == tbpListar)
                 {
                     btnOperacion.Visible = true;
@@ -476,7 +498,7 @@ namespace NorthwindTraders
                 frmRptEmpleado.Id = int.Parse(txtId.Text);
                 frmRptEmpleado.ShowDialog();
             }
-            if (tabcOperacion.SelectedTab == tbpRegistrar)
+            else if (tabcOperacion.SelectedTab == tbpRegistrar)
             {
                 if (ValidarControles())
                 {
@@ -519,7 +541,7 @@ namespace NorthwindTraders
                             cmd.Parameters.AddWithValue("Notas", DBNull.Value);
                         else
                             cmd.Parameters.AddWithValue("Notas", txtNotas.Text);
-                        if (int.Parse(cboReportaA.SelectedValue.ToString()) == 0 )
+                        if (int.Parse(cboReportaA.SelectedValue.ToString()) == 0)
                             //|| int.Parse(cboReportaA.SelectedValue.ToString()) == -1)
                             cmd.Parameters.AddWithValue("Reportaa", DBNull.Value);
                         else
@@ -547,12 +569,10 @@ namespace NorthwindTraders
                     {
                         cn.Close();
                     }
-                    LlenarCboReportaA();
-                    LlenarCboPais();
                     HabilitarControles();
                     btnOperacion.Enabled = true;
-                    if (numRegs > 0)
-                        BuscaReg();
+                    LlenarCombos();
+                    ActualizaDgv();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
@@ -568,7 +588,7 @@ namespace NorthwindTraders
                     byteFoto = (byte[])converter.ConvertTo(image, typeof(byte[]));
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Empleados_Actualizar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Empleados_Actualizar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
                         cmd.Parameters.AddWithValue("Nombres", txtNombres.Text);
@@ -602,12 +622,13 @@ namespace NorthwindTraders
                         else
                             cmd.Parameters.AddWithValue("Reportaa", cboReportaA.SelectedValue);
                         cmd.Parameters.AddWithValue("Foto", byteFoto);
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
                         cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue modificado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex)
                     {
@@ -621,12 +642,10 @@ namespace NorthwindTraders
                     {
                         cn.Close();
                     }
-                    LlenarCboReportaA();
-                    LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    LlenarCombos();
+                    ActualizaDgv();
                 }
-            } 
+            }
             else if (tabcOperacion.SelectedTab == tbpEliminar)
             {
                 if (txtId.Text == "")
@@ -641,15 +660,16 @@ namespace NorthwindTraders
                     Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Empleados_Eliminar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Empleados_Eliminar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
                         cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex) when (ex.Number == 547)
                     {
@@ -667,10 +687,8 @@ namespace NorthwindTraders
                     {
                         cn.Close();
                     }
-                    LlenarCboReportaA();
-                    LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    LlenarCombos();
+                    ActualizaDgv();
                 }
             }
         }
@@ -697,12 +715,16 @@ namespace NorthwindTraders
             }
         }
 
-        private void BuscaReg()
+        private void ActualizaDgv()
         {
-            BorrarDatosBusqueda();
-            txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
-            btnBuscar.PerformClick();
+            LlenarDgv(null);
             btnLimpiar.PerformClick();
+        }
+
+        private void LlenarCombos()
+        {
+            LlenarCboPais();
+            LlenarCboReportaA();
         }
     }
 }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
     public partial class FrmPedidosCrud : Form
     {
-
+        #region ocultar1
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
         private TabPage lastSelectedTab;
         bool EventoCargardo = true; // esta variable es necesaria para controlar el manejador de eventos de la celda del dgv, ojo no quitar
@@ -233,6 +234,8 @@ namespace NorthwindTraders
             }
         }
 
+        #endregion ocultar1
+
         private void LlenarDgvPedidos(object sender)
         {
             Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
@@ -378,6 +381,8 @@ namespace NorthwindTraders
             LlenarDgvPedidos(null);
             dgvPedidos.Focus();
         }
+
+        #region ocultar2
 
         private void BorrarDatosPedido()
         {
@@ -573,6 +578,8 @@ namespace NorthwindTraders
                     dtpBFEnvioIni.Value = dtpBFEnvioFin.Value;
         }
 
+        #endregion ocultar2
+
         private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtPrecio.Text = "$0.00";
@@ -723,6 +730,7 @@ namespace NorthwindTraders
             }
         }
 
+        #region ocultar3
         private void CalcularTotal()
         {
             decimal total = 0;
@@ -805,6 +813,8 @@ namespace NorthwindTraders
             }
         }
 
+        #endregion ocultar3
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             BorrarMensajesError();
@@ -876,6 +886,7 @@ namespace NorthwindTraders
             CalcularTotal();
         }
 
+        #region ocultar4
         private void txtFlete_KeyPress(object sender, KeyPressEventArgs e)
         {
             Utils.ValidarDigitosConPunto(sender, e);
@@ -910,6 +921,7 @@ namespace NorthwindTraders
                 }
             }
         }
+        #endregion ocultar4
 
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
         {          
@@ -1021,64 +1033,73 @@ namespace NorthwindTraders
             try
             {
                 Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
-                cn.Open();
-                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow);
-                if (rdr.Read())
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    cboCliente.SelectedIndexChanged -= new EventHandler(cboCliente_SelectedIndexChanged);
-                    cboCliente.SelectedValue = rdr["CustomerId"] == DBNull.Value ? 0 : rdr["CustomerId"];
-                    cboCliente.SelectedIndexChanged += new EventHandler(cboCliente_SelectedIndexChanged);
-                    cboEmpleado.SelectedValue = rdr["EmployeeId"] == DBNull.Value ? 0 : rdr["EmployeeId"];
-                    cboTransportista.SelectedValue = rdr["ShipVia"] == DBNull.Value ? 0 : rdr["ShipVia"];
-                    txtDirigidoa.Text = rdr["ShipName"] == DBNull.Value ? "" : rdr["ShipName"].ToString();
-                    txtDomicilio.Text = rdr["ShipAddress"] == DBNull.Value ? "" : rdr["ShipAddress"].ToString();
-                    txtCiudad.Text = rdr["ShipCity"] == DBNull.Value ? "" : rdr["ShipCity"].ToString();
-                    txtRegion.Text = rdr["ShipRegion"] == DBNull.Value ? "" : rdr["ShipRegion"].ToString();
-                    txtCP.Text = rdr["ShipPostalCode"] == DBNull.Value ? "" : rdr["ShipPostalCode"].ToString();
-                    txtPais.Text = rdr["ShipCountry"] == DBNull.Value ? "" : rdr["ShipCountry"].ToString();
-                    txtFlete.Text = rdr["Freight"] == DBNull.Value ? "" : rdr["Freight"].ToString();
-                    decimal flete;
-                    if (decimal.TryParse(txtFlete.Text, out flete))
-                        txtFlete.Text = flete.ToString("c2");
-                    DateTime fecha;
-                    if (DateTime.TryParse(rdr["OrderDate"].ToString(), out fecha))
+                    using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn))
                     {
-                        dtpPedido.Value = fecha;
-                        dtpHoraPedido.Value = fecha;
-                    }
-                    else
-                    {
-                        dtpPedido.Value = dtpPedido.MinDate;
-                        dtpPedido.Checked = false;
-                        dtpHoraPedido.Value = dtpHoraPedido.MinDate;
-                    }
-                    if (DateTime.TryParse(rdr["RequiredDate"].ToString(), out fecha))
-                    {
-                        dtpRequerido.Value = fecha;
-                        dtpHoraRequerido.Value = fecha;
-                    }
-                    else
-                    {
-                        dtpRequerido.Value = dtpRequerido.MinDate;
-                        dtpRequerido.Checked = false;
-                        dtpHoraRequerido.Value = dtpHoraRequerido.MinDate;
-                    }
-                    if (DateTime.TryParse(rdr["ShippedDate"].ToString(), out fecha))
-                    {
-                        dtpEnvio.Value = fecha;
-                        dtpHoraEnvio.Value = fecha;
-                    }
-                    else
-                    {
-                        dtpEnvio.Value = dtpEnvio.MinDate;
-                        dtpEnvio.Checked = false;
-                        dtpHoraEnvio.Value = dtpHoraEnvio.MinDate;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                        cn.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (rdr.Read())
+                            {
+                                cboCliente.SelectedIndexChanged -= new EventHandler(cboCliente_SelectedIndexChanged);
+                                cboCliente.SelectedValue = rdr["CustomerId"] == DBNull.Value ? 0 : rdr["CustomerId"];
+                                cboCliente.SelectedIndexChanged += new EventHandler(cboCliente_SelectedIndexChanged);
+                                cboEmpleado.SelectedValue = rdr["EmployeeId"] == DBNull.Value ? 0 : rdr["EmployeeId"];
+                                cboTransportista.SelectedValue = rdr["ShipVia"] == DBNull.Value ? 0 : rdr["ShipVia"];
+                                txtDirigidoa.Text = rdr["ShipName"] == DBNull.Value ? "" : rdr["ShipName"].ToString();
+                                txtDomicilio.Text = rdr["ShipAddress"] == DBNull.Value ? "" : rdr["ShipAddress"].ToString();
+                                txtCiudad.Text = rdr["ShipCity"] == DBNull.Value ? "" : rdr["ShipCity"].ToString();
+                                txtRegion.Text = rdr["ShipRegion"] == DBNull.Value ? "" : rdr["ShipRegion"].ToString();
+                                txtCP.Text = rdr["ShipPostalCode"] == DBNull.Value ? "" : rdr["ShipPostalCode"].ToString();
+                                txtPais.Text = rdr["ShipCountry"] == DBNull.Value ? "" : rdr["ShipCountry"].ToString();
+                                txtFlete.Text = rdr["Freight"] == DBNull.Value ? "" : rdr["Freight"].ToString();
+                                decimal flete;
+                                if (decimal.TryParse(txtFlete.Text, out flete))
+                                    txtFlete.Text = flete.ToString("c2");
+                                DateTime fecha;
+                                if (DateTime.TryParse(rdr["OrderDate"].ToString(), out fecha))
+                                {
+                                    dtpPedido.Value = fecha;
+                                    dtpHoraPedido.Value = fecha;
+                                }
+                                else
+                                {
+                                    dtpPedido.Value = dtpPedido.MinDate;
+                                    dtpPedido.Checked = false;
+                                    dtpHoraPedido.Value = dtpHoraPedido.MinDate;
+                                }
+                                if (DateTime.TryParse(rdr["RequiredDate"].ToString(), out fecha))
+                                {
+                                    dtpRequerido.Value = fecha;
+                                    dtpHoraRequerido.Value = fecha;
+                                }
+                                else
+                                {
+                                    dtpRequerido.Value = dtpRequerido.MinDate;
+                                    dtpRequerido.Checked = false;
+                                    dtpHoraRequerido.Value = dtpHoraRequerido.MinDate;
+                                }
+                                if (DateTime.TryParse(rdr["ShippedDate"].ToString(), out fecha))
+                                {
+                                    dtpEnvio.Value = fecha;
+                                    dtpHoraEnvio.Value = fecha;
+                                }
+                                else
+                                {
+                                    dtpEnvio.Value = dtpEnvio.MinDate;
+                                    dtpEnvio.Checked = false;
+                                    dtpHoraEnvio.Value = dtpHoraEnvio.MinDate;
+                                }
+                                byte[] rowVersion = (byte[])rdr["RowVersion"];
+                                txtId.Tag = rowVersion;
+                            }
+                            rdr.Close();
+                        }
                     }
                 }
-                rdr.Close();
                 Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
             }
             catch (SqlException ex)
@@ -1101,29 +1122,37 @@ namespace NorthwindTraders
             {
                 IdDetalle = 1;
                 Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
-                SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
-                cn.Open();
-                SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult);
-                PedidoDetalle pedidoDetalle;
-                if (rdr.Read())
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    do
+                    using (SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn))
                     {
-                        pedidoDetalle = new PedidoDetalle();
-                        pedidoDetalle.ProductId = (int)rdr["Id Producto"];
-                        pedidoDetalle.ProductName = rdr["Producto"].ToString();
-                        pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
-                        pedidoDetalle.Quantity = (short)rdr["Cantidad"];
-                        pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
-                        dgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "Eliminar", pedidoDetalle.ProductId });
-                        ++IdDetalle;
-                    } while (rdr.Read());
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                        cn.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                        {
+                            PedidoDetalle pedidoDetalle;
+                            if (rdr.Read())
+                            {
+                                do
+                                {
+                                    pedidoDetalle = new PedidoDetalle();
+                                    pedidoDetalle.ProductId = (int)rdr["Id Producto"];
+                                    pedidoDetalle.ProductName = rdr["Producto"].ToString();
+                                    pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
+                                    pedidoDetalle.Quantity = (short)rdr["Cantidad"];
+                                    pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
+                                    pedidoDetalle.RowVersion = (byte[])rdr["RowVersion"];
+                                    dgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "Eliminar", pedidoDetalle.ProductId, pedidoDetalle.RowVersion });
+                                    ++IdDetalle;
+                                } while (rdr.Read());
+                            }
+                            else
+                                MessageBox.Show("No se encontraron detalles para el pedido especificado", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            rdr.Close();
+                        }
+                    }
                 }
-                else
-                    MessageBox.Show("No se encontraron detalles para el pedido especificado", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                rdr.Close();
                 CalcularTotal();
                 Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
             }
@@ -1149,6 +1178,7 @@ namespace NorthwindTraders
             public short Quantity { get; set; }
             public decimal Discount { get; set; }
             public string ProductName { get; set; }
+            public byte[] RowVersion { get; set; }
         }
 
         private class Pedido
@@ -1167,6 +1197,7 @@ namespace NorthwindTraders
             public string ShipRegion { get; set; }
             public string ShipPostalCode { get; set;}
             public string ShipCountry { get; set; }
+            public byte[] RowVersion { get; set; }
         }
 
         private class PedidosDB
@@ -1470,6 +1501,10 @@ namespace NorthwindTraders
 
         private void btnNota_Click(object sender, EventArgs e)
         {
+            if (!chkRowVersion())
+            {
+                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se mostrará la nota de remisión con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             FrmRptNotaRemision frmRptNotaRemision = new FrmRptNotaRemision();
             frmRptNotaRemision.Id = int.Parse(txtId.Text);
             frmRptNotaRemision.ShowDialog();
@@ -1484,6 +1519,90 @@ namespace NorthwindTraders
             btnNuevo.Enabled = false;
             btnNuevo.Visible = true;
             PedidoGenerado = false;
+        }
+
+        private bool chkRowVersion()
+        {
+            bool rowVersionOk = true;
+            if (txtId.Tag != null)
+            {
+                byte[] rowVersion = (byte[])txtId.Tag;
+                byte[] rowVersionActual = null;
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                            cn.Open();
+                            using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                            {
+                                if (rdr.Read())
+                                {
+                                    rowVersionActual = (byte[])rdr["RowVersion"];
+                                    if (!rowVersion.SequenceEqual(rowVersionActual))
+                                    {
+                                        //MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se cerrará el formulario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        rowVersionOk = false;
+                                        //this.Close();
+                                    }
+                                }
+                                rdr.Close();
+                            }
+                        }
+                    }
+                    using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                            cn.Open();
+                            using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                            {
+                                PedidoDetalle pedidoDetalle;
+                                if (rdr.Read())
+                                {
+                                    do
+                                    {
+                                        pedidoDetalle = new PedidoDetalle();
+                                        pedidoDetalle.ProductId = (int)rdr["Id Producto"];
+                                        pedidoDetalle.ProductName = rdr["Producto"].ToString();
+                                        pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
+                                        pedidoDetalle.Quantity = (short)rdr["Cantidad"];
+                                        pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
+                                        pedidoDetalle.RowVersion = (byte[])rdr["RowVersion"];
+                                        if (!rowVersion.SequenceEqual(pedidoDetalle.RowVersion))
+                                        {
+                                            //MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se cerrará el formulario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            rowVersionOk = false;
+                                            //this.Close();
+                                        }
+                                    } while (rdr.Read());
+                                }
+                                rdr.Close();
+                            }
+                        }
+                    }
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {dgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+            return rowVersionOk;
         }
     }
 }
