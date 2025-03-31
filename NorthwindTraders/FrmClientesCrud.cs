@@ -17,10 +17,7 @@ namespace NorthwindTraders
             WindowState = FormWindowState.Maximized;
         }
 
-        private void grbPaint(object sender, PaintEventArgs e)
-        {
-            Utils.GrbPaint(this, sender, e);
-        }
+        private void grbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
         private void FrmClientesCrud_Load(object sender, EventArgs e)
         {
@@ -67,6 +64,7 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(this, ex);
             }
+            Utils.ActualizarBarraDeEstado(this);
         }
 
         private void LlenarDgv(object sender)
@@ -100,6 +98,7 @@ namespace NorthwindTraders
                 dap.Fill(tbl);
                 dgv.DataSource = tbl;
                 Utils.ConfDgv(dgv);
+                ConfDgvClientes(dgv);
                 if (sender == null)
                     Utils.ActualizarBarraDeEstado(this, $"Se muestran los primeros {dgv.RowCount} clientes registrados");
                 else
@@ -113,6 +112,19 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(this, ex);
             }
+        }
+
+        private void ConfDgvClientes(DataGridView dgv)
+        {
+            dgv.Columns["Id"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns["Código postal"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns["País"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns["Teléfono"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns["Fax"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns["Ciudad"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["Región"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["Código postal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["País"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void BorrarDatosCliente()
@@ -215,10 +227,7 @@ namespace NorthwindTraders
                 }
         }
 
-        private void FrmClientesCrud_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Utils.ActualizarBarraDeEstado(this);
-        }
+        private void FrmClientesCrud_FormClosed(object sender, FormClosedEventArgs e) => Utils.ActualizarBarraDeEstado(this);
 
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
         {
@@ -269,16 +278,49 @@ namespace NorthwindTraders
                 DeshabilitarControles();
                 DataGridViewRow dgvr = dgv.CurrentRow;
                 txtId.Text = dgvr.Cells["Id"].Value.ToString();
-                txtCompañia.Text = dgvr.Cells["Nombre de compañía"].Value.ToString();
-                txtContacto.Text = dgvr.Cells["Nombre de contacto"].Value.ToString();
-                txtTitulo.Text = dgvr.Cells["Título de contacto"].Value.ToString();
-                txtDomicilio.Text = dgvr.Cells["Domicilio"].Value.ToString();
-                txtCiudad.Text = dgvr.Cells["Ciudad"].Value.ToString();
-                txtRegion.Text = dgvr.Cells["Región"].Value.ToString();
-                txtCodigoP.Text = dgvr.Cells["Código postal"].Value.ToString();
-                txtPais.Text = dgvr.Cells["País"].Value.ToString();
-                txtTelefono.Text = dgvr.Cells["Teléfono"].Value.ToString();
-                txtFax.Text = dgvr.Cells["Fax"].Value.ToString();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Select * From Customers Where CustomerID = @Id", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("Id", txtId.Text);
+                    if (cn.State != ConnectionState.Open) cn.Open();
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                        {
+                            txtId.Tag = rdr["RowVersion"];
+                            txtCompañia.Text = rdr["CompanyName"].ToString();
+                            txtContacto.Text = rdr["ContactName"].ToString();
+                            txtTitulo.Text = rdr["ContactTitle"].ToString();
+                            txtDomicilio.Text = rdr["Address"].ToString();
+                            txtCiudad.Text = rdr["City"].ToString();
+                            txtRegion.Text = rdr["Region"].ToString();
+                            txtCodigoP.Text = rdr["PostalCode"].ToString();
+                            txtPais.Text = rdr["Country"].ToString();
+                            txtTelefono.Text = rdr["Phone"].ToString();
+                            txtFax.Text = rdr["Fax"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se encontró el cliente con Id: {txtId.Text}, es posible que otro usuario lo haya eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (cn.State == ConnectionState.Open) cn.Close();
+                            ActualizaDgv();
+                            return;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    if (cn.State == ConnectionState.Open) cn.Close();
+                }
                 if (tabcOperacion.SelectedTab == tbpModificar)
                 {
                     HabilitarControles();
@@ -322,7 +364,7 @@ namespace NorthwindTraders
                         cmd.Parameters.AddWithValue("Telefono", txtTelefono.Text);
                         if (txtFax.Text == "") cmd.Parameters.AddWithValue("Fax", DBNull.Value);
                         else cmd.Parameters.AddWithValue("Fax", txtFax.Text);
-                        cn.Open();
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -343,7 +385,7 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
                     HabilitarControles();
@@ -361,7 +403,7 @@ namespace NorthwindTraders
                     btnOperacion.Enabled = false;
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Clientes_Actualizar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Clientes_Actualizar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
                         cmd.Parameters.AddWithValue("Compañia", txtCompañia.Text);
@@ -377,12 +419,13 @@ namespace NorthwindTraders
                         cmd.Parameters.AddWithValue("Telefono", txtTelefono.Text);
                         if (txtFax.Text == "") cmd.Parameters.AddWithValue("Fax", DBNull.Value);
                         else cmd.Parameters.AddWithValue("Fax", txtFax.Text);
-                        cn.Open();
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue modificado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex)
                     {
@@ -394,7 +437,7 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
                     if (numRegs > 0)
@@ -415,15 +458,16 @@ namespace NorthwindTraders
                     Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Clientes_Eliminar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Clientes_Eliminar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
-                        cn.Open();
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El cliente con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex) when (ex.Number == 547)
                     {
@@ -439,11 +483,10 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
                 }
             }
         }
@@ -453,6 +496,12 @@ namespace NorthwindTraders
             BorrarDatosBusqueda();
             txtBId.Text = txtId.Text;
             btnBuscar.PerformClick();
+            btnLimpiar.PerformClick();
+        }
+
+        private void ActualizaDgv()
+        {
+            LlenarDgv(null);
             btnLimpiar.PerformClick();
         }
     }

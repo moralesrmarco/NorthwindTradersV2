@@ -1,4 +1,4 @@
-﻿CREATE   PROCEDURE [dbo].[SP_CLIENTES_BUSCAR]
+﻿ALTER   PROCEDURE [dbo].[SP_CLIENTES_BUSCAR]
 	@Id nvarchar(5), -- Se tuvo que poner de tipo nvarchar por que con nchar no funcionaba la busqueda
 	@Compañia nvarchar(40),
 	@Contacto nvarchar(30),
@@ -26,4 +26,5 @@ BEGIN
 		(@Pais = '' OR Country LIKE '%' + @Pais + '%') AND
 		(@Telefono = '' OR Phone LIKE '%' + @Telefono + '%') AND
 		(@Fax = '' OR Fax LIKE '%' + @Fax + '%')
+		ORDER BY CustomerID
 END

@@ -337,8 +337,7 @@ namespace NorthwindTraders
                     SqlCommand cmd = new SqlCommand(@"SELECT Employees.EmployeeID AS Id, Employees.FirstName AS Nombres, Employees.LastName AS Apellidos, Employees.Title AS Título, Employees.TitleOfCourtesy AS [Título de cortesia], Employees.BirthDate AS [Fecha de nacimiento], Employees.HireDate AS [Fecha de contratación], Employees.Address AS Domicilio, Employees.City AS Ciudad, Employees.Region AS Región, Employees.PostalCode AS [Código postal], Employees.Country AS País, Employees.HomePhone AS Teléfono, Employees.Extension AS Extensión, Employees.Photo AS Foto, Employees.Notes AS Notas, Employees.ReportsTo AS Reportaa, Employees_1.LastName + N', ' + Employees_1.FirstName AS [Reporta a], Employees.RowVersion FROM Employees LEFT OUTER JOIN Employees AS Employees_1 ON Employees.ReportsTo = Employees_1.EmployeeID Where Employees.EmployeeID = @Id", cn);
                     cmd.CommandType = CommandType.Text;
                     cmd.Parameters.AddWithValue("Id", txtId.Text);
-                    if (cn.State != ConnectionState.Open)
-                        cn.Open();
+                    if (cn.State != ConnectionState.Open) cn.Open();
                     using (SqlDataReader rdr = cmd.ExecuteReader())
                     {
                         if (rdr.Read())
@@ -547,7 +546,7 @@ namespace NorthwindTraders
                         else
                             cmd.Parameters.AddWithValue("Reportaa", cboReportaA.SelectedValue);
                         cmd.Parameters.AddWithValue("Foto", byteFoto);
-                        cn.Open();
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                         {
@@ -567,7 +566,7 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     HabilitarControles();
                     btnOperacion.Enabled = true;
@@ -623,7 +622,7 @@ namespace NorthwindTraders
                             cmd.Parameters.AddWithValue("Reportaa", cboReportaA.SelectedValue);
                         cmd.Parameters.AddWithValue("Foto", byteFoto);
                         cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
-                        cn.Open();
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -640,7 +639,7 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCombos();
                     ActualizaDgv();
@@ -664,7 +663,7 @@ namespace NorthwindTraders
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
                         cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
-                        cn.Open();
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -685,7 +684,7 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCombos();
                     ActualizaDgv();
