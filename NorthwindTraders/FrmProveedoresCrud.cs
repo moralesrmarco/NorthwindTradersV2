@@ -17,10 +17,7 @@ namespace NorthwindTraders
             WindowState = FormWindowState.Maximized;
         }
 
-        private void GrbPaint(object sender, PaintEventArgs e)
-        {
-            Utils.GrbPaint(this, sender, e);
-        }
+        private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
         private void FrmProveedoresCrud_Load(object sender, EventArgs e)
         {
@@ -140,6 +137,8 @@ namespace NorthwindTraders
             BorrarDatosProveedor();
             if (tabcOperacion.SelectedTab != tbpRegistrar)
                 DeshabilitarControles();
+            LlenarDgv(null);
+
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -225,16 +224,49 @@ namespace NorthwindTraders
                 DeshabilitarControles();
                 DataGridViewRow dgvr = Dgv.CurrentRow;
                 txtId.Text = dgvr.Cells["Id"].Value.ToString();
-                txtCompañia.Text = dgvr.Cells["Nombre de Compañía"].Value.ToString();
-                txtContacto.Text = dgvr.Cells["Nombre de contacto"].Value.ToString();
-                txtTitulo.Text = dgvr.Cells["Título de contacto"].Value.ToString();
-                txtDomicilio.Text = dgvr.Cells["Domicilio"].Value.ToString();
-                txtCiudad.Text = dgvr.Cells["Ciudad"].Value.ToString();
-                txtRegion.Text = dgvr.Cells["Región"].Value.ToString();
-                txtCodigoP.Text = dgvr.Cells["Código postal"].Value.ToString();
-                txtPais.Text = dgvr.Cells["País"].Value.ToString();
-                txtTelefono.Text = dgvr.Cells["Teléfono"].Value.ToString();
-                txtFax.Text = dgvr.Cells["Fax"].Value.ToString();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("Select * from Suppliers Where SupplierID = @Id", cn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.AddWithValue("Id", txtId.Text);
+                    if (cn.State != ConnectionState.Open) cn.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            txtId.Tag = dr["RowVersion"];
+                            txtCompañia.Text = dr["CompanyName"].ToString();
+                            txtContacto.Text = dr["ContactName"].ToString();
+                            txtTitulo.Text = dr["ContactTitle"].ToString();
+                            txtDomicilio.Text = dr["Address"].ToString();
+                            txtCiudad.Text = dr["City"].ToString();
+                            txtRegion.Text = dr["Region"].ToString();
+                            txtCodigoP.Text = dr["PostalCode"].ToString();
+                            txtPais.Text = dr["Country"].ToString();
+                            txtTelefono.Text = dr["Phone"].ToString();
+                            txtFax.Text = dr["Fax"].ToString();
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No se encontró el proveedor con Id: {txtId.Text}, es posible que otro usuario lo haya eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (cn.State == ConnectionState.Open) cn.Close();
+                            ActualizaDgv();
+                            return;
+                        }
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    if (cn.State == ConnectionState.Open) cn.Close();
+                }                
             }
             if (tabcOperacion.SelectedTab == tbpModificar)
             {
@@ -299,10 +331,7 @@ namespace NorthwindTraders
             }
         }
 
-        private void FrmProveedoresCrud_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Utils.ActualizarBarraDeEstado(this);
-        }
+        private void FrmProveedoresCrud_FormClosed(object sender, FormClosedEventArgs e) => Utils.ActualizarBarraDeEstado(this);
 
         private void btnOperacion_Click(object sender, EventArgs e)
         {
@@ -340,7 +369,7 @@ namespace NorthwindTraders
                             cmd.Parameters.AddWithValue("Fax", DBNull.Value);
                         else
                             cmd.Parameters.AddWithValue("Fax", txtFax.Text);
-                        cn.Open();
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                         {
@@ -360,13 +389,12 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
                     HabilitarControles();
                     btnOperacion.Enabled = true;
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
@@ -378,7 +406,7 @@ namespace NorthwindTraders
                     btnOperacion.Enabled = false;
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Proveedores_Actualizar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Proveedores_Actualizar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
                         cmd.Parameters.AddWithValue("Compañia", txtCompañia.Text);
@@ -400,12 +428,13 @@ namespace NorthwindTraders
                             cmd.Parameters.AddWithValue("Fax", DBNull.Value);
                         else
                             cmd.Parameters.AddWithValue("Fax", txtFax.Text);
-                        cn.Open();
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se modificó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue modificado en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO fue modificado en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex)
                     {
@@ -417,11 +446,10 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpEliminar)
@@ -438,15 +466,16 @@ namespace NorthwindTraders
                     btnOperacion.Enabled = false;
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Sp_Proveedores_Eliminar", cn);
+                        SqlCommand cmd = new SqlCommand("Sp_Proveedores_Eliminar_V3", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("Id", txtId.Text);
-                        cn.Open();
+                        cmd.Parameters.AddWithValue("RowVersion", txtId.Tag);
+                        if (cn.State != ConnectionState.Open) cn.Open();
                         numRegs = cmd.ExecuteNonQuery();
                         if (numRegs > 0)
                             MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El proveedor con Id: {txtId.Text} y Nombre de Compañía: {txtCompañia.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex) when (ex.Number == 547)
                     {
@@ -462,21 +491,12 @@ namespace NorthwindTraders
                     }
                     finally
                     {
-                        cn.Close();
+                        if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
                 }
             }
-        }
-
-        private void BuscaReg()
-        {
-            BorrarDatosBusqueda();
-            txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
-            btnBuscar.PerformClick();
-            btnLimpiar.PerformClick();
         }
 
         private void txtBIdIni_KeyPress(object sender, KeyPressEventArgs e)
@@ -497,6 +517,11 @@ namespace NorthwindTraders
         private void txtBIdFin_Leave(object sender, EventArgs e)
         {
             Utils.ValidaTxtBIdFin(txtBIdIni, txtBIdFin);
+        }
+
+        private void ActualizaDgv()
+        {
+            btnLimpiar.PerformClick();
         }
     }
 }

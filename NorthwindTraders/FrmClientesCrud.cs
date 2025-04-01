@@ -159,6 +159,7 @@ namespace NorthwindTraders
             BorrarDatosCliente();
             if (tabcOperacion.SelectedTab != tbpRegistrar)
                 DeshabilitarControles();
+            LlenarDgv(null);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -390,8 +391,7 @@ namespace NorthwindTraders
                     LlenarCboPais();
                     HabilitarControles();
                     btnOperacion.Enabled = true;
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
@@ -440,8 +440,9 @@ namespace NorthwindTraders
                         if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     LlenarCboPais();
-                    if (numRegs > 0)
-                        BuscaReg();
+                    ActualizaDgv();
+                    //if (numRegs > 0)
+                    //    BuscaReg();
                 }
             }
             else if (tabcOperacion.SelectedTab == tbpEliminar)
@@ -491,17 +492,16 @@ namespace NorthwindTraders
             }
         }
 
-        private void BuscaReg()
-        {
-            BorrarDatosBusqueda();
-            txtBId.Text = txtId.Text;
-            btnBuscar.PerformClick();
-            btnLimpiar.PerformClick();
-        }
+        //private void BuscaReg()
+        //{
+        //    BorrarDatosBusqueda();
+        //    txtBId.Text = txtId.Text;
+        //    btnBuscar.PerformClick();
+        //    btnLimpiar.PerformClick();
+        //}
 
         private void ActualizaDgv()
         {
-            LlenarDgv(null);
             btnLimpiar.PerformClick();
         }
     }
