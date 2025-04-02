@@ -175,7 +175,7 @@ namespace NorthwindTraders
             BorrarDatosEmpleado();
             if (tabcOperacion.SelectedTab != tbpRegistrar)
                 DeshabilitarControles();
-            ActualizaDgv();
+            LlenarDgv(null);
         }
 
         private void BorrarMensajesError()
@@ -725,13 +725,5 @@ namespace NorthwindTraders
             LlenarCboPais();
             LlenarCboReportaA();
         }
-
-        //private void BuscaReg() 
-        //{ 
-        //    BorrarDatosBusqueda();
-        //    txtBIdIni.Text = txtBIdFin.Text = txtId.Text;
-        //    btnBuscar.PerformClick();
-        //    btnLimpiar.PerformClick();
-        //}
     }
 }

@@ -590,6 +590,7 @@
     <Content Include="StoredProcedures\dbo.SP_PEDIDOS_NOTAREMISION.sql" />
     <Content Include="StoredProcedures\dbo.SP_ProdPorProvConDetProv.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOSPORPROVEEDOR.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR_V3.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ACTUALIZAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ALL.sql" />
@@ -597,6 +598,7 @@
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_BUSCAR_V2_RPT.sql" />
+    <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ELIMINAR_V3.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ELIMINAR.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_ELIMINAR_V2.sql" />
     <Content Include="StoredProcedures\dbo.SP_PRODUCTOS_INSERTAR.sql" />
