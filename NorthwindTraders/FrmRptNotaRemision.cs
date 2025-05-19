@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
-    public partial class FrmRptNotaRemision: Form
+    public partial class FrmRptNotaRemision : Form
     {
 
         public int Id;
@@ -66,7 +66,7 @@ namespace NorthwindTraders
             return dt;
         }
 
-        private void OrderDetailsSubReportProcessing(object sender, SubreportProcessingEventArgs e) 
+        private void OrderDetailsSubReportProcessing(object sender, SubreportProcessingEventArgs e)
         {
             int orderId = int.Parse(e.Parameters["OrderID"].Values[0].ToString());
             DataTable dt = ObtenerDetallePedidoPorOrderID(orderId);

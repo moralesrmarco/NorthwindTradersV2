@@ -25,6 +25,13 @@ namespace NorthwindTraders
         public static string noDatos = "No se encontraron datos para mostrar en el reporte";
         #endregion
 
+        public static DateTime? ObtenerFechaHora(DateTimePicker dtpFecha, DateTimePicker dtpHora)
+        {
+            if (!dtpFecha.Checked)
+                return null;
+            return dtpFecha.Value.Date.Add(dtpHora.Value.TimeOfDay);
+        }
+
         public static void LlenarCbo(Form form, ComboBox cbo, string storedProcedure, string displayMember, string valueMember, SqlConnection cn, string parametroNombre, object parametroValor)
         {
             Utils.ActualizarBarraDeEstado(form, Utils.clbdd);
