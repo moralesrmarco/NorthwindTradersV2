@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Categoria.cs" />
+    <Compile Include="DummyData.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
     <Compile Include="FrmCategoriasCrud.cs">
@@ -130,6 +131,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNotaRemision0.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNotaRemision0.Designer.cs">
+      <DependentUpon>FrmNotaRemision0.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPedidosCrud.cs">
       <SubType>Form</SubType>
@@ -263,6 +270,24 @@
     <Compile Include="FrmRptNotaRemision.Designer.cs">
       <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptNotaRemision2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision2.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision4.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision4_old.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision4_old.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision4_old.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptPedPorDifCriterios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -353,6 +378,9 @@
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmNotaRemision0.resx">
+      <DependentUpon>FrmNotaRemision0.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidosCrud.resx">
       <DependentUpon>FrmPedidosCrud.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -420,6 +448,15 @@
     <EmbeddedResource Include="FrmRptNotaRemision.resx">
       <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision2.resx">
+      <DependentUpon>FrmRptNotaRemision2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision4.resx">
+      <DependentUpon>FrmRptNotaRemision4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision4_old.resx">
+      <DependentUpon>FrmRptNotaRemision4_old.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptPedPorDifCriterios.resx">
       <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
     </EmbeddedResource>
@@ -463,8 +500,13 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptNotaRemision4.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision5.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision3.rdlc" />
     <EmbeddedResource Include="RptNotaRemision.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision2.rdlc" />
     <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
+    <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed2.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptPedPorRangoFechaPed.rdlc" />
@@ -491,6 +533,7 @@
       <DependentUpon>NorthwindDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\DummyData.datasource" />
     <None Include="Properties\DataSources\EmpleadoConReportsTo.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

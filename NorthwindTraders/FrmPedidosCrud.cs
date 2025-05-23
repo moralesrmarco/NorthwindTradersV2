@@ -1578,9 +1578,9 @@ namespace NorthwindTraders
             {
                 MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se mostrará la nota de remisión con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            FrmRptNotaRemision frmRptNotaRemision = new FrmRptNotaRemision();
-            frmRptNotaRemision.Id = int.Parse(txtId.Text);
-            frmRptNotaRemision.ShowDialog();
+            FrmNotaRemision0 frmNotaRemision0 = new FrmNotaRemision0();
+            frmNotaRemision0.Id = int.Parse(txtId.Text);
+            frmNotaRemision0.ShowDialog();
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
