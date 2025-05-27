@@ -29,6 +29,9 @@ namespace NorthwindTraders
                 MDIPrincipal.ActualizarBarraDeEstado($"Se encontró el Pedido con Id: {Id}");
                 if (dt.Rows.Count > 0)
                 {
+                    ReportParameter[] parameters = new ReportParameter[1];
+                    parameters[0] = new ReportParameter("PedidoId", Id.ToString());
+                    this.reportViewer1.LocalReport.SetParameters(parameters);
                     ReportDataSource reportDataSource = new ReportDataSource("DataSet1", dt);
                     reportViewer1.LocalReport.DataSources.Clear();
                     reportViewer1.LocalReport.DataSources.Add(reportDataSource);
@@ -37,6 +40,9 @@ namespace NorthwindTraders
                 }
                 else
                 {
+                    ReportParameter[] parameters = new ReportParameter[1];
+                    parameters[0] = new ReportParameter("PedidoId", Id.ToString());
+                    this.reportViewer1.LocalReport.SetParameters(parameters);
                     reportViewer1.LocalReport.DataSources.Clear();
                     ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
                     reportViewer1.LocalReport.DataSources.Add(reportDataSource);

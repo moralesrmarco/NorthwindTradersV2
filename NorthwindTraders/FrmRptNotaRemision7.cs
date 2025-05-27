@@ -1,16 +1,18 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
-    public partial class FrmRptNotaRemision2 : Form
+    public partial class FrmRptNotaRemision7 : Form
     {
+
         public int Id;
 
-        public FrmRptNotaRemision2()
+        public FrmRptNotaRemision7()
         {
             InitializeComponent();
             // Configuramos el evento que manejará todos los subreportes
@@ -19,35 +21,24 @@ namespace NorthwindTraders
 
         private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
-        private void FrmRptNotaRemision2_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
+        private void FrmRptNotaRemision7_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
 
-        private void FrmRptNotaRemision2_Load(object sender, EventArgs e)
+        private void FrmRptNotaRemision7_Load(object sender, EventArgs e)
         {
-            try
+            List<DummyData> dummyData = new List<DummyData>()
             {
-                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-                DataTable dt = ObtenerPedido(Id);
-                //MDIPrincipal.ActualizarBarraDeEstado($"Se encontró el Pedido con Id: {Id}");
-                if (dt.Rows.Count > 0)
-                {
-                    ReportParameter[] parameters = new ReportParameter[1];
-                    parameters[0] = new ReportParameter("PedidoId", Id.ToString());
-                    this.reportViewer1.LocalReport.SetParameters(parameters);
-                    reportViewer1.RefreshReport();
-                }
-                else
-                {
-                    ReportParameter[] parameters = new ReportParameter[1];
-                    parameters[0] = new ReportParameter("PedidoId", Id.ToString());
-                    this.reportViewer1.LocalReport.SetParameters(parameters);
-                    reportViewer1.LocalReport.DataSources.Clear();
-                    ReportDataSource reportDataSource = new ReportDataSource("DataSet1", new DataTable());
-                    reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-                    reportViewer1.RefreshReport();
-                    MessageBox.Show(Utils.noDatos, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex) { Utils.MsgCatchOue(ex); }
+                new DummyData() { DummyValue = 1 },
+                new DummyData() { DummyValue = 2 }
+            };
+
+            ReportParameter[] parameters = new ReportParameter[1];
+            parameters[0] = new ReportParameter("PedidoId", Id.ToString());
+            this.reportViewer1.LocalReport.SetParameters(parameters);
+            reportViewer1.LocalReport.DataSources.Clear();
+            ReportDataSource rds = new ReportDataSource("DataSet1", dummyData);
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.LocalReport.Refresh();
+            this.reportViewer1.RefreshReport();
         }
 
         // Este método se ejecuta cada vez que se procesa un subreporte en el reporte maestro
@@ -56,14 +47,15 @@ namespace NorthwindTraders
             try
             {
                 // Verificamos el nombre (ReportPath) del subreporte para asignar la fuente de datos adecuada
-                if (e.ReportPath.Equals("RptNotaRemision3", StringComparison.OrdinalIgnoreCase))
+                if (e.ReportPath.Equals("RptNotaRemision8", StringComparison.OrdinalIgnoreCase))
                 {
+
                     // Obtenemos los datos que se mostrarán en la nota de remisión
                     DataTable dt = ObtenerPedido(Id);
                     // "DataSet1" debe coincidir con el nombre del dataset definido en el subreporte "RptNotaRemision3"
                     e.DataSources.Add(new ReportDataSource("DataSet1", dt));
                 }
-                else if (e.ReportPath.Equals("RptOrderDetailsPedPorRangoFechaPed", StringComparison.OrdinalIgnoreCase))
+                else if (e.ReportPath.Equals("RptOrderDetailsPedPorRangoFechaPed3", StringComparison.OrdinalIgnoreCase))
                 {
                     // Se espera que se haya definido un parámetro llamado "orderId" en el reporte para filtrar el detalle
                     int orderId = Convert.ToInt32(e.Parameters["OrderID"].Values[0].ToString());

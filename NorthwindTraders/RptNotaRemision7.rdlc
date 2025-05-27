@@ -7,35 +7,25 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>d2e0a4e0-3153-42e6-b5a3-67294d88f9e3</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="NorthwindDataSet">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>6e492f47-6736-4bff-af97-368f1fe0010a</rd:DataSourceID>
+      <rd:DataSourceID>fe4daea5-e384-458f-9055-5a044c04da13</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dsCopias">
+    <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>NorthwindDataSet</DataSourceName>
+        <DataSourceName>NorthwindTraders</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="CopyType">
-          <DataField>CopyType</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="DummyValue">
+          <DataField>DummyValue</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>dsCopias</rd:TableName>
-        <rd:TableAdapterFillMethod />
-        <rd:TableAdapterGetDataMethod />
-        <rd:TableAdapterName />
+        <rd:DataSetName>NorthwindTraders</rd:DataSetName>
+        <rd:TableName>DummyData</rd:TableName>
+        <rd:ObjectDataSourceType>NorthwindTraders.DummyData, NorthwindTraders, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -43,167 +33,125 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="Tablix1">
-            <TablixBody>
-              <TablixColumns>
-                <TablixColumn>
-                  <Width>18.81479cm</Width>
-                </TablixColumn>
-              </TablixColumns>
-              <TablixRows>
-                <TablixRow>
-                  <Height>0.62177cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="TextboxLeyenda">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>= "Para: " &amp; Iif(Fields!CopyType.Value = "1", "Cliente.", "Control interno.")</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <RepeatWith>Tablix1</RepeatWith>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.61059cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Subreport Name="Subreport1">
-                          <ReportName>RptNotaRemision5</ReportName>
-                          <Parameters>
-                            <Parameter Name="Para">
-                              <Value>=Fields!CopyType.Value</Value>
-                            </Parameter>
-                          </Parameters>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                          </Style>
-                        </Subreport>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-              </TablixRows>
-            </TablixBody>
-            <TablixColumnHierarchy>
-              <TablixMembers>
-                <TablixMember />
-              </TablixMembers>
-            </TablixColumnHierarchy>
-            <TablixRowHierarchy>
-              <TablixMembers>
-                <TablixMember>
-                  <Group Name="CopyType">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!CopyType.Value</GroupExpression>
-                    </GroupExpressions>
-                    <PageBreak>
-                      <BreakLocation>Between</BreakLocation>
-                      <ResetPageNumber>true</ResetPageNumber>
-                    </PageBreak>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!CopyType.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
-                  <TablixHeader>
-                    <Size>0.07938cm</Size>
-                    <CellContents>
-                      <Textbox Name="CopyType">
-                        <CanGrow>true</CanGrow>
-                        <KeepTogether>true</KeepTogether>
-                        <Paragraphs>
-                          <Paragraph>
-                            <TextRuns>
-                              <TextRun>
-                                <Value>=Fields!CopyType.Value</Value>
-                                <Style />
-                              </TextRun>
-                            </TextRuns>
-                            <Style />
-                          </Paragraph>
-                        </Paragraphs>
-                        <rd:DefaultName>CopyType</rd:DefaultName>
-                        <Visibility>
-                          <Hidden>true</Hidden>
-                        </Visibility>
-                        <RepeatWith>Tablix1</RepeatWith>
-                        <Style>
-                          <Border>
-                            <Color>LightGrey</Color>
-                            <Style>None</Style>
-                          </Border>
-                          <PaddingLeft>2pt</PaddingLeft>
-                          <PaddingRight>2pt</PaddingRight>
-                          <PaddingTop>2pt</PaddingTop>
-                          <PaddingBottom>2pt</PaddingBottom>
-                        </Style>
-                      </Textbox>
-                    </CellContents>
-                  </TablixHeader>
-                  <TablixMembers>
-                    <TablixMember>
-                      <Group Name="Detalles">
-                        <PageBreak>
-                          <BreakLocation>End</BreakLocation>
-                        </PageBreak>
-                      </Group>
-                      <TablixMembers>
-                        <TablixMember>
-                          <Visibility>
-                            <Hidden>true</Hidden>
-                          </Visibility>
-                        </TablixMember>
-                        <TablixMember />
-                      </TablixMembers>
-                    </TablixMember>
-                  </TablixMembers>
-                </TablixMember>
-              </TablixMembers>
-            </TablixRowHierarchy>
-            <RepeatColumnHeaders>true</RepeatColumnHeaders>
-            <DataSetName>dsCopias</DataSetName>
-            <Height>1.23236cm</Height>
-            <Width>18.89417cm</Width>
+          <Textbox Name="TextboxPara2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>2</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.68772cm</Top>
+            <Height>0.6cm</Height>
+            <Width>2.5cm</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Subreport Name="Subreport2">
+            <ReportName>RptNotaRemision8</ReportName>
+            <Parameters>
+              <Parameter Name="Para">
+                <Value>=ReportItems!TextboxPara2.Value</Value>
+              </Parameter>
+            </Parameters>
+            <Top>2.53267cm</Top>
+            <Height>0.50917cm</Height>
+            <Width>19.05313cm</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
-          </Tablix>
+          </Subreport>
+          <Rectangle Name="Rectangle2">
+            <ReportItems>
+              <Textbox Name="TextboxPara1">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>1</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.14111cm</Top>
+                <Height>0.6cm</Height>
+                <Width>2.5cm</Width>
+                <Visibility>
+                  <Hidden>true</Hidden>
+                </Visibility>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Subreport Name="Subreport1">
+                <ReportName>RptNotaRemision8</ReportName>
+                <Parameters>
+                  <Parameter Name="Para">
+                    <Value>=ReportItems!TextboxPara1.Value</Value>
+                  </Parameter>
+                </Parameters>
+                <Top>0.84694cm</Top>
+                <Height>0.59383cm</Height>
+                <Width>19.10626cm</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Subreport>
+            </ReportItems>
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+              <ResetPageNumber>true</ResetPageNumber>
+            </PageBreak>
+            <KeepTogether>true</KeepTogether>
+            <Height>1.51133cm</Height>
+            <Width>19.10626cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
         </ReportItems>
-        <Height>0.48518in</Height>
+        <Height>1.24202in</Height>
         <Style />
       </Body>
-      <Width>7.48031in</Width>
+      <Width>7.52215in</Width>
       <Page>
         <PageHeader>
-          <Height>1.97379cm</Height>
+          <Height>2.05203cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -227,8 +175,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.41496cm</Top>
-              <Left>3.05212cm</Left>
+              <Top>0.52492cm</Top>
+              <Left>3.15838cm</Left>
               <Height>0.6cm</Height>
               <Width>13.90891cm</Width>
               <Style>
@@ -245,8 +193,8 @@
               <Source>Embedded</Source>
               <Value>northwinddb</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.12155cm</Top>
-              <Left>0.80645cm</Left>
+              <Top>0.23151cm</Top>
+              <Left>0.91271cm</Left>
               <Height>1.56104cm</Height>
               <Width>1.64042cm</Width>
               <ZIndex>1</ZIndex>
@@ -257,7 +205,8 @@
               </Style>
             </Image>
             <Line Name="Line2">
-              <Top>1.83164cm</Top>
+              <Top>1.9416cm</Top>
+              <Left>0.10626cm</Left>
               <Height>0cm</Height>
               <Width>19cm</Width>
               <ZIndex>2</ZIndex>
@@ -267,7 +216,7 @@
                 </Border>
               </Style>
             </Line>
-            <Textbox Name="Textbox3">
+            <Textbox Name="Textbox4">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -285,11 +234,11 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>1.214cm</Top>
-              <Left>13.55937cm</Left>
-              <Height>0.346cm</Height>
-              <Width>4.87413cm</Width>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>1.30131cm</Top>
+              <Left>14.42005cm</Left>
+              <Height>0.42361cm</Height>
+              <Width>4.11971cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -309,12 +258,13 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.88787cm</Height>
+          <Height>0.67232cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Line Name="Line1">
-              <Top>0.07056cm</Top>
+              <Top>0.08114cm</Top>
+              <Left>0.10626cm</Left>
               <Height>0cm</Height>
               <Width>19cm</Width>
               <Style>
@@ -346,8 +296,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.24695cm</Top>
-              <Left>0.48184cm</Left>
+              <Top>0.25753cm</Top>
+              <Left>0.5881cm</Left>
               <Height>0.41479cm</Height>
               <Width>6.33646cm</Width>
               <ZIndex>1</ZIndex>
@@ -361,7 +311,7 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox49">
+            <Textbox Name="Textbox3">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -379,9 +329,8 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox49</rd:DefaultName>
-              <Top>0.24695cm</Top>
-              <Left>12.02825cm</Left>
+              <Top>0.25753cm</Top>
+              <Left>12.13451cm</Left>
               <Height>0.41479cm</Height>
               <Width>6.40525cm</Width>
               <ZIndex>2</ZIndex>
@@ -395,37 +344,85 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox5">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=ReportItems!TextboxLeyenda.Value</Value>
+            <Rectangle Name="Rectangle3">
+              <ReportItems>
+                <Textbox Name="TextboxLeyendaPie2">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=Iif(ReportItems!TextboxPara2.Value = "2", "Para: Control interno.", "")</Value>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <TextAlign>Center</TextAlign>
                       </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.24695cm</Top>
-              <Left>7.82849cm</Left>
-              <Height>0.41479cm</Height>
-              <Width>3.50542cm</Width>
+                    </Paragraph>
+                  </Paragraphs>
+                  <Left>1.03841cm</Left>
+                  <Height>0.41479cm</Height>
+                  <Width>3.50542cm</Width>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="TextboxLeyendaPie1">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>=Iif(ReportItems!TextboxPara1.Value = "1", "Para: Cliente.", "")</Value>
+                          <Style>
+                            <FontSize>8pt</FontSize>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Center</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <Top>0.03528cm</Top>
+                  <Left>0.80558cm</Left>
+                  <Height>0.41479cm</Height>
+                  <Width>3.50542cm</Width>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+              </ReportItems>
+              <KeepTogether>true</KeepTogether>
+              <Top>0.21167cm</Top>
+              <Left>7.04276cm</Left>
+              <Height>0.45007cm</Height>
+              <Width>5cm</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
-            </Textbox>
+            </Rectangle>
           </ReportItems>
           <Style>
             <Border>
@@ -491,5 +488,5 @@ VFFi5wp5rdIyq/jdYwGcYZuQIL58x610L4h26ouW17fQftCmp6yWthCR1ORDWyBWbwWx7MRkAjBKqOiR
     </EmbeddedImage>
   </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
-  <rd:ReportID>9267272c-e0ce-4f1b-9a13-983a92b78d46</rd:ReportID>
+  <rd:ReportID>e6ad31ae-eaf8-4b66-b01c-ae4b05999b81</rd:ReportID>
 </Report>

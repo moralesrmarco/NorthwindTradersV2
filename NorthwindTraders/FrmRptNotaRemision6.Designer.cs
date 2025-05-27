@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTraders
 {
-    partial class FrmRptNotaRemision4_old
+    partial class FrmRptNotaRemision6
     {
         /// <summary>
         /// Required designer variable.
@@ -44,20 +44,20 @@
             this.groupBox1.Size = new System.Drawing.Size(780, 430);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "» Nota de remisión en dos tantos con control repetible «";
+            this.groupBox1.Text = "» Nota de remisión en dos tantos «";
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptNotaRemision4.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptNotaRemision6.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(15, 30);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(750, 385);
             this.reportViewer1.TabIndex = 0;
             // 
-            // FrmRptNotaRemision4
+            // FrmRptNotaRemision6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -65,14 +65,14 @@
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmRptNotaRemision4";
+            this.Name = "FrmRptNotaRemision6";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "» Nota de remisión en dos tantos con control repetible «";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptNotaRemision4_FormClosed);
-            this.Load += new System.EventHandler(this.FrmRptNotaRemision4_Load);
+            this.Text = "» Nota de remisión en dos tantos «";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmRptNotaRemision6_FormClosed);
+            this.Load += new System.EventHandler(this.FrmRptNotaRemision6_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

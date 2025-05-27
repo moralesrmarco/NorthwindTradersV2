@@ -282,11 +282,23 @@
     <Compile Include="FrmRptNotaRemision4.Designer.cs">
       <DependentUpon>FrmRptNotaRemision4.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmRptNotaRemision4_old.cs">
+    <Compile Include="FrmRptNotaRemision6.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmRptNotaRemision4_old.Designer.cs">
-      <DependentUpon>FrmRptNotaRemision4_old.cs</DependentUpon>
+    <Compile Include="FrmRptNotaRemision6.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision7.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptNotaRemision8.Designer.cs">
+      <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRptPedPorDifCriterios.cs">
       <SubType>Form</SubType>
@@ -454,8 +466,14 @@
     <EmbeddedResource Include="FrmRptNotaRemision4.resx">
       <DependentUpon>FrmRptNotaRemision4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmRptNotaRemision4_old.resx">
-      <DependentUpon>FrmRptNotaRemision4_old.cs</DependentUpon>
+    <EmbeddedResource Include="FrmRptNotaRemision6.resx">
+      <DependentUpon>FrmRptNotaRemision6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision7.resx">
+      <DependentUpon>FrmRptNotaRemision7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptNotaRemision8.resx">
+      <DependentUpon>FrmRptNotaRemision8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptPedPorDifCriterios.resx">
       <DependentUpon>FrmRptPedPorDifCriterios.cs</DependentUpon>
@@ -501,11 +519,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="RptNotaRemision4.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision8.rdlc" />
     <EmbeddedResource Include="RptNotaRemision5.rdlc" />
     <EmbeddedResource Include="RptNotaRemision3.rdlc" />
     <EmbeddedResource Include="RptNotaRemision.rdlc" />
     <EmbeddedResource Include="RptNotaRemision2.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision6.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision7.rdlc" />
     <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
+    <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed3.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed2.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed.rdlc" />
     <EmbeddedResource Include="RptPedPorDifCriterios.rdlc" />

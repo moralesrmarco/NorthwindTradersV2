@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>24af9ccf-3a48-48d4-9df6-a790db840ec4</rd:DataSourceID>
+      <rd:DataSourceID>1574ab4b-7443-482f-b7c6-22b136f27aee</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1102,8 +1102,8 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Subreport Name="Subreport1">
-                          <ReportName>RptOrderDetailsPedPorRangoFechaPed</ReportName>
+                        <Subreport Name="Subreport2">
+                          <ReportName>RptOrderDetailsPedPorRangoFechaPed3</ReportName>
                           <Parameters>
                             <Parameter Name="OrderID">
                               <Value>=Fields!Id.Value</Value>
@@ -1111,8 +1111,16 @@
                             <Parameter Name="Cargo">
                               <Value>=Fields!Flete.Value</Value>
                             </Parameter>
+                            <Parameter Name="Vendedor">
+                              <Value>=Fields!Vendedor.Value</Value>
+                            </Parameter>
+                            <Parameter Name="Cliente">
+                              <Value>=Fields!Cliente.Value</Value>
+                            </Parameter>
+                            <Parameter Name="Para">
+                              <Value>=Parameters!Para.Value</Value>
+                            </Parameter>
                           </Parameters>
-                          <NoRowsMessage>No se encontraron detalles del pedido</NoRowsMessage>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1120,6 +1128,7 @@
                           </Style>
                         </Subreport>
                         <ColSpan>2</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1157,7 +1166,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.71288cm</Top>
+            <Top>0.74803cm</Top>
             <Height>8.4cm</Height>
             <Width>19cm</Width>
             <ZIndex>2</ZIndex>
@@ -1168,211 +1177,11 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.58775in</Height>
+        <Height>3.60159in</Height>
         <Style />
       </Body>
       <Width>7.48031in</Width>
       <Page>
-        <PageHeader>
-          <Height>1.86267cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Image Name="LogoNorthwind">
-              <Source>Embedded</Source>
-              <Value>northwinddb</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.0635cm</Top>
-              <Left>0.81703cm</Left>
-              <Height>1.56104cm</Height>
-              <Width>1.64042cm</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="Textbox1">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Northwind Traders - » Nota de remisión «</Value>
-                      <Style>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.35691cm</Top>
-              <Left>3.0627cm</Left>
-              <Height>0.6cm</Height>
-              <Width>13.90891cm</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Line Name="Line1">
-              <Top>1.77359cm</Top>
-              <Height>0cm</Height>
-              <Width>19cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
-            <Textbox Name="Textbox3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>= "Pedido: " &amp; Parameters!PedidoId.Value</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>1.1333cm</Top>
-              <Left>13.32653cm</Left>
-              <Height>0.51117cm</Height>
-              <Width>5.39983cm</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
-        <PageFooter>
-          <Height>0.52917cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Line Name="Line2">
-              <Top>0.04232cm</Top>
-              <Height>0cm</Height>
-              <Width>19cm</Width>
-              <Style>
-                <Border>
-                  <Style>Solid</Style>
-                </Border>
-              </Style>
-            </Line>
-            <Textbox Name="Textbox2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Fecha: </Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value>=Globals!ExecutionTime</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.1101cm</Top>
-              <Left>0.52417cm</Left>
-              <Height>0.41479cm</Height>
-              <Width>6.33646cm</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox49">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>="Página " &amp; Globals!PageNumber &amp; " de " &amp; Globals!TotalPages</Value>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox49</rd:DefaultName>
-              <Top>0.1101cm</Top>
-              <Left>10.73708cm</Left>
-              <Height>0.41479cm</Height>
-              <Width>7.73875cm</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
         <PageHeight>27.94cm</PageHeight>
         <PageWidth>21.59cm</PageWidth>
         <LeftMargin>1cm</LeftMargin>
@@ -1385,7 +1194,7 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="PedidoId">
+    <ReportParameter Name="Para">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -1398,7 +1207,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>PedidoId</ParameterName>
+          <ParameterName>Para</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

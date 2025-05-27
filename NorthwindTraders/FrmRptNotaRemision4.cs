@@ -1,13 +1,7 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -43,6 +37,10 @@ namespace NorthwindTraders
             row = dtCopias.NewRow();
             row["CopyType"] = "2";
             dtCopias.Rows.Add(row);
+
+            ReportParameter[] parameters = new ReportParameter[1];
+            parameters[0] = new ReportParameter("PedidoId", Id.ToString());
+            this.reportViewer1.LocalReport.SetParameters(parameters);
 
             // Crear el ReportDataSource usando el DataTable.
             // El primer parámetro ("dsCopias") debe coincidir con el nombre del dataset en el RDLC.

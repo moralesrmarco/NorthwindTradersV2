@@ -43,5 +43,26 @@ namespace NorthwindTraders
             frmRptNotaRemision4.ShowDialog();
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FrmRptNotaRemision6 frmRptNotaRemision6 = new FrmRptNotaRemision6();
+            frmRptNotaRemision6.Id = Id;
+            frmRptNotaRemision6.ShowDialog();
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            FrmRptNotaRemision7 frmRptNotaRemision7 = new FrmRptNotaRemision7();
+            frmRptNotaRemision7.Id = Id;
+            frmRptNotaRemision7.ShowDialog();
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

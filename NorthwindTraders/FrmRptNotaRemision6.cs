@@ -1,18 +1,17 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
-    public partial class FrmRptNotaRemision4_old : Form
+    public partial class FrmRptNotaRemision6 : Form
     {
 
         public int Id;
 
-        public FrmRptNotaRemision4_old()
+        public FrmRptNotaRemision6()
         {
             InitializeComponent();
             // Configuramos el evento que manejará todos los subreportes
@@ -21,24 +20,14 @@ namespace NorthwindTraders
 
         private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
-        private void FrmRptNotaRemision4_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
+        private void FrmRptNotaRemision6_FormClosed(object sender, FormClosedEventArgs e) => MDIPrincipal.ActualizarBarraDeEstado();
 
-        private void FrmRptNotaRemision4_Load(object sender, EventArgs e)
+        private void FrmRptNotaRemision6_Load(object sender, EventArgs e)
         {
-            List<DummyData> dummyList = new List<DummyData> { new DummyData { DummyValue = 1 } };
-
-            // Limpia cualquier origen de datos que ya tenga el reporte:
-            reportViewer1.LocalReport.DataSources.Clear();
-
-            // Crea el ReportDataSource, asegurándote de usar el nombre exacto definido en el RDLC ("DataSet1")
-            ReportDataSource rds = new ReportDataSource("DataSet1", dummyList);
-
-            // Añade el ReportDataSource al reporte:
-            reportViewer1.LocalReport.DataSources.Add(rds);
-
-            //// Refresca el reporte:
-            ///
-            reportViewer1.RefreshReport();
+            ReportParameter[] parameters = new ReportParameter[1];
+            parameters[0] = new ReportParameter("PedidoId", Id.ToString());
+            this.reportViewer1.LocalReport.SetParameters(parameters);
+            this.reportViewer1.RefreshReport();
         }
 
         // Este método se ejecuta cada vez que se procesa un subreporte en el reporte maestro
@@ -56,7 +45,7 @@ namespace NorthwindTraders
                     e.DataSources.Add(new ReportDataSource("DataSet1", dt));
                     //subreportCallCount++;
                 }
-                else if (e.ReportPath.Equals("RptOrderDetailsPedPorRangoFechaPed", StringComparison.OrdinalIgnoreCase))
+                else if (e.ReportPath.Equals("RptOrderDetailsPedPorRangoFechaPed2", StringComparison.OrdinalIgnoreCase))
                 {
                     // Se espera que se haya definido un parámetro llamado "orderId" en el reporte para filtrar el detalle
                     int orderId = Convert.ToInt32(e.Parameters["OrderID"].Values[0].ToString());
