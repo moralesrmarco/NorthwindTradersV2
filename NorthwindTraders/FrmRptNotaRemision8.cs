@@ -9,7 +9,7 @@ namespace NorthwindTraders
     public partial class FrmRptNotaRemision8 : Form
     {
 
-        public int Id = 11077;
+        public int Id;
 
         public FrmRptNotaRemision8()
         {
