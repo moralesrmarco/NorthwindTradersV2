@@ -526,6 +526,7 @@
     <EmbeddedResource Include="RptNotaRemision2.rdlc" />
     <EmbeddedResource Include="RptNotaRemision6.rdlc" />
     <EmbeddedResource Include="RptNotaRemision7.rdlc" />
+    <EmbeddedResource Include="RptNotaRemision9.rdlc" />
     <EmbeddedResource Include="RptOrderDetailPedPorDifCriterios.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed3.rdlc" />
     <EmbeddedResource Include="RptOrderDetailsPedPorRangoFechaPed2.rdlc" />

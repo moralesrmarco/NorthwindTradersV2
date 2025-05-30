@@ -62,7 +62,10 @@ namespace NorthwindTraders
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            FrmRptNotaRemision8 frmRptNotaRemision8 = new FrmRptNotaRemision8();
+            frmRptNotaRemision8.Id = Id;
+            frmRptNotaRemision8.ShowDialog();
+            this.Close();
         }
     }
 }
