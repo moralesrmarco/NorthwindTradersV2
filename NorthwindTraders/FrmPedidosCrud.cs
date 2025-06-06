@@ -11,7 +11,6 @@ namespace NorthwindTraders
 {
     public partial class FrmPedidosCrud : Form
     {
-        #region ocultar1
         SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn);
         private TabPage lastSelectedTab;
         bool EventoCargardo = true; // esta variable es necesaria para controlar el manejador de eventos de la celda del dgv, ojo no quitar
@@ -235,8 +234,6 @@ namespace NorthwindTraders
             }
         }
 
-        #endregion ocultar1
-
         private void LlenarDgvPedidos(object sender)
         {
             Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
@@ -383,11 +380,10 @@ namespace NorthwindTraders
             dgvPedidos.Focus();
         }
 
-        #region ocultar2
-
         private void BorrarDatosPedido()
         {
             txtId.Text = "";
+            txtId.Tag = null;
             cboCliente.SelectedIndex = cboEmpleado.SelectedIndex = cboTransportista.SelectedIndex = cboCategoria.SelectedIndex = 0;
             cboProducto.DataSource = null;
             dtpPedido.Value = dtpRequerido.Value = dtpEnvio.Value = DateTime.Now;
@@ -579,8 +575,6 @@ namespace NorthwindTraders
                     dtpBFEnvioIni.Value = dtpBFEnvioFin.Value;
         }
 
-        #endregion ocultar2
-
         private void cboCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtPrecio.Text = "$0.00";
@@ -731,7 +725,6 @@ namespace NorthwindTraders
             }
         }
 
-        #region ocultar3
         private void CalcularTotal()
         {
             decimal total = 0;
@@ -814,8 +807,6 @@ namespace NorthwindTraders
             }
         }
 
-        #endregion ocultar3
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             BorrarMensajesError();
@@ -887,7 +878,6 @@ namespace NorthwindTraders
             CalcularTotal();
         }
 
-        #region ocultar4
         private void txtFlete_KeyPress(object sender, KeyPressEventArgs e)
         {
             Utils.ValidarDigitosConPunto(sender, e);
@@ -922,7 +912,6 @@ namespace NorthwindTraders
                 }
             }
         }
-        #endregion ocultar4
 
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)
         {          

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -254,6 +255,7 @@ namespace NorthwindTraders
         {
             errorProvider1.Clear();
             txtId.Text = txtCliente.Text = "";
+            txtId.Tag = null;
             cboCategoria.SelectedIndex = 0;
             cboProducto.DataSource = null;
             txtPrecio.Text = "$0.00";
@@ -609,8 +611,46 @@ namespace NorthwindTraders
             DataGridViewRow dgvr = DgvPedidos.CurrentRow;
             txtId.Text = dgvr.Cells["Id"].Value.ToString();
             txtCliente.Text = dgvr.Cells["Cliente"].Value.ToString();
+            LlenarDatosPedido();
             LlenarDatosDetallePedido();
             HabilitarControles();
+        }
+
+        private void LlenarDatosPedido()
+        {
+            try
+            {
+                Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                        cn.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (rdr.Read())
+                                txtId.Tag = (byte[])rdr["RowVersion"];
+                            else
+                                txtId.Tag = null;
+                        }
+                    }
+                }
+                Utils.ActualizarBarraDeEstado(this, $"Se muestran {DgvPedidos.RowCount} registros en pedidos");
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
 
         private void LlenarDatosDetallePedido()
@@ -635,7 +675,8 @@ namespace NorthwindTraders
                         pedidoDetalle.UnitPrice = (decimal)rdr["Precio"];
                         pedidoDetalle.Quantity = (short)rdr["Cantidad"];
                         pedidoDetalle.Discount = decimal.Parse(rdr["Descuento"].ToString());
-                        DgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "  Modificar  ", "  Eliminar  ", pedidoDetalle.ProductId });
+                        pedidoDetalle.RowVersion = (byte[])rdr["RowVersion"];
+                        DgvDetalle.Rows.Add(new object[] { IdDetalle, pedidoDetalle.ProductName, pedidoDetalle.UnitPrice, pedidoDetalle.Quantity, pedidoDetalle.Discount, (pedidoDetalle.UnitPrice * pedidoDetalle.Quantity) * (1 - pedidoDetalle.Discount), "  Modificar  ", "  Eliminar  ", pedidoDetalle.ProductId, pedidoDetalle.RowVersion });
                         ++IdDetalle;
                     } while (rdr.Read());
                 }
@@ -678,6 +719,7 @@ namespace NorthwindTraders
             public short Quantity { get; set; }
             public decimal Discount { get; set; }
             public string ProductName { get; set; }
+            public byte[] RowVersion { get; set; }
         }
 
         private class PedidoDetalleDB
@@ -723,6 +765,11 @@ namespace NorthwindTraders
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            if (!chkRowVersion())
+            {
+                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, vuelva a cargar el registro para que se actualice con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             int numRegs = 0;
             BorrarMensajesError();
             if (ValidarControles())
@@ -796,6 +843,11 @@ namespace NorthwindTraders
         private void DgvDetalle_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+            if (!chkRowVersion())
+            {
+                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, vuelva a cargar el registro para que se actualice con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (e.ColumnIndex == DgvDetalle.Columns["Eliminar"].Index)
             {
                 DataGridViewRow dgvr = DgvDetalle.CurrentRow;
@@ -878,9 +930,151 @@ namespace NorthwindTraders
 
         private void BtnNota_Click(object sender, EventArgs e)
         {
-            FrmRptNotaRemision frmRptNotaRemision = new FrmRptNotaRemision();
-            frmRptNotaRemision.Id = int.Parse(txtId.Text);
-            frmRptNotaRemision.ShowDialog();
+            if (!chkRowVersion())
+            {
+                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se mostrará la nota de remisión con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            FrmNotaRemision0 frmNotaRemision0 = new FrmNotaRemision0();
+            frmNotaRemision0.Id = int.Parse(txtId.Text);
+            frmNotaRemision0.ShowDialog();
+        }
+
+        private bool chkRowVersion()
+        {
+            bool rowVersionOk = true;
+            if (txtId.Tag != null)
+            {
+                byte[] rowVersion = (byte[])txtId.Tag;
+                byte[] rowVersionActual = null;
+                try
+                {
+                    Utils.ActualizarBarraDeEstado(this, Utils.clbdd);
+                    using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("Sp_Pedidos_Listar1", cn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                            cn.Open();
+                            using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                            {
+                                if (rdr.Read())
+                                {
+                                    rowVersionActual = (byte[])rdr["RowVersion"];
+                                    if (!rowVersion.SequenceEqual(rowVersionActual))
+                                    {
+                                        rowVersionOk = false;
+                                    }
+                                }
+                                else
+                                {
+                                    rowVersionOk = false;
+                                }
+                                rdr.Close();
+                            }
+                        }
+                    }
+                    if (rowVersionOk)
+                    {
+                        // Comprobamos primero que todos los registros del gridview existan en la DB y tengan el mismo rowversion
+                        using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                        {
+                            cn.Open();
+                            foreach (DataGridViewRow dgvr in DgvDetalle.Rows)
+                            {
+                                int numPedido = int.Parse(txtId.Text);
+                                int numProducto = int.Parse(dgvr.Cells["ProductoId"].Value.ToString());
+                                byte[] rowVersionDetalle = (byte[])dgvr.Cells["RowVersion"].Value;
+                                using (SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_ChkRowVersion", cn))
+                                {
+                                    cmd.CommandType = CommandType.StoredProcedure;
+                                    cmd.Parameters.AddWithValue("PedidoId", numPedido);
+                                    cmd.Parameters.AddWithValue("ProductoId", numProducto);
+                                    using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+                                    {
+                                        if (rdr.Read())
+                                        {
+                                            byte[] rowVersionDetalleEnDB = (byte[])rdr["RowVersion"];
+                                            if (!rowVersionDetalle.SequenceEqual(rowVersionDetalleEnDB))
+                                            {
+                                                rowVersionOk = false;
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            rowVersionOk = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (rowVersionOk)
+                        {
+                            // Comprobamos segundo que todos los registros de la DB existan en el DataGridView y tengan el mismo rowversion
+                            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                            {
+                                cn.Open();
+                                using (SqlCommand cmd = new SqlCommand("Sp_DetallePedidos_Productos_Listar1", cn))
+                                {
+                                    cmd.CommandType = CommandType.StoredProcedure;
+                                    cmd.Parameters.AddWithValue("PedidoId", txtId.Text);
+                                    using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleResult))
+                                    {
+                                        PedidoDetalle pedidoDetalle;
+                                        if (rdr.Read())
+                                        {
+                                            do
+                                            {
+                                                pedidoDetalle = new PedidoDetalle();
+                                                pedidoDetalle.ProductId = (int)rdr["Id Producto"];
+                                                pedidoDetalle.RowVersion = (byte[])rdr["RowVersion"];
+                                                bool registroEncontradoEnGrid = false;
+                                                foreach (DataGridViewRow dgvr in DgvDetalle.Rows)
+                                                {
+                                                    if (pedidoDetalle.ProductId == int.Parse(dgvr.Cells["ProductoId"].Value.ToString()))
+                                                    {
+                                                        registroEncontradoEnGrid = true;
+                                                        byte[] rowVersionGrid = (byte[])dgvr.Cells["RowVersion"].Value;
+                                                        if (!rowVersionGrid.SequenceEqual(pedidoDetalle.RowVersion))
+                                                        {
+                                                            rowVersionOk = false;
+                                                        }
+                                                        break;
+                                                    }
+                                                }
+                                                if (!registroEncontradoEnGrid)
+                                                    rowVersionOk = false;
+                                                if (!rowVersionOk)
+                                                    break;
+                                            } while (rdr.Read());
+                                        }
+                                        else
+                                        {
+                                            rowVersionOk = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    Utils.ActualizarBarraDeEstado(this, $"Se muestran {DgvPedidos.RowCount} registros en pedidos");
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(this, ex);
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(this, ex);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }
+            return rowVersionOk;
         }
     }
 }

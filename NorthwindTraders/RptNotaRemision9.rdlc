@@ -1869,7 +1869,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>="Detalle del pedido [Id: " &amp; Parameters!PedidoId.Value &amp; " ]"</Value>
+                        <Value>="Detalle del pedido [Id: " &amp; Parameters!PedidoId.Value &amp; "]"</Value>
                         <Style>
                           <FontSize>9pt</FontSize>
                           <FontWeight>Bold</FontWeight>
