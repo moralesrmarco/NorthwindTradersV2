@@ -129,6 +129,7 @@ namespace NorthwindTraders
             {
                 valida = false;
                 errorProvider1.SetError(btnAgregar, "Ingrese el detalle del pedido");
+                errorProvider1.SetError(txtTotal, "El total del pedido no puede ser cero");
             }
             if (cboProducto.SelectedIndex > 0)
             {
@@ -401,15 +402,7 @@ namespace NorthwindTraders
 
         private void BorrarMensajesError()
         {
-            errorProvider1.SetError(cboCategoria, "");
-            errorProvider1.SetError(cboProducto, "");
-            errorProvider1.SetError(txtCantidad, "");
-            errorProvider1.SetError(txtDescuento, "");
-            errorProvider1.SetError(cboCliente, "");
-            errorProvider1.SetError(cboEmpleado, "");
-            errorProvider1.SetError(dtpPedido, "");
-            errorProvider1.SetError(cboTransportista, "");
-            errorProvider1.SetError(btnAgregar, "");
+            errorProvider1.Clear();
         }
 
         private void BorrarDatosBusqueda()
@@ -1194,7 +1187,7 @@ namespace NorthwindTraders
         {
             public int PedidoId { get; set; }
 
-            public byte Add(Pedido pedido, List<PedidoDetalle> lst, TextBox textBox, string cliente)
+            public byte Add(Pedido pedido, List<PedidoDetalle> lst, TextBox textBox)
             {
                 // las excepciones generadas en este segmento de código son capturadas en un nivel superior, por eso no uso bloque try
                 byte numRegs = 0;
@@ -1322,24 +1315,13 @@ namespace NorthwindTraders
                     textBox.Tag = rowVersionObj;
                     // Si rowVersionObj no es nulo se asume que la actualización fue exitosa.
                     if (rowVersionObj != null)
-                    //{
                         numRegs = 1;
-                        //MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cliente}, se actualizó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
-                    //numRegs = (byte)cmd.ExecuteNonQuery();
                     cn.Close();
-                    //if (numRegs > 0) MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cliente}, se actualizó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //else
-                    //    MessageBox.Show("No se pudo realizar la modificación, es posible que el registro se haya eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return numRegs;
             }
 
-            public byte Delete(Pedido pedido, string cliente)
+            public byte Delete(Pedido pedido)
             {
                 byte numRegs = 0;
                 using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
@@ -1350,10 +1332,6 @@ namespace NorthwindTraders
                     cn.Open();
                     numRegs = (byte)cmd.ExecuteNonQuery();
                     cn.Close();
-                    if (numRegs > 0)
-                        MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cliente}, se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                        MessageBox.Show("No se pudo realizar la eliminación, es posible que el registro haya sido eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return numRegs;
             }
@@ -1408,7 +1386,7 @@ namespace NorthwindTraders
                         if (txtFlete.Text.Contains("$")) txtFlete.Text = txtFlete.Text.Replace("$", "");
                         pedido.Freight = decimal.Parse(txtFlete.Text);
                         PedidosDB pedidosDB = new PedidosDB();
-                        numRegs = pedidosDB.Add(pedido, lstDetalle, txtId, cboCliente.Text);
+                        numRegs = pedidosDB.Add(pedido, lstDetalle, txtId);
                         if (numRegs > 0) MessageBox.Show($"El pedido con Id: {txtId.Text} del Cliente: {cboCliente.Text}, se registró satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else MessageBox.Show("No se pudo realizar el registro, es posible que el pedido ya exista", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -1452,7 +1430,7 @@ namespace NorthwindTraders
                     {
                         if (!chkRowVersion())
                         {
-                            MessageBox.Show("El registro ha sido modificado por otro usuario de la red, no se realizará la actualización del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El registro ha sido modificado por otro usuario de la red, no se realizará la actualización del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
                         Utils.ActualizarBarraDeEstado(this, Utils.modificandoRegistro);
@@ -1514,7 +1492,7 @@ namespace NorthwindTraders
                 {
                     if (!chkRowVersion())
                     {
-                        MessageBox.Show("El registro ha sido modificado por otro usuario de la red, no se realizará la eliminación del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El registro ha sido modificado por otro usuario de la red, no se realizará la eliminación del registro, vuelva a cargar el registro para que se muestre el pedido con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
                     Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
@@ -1524,7 +1502,11 @@ namespace NorthwindTraders
                         Pedido pedido = new Pedido();
                         pedido.OrderId = int.Parse(txtId.Text);
                         PedidosDB pedidosDB = new PedidosDB();
-                        numRegs = pedidosDB.Delete(pedido, cboCliente.Text);
+                        numRegs = pedidosDB.Delete(pedido);
+                        if (numRegs > 0)
+                            MessageBox.Show($"El pedido con Id: {pedido.OrderId} del Cliente: {cboCliente.Text}, se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            MessageBox.Show("No se pudo realizar la eliminación, es posible que el registro haya sido eliminado previamente por otro usuario de la red", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex)
                     {
@@ -1538,9 +1520,6 @@ namespace NorthwindTraders
                     {
                         BorrarDatosBusqueda();
                         LlenarDgvPedidos(null);
-                        //txtBIdInicial.Text = txtBIdFinal.Text = txtId.Text;
-                        //btnBuscar.PerformClick();
-                        //btnLimpiar.PerformClick();
                     }
                 }
                 else
@@ -1565,7 +1544,7 @@ namespace NorthwindTraders
         {
             if (!chkRowVersion())
             {
-                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se mostrará la nota de remisión con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El registro ha sido modificado por otro usuario de la red, se mostrará la nota de remisión con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             FrmNotaRemision0 frmNotaRemision0 = new FrmNotaRemision0();
             frmNotaRemision0.Id = int.Parse(txtId.Text);
@@ -1698,7 +1677,7 @@ namespace NorthwindTraders
                                         }
                                         else
                                         {
-                                            rowVersionOk = false;
+                                            rowVersionOk = true;
                                         }
                                     }
                                 }
