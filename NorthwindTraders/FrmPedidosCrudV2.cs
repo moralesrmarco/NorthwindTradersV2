@@ -1517,6 +1517,11 @@ namespace NorthwindTraders
             }
             if ((e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index & tabcOperacion.SelectedTab == tabpModificar) | (PedidoGenerado & e.ColumnIndex == dgvDetalle.Columns["Eliminar"].Index & tabcOperacion.SelectedTab == tabpRegistrar))
             {
+                if (!chkRowVersion())
+                {
+                    MessageBox.Show("El registro ha sido modificado por otro usuario de la red, vuelva a cargar el registro para que se actualice con los datos proporcionados por el otro usuario", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
                 DataGridViewRow dgvr = dgvDetalle.CurrentRow;
                 string productName = dgvr.Cells["Producto"].Value.ToString();
                 int productId = (int)dgvr.Cells["ProductoId"].Value;
