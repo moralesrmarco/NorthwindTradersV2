@@ -562,7 +562,7 @@ namespace NorthwindTraders
                     MessageBox.Show("Seleccione el producto a eliminar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                DialogResult respuesta = MessageBox.Show($"¿Esta seguro de eliminar el producto con Id: {txtId.Text} y Nombre de producto: {txtProducto.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult respuesta = MessageBox.Show($"¿Está seguro de eliminar el producto con Id: {txtId.Text} y Nombre de producto: {txtProducto.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (respuesta == DialogResult.Yes)
                 {
                     Utils.ActualizarBarraDeEstado(this, Utils.eliminandoRegistro);
@@ -578,7 +578,7 @@ namespace NorthwindTraders
                         if (numRegs > 0)
                             MessageBox.Show($"El producto con Id: {txtId.Text} y Nombre de producto: {txtProducto.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            MessageBox.Show($"El producto con Id: {txtId.Text} y Nombre de producto: {txtProducto.Text} NO se eliminó en la base de datos, es posible que otro usuario lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"El producto con Id: {txtId.Text} y Nombre de producto: {txtProducto.Text} NO se eliminó en la base de datos, es posible que otro usuario de la red lo haya modificado o eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (SqlException ex) when (ex.Number == 547)
                     {

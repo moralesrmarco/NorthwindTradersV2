@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -24,6 +26,24 @@ namespace NorthwindTraders
         public static string errorCriterioSelec = "Error: Proporcione los criterios de selección";
         public static string noDatos = "No se encontraron datos para mostrar en el reporte";
         #endregion
+
+        public static string ComputeSha256Hash(string rawData)
+        {
+            // 1. Instancia el algoritmo
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // 2. Convierte la cadena a bytes (UTF-8)
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+
+                // 3. Convierte cada byte a su representación hex (2 dígitos)
+                var builder = new StringBuilder();
+                foreach (byte b in bytes)
+                    builder.Append(b.ToString("x2"));
+
+                // 4. Retorna el string hex completo
+                return builder.ToString();
+            }
+        }
 
         public static DateTime? ObtenerFechaHora(DateTimePicker dtpFecha, DateTimePicker dtpHora)
         {
@@ -235,13 +255,19 @@ namespace NorthwindTraders
 
         public static void MsgCatchOueclbdd(Form form, SqlException ex)
         {
-            MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ex.Number == 53) // Error de conexión
+                MessageBox.Show("No se pudo conectar a la base de datos.\n\nVerifique su conexión.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else 
+                MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             Utils.ActualizarBarraDeEstado(form);
         }
 
         public static void MsgCatchOueclbdd(SqlException ex)
         {
-            MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (ex.Number == 53) // Error de conexión
+                MessageBox.Show("No se pudo conectar a la base de datos.\n\nVerifique su conexión.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show(Utils.oueclbdd + ex.Message, Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             MDIPrincipal.ActualizarBarraDeEstado();
         }
 
