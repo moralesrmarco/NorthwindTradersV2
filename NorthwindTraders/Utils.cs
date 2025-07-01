@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,7 +15,7 @@ namespace NorthwindTraders
         public static string clbdd = "Consultando la base de datos... ";
         public static string oueclbdd = "Ocurrio un error con la base de datos:\n";
         public static string oue = "Ocurrio un error:\n";
-        public static string nwtr = "Northwind Traders Ver 2.";
+        public static string nwtr = "» Northwind Traders Ver 2.0 «";
         public static string preguntaCerrar = "¿Esta seguro de querer cerrar el formulario?, si responde SI, se perderan los datos no guardados";
         public static string insertandoRegistro = "Insertando registro en la base de datos...";
         public static string modificandoRegistro = "Modificando registro en la base de datos...";

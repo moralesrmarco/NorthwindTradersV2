@@ -16,6 +16,15 @@ namespace NorthwindTraders
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            using (var login = new FrmLogin())
+            {
+                Application.Run(login);
+                if (!login.IsAuthenticated)
+                {
+                    // Si el usuario no se autentica, cerramos la aplicación.
+                    return;
+                }
+            }
             Application.Run(new MDIPrincipal());
         }
     }

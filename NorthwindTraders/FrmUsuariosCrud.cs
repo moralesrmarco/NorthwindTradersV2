@@ -436,6 +436,7 @@ namespace NorthwindTraders
                         if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     btnLimpiar.PerformClick();
+                    BorrarVariablesOld();
                 } 
                 else if (txtUsuario.Text.Trim() != usuarioOld & ValidarControles())
                 {
@@ -486,6 +487,7 @@ namespace NorthwindTraders
                         if (cn.State == ConnectionState.Open) cn.Close();
                     }
                     btnLimpiar.PerformClick();
+                    BorrarVariablesOld();
                 }
 
             }
@@ -599,6 +601,12 @@ namespace NorthwindTraders
                     btnTogglePwd1.Enabled = true;
                 else
                     btnTogglePwd1.Enabled = false;
+        }
+
+        private void BorrarVariablesOld() 
+        {
+            usuarioOld = paternoOld = maternoOld = nombresOld = pwdOld = pwdConfirmarOld = string.Empty;
+            estatusOld = false;
         }
     }
 }

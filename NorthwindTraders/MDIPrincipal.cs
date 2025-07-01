@@ -49,6 +49,7 @@ namespace NorthwindTraders
         {
             InitializeComponent();
             Instance = this;
+            this.Text = Utils.nwtr;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
