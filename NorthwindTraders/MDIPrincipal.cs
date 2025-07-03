@@ -9,6 +9,7 @@ namespace NorthwindTraders
 
         private int childFormNumber = 0;
         public static MDIPrincipal Instance { get; private set; }
+        public string UsuarioLogueado { get; set; }
 
         public ToolStripStatusLabel ToolStripEstado
         {
@@ -50,6 +51,17 @@ namespace NorthwindTraders
             InitializeComponent();
             Instance = this;
             this.Text = Utils.nwtr;
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void MDIPrincipal_Load(object sender, EventArgs e)
+        {
+            string textoParaToolStripTextBox1 = "Usuario: »" + UsuarioLogueado + "«";
+            // Medir el tamaño del texto
+            Size sizeTextoParaToolStripTextBox1 = TextRenderer.MeasureText(textoParaToolStripTextBox1, toolStripTextBox1.Font);
+            // Asignar el ancho con un pequeño margen adicional
+            toolStripTextBox1.Width = sizeTextoParaToolStripTextBox1.Width + 20; // se suman 20 píxeles para un margen adicional
+            this.toolStripTextBox1.Text = textoParaToolStripTextBox1;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -609,5 +621,17 @@ namespace NorthwindTraders
             };
             frmUsuariosCrud.Show();
         }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmCambiarContrasena frmCambiarContrasena = new FrmCambiarContrasena
+            {
+                MdiParent = this,
+                UsuarioLogueado = this.UsuarioLogueado
+            };
+            frmCambiarContrasena.Show();
+        }
+
     }
 }

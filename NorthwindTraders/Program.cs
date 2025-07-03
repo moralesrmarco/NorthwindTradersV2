@@ -16,6 +16,8 @@ namespace NorthwindTraders
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Inicializar el usuario autenticado como null
+            string usuarioAutenticado = null;
             using (var login = new FrmLogin())
             {
                 Application.Run(login);
@@ -24,8 +26,13 @@ namespace NorthwindTraders
                     // Si el usuario no se autentica, cerramos la aplicación.
                     return;
                 }
+                usuarioAutenticado = login.UsuarioLogueado;
             }
-            Application.Run(new MDIPrincipal());
+            //Application.Run(new MDIPrincipal());
+            // Instanciar el MDIPrincipal, inyectar el usuario y arrancar
+            var mdi = new MDIPrincipal();
+            mdi.UsuarioLogueado = usuarioAutenticado;
+            Application.Run(mdi);
         }
     }
 }

@@ -101,7 +101,7 @@
             this.tabcOperacion.Controls.Add(this.tbpModificar);
             this.tabcOperacion.Controls.Add(this.tbpEliminar);
             this.tabcOperacion.Location = new System.Drawing.Point(21, 10);
-            this.tabcOperacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabcOperacion.Margin = new System.Windows.Forms.Padding(4);
             this.tabcOperacion.Name = "tabcOperacion";
             this.tabcOperacion.SelectedIndex = 0;
             this.tabcOperacion.Size = new System.Drawing.Size(1280, 69);
@@ -112,9 +112,9 @@
             // 
             this.tbpConsultar.Controls.Add(this.label1);
             this.tbpConsultar.Location = new System.Drawing.Point(4, 25);
-            this.tbpConsultar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpConsultar.Margin = new System.Windows.Forms.Padding(4);
             this.tbpConsultar.Name = "tbpConsultar";
-            this.tbpConsultar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpConsultar.Padding = new System.Windows.Forms.Padding(4);
             this.tbpConsultar.Size = new System.Drawing.Size(1272, 40);
             this.tbpConsultar.TabIndex = 0;
             this.tbpConsultar.Text = "   Consultar usuario   ";
@@ -134,9 +134,9 @@
             // 
             this.tbpRegistrar.Controls.Add(this.label2);
             this.tbpRegistrar.Location = new System.Drawing.Point(4, 25);
-            this.tbpRegistrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpRegistrar.Margin = new System.Windows.Forms.Padding(4);
             this.tbpRegistrar.Name = "tbpRegistrar";
-            this.tbpRegistrar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpRegistrar.Padding = new System.Windows.Forms.Padding(4);
             this.tbpRegistrar.Size = new System.Drawing.Size(1272, 40);
             this.tbpRegistrar.TabIndex = 1;
             this.tbpRegistrar.Text = "   Registrar un usuario   ";
@@ -156,9 +156,9 @@
             // 
             this.tbpModificar.Controls.Add(this.label3);
             this.tbpModificar.Location = new System.Drawing.Point(4, 25);
-            this.tbpModificar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpModificar.Margin = new System.Windows.Forms.Padding(4);
             this.tbpModificar.Name = "tbpModificar";
-            this.tbpModificar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpModificar.Padding = new System.Windows.Forms.Padding(4);
             this.tbpModificar.Size = new System.Drawing.Size(1272, 40);
             this.tbpModificar.TabIndex = 2;
             this.tbpModificar.Text = "   Modificar un usuario   ";
@@ -179,9 +179,9 @@
             // 
             this.tbpEliminar.Controls.Add(this.label4);
             this.tbpEliminar.Location = new System.Drawing.Point(4, 25);
-            this.tbpEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.tbpEliminar.Name = "tbpEliminar";
-            this.tbpEliminar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpEliminar.Padding = new System.Windows.Forms.Padding(4);
             this.tbpEliminar.Size = new System.Drawing.Size(1272, 40);
             this.tbpEliminar.TabIndex = 3;
             this.tbpEliminar.Text = "   Eliminar un usuario   ";
@@ -204,9 +204,9 @@
             this.grbUsuarios.Controls.Add(this.Dgv);
             this.grbUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbUsuarios.Location = new System.Drawing.Point(21, 79);
-            this.grbUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.grbUsuarios.Name = "grbUsuarios";
-            this.grbUsuarios.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbUsuarios.Padding = new System.Windows.Forms.Padding(4);
             this.grbUsuarios.Size = new System.Drawing.Size(1269, 295);
             this.grbUsuarios.TabIndex = 2;
             this.grbUsuarios.TabStop = false;
@@ -218,7 +218,7 @@
             this.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv.Location = new System.Drawing.Point(4, 20);
-            this.Dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Dgv.Margin = new System.Windows.Forms.Padding(4);
             this.Dgv.Name = "Dgv";
             this.Dgv.RowHeadersWidth = 51;
             this.Dgv.Size = new System.Drawing.Size(1261, 271);
@@ -246,9 +246,9 @@
             this.grbBuscar.Controls.Add(this.label5);
             this.grbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grbBuscar.Location = new System.Drawing.Point(21, 384);
-            this.grbBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.grbBuscar.Name = "grbBuscar";
-            this.grbBuscar.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbBuscar.Padding = new System.Windows.Forms.Padding(4);
             this.grbBuscar.Size = new System.Drawing.Size(277, 367);
             this.grbBuscar.TabIndex = 3;
             this.grbBuscar.TabStop = false;
@@ -259,7 +259,7 @@
             // 
             this.txtBUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBUsuario.Location = new System.Drawing.Point(19, 274);
-            this.txtBUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtBUsuario.MaxLength = 50;
             this.txtBUsuario.Name = "txtBUsuario";
             this.txtBUsuario.Size = new System.Drawing.Size(239, 23);
@@ -279,7 +279,7 @@
             // 
             this.txtBNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBNombres.Location = new System.Drawing.Point(19, 222);
-            this.txtBNombres.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBNombres.Margin = new System.Windows.Forms.Padding(4);
             this.txtBNombres.MaxLength = 50;
             this.txtBNombres.Name = "txtBNombres";
             this.txtBNombres.Size = new System.Drawing.Size(239, 23);
@@ -289,7 +289,7 @@
             // 
             this.txtBMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBMaterno.Location = new System.Drawing.Point(19, 174);
-            this.txtBMaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBMaterno.Margin = new System.Windows.Forms.Padding(4);
             this.txtBMaterno.MaxLength = 50;
             this.txtBMaterno.Name = "txtBMaterno";
             this.txtBMaterno.Size = new System.Drawing.Size(239, 23);
@@ -298,7 +298,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(139, 310);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(120, 28);
             this.btnBuscar.TabIndex = 6;
@@ -310,7 +310,7 @@
             // 
             this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(11, 309);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(117, 28);
             this.btnLimpiar.TabIndex = 5;
@@ -322,7 +322,7 @@
             // 
             this.txtBPaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBPaterno.Location = new System.Drawing.Point(19, 119);
-            this.txtBPaterno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBPaterno.Margin = new System.Windows.Forms.Padding(4);
             this.txtBPaterno.MaxLength = 50;
             this.txtBPaterno.Name = "txtBPaterno";
             this.txtBPaterno.Size = new System.Drawing.Size(239, 23);
@@ -332,7 +332,7 @@
             // 
             this.txtBIdFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdFin.Location = new System.Drawing.Point(96, 58);
-            this.txtBIdFin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBIdFin.Margin = new System.Windows.Forms.Padding(4);
             this.txtBIdFin.MaxLength = 10;
             this.txtBIdFin.Name = "txtBIdFin";
             this.txtBIdFin.Size = new System.Drawing.Size(132, 23);
@@ -345,7 +345,7 @@
             // 
             this.txtBIdIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBIdIni.Location = new System.Drawing.Point(96, 26);
-            this.txtBIdIni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBIdIni.Margin = new System.Windows.Forms.Padding(4);
             this.txtBIdIni.MaxLength = 10;
             this.txtBIdIni.Name = "txtBIdIni";
             this.txtBIdIni.Size = new System.Drawing.Size(132, 23);
@@ -436,7 +436,7 @@
             this.grbUsuario.Location = new System.Drawing.Point(331, 384);
             this.grbUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grbUsuario.Name = "grbUsuario";
-            this.grbUsuario.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.grbUsuario.Padding = new System.Windows.Forms.Padding(4);
             this.grbUsuario.Size = new System.Drawing.Size(965, 367);
             this.grbUsuario.TabIndex = 4;
             this.grbUsuario.TabStop = false;

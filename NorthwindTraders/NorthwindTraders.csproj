@@ -90,6 +90,12 @@
     <Compile Include="DummyData.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="EmpleadoConReportsTo.cs" />
+    <Compile Include="FrmCambiarContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCambiarContrasena.Designer.cs">
+      <DependentUpon>FrmCambiarContrasena.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCategoriasCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +375,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="FrmCambiarContrasena.resx">
+      <DependentUpon>FrmCambiarContrasena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCategoriasCrud.resx">
       <DependentUpon>FrmCategoriasCrud.cs</DependentUpon>
       <SubType>Designer</SubType>

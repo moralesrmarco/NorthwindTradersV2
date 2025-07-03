@@ -8,6 +8,7 @@ namespace NorthwindTraders
     {
 
         public bool IsAuthenticated { get; private set; } = false;
+        public string UsuarioLogueado;
         bool _imagenMostrada = true;
         byte numeroIntentos = 0;
 
@@ -24,6 +25,7 @@ namespace NorthwindTraders
             if (ValidateUser(usuario, pass))
             {
                 IsAuthenticated = true;
+                UsuarioLogueado = usuario;
                 this.Close();
             }
             else
