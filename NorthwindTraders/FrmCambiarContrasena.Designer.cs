@@ -52,7 +52,7 @@
             this.btnTogglePwd.Margin = new System.Windows.Forms.Padding(0);
             this.btnTogglePwd.Name = "btnTogglePwd";
             this.btnTogglePwd.Size = new System.Drawing.Size(47, 37);
-            this.btnTogglePwd.TabIndex = 11;
+            this.btnTogglePwd.TabIndex = 3;
             this.toolTip1.SetToolTip(this.btnTogglePwd, "Mostrar/Ocultar contraseña");
             this.btnTogglePwd.UseVisualStyleBackColor = true;
             this.btnTogglePwd.Click += new System.EventHandler(this.btnTogglePwd_Click);
@@ -64,7 +64,7 @@
             this.btnCambiar.Location = new System.Drawing.Point(325, 287);
             this.btnCambiar.Name = "btnCambiar";
             this.btnCambiar.Size = new System.Drawing.Size(196, 26);
-            this.btnCambiar.TabIndex = 10;
+            this.btnCambiar.TabIndex = 4;
             this.btnCambiar.Text = "»» Cambiar contraseña ««";
             this.btnCambiar.UseVisualStyleBackColor = true;
             this.btnCambiar.Click += new System.EventHandler(this.btnCambiar_Click);
@@ -76,7 +76,7 @@
             this.txtPwd.MaxLength = 20;
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.Size = new System.Drawing.Size(190, 26);
-            this.txtPwd.TabIndex = 9;
+            this.txtPwd.TabIndex = 0;
             this.txtPwd.UseSystemPasswordChar = true;
             // 
             // txtUsuario
@@ -87,7 +87,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.ReadOnly = true;
             this.txtUsuario.Size = new System.Drawing.Size(190, 26);
-            this.txtUsuario.TabIndex = 8;
+            this.txtUsuario.TabIndex = 5;
             // 
             // label2
             // 
@@ -116,7 +116,7 @@
             this.txtNewPwd.MaxLength = 20;
             this.txtNewPwd.Name = "txtNewPwd";
             this.txtNewPwd.Size = new System.Drawing.Size(190, 26);
-            this.txtNewPwd.TabIndex = 12;
+            this.txtNewPwd.TabIndex = 1;
             this.txtNewPwd.UseSystemPasswordChar = true;
             // 
             // txtConfirmarPwd
@@ -126,7 +126,7 @@
             this.txtConfirmarPwd.MaxLength = 20;
             this.txtConfirmarPwd.Name = "txtConfirmarPwd";
             this.txtConfirmarPwd.Size = new System.Drawing.Size(190, 26);
-            this.txtConfirmarPwd.TabIndex = 13;
+            this.txtConfirmarPwd.TabIndex = 2;
             this.txtConfirmarPwd.UseSystemPasswordChar = true;
             // 
             // label3
