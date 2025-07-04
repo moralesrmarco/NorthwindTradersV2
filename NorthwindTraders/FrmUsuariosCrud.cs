@@ -503,19 +503,40 @@ namespace NorthwindTraders
                 {
                     MDIPrincipal.ActualizarBarraDeEstado(Utils.eliminandoRegistro);
                     btnOperacion.Enabled = false;
+                    SqlTransaction tx = null;
                     try
                     {
-                        SqlCommand cmd = new SqlCommand("Delete from Usuarios where Id = @Id", cn);
-                        cmd.Parameters.AddWithValue("@Id", txtId.Text);
                         if (cn.State != ConnectionState.Open) cn.Open();
-                        numRegs = cmd.ExecuteNonQuery();
+                        tx = cn.BeginTransaction(); // Inicia una transacción
+                        using (var cmd = new SqlCommand("Delete from Permisos where UsuarioId = @Id", cn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@Id", txtId.Text);
+                            cmd.ExecuteNonQuery();
+                        }
+                        using (var cmd = new SqlCommand("Delete from Usuarios where Id = @Id", cn, tx))
+                        {
+                            cmd.Parameters.AddWithValue("@Id", txtId.Text);
+                            numRegs = cmd.ExecuteNonQuery();
+                        }
+                        // Confirmar transacción
+                        tx.Commit();
                         if (numRegs > 0)
                             MessageBox.Show($"El usuario con Id: {txtId.Text} y Nombre: {txtPaterno.Text} {txtMaterno.Text} {txtNombres.Text} se eliminó satisfactoriamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
                             MessageBox.Show($"El usuario con Id: {txtId.Text} y Nombre: {txtPaterno.Text} {txtMaterno.Text} {txtNombres.Text} NO se eliminó en la base de datos, es posible que otro usuario de la red lo haya eliminado previamente", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    catch (SqlException ex) { Utils.MsgCatchOueclbdd(ex); }
-                    catch (Exception ex) { Utils.MsgCatchOue(ex); }
+                    catch (SqlException ex) 
+                    {
+                        // Revertir si ocurrió un error
+                        tx?.Rollback();
+                        Utils.MsgCatchOueclbdd(ex); 
+                    }
+                    catch (Exception ex) 
+                    {
+                        // Revertir si ocurrió un error
+                        tx?.Rollback();
+                        Utils.MsgCatchOue(ex); 
+                    }
                     finally
                     {
                         if (cn.State == ConnectionState.Open) cn.Close();
