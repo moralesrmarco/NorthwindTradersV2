@@ -901,6 +901,7 @@
             this.mantenimientoDePermisosToolStripMenuItem.Name = "mantenimientoDePermisosToolStripMenuItem";
             this.mantenimientoDePermisosToolStripMenuItem.Size = new System.Drawing.Size(278, 26);
             this.mantenimientoDePermisosToolStripMenuItem.Text = "Mantenimiento de permisos";
+            this.mantenimientoDePermisosToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoDePermisosToolStripMenuItem_Click);
             // 
             // toolsMenu
             // 

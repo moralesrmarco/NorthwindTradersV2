@@ -260,7 +260,7 @@
             this.txtBUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBUsuario.Location = new System.Drawing.Point(19, 274);
             this.txtBUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBUsuario.MaxLength = 50;
+            this.txtBUsuario.MaxLength = 20;
             this.txtBUsuario.Name = "txtBUsuario";
             this.txtBUsuario.Size = new System.Drawing.Size(239, 23);
             this.txtBUsuario.TabIndex = 10;
@@ -280,7 +280,7 @@
             this.txtBNombres.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBNombres.Location = new System.Drawing.Point(19, 222);
             this.txtBNombres.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBNombres.MaxLength = 50;
+            this.txtBNombres.MaxLength = 80;
             this.txtBNombres.Name = "txtBNombres";
             this.txtBNombres.Size = new System.Drawing.Size(239, 23);
             this.txtBNombres.TabIndex = 8;

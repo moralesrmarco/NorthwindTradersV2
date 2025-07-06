@@ -128,7 +128,7 @@ namespace NorthwindTraders
             Dgv.Columns["Paterno"].HeaderText = "Apellido Paterno";
             Dgv.Columns["Materno"].HeaderText = "Apellido Materno";
             Dgv.Columns["Password"].HeaderText = "Contraseña";
-            Dgv.Columns["FechaCaptura"].HeaderText = "Fecha de captura";
+            Dgv.Columns["FechaCaptura"].HeaderText = "Fecha de creación";
             Dgv.Columns["FechaModificacion"].HeaderText = "Fecha de modificación";
 
             Dgv.Columns["FechaCaptura"].DefaultCellStyle.Format = "dd/MMMM/yyyy\nhh:mm:ss tt";
