@@ -9,6 +9,7 @@ namespace NorthwindTraders
 
         public bool IsAuthenticated { get; private set; } = false;
         public string UsuarioLogueado;
+        public int IdUsuarioLogueado;
         bool _imagenMostrada = true;
         byte numeroIntentos = 0;
 
@@ -48,13 +49,15 @@ namespace NorthwindTraders
             string hashed = Utils.ComputeSha256Hash(pass);
             using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
             {
-                using (var cmd = new SqlCommand("SELECT COUNT(0) FROM Usuarios WHERE Usuario = @usuario AND Password = @password AND Estatus = 1", cn))
+                using (var cmd = new SqlCommand("SELECT Id FROM Usuarios WHERE Usuario = @usuario AND Password = @password AND Estatus = 1", cn))
                 {
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@password", hashed);
                     cn.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    return count > 0;
+                    //int count = (int)cmd.ExecuteScalar();
+                    //return count > 0;
+                    IdUsuarioLogueado = (int)cmd.ExecuteScalar();
+                    return IdUsuarioLogueado > 0;
                 }
             }
         }

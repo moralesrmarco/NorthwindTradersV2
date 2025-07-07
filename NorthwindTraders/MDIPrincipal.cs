@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace NorthwindTraders
         private int childFormNumber = 0;
         public static MDIPrincipal Instance { get; private set; }
         public string UsuarioLogueado { get; set; }
+        public int IdUsuarioLogueado { get; set; }
 
         public ToolStripStatusLabel ToolStripEstado
         {
@@ -62,8 +64,71 @@ namespace NorthwindTraders
             // Asignar el ancho con un pequeño margen adicional
             toolStripTextBox1.Width = sizeTextoParaToolStripTextBox1.Width + 20; // se suman 20 píxeles para un margen adicional
             this.toolStripTextBox1.Text = textoParaToolStripTextBox1;
-            this.tsmiEmpleados.Enabled = false;
-            this.tsmiClientes.Enabled = false;
+            IniciarSesion();
+        }
+
+        public void IniciarSesion()
+        {
+            // Obtener los permisos del usuario logueado
+            var permisos = ObtenerPermisosUsuario(IdUsuarioLogueado);
+            // Ajustar el menú por permisos
+            AjustarMenuPorPermisos(permisos);
+            if (permisos.Count == 0)
+            {
+                MessageBox.Show("El usuario no tiene permisos asignados.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //return;
+            }
+            ActualizarBarraDeEstado("Sesión iniciada correctamente");
+        }
+
+        private void AjustarMenuPorPermisos(HashSet<int> permisos)
+        {
+            tsmiEmpleados.Enabled = false;
+            tsmiClientes.Enabled = false;
+            tsmiProveedores.Enabled = false;
+            tsmiCategorias.Enabled = false;
+            tsmiProductos.Enabled = false;
+            tsmiPedidos.Enabled = false;
+            tsmiAdministracion.Enabled = false;
+            foreach (int permisoId in permisos)
+            {
+                if (permisoId == 1)
+                    tsmiEmpleados.Enabled = true; // Permiso para Empleados
+                else if (permisoId == 2)
+                    tsmiClientes.Enabled = true; // Permiso para Clientes
+                else if (permisoId == 3)
+                    tsmiProveedores.Enabled = true; // Permiso para Proveedores
+                else if (permisoId == 4)
+                    tsmiCategorias.Enabled = true; // Permiso para Categorías
+                else if (permisoId == 5)
+                    tsmiProductos.Enabled = true; // Permiso para Productos
+                else if (permisoId == 6)
+                    tsmiPedidos.Enabled = true; // Permiso para Pedidos
+                else if (permisoId == 7)
+                    tsmiAdministracion.Enabled = true; // Permiso para Administración
+            }
+        }
+
+        private HashSet<int> ObtenerPermisosUsuario(int idUsuarioLogueado)
+        {
+            var permisos = new HashSet<int>();
+            using (var cn = new System.Data.SqlClient.SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            {
+                using (var cmd = new System.Data.SqlClient.SqlCommand("SELECT PermisoId FROM Permisos WHERE UsuarioId = @UsuarioId", cn))
+                {
+                    cmd.Parameters.AddWithValue("@UsuarioId", idUsuarioLogueado);
+                    if (cn.State != System.Data.ConnectionState.Open)
+                        cn.Open();
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            permisos.Add(rdr.GetInt32(0));
+                        }
+                    }
+                }
+            }
+            return permisos;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
