@@ -579,11 +579,11 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(253, 233);
+            this.label19.Location = new System.Drawing.Point(247, 233);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(140, 17);
+            this.label19.Size = new System.Drawing.Size(147, 17);
             this.label19.TabIndex = 9;
-            this.label19.Text = "Fecha de captura:";
+            this.label19.Text = "Fecha de creación:";
             // 
             // label18
             // 

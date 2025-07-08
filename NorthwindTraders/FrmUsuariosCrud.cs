@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -85,7 +86,24 @@ namespace NorthwindTraders
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
+                // Agrega una nueva columna "EstatusTexto" de tipo string
+                dt.Columns.Add("EstatusTexto", typeof(string));
+
+                // Llena la nueva columna con el texto equivalente
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool estatus = Convert.ToBoolean(row["Estatus"]);
+                    row["EstatusTexto"] = estatus ? "Activo" : "Inactivo";
+                }
+
+                // Opcional: eliminar la columna original si ya no la necesitas
+                dt.Columns.Remove("Estatus");
+
+                // Opcional: renombrar la columna nueva para mantener el nombre original
+                dt.Columns["EstatusTexto"].ColumnName = "Estatus";
+
                 Dgv.DataSource = dt;
+
                 Utils.ConfDgv(Dgv);
                 ConfDgv();
                 if (sender == null)
@@ -124,6 +142,7 @@ namespace NorthwindTraders
             Dgv.Columns["Password"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Dgv.Columns["FechaCaptura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Dgv.Columns["FechaModificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Dgv.Columns["Estatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             Dgv.Columns["Paterno"].HeaderText = "Apellido Paterno";
             Dgv.Columns["Materno"].HeaderText = "Apellido Materno";
@@ -271,7 +290,18 @@ namespace NorthwindTraders
         {
             if (Dgv.Columns[e.ColumnIndex].Name == "Password" && e.Value != null)
                 e.Value = new string('●', 10);
-                //e.Value = new string('●', e.Value.ToString().Length); // Oculta la contraseña con asteriscos
+            //e.Value = new string('●', e.Value.ToString().Length); // Oculta la contraseña con asteriscos
+            string estado = e.Value.ToString();
+            if (estado == "Activo")
+            {
+                e.CellStyle.BackColor = Color.LightGreen;
+                e.CellStyle.ForeColor = Color.Black;
+            }
+            else if (estado == "Inactivo")
+            {
+                e.CellStyle.BackColor = Color.Red;
+                e.CellStyle.ForeColor = Color.White;
+            }
         }
 
         private void tabcOperacion_Selected(object sender, TabControlEventArgs e)

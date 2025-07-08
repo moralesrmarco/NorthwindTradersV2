@@ -145,6 +145,23 @@ namespace NorthwindTraders
                 SqlDataAdapter dap = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 dap.Fill(dt);
+
+                // Agrega una nueva columna "EstatusTexto" de tipo string
+                dt.Columns.Add("EstatusTexto", typeof(string));
+
+                // Llena la nueva columna con el texto equivalente
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool estatus = Convert.ToBoolean(row["Estatus"]);
+                    row["EstatusTexto"] = estatus ? "Activo" : "Inactivo";
+                }
+
+                // Opcional: eliminar la columna original si ya no la necesitas
+                dt.Columns.Remove("Estatus");
+
+                // Opcional: renombrar la columna nueva para mantener el nombre original
+                dt.Columns["EstatusTexto"].ColumnName = "Estatus";
+
                 Dgv.DataSource = dt;
                 Utils.ConfDgv(Dgv);
                 ConfDgv();
@@ -417,6 +434,21 @@ namespace NorthwindTraders
             if (cn.State == ConnectionState.Open)
                 cn.Close();
             MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
+        private void Dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            string estado = e.Value.ToString();
+            if (estado == "Activo")
+            {
+                e.CellStyle.BackColor = Color.LightGreen;
+                e.CellStyle.ForeColor = Color.Black;
+            }
+            else if (estado == "Inactivo")
+            {
+                e.CellStyle.BackColor = Color.Red;
+                e.CellStyle.ForeColor = Color.White;
+            }
         }
     }
 }
