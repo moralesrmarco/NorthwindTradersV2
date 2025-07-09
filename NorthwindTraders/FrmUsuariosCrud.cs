@@ -272,7 +272,8 @@ namespace NorthwindTraders
                         lblFechaModificacion.Text = Convert.ToDateTime(dgvr.Cells["FechaModificacion"].Value).ToString("dd/MMMM/yyyy hh:mm:ss tt");
                     else
                         lblFechaModificacion.Text = "Nulo";
-                    estatusOld = chkbEstatus.Checked = Convert.ToBoolean(dgvr.Cells["Estatus"].Value);
+                    //estatusOld = chkbEstatus.Checked = Convert.ToBoolean(dgvr.Cells["Estatus"].Value);
+                    estatusOld = chkbEstatus.Checked = dgvr.Cells["Estatus"].Value?.ToString() == "Activo";
                     passHasheadaOld = txtPwd.Text.Trim(); // Almacena la contraseña hasheada antes de modificarla
                 }
                 if (tabcOperacion.SelectedTab == tbpModificar)

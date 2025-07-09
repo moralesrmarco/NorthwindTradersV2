@@ -194,6 +194,7 @@ namespace NorthwindTraders
             Dgv.Columns["Usuario"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Dgv.Columns["FechaCaptura"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             Dgv.Columns["FechaModificacion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            Dgv.Columns["Estatus"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             Dgv.Columns["Paterno"].HeaderText = "Apellido Paterno";
             Dgv.Columns["Materno"].HeaderText = "Apellido Materno";
@@ -229,7 +230,6 @@ namespace NorthwindTraders
 
         private void BorrarDatosPermisos()
         {
-            listBoxCatalogo.Items.Clear();
             listBoxConcedidos.Items.Clear();
         }
 
