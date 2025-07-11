@@ -230,6 +230,7 @@ namespace NorthwindTraders
 
         private void BorrarDatosPermisos()
         {
+            listBoxConcedidos.DataSource = null;
             listBoxConcedidos.Items.Clear();
         }
 

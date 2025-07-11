@@ -418,7 +418,7 @@ namespace NorthwindTraders
             }
             else if (tabcOperacion.SelectedTab == tbpModificar)
             {
-                if (txtUsuario.Text.Trim() == usuarioOld & ValidarControles1())
+                if (txtUsuario.Text.Trim() == usuarioOld && ValidarControles1())
                 {
                     MDIPrincipal.ActualizarBarraDeEstado(Utils.modificandoRegistro);
                     DeshabilitarControles();
@@ -469,7 +469,7 @@ namespace NorthwindTraders
                     btnLimpiar.PerformClick();
                     BorrarVariablesOld();
                 } 
-                else if (txtUsuario.Text.Trim() != usuarioOld & ValidarControles())
+                else if (txtUsuario.Text.Trim() != usuarioOld && ValidarControles())
                 {
                     MDIPrincipal.ActualizarBarraDeEstado(Utils.modificandoRegistro);
                     DeshabilitarControles();

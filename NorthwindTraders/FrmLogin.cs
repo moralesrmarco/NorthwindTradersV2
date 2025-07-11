@@ -54,9 +54,14 @@ namespace NorthwindTraders
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@password", hashed);
                     cn.Open();
-                    //int count = (int)cmd.ExecuteScalar();
-                    //return count > 0;
-                    IdUsuarioLogueado = (int)cmd.ExecuteScalar();
+                    object result = cmd.ExecuteScalar();
+                    // Si no encontró nada, result será null o DBNull.Value
+                    if (result == null || result == DBNull.Value)
+                    {
+                        IdUsuarioLogueado = 0;
+                        return false;
+                    }
+                    IdUsuarioLogueado = Convert.ToInt32(result);
                     return IdUsuarioLogueado > 0;
                 }
             }
