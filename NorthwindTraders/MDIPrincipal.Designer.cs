@@ -151,6 +151,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.cambiarDeUsuarioLogueadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -913,7 +914,8 @@
             // toolsMenu
             // 
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cambiarContraseñaToolStripMenuItem});
+            this.cambiarContraseñaToolStripMenuItem,
+            this.cambiarDeUsuarioLogueadoToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(112, 27);
             this.toolsMenu.Text = "&Herramientas";
@@ -1166,6 +1168,12 @@
             this.tsslEstado.Size = new System.Drawing.Size(47, 24);
             this.tsslEstado.Text = "Listo.";
             // 
+            // cambiarDeUsuarioLogueadoToolStripMenuItem
+            // 
+            this.cambiarDeUsuarioLogueadoToolStripMenuItem.Name = "cambiarDeUsuarioLogueadoToolStripMenuItem";
+            this.cambiarDeUsuarioLogueadoToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.cambiarDeUsuarioLogueadoToolStripMenuItem.Text = "Cambiar de usuario logueado";
+            // 
             // MDIPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1176,7 +1184,7 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MDIPrincipal";
             this.ShowIcon = false;
             this.Text = "» Northwind Traders Ver. 2 «";
@@ -1316,6 +1324,7 @@
         private System.Windows.Forms.ToolStripMenuItem mantenimientoDePermisosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem cambiarDeUsuarioLogueadoToolStripMenuItem;
     }
 }
 

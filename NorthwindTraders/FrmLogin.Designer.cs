@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(627, 344);
+            this.ClientSize = new System.Drawing.Size(594, 346);
             this.Controls.Add(this.btnTogglePwd);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtPwd);
@@ -118,7 +118,6 @@
             this.MinimizeBox = false;
             this.Name = "FrmLogin";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "» Northwind Traders Ver 2.0 «";
             this.ResumeLayout(false);
