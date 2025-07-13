@@ -709,5 +709,13 @@ namespace NorthwindTraders
             };
             frmPermisosCrud.Show();
         }
+
+        private void cambiarDeUsuarioLogueadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Reinicia la aplicación
+            Application.Restart();
+            // Asegura que el hilo de la UI termine
+            Environment.Exit(0);
+        }
     }
 }

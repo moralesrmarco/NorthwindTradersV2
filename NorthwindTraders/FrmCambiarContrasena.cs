@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -43,25 +36,36 @@ namespace NorthwindTraders
             PonerNoVisibleBtnTogglePwd();
             if (!ValidarNuevaContrasena())
                 return;
-            string pwdHasheada = Utils.ComputeSha256Hash(txtNewPwd.Text.Trim());
-            using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            try
             {
-                using (var cmd = new SqlCommand("UPDATE Usuarios SET Password = @password WHERE Usuario = @usuario AND Estatus = 1", cn))
+                string pwdHasheada = Utils.ComputeSha256Hash(txtNewPwd.Text.Trim());
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-                    cmd.Parameters.AddWithValue("@password", pwdHasheada);
-                    cn.Open();
-                    int filasAfectadas = cmd.ExecuteNonQuery();
-                    if (filasAfectadas > 0)
+                    using (var cmd = new SqlCommand("UPDATE Usuarios SET Password = @password WHERE Usuario = @usuario AND Estatus = 1", cn))
                     {
-                        MessageBox.Show("Contraseña cambiada correctamente.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se pudo cambiar la contraseña. Verifique que su cuenta esté activa.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+                        cmd.Parameters.AddWithValue("@password", pwdHasheada);
+                        cn.Open();
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        if (filasAfectadas > 0)
+                        {
+                            MessageBox.Show("Contraseña cambiada correctamente.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo cambiar la contraseña. Verifique que su cuenta esté activa.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
             }
         }
 
@@ -72,26 +76,39 @@ namespace NorthwindTraders
             txtPwd.Text = txtPwd.Text.Trim();
             if (string.IsNullOrWhiteSpace(txtPwd.Text))
             {
-                errorProvider1.SetError(txtPwd, "La contraseña anterior es obligatoria");
+                errorProvider1.SetError(txtPwd, "Debe ingresar su contraseña actual");
                 valida = false;
             }
             if (valida)
             {
-                string pwdHasheada = Utils.ComputeSha256Hash(txtPwd.Text.Trim());
-                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                try
                 {
-                    using (var cmd = new SqlCommand("SELECT COUNT(0) FROM Usuarios WHERE Usuario = @usuario AND Password = @password AND Estatus = 1", cn))
+                    string pwdHasheada = Utils.ComputeSha256Hash(txtPwd.Text.Trim());
+                    using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                     {
-                        cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-                        cmd.Parameters.AddWithValue("@password", pwdHasheada);
-                        cn.Open();
-                        int count = (int)cmd.ExecuteScalar();
-                        if (count == 0)
+                        using (var cmd = new SqlCommand("SELECT COUNT(0) FROM Usuarios WHERE Usuario = @usuario AND Password = @password AND Estatus = 1", cn))
                         {
-                            errorProvider1.SetError(txtPwd, "La contraseña anterior es incorrecta");
-                            valida = false;
+                            cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+                            cmd.Parameters.AddWithValue("@password", pwdHasheada);
+                            cn.Open();
+                            int count = (int)cmd.ExecuteScalar();
+                            if (count == 0)
+                            {
+                                errorProvider1.SetError(txtPwd, "La contraseña actual es incorrecta");
+                                valida = false;
+                            }
                         }
                     }
+                }
+                catch (SqlException ex)
+                {
+                    Utils.MsgCatchOueclbdd(ex);
+                    valida = false;
+                }
+                catch (Exception ex)
+                {
+                    Utils.MsgCatchOue(ex);
+                    valida = false;
                 }
                 txtNewPwd.Text = txtNewPwd.Text.Trim();
                 txtConfirmarPwd.Text = txtConfirmarPwd.Text.Trim();
@@ -110,19 +127,19 @@ namespace NorthwindTraders
                     // Validar que las contraseñas coincidan
                     if (txtNewPwd.Text != txtConfirmarPwd.Text)
                     {
-                        errorProvider1.SetError(txtNewPwd, "Las nueva contraseña y la confirmación de la contraseña no coinciden");
-                        errorProvider1.SetError(txtConfirmarPwd, "Las nueva contraseña y la confirmación de la contraseña no coinciden");
+                        errorProvider1.SetError(txtNewPwd, "La nueva contraseña y la confirmación de la contraseña no coinciden");
+                        errorProvider1.SetError(txtConfirmarPwd, "La nueva contraseña y la confirmación de la contraseña no coinciden");
                         valida = false;
                     }
                 }
             }
             return valida;
         }
+
         private void PonerNoVisibleBtnTogglePwd()
         {
             txtPwd.UseSystemPasswordChar = txtNewPwd.UseSystemPasswordChar = txtConfirmarPwd.UseSystemPasswordChar = true;
             btnTogglePwd.Image = Properties.Resources.mostrarCh;
         }
-
     }
 }
