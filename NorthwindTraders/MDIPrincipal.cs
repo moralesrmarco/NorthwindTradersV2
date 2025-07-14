@@ -90,6 +90,7 @@ namespace NorthwindTraders
             tsmiProductos.Enabled = false;
             tsmiPedidos.Enabled = false;
             tsmiAdministracion.Enabled = false;
+            tsmiGraficas.Enabled = false;
             foreach (int permisoId in permisos)
             {
                 if (permisoId == 1)
@@ -106,6 +107,8 @@ namespace NorthwindTraders
                     tsmiPedidos.Enabled = true; // Permiso para Pedidos
                 else if (permisoId == 7)
                     tsmiAdministracion.Enabled = true; // Permiso para Administración
+                else if (permisoId == 8)
+                    tsmiGraficas.Enabled = true; // Permiso para Administración
             }
         }
 
@@ -716,6 +719,31 @@ namespace NorthwindTraders
             Application.Restart();
             // Asegura que el hilo de la UI termine
             Environment.Exit(0);
+        }
+
+        private void ventasMensualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmGraficaVentasMensuales frmGraficaVentasMensuales = new FrmGraficaVentasMensuales
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasMensuales.Show();
+        }
+
+        private void ventasAnualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void top10ProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ventasPorVendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

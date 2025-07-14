@@ -75,6 +75,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -137,6 +138,12 @@
     </Compile>
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensuales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensuales.Designer.cs">
+      <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -360,6 +367,12 @@
     <Compile Include="FrmRptProveedores.Designer.cs">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTableroControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTableroControl.Designer.cs">
+      <DependentUpon>FrmTableroControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmUsuariosCrud.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -410,6 +423,9 @@
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasMensuales.resx">
+      <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -522,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTableroControl.resx">
+      <DependentUpon>FrmTableroControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
