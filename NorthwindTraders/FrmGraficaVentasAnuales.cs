@@ -6,12 +6,11 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-
 namespace NorthwindTraders
 {
-    public partial class FrmGraficaVentasMensuales : Form
+    public partial class FrmGraficaVentasAnuales : Form
     {
-        public FrmGraficaVentasMensuales()
+        public FrmGraficaVentasAnuales()
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
@@ -19,110 +18,108 @@ namespace NorthwindTraders
 
         private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
-        private void FrmGraficaVentasMensuales_Load(object sender, EventArgs e)
+        private void FrmGraficaVentasAnuales_Load(object sender, EventArgs e)
         {
             LlenarComboBox();
-            CargarVentasMensuales(DateTime.Now.Year);
+            GroupBox.Text = $"» Comparativo de ventas mensuales de los últimos 2 años «";
+            CargarComparativoVentasMensuales(2);
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             if (ComboBox.SelectedIndex == 0)
             {
-                MessageBox.Show("Seleccione un año válido.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un número de años válido.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            CargarVentasMensuales(Convert.ToInt32(ComboBox.SelectedItem));
+            if (Convert.ToInt32(ComboBox.SelectedValue) >= 6)
+            {
+                MessageBox.Show("Solo existen datos en la base de datos hasta el año 1996", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            CargarComparativoVentasMensuales(Convert.ToInt32(ComboBox.SelectedValue));
         }
 
         private void LlenarComboBox()
         {
-            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
-            ComboBox.Items.Add("»--- Seleccione ---«");
-            try
+            var items = new List<KeyValuePair<string, int>>();
+            items.Add(new KeyValuePair<string, int>("»--- Seleccione ---«", 0));
+            for (int i = 2; i <= 8; i++)
             {
-                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
-                {
-                    using (var cmd = new SqlCommand("SELECT DISTINCT YEAR(OrderDate) AS YearOrderDate FROM Orders ORDER BY YearOrderDate DESC", cn))
-                    {
-                        cn.Open();
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                int year = reader.GetInt32(0);
-                                ComboBox.Items.Add(year);
-                            }
-                        }
-                    }
-                }
-                ComboBox.SelectedIndex = 0; // Selecciona el primer elemento
+                items.Add(new KeyValuePair<string, int>($"{i} Años ", i));
             }
-            catch (SqlException ex)
-            {
-                Utils.MsgCatchOueclbdd(ex);
-            }
-            catch (Exception ex)
-            {
-                Utils.MsgCatchOue(ex);
-            }
-            MDIPrincipal.ActualizarBarraDeEstado();
+            ComboBox.DataSource = items;
+            ComboBox.DisplayMember = "Key";
+            ComboBox.ValueMember = "Value";
         }
 
-        private void CargarVentasMensuales(int year)
+        private void CargarComparativoVentasMensuales(int years)
         {
-            // 1. Obtiene los datos ADO.NET
-            var datos = ObtenerVentasMensuales(year);
-            // 2. Prepara la serie del Chart
-            var serie = chartVentas.Series["Ventas mensuales"];
-            serie.Points.Clear();
-            serie.ChartType = SeriesChartType.Line;
-            serie.BorderWidth = 3;
-            serie.ToolTip = "Ventas de #VALX: #VALY{C2}";
-            serie.IsValueShownAsLabel = true;
-            serie.LabelFormat = "C2"; // Formato de moneda con 2 decimales
-            // 3. Agrega puntos al gráfico
-            foreach (var punto in datos)
+            ChartVentasAnuales.Series.Clear();
+            ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
+            //ChartVentasAnuales.ChartAreas.Clear(); // Limpiar áreas previas
+            int yearActual = DateTime.Now.Year;
+            for (int i = 1; i <= years; i++)
             {
-                string nombreMes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(punto.Mes);
-                serie.Points.AddXY(nombreMes, punto.Total);
+                if (yearActual == 2023)
+                    yearActual = 1998; // Si el año actual es 2023, se inicia desde 1998
+                else if (yearActual == 1995)
+                    break;
+                ChartVentasAnuales.Series.Add($"Ventas {yearActual}");
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ChartType = SeriesChartType.Line;
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = true;
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; // Formato de moneda
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 1;
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}"; // tooltip con moneda y 2 decimales
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.Clear();
+                // 2. Obtiene los datos ADO.NET
+                var datos = ObtenerVentasMensuales(yearActual);
+                // 3. Agrega los puntos al gráfico
+                foreach (var dato in datos)
+                {
+                    string nombreMes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(dato.Mes);
+                    ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.AddXY(nombreMes, dato.Total);
+                }
+                yearActual--;
             }
-            var area = chartVentas.ChartAreas[0];
-
+            var area = ChartVentasAnuales.ChartAreas[0];
             // Formato de moneda sin decimales (“$12,345”)
             area.AxisY.LabelStyle.Format = "C0";
-
-            // PRIMERO: forzar cada mes
             area.AxisX.Interval = 1;
-            // LUEGO: asignar formato al label
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.MajorGrid.Enabled = false;
             // Títulos de ejes
             area.AxisX.Title = "Mes";
             area.AxisY.Title = "Ventas Totales";
 
-            chartVentas.Legends[0].Enabled = false;
+            //ChartVentasAnuales.Legends[0].Enabled = false;
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
-
             // Crear el título
             Title titulo = new Title();
-            titulo.Text = $"Ventas mensuales del año: {year}";
+            if (ComboBox.SelectedIndex <= 0 & ComboBox.SelectedIndex < 1)
+            {
+                titulo.Text = "» Comparativo de ventas mensuales de los últimos 2 años «";
+                GroupBox.Text = "» Comparativo de ventas mensuales de los últimos 2 años «";
+            }
+            else
+            {
+                titulo.Text = $"» Comparativo de ventas mensuales de los últimos {ComboBox.Text} «";
+                GroupBox.Text = $"» Comparativo de ventas mensuales de los últimos {ComboBox.Text} «";
+            }
             titulo.Font = new Font("Arial", 14, FontStyle.Bold);
             titulo.ForeColor = Color.DarkBlue;
             titulo.Alignment = ContentAlignment.TopCenter;
 
             // Agregar el título al chart
-            chartVentas.Titles.Clear(); // Limpiar títulos previos
-            chartVentas.Titles.Add(titulo);
-
-            GroupBox.Text = $"» Ventas mensuales del año: {year} «";
+            ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
+            ChartVentasAnuales.Titles.Add(titulo);
         }
 
         private List<MonthlySales> ObtenerVentasMensuales(int year)
         {
-            var lista = new List<MonthlySales>();
+            var ventasMensuales = new List<MonthlySales>();
             const string sql = @"
                                 WITH Meses AS (
                                 SELECT 1 AS Mes UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL
@@ -158,7 +155,7 @@ namespace NorthwindTraders
                         {
                             while (reader.Read())
                             {
-                                lista.Add(new MonthlySales
+                                ventasMensuales.Add(new MonthlySales
                                 {
                                     Mes = reader.GetInt32(0),
                                     Total = Convert.ToDecimal(reader.GetValue(1))
@@ -176,7 +173,7 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(ex);
             }
-            return lista;
+            return ventasMensuales;
         }
 
         private class MonthlySales

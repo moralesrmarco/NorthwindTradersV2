@@ -733,7 +733,12 @@ namespace NorthwindTraders
 
         private void ventasAnualesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaVentasAnuales frmGraficaVentasAnuales = new FrmGraficaVentasAnuales
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasAnuales.Show();
         }
 
         private void top10ProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
