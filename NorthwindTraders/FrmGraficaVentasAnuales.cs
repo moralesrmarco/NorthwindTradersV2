@@ -57,7 +57,6 @@ namespace NorthwindTraders
         {
             ChartVentasAnuales.Series.Clear();
             ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
-            //ChartVentasAnuales.ChartAreas.Clear(); // Limpiar áreas previas
             int yearActual = DateTime.Now.Year;
             for (int i = 1; i <= years; i++)
             {
@@ -69,7 +68,7 @@ namespace NorthwindTraders
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].ChartType = SeriesChartType.Line;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = true;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; // Formato de moneda
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 1;
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 2;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}"; // tooltip con moneda y 2 decimales
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.Clear();
                 // 2. Obtiene los datos ADO.NET
@@ -87,12 +86,10 @@ namespace NorthwindTraders
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
-            area.AxisX.MajorGrid.Enabled = false;
             // Títulos de ejes
-            area.AxisX.Title = "Mes";
+            area.AxisX.Title = "Meses";
             area.AxisY.Title = "Ventas Totales";
 
-            //ChartVentasAnuales.Legends[0].Enabled = false;
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
@@ -113,7 +110,6 @@ namespace NorthwindTraders
             titulo.Alignment = ContentAlignment.TopCenter;
 
             // Agregar el título al chart
-            ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
             ChartVentasAnuales.Titles.Add(titulo);
         }
 

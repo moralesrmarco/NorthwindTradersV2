@@ -741,14 +741,19 @@ namespace NorthwindTraders
             frmGraficaVentasAnuales.Show();
         }
 
-        private void top10ProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ventasPorVendedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void ventasPorVendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void topProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaTop10ProductosMasVendidos frmGraficaTop10ProductosMasVendidos = new FrmGraficaTop10ProductosMasVendidos
+            {
+                MdiParent = this
+            };
+            frmGraficaTop10ProductosMasVendidos.Show();
         }
     }
 }

@@ -98,7 +98,7 @@ namespace NorthwindTraders
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.MajorGrid.Enabled = false;
             // Títulos de ejes
-            area.AxisX.Title = "Mes";
+            area.AxisX.Title = "Meses";
             area.AxisY.Title = "Ventas Totales";
 
             chartVentas.Legends[0].Enabled = false;
