@@ -93,7 +93,7 @@ namespace NorthwindTraders
             int idx = 0;
             foreach (DataRow row in datos.Rows)
             {
-                string nombre = row["NombreProducto"].ToString();
+                string nombre = (idx + 1).ToString() + ".- " + row["NombreProducto"].ToString();
                 int qty = Convert.ToInt32(row["CantidadVendida"]);
 
                 int pointIndex = series.Points.AddXY(nombre, qty);
@@ -114,7 +114,7 @@ namespace NorthwindTraders
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.Title = "Productos";
-            area.AxisY.Title = "Cantidad vendida";
+            area.AxisY.Title = "Cantidad vendida (unidades)";
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
