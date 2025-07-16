@@ -743,7 +743,12 @@ namespace NorthwindTraders
 
         private void ventasPorVendedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Utils.CerrarFormularios();
+            FrmGraficaVentasPorVendedores frmGraficaVentasPorVendedores = new FrmGraficaVentasPorVendedores
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasPorVendedores.Show();
         }
 
         private void topProductosMásVendidosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -754,6 +759,11 @@ namespace NorthwindTraders
                 MdiParent = this
             };
             frmGraficaTop10ProductosMasVendidos.Show();
+        }
+
+        private void ventasPorVendedorPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
