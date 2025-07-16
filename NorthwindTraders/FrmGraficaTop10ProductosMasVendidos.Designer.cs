@@ -32,10 +32,10 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.BtnMostrar = new System.Windows.Forms.Button();
+            this.ComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GroupBox = new System.Windows.Forms.GroupBox();
-            this.ComboBox = new System.Windows.Forms.ComboBox();
-            this.BtnMostrar = new System.Windows.Forms.Button();
             this.ChartTopProductos = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,6 +48,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -66,6 +67,27 @@
             this.splitContainer1.Size = new System.Drawing.Size(854, 478);
             this.splitContainer1.SplitterDistance = 71;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // BtnMostrar
+            // 
+            this.BtnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnMostrar.Location = new System.Drawing.Point(725, 36);
+            this.BtnMostrar.Name = "BtnMostrar";
+            this.BtnMostrar.Size = new System.Drawing.Size(113, 28);
+            this.BtnMostrar.TabIndex = 2;
+            this.BtnMostrar.Text = "Mostrar";
+            this.BtnMostrar.UseVisualStyleBackColor = true;
+            this.BtnMostrar.Click += new System.EventHandler(this.BtnMostrar_Click);
+            // 
+            // ComboBox
+            // 
+            this.ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBox.FormattingEnabled = true;
+            this.ComboBox.Location = new System.Drawing.Point(473, 33);
+            this.ComboBox.Name = "ComboBox";
+            this.ComboBox.Size = new System.Drawing.Size(229, 28);
+            this.ComboBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -90,26 +112,6 @@
             this.GroupBox.TabStop = false;
             this.GroupBox.Text = "groupBox1";
             this.GroupBox.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
-            // 
-            // ComboBox
-            // 
-            this.ComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboBox.FormattingEnabled = true;
-            this.ComboBox.Location = new System.Drawing.Point(473, 33);
-            this.ComboBox.Name = "ComboBox";
-            this.ComboBox.Size = new System.Drawing.Size(229, 28);
-            this.ComboBox.TabIndex = 1;
-            // 
-            // BtnMostrar
-            // 
-            this.BtnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnMostrar.Location = new System.Drawing.Point(725, 36);
-            this.BtnMostrar.Name = "BtnMostrar";
-            this.BtnMostrar.Size = new System.Drawing.Size(113, 28);
-            this.BtnMostrar.TabIndex = 2;
-            this.BtnMostrar.Text = "Mostrar";
-            this.BtnMostrar.UseVisualStyleBackColor = true;
-            this.BtnMostrar.Click += new System.EventHandler(this.BtnMostrar_Click);
             // 
             // ChartTopProductos
             // 

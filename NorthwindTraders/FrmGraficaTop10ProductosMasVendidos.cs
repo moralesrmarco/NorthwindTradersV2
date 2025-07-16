@@ -80,6 +80,7 @@ namespace NorthwindTraders
             series.Label = "#VALY{n0}";
             series.BorderWidth = 2;
             series.ToolTip = "Producto: #VALX, Cantidad vendida: #VALY{n0}";
+            series.Font = new Font("Arial", 10, FontStyle.Bold);
             series.Points.Clear();
 
             // Paleta de 10 colores (ajusta a tu gusto)
@@ -113,7 +114,7 @@ namespace NorthwindTraders
             area.AxisY.LabelStyle.Format = "N0";
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
-            area.AxisX.Title = "Productos";
+            area.AxisX.Title = "Productos más vendidos";
             area.AxisY.Title = "Cantidad vendida (unidades)";
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;

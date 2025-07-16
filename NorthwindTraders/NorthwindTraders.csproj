@@ -139,6 +139,12 @@
     <Compile Include="FrmEmpleadosCrud.Designer.cs">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGraficaDeVentasDeVendedoresPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaDeVentasDeVendedoresPorAnio.Designer.cs">
+      <DependentUpon>FrmGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGraficaTop10ProductosMasVendidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +403,12 @@
     <Compile Include="FrmUsuariosCrud.Designer.cs">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmVentasMensualesPorVendedorPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVentasMensualesPorVendedorPorAnio.Designer.cs">
+      <DependentUpon>FrmVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </Compile>
     <Compile Include="MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,6 +453,9 @@
     <EmbeddedResource Include="FrmEmpleadosCrud.resx">
       <DependentUpon>FrmEmpleadosCrud.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaDeVentasDeVendedoresPorAnio.resx">
+      <DependentUpon>FrmGraficaDeVentasDeVendedoresPorAnio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaTop10ProductosMasVendidos.resx">
       <DependentUpon>FrmGraficaTop10ProductosMasVendidos.cs</DependentUpon>
@@ -571,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVentasMensualesPorVendedorPorAnio.resx">
+      <DependentUpon>FrmVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>

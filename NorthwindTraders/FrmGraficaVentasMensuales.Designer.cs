@@ -35,21 +35,22 @@
             this.btnMostrar = new System.Windows.Forms.Button();
             this.ComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.chartVentas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.GroupBox = new System.Windows.Forms.GroupBox();
+            this.chartVentas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).BeginInit();
             this.GroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -58,24 +59,23 @@
             this.splitContainer1.Panel1.Controls.Add(this.btnMostrar);
             this.splitContainer1.Panel1.Controls.Add(this.ComboBox);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(22, 24, 22, 24);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(29, 30, 29, 30);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.GroupBox);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(30, 10, 30, 30);
-            this.splitContainer1.Size = new System.Drawing.Size(812, 531);
-            this.splitContainer1.SplitterDistance = 58;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(40, 12, 40, 37);
+            this.splitContainer1.Size = new System.Drawing.Size(1083, 654);
+            this.splitContainer1.SplitterDistance = 71;
             this.splitContainer1.TabIndex = 0;
             // 
             // btnMostrar
             // 
             this.btnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMostrar.Location = new System.Drawing.Point(404, 22);
-            this.btnMostrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMostrar.Location = new System.Drawing.Point(539, 27);
+            this.btnMostrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(85, 23);
+            this.btnMostrar.Size = new System.Drawing.Size(113, 28);
             this.btnMostrar.TabIndex = 2;
             this.btnMostrar.Text = "Mostrar";
             this.btnMostrar.UseVisualStyleBackColor = true;
@@ -86,22 +86,36 @@
             this.ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBox.FormattingEnabled = true;
-            this.ComboBox.Location = new System.Drawing.Point(227, 22);
-            this.ComboBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ComboBox.Location = new System.Drawing.Point(303, 27);
+            this.ComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ComboBox.Name = "ComboBox";
-            this.ComboBox.Size = new System.Drawing.Size(160, 24);
+            this.ComboBox.Size = new System.Drawing.Size(212, 28);
             this.ComboBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 24);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(33, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 16);
+            this.label1.Size = new System.Drawing.Size(236, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Ventas mensuales del año:";
+            // 
+            // GroupBox
+            // 
+            this.GroupBox.Controls.Add(this.chartVentas);
+            this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupBox.Location = new System.Drawing.Point(40, 12);
+            this.GroupBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.GroupBox.Name = "GroupBox";
+            this.GroupBox.Padding = new System.Windows.Forms.Padding(27, 25, 27, 25);
+            this.GroupBox.Size = new System.Drawing.Size(1003, 530);
+            this.GroupBox.TabIndex = 1;
+            this.GroupBox.TabStop = false;
+            this.GroupBox.Text = "groupBox1";
+            this.GroupBox.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // chartVentas
             // 
@@ -110,40 +124,26 @@
             this.chartVentas.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chartVentas.Legends.Add(legend1);
-            this.chartVentas.Location = new System.Drawing.Point(20, 35);
-            this.chartVentas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chartVentas.Location = new System.Drawing.Point(27, 44);
+            this.chartVentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chartVentas.Name = "chartVentas";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Ventas mensuales";
             this.chartVentas.Series.Add(series1);
-            this.chartVentas.Size = new System.Drawing.Size(712, 375);
+            this.chartVentas.Size = new System.Drawing.Size(949, 461);
             this.chartVentas.TabIndex = 0;
             this.chartVentas.Text = "chart1";
             // 
-            // GroupBox
-            // 
-            this.GroupBox.Controls.Add(this.chartVentas);
-            this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupBox.Location = new System.Drawing.Point(30, 10);
-            this.GroupBox.Name = "GroupBox";
-            this.GroupBox.Padding = new System.Windows.Forms.Padding(20);
-            this.GroupBox.Size = new System.Drawing.Size(752, 430);
-            this.GroupBox.TabIndex = 1;
-            this.GroupBox.TabStop = false;
-            this.GroupBox.Text = "groupBox1";
-            this.GroupBox.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
-            // 
             // FrmGraficaVentasMensuales
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 531);
+            this.ClientSize = new System.Drawing.Size(1083, 654);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FrmGraficaVentasMensuales";
             this.Text = "» Gráfica de ventas mensuales «";
             this.Load += new System.EventHandler(this.FrmGraficaVentasMensuales_Load);
@@ -152,8 +152,8 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).EndInit();
             this.GroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).EndInit();
             this.ResumeLayout(false);
 
         }
