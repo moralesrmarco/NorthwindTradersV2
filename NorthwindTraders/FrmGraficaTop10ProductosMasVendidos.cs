@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -56,49 +52,69 @@ namespace NorthwindTraders
         {
             ChartTopProductos.Series.Clear();
             ChartTopProductos.Titles.Clear();
+
+            // Título y GroupBox
             Title titulo = new Title();
-            if (ComboBox.SelectedIndex <= 0 & ComboBox.SelectedIndex < 1)
+            if (cantidad <= 0)
             {
                 titulo.Text = "» Top 10 productos más vendidos «";
-                GroupBox.Text = "» Top 10 productos más vendidos «";
+                GroupBox.Text = titulo.Text;
             }
             else
             {
-                titulo.Text = $"» Top {ComboBox.Text} productos más vendidos «";
-                GroupBox.Text = $"» Top {ComboBox.Text} productos más vendidos «";
+                titulo.Text = $"» Top {cantidad} productos más vendidos «";
+                GroupBox.Text = titulo.Text;
             }
             titulo.Font = new Font("Arial", 14, FontStyle.Bold);
             titulo.ForeColor = Color.DarkBlue;
             titulo.Alignment = ContentAlignment.TopCenter;
-            var datos = ObtenerTopProductos(cantidad);
             ChartTopProductos.Titles.Add(titulo);
-            ChartTopProductos.Series.Add("Productos más vendidos");
-            ChartTopProductos.Series["Productos más vendidos"].ChartType = SeriesChartType.Column;
-            ChartTopProductos.Series["Productos más vendidos"].IsValueShownAsLabel = true;
-            ChartTopProductos.Series["Productos más vendidos"].Label = "#VALY{n0}";
-            ChartTopProductos.Series["Productos más vendidos"].BorderWidth = 2;
-            ChartTopProductos.Series["Productos más vendidos"].ToolTip = "Producto: #VALX, Cantidad vendida: #VALY{n0}"; 
-            ChartTopProductos.Series["Productos más vendidos"].Points.Clear();
+
+            // Datos
+            var datos = ObtenerTopProductos(cantidad);
+
+            // 1 serie única
+            var series = ChartTopProductos.Series.Add("Productos más vendidos");
+            series.ChartType = SeriesChartType.Column;
+            series.IsValueShownAsLabel = true;
+            series.Label = "#VALY{n0}";
+            series.BorderWidth = 2;
+            series.ToolTip = "Producto: #VALX, Cantidad vendida: #VALY{n0}";
+            series.Points.Clear();
+
+            // Paleta de 10 colores (ajusta a tu gusto)
+                Color[] paleta = {
+                Color.SteelBlue, Color.Orange, Color.MediumSeaGreen,
+                Color.Goldenrod, Color.Crimson, Color.MediumPurple,
+                Color.Tomato, Color.Teal, Color.SlateGray, Color.DeepPink
+            };
+
+            // Agregar puntos asignando color a cada uno
+            int idx = 0;
             foreach (DataRow row in datos.Rows)
             {
-                string nombreProducto = row["NombreProducto"].ToString();
-                int cantidadVendida = Convert.ToInt32(row["CantidadVendida"]);
-                ChartTopProductos.Series["Productos más vendidos"].Points.AddXY(nombreProducto, cantidadVendida);
-            }
-            // 1. Obtener el área de dibujo
-            var area = ChartTopProductos.ChartAreas[0];
+                string nombre = row["NombreProducto"].ToString();
+                int qty = Convert.ToInt32(row["CantidadVendida"]);
 
-            // 2. Habilitar 3D y ajustar ángulo/rotación/profundidad
+                int pointIndex = series.Points.AddXY(nombre, qty);
+                series.Points[pointIndex].Color = paleta[idx % paleta.Length];
+                idx++;
+            }
+
+            // Configurar ChartArea en 3D y ejes
+            var area = ChartTopProductos.ChartAreas[0];
+            ChartTopProductos.Legends.Clear();
+
             area.Area3DStyle.Enable3D = true;
             area.Area3DStyle.Inclination = 30;
             area.Area3DStyle.Rotation = 20;
             area.Area3DStyle.LightStyle = LightStyle.Realistic;
 
-            area.AxisY.LabelStyle.Format = "N0"; // Formato de número sin decimales
-            area.AxisX.Interval = 1; // Forzar cada producto
-            area.AxisX.LabelStyle.Angle = -45; // Rotar etiquetas del eje X
+            area.AxisY.LabelStyle.Format = "N0";
+            area.AxisX.Interval = 1;
+            area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.Title = "Productos";
-            area.AxisY.Title = "Cantidad Vendida";
+            area.AxisY.Title = "Cantidad vendida";
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
