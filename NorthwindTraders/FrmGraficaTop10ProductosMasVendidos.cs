@@ -135,12 +135,25 @@ namespace NorthwindTraders
                 INNER JOIN Products AS p ON od.ProductID = p.ProductID
                 GROUP BY p.ProductName
                 ORDER BY CantidadVendida DESC";
-            using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
-                using (var dap = new SqlDataAdapter(query, cn))
+            try
             {
-                dap.SelectCommand.Parameters.AddWithValue("@Cantidad", cantidad);
-                dap.Fill(dt);
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                using (var dap = new SqlDataAdapter(query, cn))
+                {
+                    dap.SelectCommand.Parameters.AddWithValue("@Cantidad", cantidad);
+                    dap.Fill(dt);
+                }
             }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
             return dt;
         }
     }

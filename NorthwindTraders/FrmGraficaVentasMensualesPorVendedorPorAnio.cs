@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -25,7 +22,7 @@ namespace NorthwindTraders
         private void FrmGraficaVentasMensualesPorVendedorPorAnio_Load(object sender, EventArgs e)
         {
             LlenarComboBox();
-
+            CargarVentasMensualesPorVendedorPorAnio(DateTime.Now.Year);
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
@@ -35,8 +32,7 @@ namespace NorthwindTraders
                 MessageBox.Show("Seleccione un año válido.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-
+            CargarVentasMensualesPorVendedorPorAnio(Convert.ToInt32(comboBox1.SelectedItem));
         }
 
         private void LlenarComboBox()
@@ -83,28 +79,31 @@ namespace NorthwindTraders
                 Font = new Font("Arial", 16, FontStyle.Bold),
                 ForeColor = Color.FromArgb(0, 51, 102)
             };
-            chart1.Titles.Add(titulo);
-            // Configuración de la serie
-            Series serie = new Series
+            groupBox1.Text = titulo.Text; 
+            // ChartArea
+            var area = chart1.ChartAreas[0];
+            area.AxisX.Interval = 1;
+            area.AxisX.CustomLabels.Clear();
+
+            // Genera etiquetas para cada mes
+            for (int i = 1; i <= 12; i++)
             {
-                Name = "Ventas",
-                Color = Color.FromArgb(0, 51, 102),
-                IsValueShownAsLabel = true,
-                ChartType = SeriesChartType.Column,
-                Label = "#VALX: #VALY{C2}"
-            };
-            serie.SmartLabelStyle.Enabled = true;
-            serie.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.Yes;
-            serie.SmartLabelStyle.CalloutLineColor = Color.Black;
-            serie.LabelForeColor = Color.DarkSlateGray;
-            serie.LabelBackColor = Color.WhiteSmoke;
-            ChartVentasMensualesPorVendedor.Series.Add(serie);
-            // Consulta SQL para obtener las ventas mensuales por vendedor
+                var label = new CustomLabel
+                {
+                    FromPosition = i - 0.5,
+                    ToPosition = i + 0.5,
+                    Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(i) // “Ene”, “Feb”, …
+                };
+                area.AxisX.CustomLabels.Add(label);
+            }
+            area.AxisX.Title = "Meses";
+            area.AxisY.Title = "Ventas totales";
+            area.AxisY.LabelStyle.Format = "C0";
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
                     MONTH(o.OrderDate) AS Mes,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 
@@ -117,12 +116,78 @@ namespace NorthwindTraders
                     e.FirstName, e.LastName, MONTH(o.OrderDate)
                 ORDER BY 
                     e.FirstName, e.LastName, MONTH(o.OrderDate)";
-            // Conexión a la base de datos y ejecución de la consulta
-            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+
+            // Leer datos
+            var dt = new DataTable();
+            try
             {
-                SqlCommand command = new SqlCommand(query, cn);
-                command.Parameters.AddWithValue("@Anio", anio);
-                cn.Open();
-                SqlDataReader reader = command
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (var da = new SqlDataAdapter(query, cn))
+                    {
+                        da.SelectCommand.Parameters.AddWithValue("@Anio", anio);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+
+            // Pivot dinámico por vendedor
+            var grupos = dt.AsEnumerable()
+                          .GroupBy(r => r.Field<string>("Vendedor"));
+
+            // Nombres abreviados de mes (12 elementos)
+            var mesesAbrev = CultureInfo.CurrentCulture
+                                        .DateTimeFormat
+                                        .AbbreviatedMonthNames
+                                        .Take(12)
+                                        .ToArray();
+            foreach (var grupo in grupos)
+            {
+                // Serie por vendedor
+                var serie = new Series(grupo.Key)
+                {
+                    ChartType = SeriesChartType.Line,
+                    BorderWidth = 2,
+                    MarkerStyle = MarkerStyle.Circle,
+                    ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}"
+                };
+
+                // Inicializamos meses 1–12 en caso de faltantes
+                // Inicializo 12 puntos con el nombre del mes como etiqueta X
+                for (int mes = 1; mes <= 12; mes++)
+                {
+                    string nombreMes = mesesAbrev[mes - 1];
+                    serie.Points.AddXY(nombreMes, 0D);
+                }
+                // Llenamos datos reales
+                foreach (var row in grupo)
+                {
+                    // 1) Obtienes el mes
+                    int mes = row.Field<int>("Mes");       // 1–12
+
+                    // 2) Tomas el valor crudo y lo conviertes a double
+                    object raw = row["TotalVentas"];
+                    double ventas = raw != DBNull.Value
+                                    ? Convert.ToDouble(raw)
+                                    : 0D;
+
+                    // 3) Asignas el valor al punto correspondiente
+                    serie.Points[mes - 1].YValues[0] = ventas;
+                }
+
+                chart1.Series.Add(serie);
+            }
+            // ————— Aquí forzamos el recálculo de la escala del eje Y —————
+            chart1.ResetAutoValues();
+        }
     }
 }

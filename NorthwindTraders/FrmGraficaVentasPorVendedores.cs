@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -71,20 +65,33 @@ namespace NorthwindTraders
                 ORDER BY 
                     TotalVentas DESC
                 ";
-            // Conexión a la base de datos y ejecución de la consulta
-            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            try
             {
-                SqlCommand command = new SqlCommand(query, cn);
-                cn.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                // Conexión a la base de datos y ejecución de la consulta
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    string vendedor = reader["Vendedor"].ToString();
-                    decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
-                    // Agregar datos a la serie del gráfico
-                    serie.Points.AddXY(vendedor, totalVentas);
+                    SqlCommand command = new SqlCommand(query, cn);
+                    cn.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string vendedor = reader["Vendedor"].ToString();
+                        decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
+                        // Agregar datos a la serie del gráfico
+                        serie.Points.AddXY(vendedor, totalVentas);
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
             // Configuración del eje X y Y
             ChartVentasPorVendedores.ChartAreas[0].AxisX.Title = "Vendedores";
             ChartVentasPorVendedores.ChartAreas[0].AxisY.Title = "Total Ventas ($)";

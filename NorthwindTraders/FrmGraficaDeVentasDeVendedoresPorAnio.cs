@@ -113,19 +113,32 @@ namespace NorthwindTraders
                     e.FirstName, e.LastName
                 ORDER BY 
                     TotalVentas DESC";
-            using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+            try
             {
-                SqlCommand command = new SqlCommand(query, cn);
-                command.Parameters.AddWithValue("@Anio", anio);
-                cn.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
-                    string vendedor = reader.GetString(0);
-                    decimal totalVentas = reader.GetDecimal(1);
-                    serie.Points.AddXY(vendedor, totalVentas);
+                    SqlCommand command = new SqlCommand(query, cn);
+                    command.Parameters.AddWithValue("@Anio", anio);
+                    cn.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string vendedor = reader.GetString(0);
+                        decimal totalVentas = reader.GetDecimal(1);
+                        serie.Points.AddXY(vendedor, totalVentas);
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
         }
     }
 }
