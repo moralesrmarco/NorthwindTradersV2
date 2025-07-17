@@ -773,11 +773,11 @@ namespace NorthwindTraders
 
         private void ventasMensualesPorVendedorPorAñoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmVentasMensualesPorVendedorPorAnio frmVentasMensualesPorVendedorPorAnio = new FrmVentasMensualesPorVendedorPorAnio
+            FrmGraficaVentasMensualesPorVendedorPorAnio frmGraficaVentasMensualesPorVendedorPorAnio = new FrmGraficaVentasMensualesPorVendedorPorAnio
             {
                 MdiParent = this
             };
-            frmVentasMensualesPorVendedorPorAnio.Show();
+            frmGraficaVentasMensualesPorVendedorPorAnio.Show();
         }
     }
 }

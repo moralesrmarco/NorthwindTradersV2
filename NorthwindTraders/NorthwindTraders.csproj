@@ -163,6 +163,12 @@
     <Compile Include="FrmGraficaVentasMensuales.Designer.cs">
       <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnio.Designer.cs">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGraficaVentasPorVendedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -403,12 +409,6 @@
     <Compile Include="FrmUsuariosCrud.Designer.cs">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmVentasMensualesPorVendedorPorAnio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmVentasMensualesPorVendedorPorAnio.Designer.cs">
-      <DependentUpon>FrmVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
-    </Compile>
     <Compile Include="MDIPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasMensuales.resx">
       <DependentUpon>FrmGraficaVentasMensuales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasMensualesPorVendedorPorAnio.resx">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasPorVendedores.resx">
       <DependentUpon>FrmGraficaVentasPorVendedores.cs</DependentUpon>
@@ -586,9 +589,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmVentasMensualesPorVendedorPorAnio.resx">
-      <DependentUpon>FrmVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIPrincipal.resx">
       <DependentUpon>MDIPrincipal.cs</DependentUpon>
