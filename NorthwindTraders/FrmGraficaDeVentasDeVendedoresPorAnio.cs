@@ -70,6 +70,16 @@ namespace NorthwindTraders
         {
             chart1.Series.Clear();
             chart1.Titles.Clear();
+
+            chart1.Legends.Clear();
+            var leyenda = new Legend("Vendedores")
+            {
+                Title = "Vendedores",
+                Docking = Docking.Right,
+                LegendStyle = LegendStyle.Table
+            };
+            chart1.Legends.Add(leyenda);
+
             // Título del gráfico
             Title titulo = new Title
             {

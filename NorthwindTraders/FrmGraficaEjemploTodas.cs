@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -69,7 +65,8 @@ namespace NorthwindTraders
             {
                 ChartType = tipo,
                 BorderWidth = 2,
-                MarkerStyle = MarkerStyle.Circle
+                MarkerStyle = MarkerStyle.Circle,
+                ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}"
             };
 
             // Agrega puntos usando categorías y valores
