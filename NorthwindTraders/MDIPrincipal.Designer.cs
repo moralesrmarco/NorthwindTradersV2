@@ -124,6 +124,7 @@
             this.ventasPorVendedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasPorVendedorPorAñoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ejemploDeGraficasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAdministracion = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoDePermisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -903,7 +904,8 @@
             this.topProductosMásVendidosToolStripMenuItem,
             this.ventasPorVendedoresToolStripMenuItem,
             this.ventasPorVendedorPorAñoToolStripMenuItem,
-            this.ventasMensualesPorVendedorPorAñoToolStripMenuItem});
+            this.ventasMensualesPorVendedorPorAñoToolStripMenuItem,
+            this.ejemploDeGraficasToolStripMenuItem});
             this.tsmiGraficas.Name = "tsmiGraficas";
             this.tsmiGraficas.Size = new System.Drawing.Size(76, 27);
             this.tsmiGraficas.Text = "Gráficas";
@@ -949,6 +951,13 @@
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem.Size = new System.Drawing.Size(364, 26);
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem.Text = "Ventas mensuales por vendedor por año";
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem.Click += new System.EventHandler(this.ventasMensualesPorVendedorPorAñoToolStripMenuItem_Click);
+            // 
+            // ejemploDeGraficasToolStripMenuItem
+            // 
+            this.ejemploDeGraficasToolStripMenuItem.Name = "ejemploDeGraficasToolStripMenuItem";
+            this.ejemploDeGraficasToolStripMenuItem.Size = new System.Drawing.Size(364, 26);
+            this.ejemploDeGraficasToolStripMenuItem.Text = "Ejemplo de graficas";
+            this.ejemploDeGraficasToolStripMenuItem.Click += new System.EventHandler(this.ejemploDeGraficasToolStripMenuItem_Click);
             // 
             // tsmiAdministracion
             // 
@@ -1396,6 +1405,7 @@
         private System.Windows.Forms.ToolStripMenuItem topProductosMásVendidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ventasPorVendedorPorAñoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ventasMensualesPorVendedorPorAñoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ejemploDeGraficasToolStripMenuItem;
     }
 }
 
