@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTraders
 {
-    partial class FrmTableroControl
+    partial class FrmTableroControlVendedores
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,15 @@
         {
             this.SuspendLayout();
             // 
-            // FrmTableroControl
+            // FrmTableroControlVendedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 713);
-            this.Name = "FrmTableroControl";
-            this.Text = "FrmTableroControl";
+            this.ControlBox = false;
+            this.Name = "FrmTableroControlVendedores";
+            this.Text = "» Tablero de control para los vendedores «";
+            this.Load += new System.EventHandler(this.FrmTableroControlVendedores_Load);
             this.ResumeLayout(false);
 
         }

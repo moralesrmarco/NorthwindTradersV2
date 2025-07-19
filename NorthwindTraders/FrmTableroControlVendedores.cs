@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace NorthwindTraders
 {
-    public partial class FrmTableroControl : Form
+    public partial class FrmTableroControlVendedores : Form
     {
-        public FrmTableroControl()
+        public FrmTableroControlVendedores()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+        }
+
+        private void FrmTableroControlVendedores_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
