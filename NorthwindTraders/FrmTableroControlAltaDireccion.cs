@@ -30,6 +30,91 @@ namespace NorthwindTraders
             LlenarCmbVentasMensualesDelAnio();
             LlenarCmbUltimosAnios();
             LlenarCmbNumeroProductos();
+            CargarVentasPorVendedores();
+        }
+
+        private void CargarVentasPorVendedores()
+        {
+            chart4.Series.Clear();
+            chart4.Titles.Clear();
+            chart4.Titles.Add(new Title
+            {
+                Text = "» Gráfica ventas por vendedores de todos los años «",
+                Docking = Docking.Top,
+                Font = new Font("Segoe UI", 8, FontStyle.Bold)
+            });
+            // 1. Configurar ChartArea 3D
+            var area = chart4.ChartAreas[0];
+            area.Area3DStyle.Enable3D = true;
+            area.Area3DStyle.Inclination = 40;
+            area.Area3DStyle.Rotation = 60;
+            area.Area3DStyle.LightStyle = LightStyle.Realistic;
+            area.Area3DStyle.WallWidth = 0;
+            // Configuración de la serie
+            Series serie = new Series
+            {
+                Name = "Ventas",
+                Color = Color.FromArgb(0, 51, 102),
+                IsValueShownAsLabel = false,
+                ChartType = SeriesChartType.Doughnut,
+                Label = "#VALX, #VALY{c2}",
+                ToolTip = "Vendedor: #VALX\nTotal Ventas: #VALY{C2}"
+            };
+            serie.Points.Clear();
+            serie.SmartLabelStyle.Enabled = true;
+            serie.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.No;
+            serie.SmartLabelStyle.CalloutLineColor = Color.Black;
+            serie.LabelForeColor = Color.DarkSlateGray;
+            serie.LabelBackColor = Color.WhiteSmoke;
+            serie["PieLabelStyle"] = "Disabled";
+            serie["PieDrawingStyle"] = "Cylinder";
+            serie["DoughnutRadius"] = "60";
+            chart4.Series.Add(serie);
+            // Consulta SQL para obtener las ventas por vendedor
+            string query = @"
+                SELECT 
+                    CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                FROM 
+                    Employees e
+                JOIN 
+                    Orders o ON e.EmployeeID = o.EmployeeID
+                JOIN 
+                    [Order Details] od ON o.OrderID = od.OrderID
+                GROUP BY 
+                    e.FirstName, e.LastName
+                ORDER BY 
+                    TotalVentas DESC
+                ";
+            try
+            {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                // Conexión a la base de datos y ejecución de la consulta
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    SqlCommand command = new SqlCommand(query, cn);
+                    cn.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string vendedor = reader["Vendedor"].ToString();
+                        decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
+                        // Agregar datos a la serie del gráfico
+                        serie.Points.AddXY(vendedor, totalVentas);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+            var legend = chart4.Legends[0];
+            legend.Font = new Font("Segoe UI", 7, FontStyle.Regular);
         }
 
         private void LlenarCmbNumeroProductos()
@@ -224,7 +309,6 @@ namespace NorthwindTraders
                 yearActual--;
             }
             var area = chart2.ChartAreas[0];
-            // Formato de moneda sin decimales (“$12,345”)
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.Title = "Meses";
@@ -503,6 +587,7 @@ namespace NorthwindTraders
                 ChartType = tipo,
                 BorderWidth = 2,
                 MarkerStyle = MarkerStyle.Circle,
+                MarkerSize = 10,
                 ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}"
             };
             for (int i = 0; i < categorias.Length; i++)
