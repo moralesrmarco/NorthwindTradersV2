@@ -31,6 +31,154 @@ namespace NorthwindTraders
             LlenarCmbUltimosAnios();
             LlenarCmbNumeroProductos();
             CargarVentasPorVendedores();
+            LlenarCmbVentasVendedorAnio();
+        }
+
+        private void LlenarCmbVentasVendedorAnio()
+        {
+            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+            try
+            {
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (var cmd = new SqlCommand("SELECT DISTINCT YEAR(OrderDate) AS YearOrderDate FROM Orders ORDER BY YearOrderDate DESC", cn))
+                    {
+                        cn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int year = reader.GetInt32(0);
+                                cmbVentasVendedorAnio.Items.Add(year);
+                            }
+                        }
+                    }
+                }
+                cmbVentasVendedorAnio.SelectedIndex = 0; // Selecciona el primer elemento
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
+        private void cmbVentasVendedorAnio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbVentasVendedorAnio.SelectedIndex < 0)
+                return;
+            CargarVentasPorVendedoresAnio(Convert.ToInt32(cmbVentasVendedorAnio.SelectedItem));
+        }
+
+        private void CargarVentasPorVendedoresAnio(int anio)
+        {
+            chart5.Series.Clear();
+            chart5.Titles.Clear();
+            chart5.Legends.Clear();
+            var leyenda = new Legend("Vendedores")
+            {
+                Title = "Vendedores",
+                TitleFont = new Font("Segoe UI", 7, FontStyle.Bold),
+                Docking = Docking.Right,
+                LegendStyle = LegendStyle.Table,
+                Font = new Font("Segoe UI", 7, FontStyle.Regular),
+                IsTextAutoFit = false
+            };
+
+            chart5.Legends.Add(leyenda);
+            // Título del gráfico
+            Title titulo = new Title
+            {
+                Text = $"» Gráfica de ventas por vendedores del año {anio} «",
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+            };
+            chart5.Titles.Add(titulo);
+            groupBox5.Text = titulo.Text; // Actualizar el texto del GroupBox
+            Series serie = new Series
+            {
+                Name = "Ventas",
+                Color = Color.FromArgb(0, 51, 102),
+                IsValueShownAsLabel = false,
+                ChartType = SeriesChartType.Doughnut,
+                Label = "#VALX: #VALY{C2}",
+                ToolTip = "Vendedor: #AXISLABEL\nTotal ventas: #VALY{C2}",
+                Legend = leyenda.Name,
+                LegendText = "#VALX: #VALY{C2}"
+            };
+
+            // 1. Configurar ChartArea 3D
+            var area = chart5.ChartAreas[0];
+            area.Area3DStyle.Enable3D = true;
+            area.Area3DStyle.Inclination = 40;
+            area.Area3DStyle.Rotation = 60;
+            area.Area3DStyle.LightStyle = LightStyle.Realistic;
+            area.Area3DStyle.WallWidth = 0;
+
+            // Opciones 3D y estilo dona
+            serie["PieLabelStyle"] = "Disabled";
+            serie["PieDrawingStyle"] = "Cylinder";
+            serie["DoughnutRadius"] = "60";
+
+            // 3.Agregar la serie al chart
+            chart5.Series.Clear();
+            chart5.Series.Add(serie);
+
+            // Consulta SQL para obtener las ventas por vendedor del año seleccionado
+            string query = @"
+                SELECT 
+                    CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                FROM 
+                    Employees e
+                JOIN 
+                    Orders o ON e.EmployeeID = o.EmployeeID
+                JOIN 
+                    [Order Details] od ON o.OrderID = od.OrderID
+                WHERE 
+                    YEAR(o.OrderDate) = @Anio
+                GROUP BY 
+                    e.FirstName, e.LastName
+                ORDER BY 
+                    TotalVentas DESC";
+            try
+            {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                using (var cmd = new SqlCommand(query, cn))
+                {
+                    cmd.Parameters.AddWithValue("@Anio", anio);
+                    cn.Open();
+                    using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            string vendedor = reader.GetString(0);
+                            decimal totalVentas = reader.GetDecimal(1);
+
+                            int idx = serie.Points.AddXY(vendedor, totalVentas);
+                            // Si quieres, refuerzas aquí:
+                            //serie.Points[idx].LegendText = $"{vendedor}, {totalVentas:c2}";
+                            serie.Points[idx].LegendText = string.Format(
+                            CultureInfo.GetCultureInfo("es-MX"),
+                            "{0}: {1:C2}",
+                            vendedor,
+                            totalVentas
+                            );
+                        }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
         }
 
         private void CargarVentasPorVendedores()
