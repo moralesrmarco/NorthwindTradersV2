@@ -75,7 +75,7 @@ namespace NorthwindTraders
             chart1.Titles.Clear();
             Title titulo = new Title
             {
-                Text = $"» Ventas mensuales por vendedor del año {anio} «",
+                Text = $"» Ventas mensuales por vendedores del año {anio} «",
                 Font = new Font("Arial", 16, FontStyle.Bold),
                 ForeColor = Color.FromArgb(0, 51, 102)
             };

@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NorthwindTraders
 {
@@ -27,11 +28,177 @@ namespace NorthwindTraders
         private void FrmTableroControlAltaDireccion_Load(object sender, EventArgs e)
         {
             LlenarCmbTipoGrafica();
-            LlenarCmbVentasMensualesDelAnio();
+            //LlenarCmbVentasMensualesDelAnio();
             LlenarCmbUltimosAnios();
             LlenarCmbNumeroProductos();
             CargarVentasPorVendedores();
             LlenarCmbVentasVendedorAnio();
+            LlenarCmbVentasMensualesPorVendedorPorAño();
+        }
+
+        private void LlenarCmbVentasMensualesPorVendedorPorAño()
+        {
+            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+            try
+            {
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (var cmd = new SqlCommand("SELECT DISTINCT YEAR(OrderDate) AS YearOrderDate FROM Orders ORDER BY YearOrderDate DESC", cn))
+                    {
+                        cn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int year = reader.GetInt32(0);
+                                cmbVentasMensualesPorVendedorPorAño.Items.Add(year);
+                            }
+                        }
+                    }
+                }
+                cmbVentasMensualesPorVendedorPorAño.SelectedIndex = 0; // Selecciona el primer elemento
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+        }
+
+        private void cmbVentasMensualesPorVendedorPorAño_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CargarVentasMensualesPorVendedorPorAnio(Convert.ToInt32(cmbVentasMensualesPorVendedorPorAño.SelectedItem));
+        }
+
+        private void CargarVentasMensualesPorVendedorPorAnio(int anio)
+        {
+            chart1.Series.Clear();
+            chart1.Titles.Clear();
+            Title titulo = new Title
+            {
+                Text = $"» Ventas mensuales por vendedores del año {anio} «",
+                Font = new Font("Segoe UI", 8, FontStyle.Bold),
+            };
+            groupBox1.Text = titulo.Text;
+            // ChartArea
+            var area = chart1.ChartAreas[0];
+            area.AxisX.Interval = 1;
+            area.AxisX.CustomLabels.Clear();
+
+            // Genera etiquetas para cada mes
+            for (int i = 1; i <= 12; i++)
+            {
+                var label = new CustomLabel
+                {
+                    FromPosition = i - 0.5,
+                    ToPosition = i + 0.5,
+                    Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(i) // “Ene”, “Feb”, …
+                };
+                area.AxisX.CustomLabels.Add(label);
+            }
+            area.AxisX.Title = "Meses";
+            area.AxisX.TitleFont = new Font("Segoe UI", 7, FontStyle.Bold);
+            area.AxisX.LabelStyle.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            area.AxisX.LabelStyle.Angle = -45;
+            area.AxisY.Title = "Ventas totales";
+            area.AxisY.TitleFont = new Font("Segoe UI", 7, FontStyle.Bold);
+            area.AxisY.LabelStyle.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            area.AxisY.LabelStyle.Format = "C0";
+            area.AxisY.LabelStyle.Angle = -45;
+            string query = @"
+                SELECT 
+                    CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
+                    MONTH(o.OrderDate) AS Mes,
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
+                FROM 
+                    Employees e
+                JOIN 
+                    Orders o ON e.EmployeeID = o.EmployeeID
+                JOIN 
+                    [Order Details] od ON o.OrderID = od.OrderID
+                WHERE 
+                    YEAR(o.OrderDate) = @Anio
+                GROUP BY 
+                    e.FirstName, e.LastName, MONTH(o.OrderDate)
+                ORDER BY 
+                    e.FirstName, e.LastName, MONTH(o.OrderDate)";
+
+            // Leer datos
+            var dt = new DataTable();
+            try
+            {
+                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
+                using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                {
+                    using (var da = new SqlDataAdapter(query, cn))
+                    {
+                        da.SelectCommand.Parameters.AddWithValue("@Anio", anio);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Utils.MsgCatchOueclbdd(ex);
+            }
+            catch (Exception ex)
+            {
+                Utils.MsgCatchOue(ex);
+            }
+            MDIPrincipal.ActualizarBarraDeEstado();
+            // Pivot dinámico por vendedor
+            var grupos = dt.AsEnumerable()
+                          .GroupBy(r => r.Field<string>("Vendedor"));
+
+            // Nombres abreviados de mes (12 elementos)
+            var mesesAbrev = CultureInfo.CurrentCulture
+                                        .DateTimeFormat
+                                        .AbbreviatedMonthNames
+                                        .Take(12)
+                                        .ToArray();
+            foreach (var grupo in grupos)
+            {
+                // Serie por vendedor
+                var serie = new Series(grupo.Key)
+                {
+                    ChartType = SeriesChartType.Line,
+                    BorderWidth = 2,
+                    MarkerStyle = MarkerStyle.Circle,
+                    ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}"
+                };
+
+                // Inicializamos meses 1–12 en caso de faltantes
+                // Inicializo 12 puntos con el nombre del mes como etiqueta X
+                for (int mes = 1; mes <= 12; mes++)
+                {
+                    string nombreMes = mesesAbrev[mes - 1];
+                    serie.Points.AddXY(nombreMes, 0D);
+                }
+                // Llenamos datos reales
+                foreach (var row in grupo)
+                {
+                    // 1) Obtienes el mes
+                    int mes = row.Field<int>("Mes");       // 1–12
+
+                    // 2) Tomas el valor crudo y lo conviertes a double
+                    object raw = row["TotalVentas"];
+                    double ventas = raw != DBNull.Value
+                                    ? Convert.ToDouble(raw)
+                                    : 0D;
+
+                    // 3) Asignas el valor al punto correspondiente
+                    serie.Points[mes - 1].YValues[0] = ventas;
+                }
+
+                chart1.Series.Add(serie);
+            }
+            chart1.Legends[0].Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            // ————— Aquí forzamos el recálculo de la escala del eje Y —————
+            chart1.ResetAutoValues();
         }
 
         private void LlenarCmbVentasVendedorAnio()
@@ -547,7 +714,7 @@ namespace NorthwindTraders
             }
             return ventasMensuales;
         }
-
+        /*
         private void LlenarCmbVentasMensualesDelAnio()
         {
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
@@ -707,7 +874,7 @@ namespace NorthwindTraders
             }
             return lista;
         }
-
+        */
         private void LlenarCmbTipoGrafica()
         {
             // Obtiene todos los valores del enum
