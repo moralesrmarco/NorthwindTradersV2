@@ -12,6 +12,7 @@ namespace NorthwindTraders
         public static MDIPrincipal Instance { get; private set; }
         public string UsuarioLogueado { get; set; }
         public int IdUsuarioLogueado { get; set; }
+        private HashSet<int> permisosUsuarioLogueado = new HashSet<int>();
 
         public ToolStripStatusLabel ToolStripEstado
         {
@@ -65,25 +66,31 @@ namespace NorthwindTraders
             toolStripTextBox1.Width = sizeTextoParaToolStripTextBox1.Width + 20; // se suman 20 píxeles para un margen adicional
             this.toolStripTextBox1.Text = textoParaToolStripTextBox1;
             IniciarSesion();
-            //FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
-            //{
-            //    MdiParent = this
-            //};
-            //frmTableroControlAltaDireccion.Show();
-            FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
+            if (permisosUsuarioLogueado.Contains(10))
             {
-                MdiParent = this
-            };
-            frmTableroControlVendedores.Show();
+                FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
+                {
+                    MdiParent = this
+                };
+                frmTableroControlAltaDireccion.Show();
+            }
+            else if (permisosUsuarioLogueado.Contains(12))
+            {
+                FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
+                {
+                    MdiParent = this
+                };
+                frmTableroControlVendedores.Show();
+            }
         }
 
         public void IniciarSesion()
         {
             // Obtener los permisos del usuario logueado
-            var permisos = ObtenerPermisosUsuario(IdUsuarioLogueado);
+            permisosUsuarioLogueado = ObtenerPermisosUsuario(IdUsuarioLogueado);
             // Ajustar el menú por permisos
-            AjustarMenuPorPermisos(permisos);
-            if (permisos.Count == 0)
+            AjustarMenuPorPermisos(permisosUsuarioLogueado);
+            if (permisosUsuarioLogueado.Count == 0)
             {
                 MessageBox.Show("El usuario no tiene permisos asignados.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //return;
