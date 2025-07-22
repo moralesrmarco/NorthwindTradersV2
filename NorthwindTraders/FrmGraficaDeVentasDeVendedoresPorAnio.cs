@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -75,6 +76,7 @@ namespace NorthwindTraders
             var leyenda = new Legend("Vendedores")
             {
                 Title = "Vendedores",
+                TitleFont = new Font("Arial", 10, FontStyle.Bold),
                 Docking = Docking.Right,
                 LegendStyle = LegendStyle.Table
             };
@@ -96,15 +98,23 @@ namespace NorthwindTraders
                 Color = Color.FromArgb(0, 51, 102),
                 IsValueShownAsLabel = true,
                 ChartType = SeriesChartType.Doughnut,
-                Label = "#VALX: #VALY{C2}"
+                Label = "#AXISLABEL: #VALY{C2}",
+                ToolTip = "Vendedor: #AXISLABEL\nTotal ventas: #VALY{C2}",
+                Legend = leyenda.Name,
+                LegendText = "#AXISLABEL: #VALY{C2}"
             };
+            // 1. Configurar ChartArea 3D
+            var area = chart1.ChartAreas[0];
+            area.Area3DStyle.Enable3D = true;
+            area.Area3DStyle.Inclination = 40;
+            area.Area3DStyle.Rotation = 60;
+            area.Area3DStyle.LightStyle = LightStyle.Realistic;
+            area.Area3DStyle.WallWidth = 0;
+
             serie["PieLabelStyle"] = "Outside";
-            serie.SmartLabelStyle.Enabled = true;
-            serie.SmartLabelStyle.AllowOutsidePlotArea = LabelOutsidePlotAreaStyle.Yes;
-            serie.SmartLabelStyle.CalloutLineColor = Color.Black;
-            serie.LabelForeColor = Color.DarkSlateGray;
-            serie.LabelBackColor = Color.WhiteSmoke;
-            serie.ToolTip = "Vendedor: #VALX\nTotal ventas: #VALY{C2}";
+            serie["PieDrawingStyle"] = "Cylinder";
+            serie["DoughnutRadius"] = "60";
+            chart1.Series.Clear(); 
             chart1.Series.Add(serie);
             // Consulta SQL para obtener las ventas por vendedor del año seleccionado
             string query = @"
@@ -127,17 +137,24 @@ namespace NorthwindTraders
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 using (SqlConnection cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
+                using (var cmd = new SqlCommand(query, cn))
                 {
-                    SqlCommand command = new SqlCommand(query, cn);
-                    command.Parameters.AddWithValue("@Anio", anio);
+                    cmd.Parameters.AddWithValue("@Anio", anio);
                     cn.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string vendedor = reader.GetString(0);
-                        decimal totalVentas = reader.GetDecimal(1);
-                        serie.Points.AddXY(vendedor, totalVentas);
-                    }
+                    using (var reader = cmd.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            string vendedor = reader.GetString(0);
+                            decimal totalVentas = reader.GetDecimal(1);
+
+                            int idx = serie.Points.AddXY(vendedor, totalVentas);
+                            serie.Points[idx].LegendText = string.Format(
+                            CultureInfo.GetCultureInfo("es-MX"),
+                            "{0}: {1:C2}",
+                            vendedor,
+                            totalVentas
+                            );
+                        }
                 }
             }
             catch (SqlException ex)

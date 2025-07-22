@@ -104,10 +104,10 @@ namespace NorthwindTraders
                 Color = Color.FromArgb(0, 51, 102),
                 IsValueShownAsLabel = false,
                 ChartType = SeriesChartType.Doughnut,
-                Label = "#VALX: #VALY{C2}",
+                Label = "#AXISLABEL: #VALY{C2}",
                 ToolTip = "Vendedor: #AXISLABEL\nTotal ventas: #VALY{C2}",
                 Legend = leyenda.Name,
-                LegendText = "#VALX: #VALY{C2}"
+                LegendText = "#AXISLABEL: #VALY{C2}"
             };
 
             // 1. Configurar ChartArea 3D
@@ -159,8 +159,6 @@ namespace NorthwindTraders
                             decimal totalVentas = reader.GetDecimal(1);
 
                             int idx = serie.Points.AddXY(vendedor, totalVentas);
-                            // Si quieres, refuerzas aquí:
-                            //serie.Points[idx].LegendText = $"{vendedor}, {totalVentas:c2}";
                             serie.Points[idx].LegendText = string.Format(
                             CultureInfo.GetCultureInfo("es-MX"),
                             "{0}: {1:C2}",
