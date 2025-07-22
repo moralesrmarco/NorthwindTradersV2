@@ -65,11 +65,16 @@ namespace NorthwindTraders
             toolStripTextBox1.Width = sizeTextoParaToolStripTextBox1.Width + 20; // se suman 20 píxeles para un margen adicional
             this.toolStripTextBox1.Text = textoParaToolStripTextBox1;
             IniciarSesion();
-            FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
+            //FrmTableroControlAltaDireccion frmTableroControlAltaDireccion = new FrmTableroControlAltaDireccion
+            //{
+            //    MdiParent = this
+            //};
+            //frmTableroControlAltaDireccion.Show();
+            FrmTableroControlVendedores frmTableroControlVendedores = new FrmTableroControlVendedores
             {
                 MdiParent = this
             };
-            frmTableroControlAltaDireccion.Show();
+            frmTableroControlVendedores.Show();
         }
 
         public void IniciarSesion()

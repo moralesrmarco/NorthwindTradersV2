@@ -403,17 +403,17 @@
     <Compile Include="FrmRptProveedores.Designer.cs">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTableroControlAltaDireccion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmTableroControlAltaDireccion.Designer.cs">
-      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmTableroControlVendedores.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmTableroControlVendedores.Designer.cs">
       <DependentUpon>FrmTableroControlVendedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTableroControlAltaDireccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTableroControlAltaDireccion.Designer.cs">
+      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUsuariosCrud.cs">
       <SubType>Form</SubType>
@@ -599,11 +599,11 @@
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTableroControlAltaDireccion.resx">
-      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmTableroControlVendedores.resx">
       <DependentUpon>FrmTableroControlVendedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTableroControlAltaDireccion.resx">
+      <DependentUpon>FrmTableroControlAltaDireccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuariosCrud.resx">
       <DependentUpon>FrmUsuariosCrud.cs</DependentUpon>
