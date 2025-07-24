@@ -827,5 +827,15 @@ namespace NorthwindTraders
             };
             frmRptGraficaEjemplo.Show();
         }
+
+        private void comparativoDeVentasAnualesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasAnuales frmRptGraficaVentasAnuales = new FrmRptGraficaVentasAnuales
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasAnuales.Show();
+        }
     }
 }
