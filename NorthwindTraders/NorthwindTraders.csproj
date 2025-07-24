@@ -325,6 +325,12 @@
     <Compile Include="FrmRptEmpleadosConFoto.Designer.cs">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaEjemplo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaEjemplo.Designer.cs">
+      <DependentUpon>FrmRptGraficaEjemplo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptGraficaVentasMensuales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -440,6 +446,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuntoGrafica.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="FrmCambiarContrasena.resx">
@@ -566,6 +573,12 @@
     <EmbeddedResource Include="FrmRptEmpleadosConFoto.resx">
       <DependentUpon>FrmRptEmpleadosConFoto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaEjemplo.resx">
+      <DependentUpon>FrmRptGraficaEjemplo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasMensuales.resx">
+      <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptNotaRemision.resx">
       <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
     </EmbeddedResource>
@@ -633,6 +646,8 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
+    <EmbeddedResource Include="RptGraficaEjemplo.rdlc" />
     <EmbeddedResource Include="RptNotaRemision4.rdlc" />
     <EmbeddedResource Include="RptNotaRemision5.rdlc" />
     <EmbeddedResource Include="RptNotaRemision3.rdlc" />
@@ -670,6 +685,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DummyData.datasource" />
     <None Include="Properties\DataSources\EmpleadoConReportsTo.datasource" />
+    <None Include="Properties\DataSources\PuntoGrafica.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

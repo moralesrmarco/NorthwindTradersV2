@@ -1369,10 +1369,19 @@ SELECT SupplierID, CompanyName, ContactName, ContactTitle, Address, City, Region
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="dsCopias" msprop:Generator_RowEvHandlerName="dsCopiasRowChangeEventHandler" msprop:Generator_RowDeletedName="dsCopiasRowDeleted" msprop:Generator_RowDeletingName="dsCopiasRowDeleting" msprop:Generator_RowEvArgName="dsCopiasRowChangeEvent" msprop:Generator_TablePropName="dsCopias" msprop:Generator_RowChangedName="dsCopiasRowChanged" msprop:Generator_RowChangingName="dsCopiasRowChanging" msprop:Generator_TableClassName="dsCopiasDataTable" msprop:Generator_RowClassName="dsCopiasRow" msprop:Generator_TableVarName="tabledsCopias" msprop:Generator_UserTableName="dsCopias">
+        <xs:element name="dsCopias" msprop:Generator_RowEvHandlerName="dsCopiasRowChangeEventHandler" msprop:Generator_RowDeletedName="dsCopiasRowDeleted" msprop:Generator_RowDeletingName="dsCopiasRowDeleting" msprop:Generator_RowEvArgName="dsCopiasRowChangeEvent" msprop:Generator_TablePropName="dsCopias" msprop:Generator_RowChangedName="dsCopiasRowChanged" msprop:Generator_UserTableName="dsCopias" msprop:Generator_RowChangingName="dsCopiasRowChanging" msprop:Generator_RowClassName="dsCopiasRow" msprop:Generator_TableClassName="dsCopiasDataTable" msprop:Generator_TableVarName="tabledsCopias">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="CopyType" msprop:Generator_ColumnPropNameInRow="CopyType" msprop:Generator_ColumnPropNameInTable="CopyTypeColumn" msprop:Generator_ColumnVarNameInTable="columnCopyType" msprop:Generator_UserColumnName="CopyType" type="xs:string" minOccurs="0" />
+              <xs:element name="CopyType" msprop:Generator_ColumnPropNameInTable="CopyTypeColumn" msprop:Generator_ColumnPropNameInRow="CopyType" msprop:Generator_UserColumnName="CopyType" msprop:Generator_ColumnVarNameInTable="columnCopyType" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="GraficaVentasMensuales" msprop:Generator_RowClassName="GraficaVentasMensualesRow" msprop:Generator_RowEvHandlerName="GraficaVentasMensualesRowChangeEventHandler" msprop:Generator_RowDeletedName="GraficaVentasMensualesRowDeleted" msprop:Generator_RowDeletingName="GraficaVentasMensualesRowDeleting" msprop:Generator_RowEvArgName="GraficaVentasMensualesRowChangeEvent" msprop:Generator_TablePropName="GraficaVentasMensuales" msprop:Generator_RowChangedName="GraficaVentasMensualesRowChanged" msprop:Generator_UserTableName="GraficaVentasMensuales" msprop:Generator_RowChangingName="GraficaVentasMensualesRowChanging" msprop:Generator_TableClassName="GraficaVentasMensualesDataTable" msprop:Generator_TableVarName="tableGraficaVentasMensuales">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Mes" msprop:Generator_UserColumnName="Mes" msprop:Generator_ColumnPropNameInTable="MesColumn" msprop:Generator_ColumnPropNameInRow="Mes" msprop:Generator_ColumnVarNameInTable="columnMes" type="xs:int" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_UserColumnName="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" type="xs:double" minOccurs="0" />
+              <xs:element name="NombreMes" msprop:Generator_ColumnPropNameInRow="NombreMes" msprop:Generator_ColumnPropNameInTable="NombreMesColumn" msprop:Generator_ColumnVarNameInTable="columnNombreMes" msprop:Generator_UserColumnName="NombreMes" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

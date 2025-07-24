@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTraders
 {
-    partial class FrmRptGraficaVentasMensuales
+    partial class FrmRptGraficaEjemplo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.CmbVentasMensualesDelAño = new System.Windows.Forms.ComboBox();
+            this.btnMostrar = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -51,7 +52,8 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.CmbVentasMensualesDelAño);
+            this.splitContainer1.Panel1.Controls.Add(this.btnMostrar);
+            this.splitContainer1.Panel1.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer1.Panel2
@@ -63,16 +65,26 @@
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
-            // CmbVentasMensualesDelAño
+            // btnMostrar
             // 
-            this.CmbVentasMensualesDelAño.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CmbVentasMensualesDelAño.FormattingEnabled = true;
-            this.CmbVentasMensualesDelAño.Location = new System.Drawing.Point(246, 19);
-            this.CmbVentasMensualesDelAño.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.CmbVentasMensualesDelAño.Name = "CmbVentasMensualesDelAño";
-            this.CmbVentasMensualesDelAño.Size = new System.Drawing.Size(116, 24);
-            this.CmbVentasMensualesDelAño.TabIndex = 1;
-            this.CmbVentasMensualesDelAño.SelectedIndexChanged += new System.EventHandler(this.CmbVentasMensualesDelAño_SelectedIndexChanged);
+            this.btnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrar.Location = new System.Drawing.Point(388, 19);
+            this.btnMostrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(83, 24);
+            this.btnMostrar.TabIndex = 2;
+            this.btnMostrar.Text = "Mostrar";
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(229, 19);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(116, 24);
+            this.comboBox1.TabIndex = 1;
             // 
             // label1
             // 
@@ -98,12 +110,11 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "» Reporte gráfico de ventas mensuales «";
-            this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptGraficaVentasMensuales.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptGraficaEjemplo.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(15, 31);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.reportViewer1.Name = "reportViewer1";
@@ -111,7 +122,7 @@
             this.reportViewer1.Size = new System.Drawing.Size(826, 479);
             this.reportViewer1.TabIndex = 0;
             // 
-            // FrmRptGraficaVentasMensuales
+            // FrmRptGraficaEjemplo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -119,7 +130,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "FrmRptGraficaVentasMensuales";
+            this.Name = "FrmRptGraficaEjemplo";
             this.Text = "» Reporte gráfico de ventas mensuales «";
             this.Load += new System.EventHandler(this.FrmRptGraficaVentasMensuales_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -135,8 +146,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ComboBox CmbVentasMensualesDelAño;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.GroupBox groupBox1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
