@@ -106,6 +106,8 @@
                         </Border>
                       </Style>
                       <ChartMarker>
+                        <Type>= IIF(Fields!Total.Value = 0, "None", "Circle")</Type>
+                        <Size>10pt</Size>
                         <Style />
                       </ChartMarker>
                       <DataElementOutput>Output</DataElementOutput>

@@ -66,26 +66,37 @@ namespace NorthwindTraders
                     break;
                 ChartVentasAnuales.Series.Add($"Ventas {yearActual}");
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].ChartType = SeriesChartType.Line;
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = true;
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = false;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; // Formato de moneda
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 2;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}"; // tooltip con moneda y 2 decimales
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.Clear();
                 // 2. Obtiene los datos ADO.NET
                 var datos = ObtenerVentasMensuales(yearActual);
                 // 3. Agrega los puntos al gráfico
                 foreach (var dato in datos)
                 {
                     string nombreMes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(dato.Mes);
-                    ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.AddXY(nombreMes, dato.Total);
+                    int index = ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points.AddXY(nombreMes, dato.Total);
+                    DataPoint dataPoint = ChartVentasAnuales.Series[$"Ventas {yearActual}"].Points[index];
+                    if (dato.Total != 0)
+                    {
+                        dataPoint.Label = $"${dato.Total:#,##0.00}";
+                        dataPoint.MarkerStyle = MarkerStyle.Circle; // Estilo de marcador
+                        dataPoint.MarkerSize = 10;
+                    }
+                    else
+                        dataPoint.Label = "";
                 }
                 yearActual--;
             }
+
+
             var area = ChartVentasAnuales.ChartAreas[0];
             // Formato de moneda sin decimales (“$12,345”)
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
+            area.AxisY.LabelStyle.Angle = -45;
             // Títulos de ejes
             area.AxisX.Title = "Meses";
             area.AxisY.Title = "Ventas Totales";
@@ -111,6 +122,7 @@ namespace NorthwindTraders
 
             // Agregar el título al chart
             ChartVentasAnuales.Titles.Add(titulo);
+
         }
 
         private List<MonthlySales> ObtenerVentasMensuales(int year)

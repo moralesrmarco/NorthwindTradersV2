@@ -28,7 +28,6 @@ namespace NorthwindTraders
         private void FrmTableroControlAltaDireccion_Load(object sender, EventArgs e)
         {
             LlenarCmbTipoGrafica();
-            //LlenarCmbVentasMensualesDelAnio();
             LlenarCmbUltimosAnios();
             LlenarCmbNumeroProductos();
             CargarVentasPorVendedores();
@@ -636,6 +635,7 @@ namespace NorthwindTraders
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisY.TitleFont = new Font("Segoe UI", 7, FontStyle.Bold);
             area.AxisY.LabelStyle.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            area.AxisY.LabelStyle.Angle = -45;
 
             // Crear el título
             Title titulo = new Title();

@@ -469,6 +469,7 @@ namespace NorthwindTraders
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisY.TitleFont = new Font("Segoe UI", 7, FontStyle.Bold);
             area.AxisY.LabelStyle.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            area.AxisY.LabelStyle.Angle = -45;
 
             // Crear el título
             Title titulo = new Title();
@@ -634,6 +635,7 @@ namespace NorthwindTraders
             area.AxisY.Title = "Ventas Totales";
             area.AxisY.TitleFont = new Font("Segoe UI", 7, FontStyle.Bold);
             area.AxisY.LabelStyle.Font = new Font("Segoe UI", 7, FontStyle.Regular);
+            area.AxisY.LabelStyle.Angle = -45;
 
             // Crear el título
             Title titulo = new Title();
