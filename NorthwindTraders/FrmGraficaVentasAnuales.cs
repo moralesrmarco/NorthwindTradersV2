@@ -59,7 +59,7 @@ namespace NorthwindTraders
             ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
             int yearActual = DateTime.Now.Year;
             for (int i = 1; i <= years; i++)
-            {
+            {   
                 if (yearActual == 2023)
                     yearActual = 1998; // Si el año actual es 2023, se inicia desde 1998
                 else if (yearActual == 1995)

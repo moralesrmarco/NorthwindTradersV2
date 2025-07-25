@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -33,20 +29,47 @@ namespace NorthwindTraders
             {
                 items.Add(new KeyValuePair<string, int>($"{i} Años ", i));
             }
-            CmbVentasAnuales.DataSource = items;
+            CmbVentasAnuales.SelectedIndexChanged -= CmbVentasAnuales_SelectedIndexChanged;
             CmbVentasAnuales.DisplayMember = "Key";
             CmbVentasAnuales.ValueMember = "Value";
+            CmbVentasAnuales.DataSource = items;
+            CmbVentasAnuales.SelectedIndex = -1;
+            CmbVentasAnuales.SelectedIndexChanged += CmbVentasAnuales_SelectedIndexChanged;
             CmbVentasAnuales.SelectedIndex = 0;
         }
 
         private void CmbVentasAnuales_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int years = Convert.ToInt32(CmbVentasAnuales.SelectedValue);
+            if (years >= 6)
+            {
+                MessageBox.Show("Solo existen datos en la base de datos hasta el año 1996", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            CargarComparativoVentasAnuales(years);
         }
 
         private void CargarComparativoVentasAnuales(int years)
         {
-
+            groupBox1.Text = $"» Comparativo de ventas anuales de los últimos {years} años «";
+            int year = DateTime.Now.Year;
+            List<int> listaAños = new List<int>();
+            for (int i = 1; i <= years; i++)
+            {
+                if (year == 2023)
+                    year = 1998;
+                else if (year == 1995)
+                    break;
+                listaAños.Add(year);
+                year--;
+            }
+            DataTable dtComparativo = GetVentasComparativas(listaAños);
+            reportViewer1.LocalReport.DataSources.Clear();
+            var rds = new ReportDataSource("DataSet1", dtComparativo);
+            reportViewer1.LocalReport.DataSources.Add(rds);
+            reportViewer1.LocalReport.SetParameters(new ReportParameter("Anio", CmbVentasAnuales.Text));
+            reportViewer1.LocalReport.SetParameters(new ReportParameter("Subtitulo", $"Comparativo de ventas anuales de los últimos {years} años"));
+            reportViewer1.RefreshReport();
         }
 
         private DataTable GetVentasComparativas(List<int> años)

@@ -61,6 +61,7 @@ namespace NorthwindTraders
             DataTable dt = GetTableGrafica(Convert.ToInt32(CmbVentasMensualesDelAño.SelectedItem));
             if (dt != null)
             {
+                groupBox1.Text = $"» Reporte gráfico de ventas mensuales del año {CmbVentasMensualesDelAño.SelectedItem} «";
                 // 1. Limpia fuentes previas
                 reportViewer1.LocalReport.DataSources.Clear();
                 // 2. Usa el nombre EXACTO del DataSet del RDLC
@@ -71,7 +72,6 @@ namespace NorthwindTraders
                 // 3. Refresca el reporte
                 reportViewer1.RefreshReport();
             }
-            groupBox1.Text = $"» Reporte gráfico de ventas mensuales del año {CmbVentasMensualesDelAño.SelectedItem} «";
         }
        
         private DataTable GetTableGrafica(int año)

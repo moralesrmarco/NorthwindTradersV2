@@ -655,6 +655,7 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
     <EmbeddedResource Include="RptGraficaEjemplo.rdlc" />
     <EmbeddedResource Include="RptNotaRemision4.rdlc" />
