@@ -1,6 +1,6 @@
 ﻿namespace NorthwindTraders
 {
-    partial class FrmRptGraficaVentasAnuales
+    partial class FrmRptTopProductosMasVendidos
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.CmbVentasAnuales = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.CmbTopProductos = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -50,35 +50,35 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.CmbVentasAnuales);
+            this.splitContainer1.Panel1.Controls.Add(this.CmbTopProductos);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Size = new System.Drawing.Size(1122, 693);
-            this.splitContainer1.SplitterDistance = 52;
+            this.splitContainer1.SplitterDistance = 48;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // CmbVentasAnuales
-            // 
-            this.CmbVentasAnuales.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CmbVentasAnuales.FormattingEnabled = true;
-            this.CmbVentasAnuales.Location = new System.Drawing.Point(354, 11);
-            this.CmbVentasAnuales.Name = "CmbVentasAnuales";
-            this.CmbVentasAnuales.Size = new System.Drawing.Size(213, 28);
-            this.CmbVentasAnuales.TabIndex = 1;
-            this.CmbVentasAnuales.SelectedIndexChanged += new System.EventHandler(this.CmbVentasAnuales_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 15);
+            this.label1.Location = new System.Drawing.Point(3, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(293, 20);
+            this.label1.Size = new System.Drawing.Size(398, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ventas mensuales de los últimos:";
+            this.label1.Text = "Selecciona el número de productos a mostrar:";
+            // 
+            // CmbTopProductos
+            // 
+            this.CmbTopProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbTopProductos.FormattingEnabled = true;
+            this.CmbTopProductos.Location = new System.Drawing.Point(450, 3);
+            this.CmbTopProductos.Name = "CmbTopProductos";
+            this.CmbTopProductos.Size = new System.Drawing.Size(188, 28);
+            this.CmbTopProductos.TabIndex = 1;
+            this.CmbTopProductos.SelectedIndexChanged += new System.EventHandler(this.CmbTopProductos_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -88,33 +88,32 @@
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(30);
-            this.groupBox1.Size = new System.Drawing.Size(1122, 637);
+            this.groupBox1.Size = new System.Drawing.Size(1122, 641);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "» Reporte gráfico de ventas mensuales por año «";
+            this.groupBox1.Text = "» Reporte gráfico top productos más vendidos «";
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.GrbPaint);
             // 
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "NorthwindTraders.RptGraficaVentasAnuales.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(30, 49);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1062, 558);
+            this.reportViewer1.Size = new System.Drawing.Size(1062, 562);
             this.reportViewer1.TabIndex = 0;
             // 
-            // FrmRptGraficaVentasAnuales
+            // FrmRptTopProductosMasVendidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 753);
             this.ControlBox = false;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "FrmRptGraficaVentasAnuales";
+            this.Name = "FrmRptTopProductosMasVendidos";
             this.Padding = new System.Windows.Forms.Padding(30);
-            this.Text = "» Reporte gráfico comparativo de ventas mensuales por año «";
-            this.Load += new System.EventHandler(this.FrmRptGraficaVentasAnuales_Load);
+            this.Text = "» Reporte gráfico top productos más vendidos «";
+            this.Load += new System.EventHandler(this.FrmRptTopProductosMasVendidos_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -128,8 +127,8 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ComboBox CmbTopProductos;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox CmbVentasAnuales;
         private System.Windows.Forms.GroupBox groupBox1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }

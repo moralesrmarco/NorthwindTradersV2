@@ -421,6 +421,12 @@
     <Compile Include="FrmRptProveedores.Designer.cs">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptTopProductosMasVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptTopProductosMasVendidos.Designer.cs">
+      <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTableroControlVendedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -627,6 +633,9 @@
     <EmbeddedResource Include="FrmRptProveedores.resx">
       <DependentUpon>FrmRptProveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptTopProductosMasVendidos.resx">
+      <DependentUpon>FrmRptTopProductosMasVendidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTableroControlVendedores.resx">
       <DependentUpon>FrmTableroControlVendedores.cs</DependentUpon>
     </EmbeddedResource>
@@ -656,6 +665,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
+    <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
     <EmbeddedResource Include="RptGraficaEjemplo.rdlc" />
     <EmbeddedResource Include="RptNotaRemision4.rdlc" />
