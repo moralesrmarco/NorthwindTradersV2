@@ -847,5 +847,15 @@ namespace NorthwindTraders
             };
             frmRptTopProductosMasVendidos.Show();
         }
+
+        private void ventasPorVendedoresDeTodosLosAñosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmRptGraficaVentasPorVendedores frmRptGraficaVentasPorVendedores = new FrmRptGraficaVentasPorVendedores
+            {
+                MdiParent = this
+            };
+            frmRptGraficaVentasPorVendedores.Show();
+        }
     }
 }

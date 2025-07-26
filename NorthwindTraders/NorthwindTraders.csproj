@@ -343,6 +343,12 @@
     <Compile Include="FrmRptGraficaVentasMensuales.Designer.cs">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaVentasPorVendedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasPorVendedores.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptNotaRemision.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -594,6 +600,9 @@
     <EmbeddedResource Include="FrmRptGraficaVentasMensuales.resx">
       <DependentUpon>FrmRptGraficaVentasMensuales.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasPorVendedores.resx">
+      <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptNotaRemision.resx">
       <DependentUpon>FrmRptNotaRemision.cs</DependentUpon>
     </EmbeddedResource>
@@ -664,6 +673,7 @@
     <EmbeddedResource Include="RptEmpleadosConFoto.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="RptGraficaVentasPorVendedores.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasMensuales.rdlc" />
