@@ -17,23 +17,23 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Mes">
-          <DataField>Mes</DataField>
+        <Field Name="NombreProducto">
+          <DataField>NombreProducto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CantidadVendida">
+          <DataField>CantidadVendida</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="Total">
-          <DataField>Total</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="NombreMes">
-          <DataField>NombreMes</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="Posicion">
+          <DataField>Posicion</DataField>
+          <rd:TypeName>System.Int16</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>GraficaVentasMensuales</rd:TableName>
+        <rd:TableName>GraficaTopProductos</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -50,46 +50,42 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!NombreMes.Value</GroupExpression>
+                      <GroupExpression>=Fields!NombreProducto.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Mes.Value</Value>
+                      <Value>=Fields!Posicion.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!NombreMes.Value</Label>
+                  <Label>=Fields!NombreProducto.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Total</Label>
+                  <Label>Cantidad Vendida</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="Total">
+                <ChartSeries Name="CantidadVendida">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!Total.Value)</Y>
+                        <Y>=Sum(Fields!CantidadVendida.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style>
-                          <FontWeight>Bold</FontWeight>
-                          <Format>'$' #,0.00;('$' #,0.00);''</Format>
-                          <rd:FormatSymbolCulture>es-MX</rd:FormatSymbolCulture>
+                          <Format>n0</Format>
                         </Style>
                         <UseValueAsLabel>true</UseValueAsLabel>
                         <Visible>true</Visible>
                       </ChartDataLabel>
                       <Style>
-                        <Border>
-                          <Width>3pt</Width>
-                        </Border>
+                        <Color>=Code.GetColor(Fields!Posicion.Value)</Color>
                       </Style>
                       <ChartMarker>
                         <Style />
@@ -249,12 +245,11 @@
                         <Style>None</Style>
                       </Border>
                       <FontSize>8pt</FontSize>
-                      <Format>'$' #,0.00;'$' -#,0.00;''</Format>
+                      <Format>n0</Format>
                       <Color>#5c5c5c</Color>
-                      <rd:FormatSymbolCulture>es-MX</rd:FormatSymbolCulture>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>Ventas totales</Caption>
+                      <Caption>Cantidad vendida (unidades)</Caption>
                       <Style>
                         <FontSize>9pt</FontSize>
                         <Color>#5c5c5c</Color>
@@ -452,21 +447,21 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Northwind Traders - » Reporte gráfico de ventas mensuales </Value>
+                      <Value>Northwind Traders - » Reporte gráfico top </Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value>=Parameters!Anio.Value</Value>
+                      <Value>=Parameters!NumProductos.Value</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value> «</Value>
+                      <Value> productos más vendidos «</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -612,11 +607,11 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="Anio">
+    <ReportParameter Name="Subtitulo">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="Subtitulo">
+    <ReportParameter Name="NumProductos">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -627,18 +622,31 @@
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>Anio</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>Subtitulo</ParameterName>
         </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>NumProductos</ParameterName>
+        </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <Code>Public Function GetColor(ByVal raw As Object) As String
+  Try
+    Dim idx As Integer = CInt(raw)
+    Dim paleta As String() = {
+      "#FF5733", "#33FF57", "#3357FF",
+      "#FF33A8", "#FFC300", "#00CED1",
+      "#8A2BE2", "#FF4500", "#2E8B57", "#DAA520"
+    }
+    Return paleta((idx - 1) Mod paleta.Length)
+  Catch
+    Return "#000000"  ' Color por defecto ante error
+  End Try
+End Function</Code>
   <EmbeddedImages>
     <EmbeddedImage Name="northwinddb">
       <MIMEType>image/jpeg</MIMEType>

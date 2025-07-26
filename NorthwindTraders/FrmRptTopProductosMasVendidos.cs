@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,19 +52,48 @@ namespace NorthwindTraders
         private void CargarTopProductos(int topProductos)
         {
             groupBox1.Text = $"» Reporte gráfico top {topProductos} productos más vendidos «";
+            DataTable dt = GetTopProductos(topProductos);
+            if (dt != null)
+            {
+                // 1. Limpia fuentes previas
+                reportViewer1.LocalReport.DataSources.Clear();
+                // 2. Usa el nombre EXACTO del DataSet del RDLC
+                var rds = new ReportDataSource("DataSet1", dt);
+                reportViewer1.LocalReport.DataSources.Add(rds);
+                reportViewer1.LocalReport.SetParameters(new ReportParameter("NumProductos", CmbTopProductos.SelectedValue.ToString()));
+                reportViewer1.LocalReport.SetParameters(new ReportParameter("Subtitulo", $"Top {CmbTopProductos.SelectedValue.ToString()} productos más vendidos"));
+                // 3. Refresca el reporte
+                reportViewer1.RefreshReport();
+            }
         }
 
         private DataTable GetTopProductos(int topProductos)
         {
             DataTable dt = new DataTable();
+            //const string query = @"
+            //    SELECT TOP (@Cantidad) 
+            //        p.ProductName AS NombreProducto, 
+            //        SUM(od.Quantity) AS CantidadVendida
+            //    FROM [Order Details] As od
+            //    INNER JOIN Products AS p ON od.ProductID = p.ProductID
+            //    GROUP BY p.ProductName
+            //    ORDER BY SUM(od.Quantity) DESC";
             const string query = @"
-                SELECT TOP (@Cantidad) 
-                    p.ProductName AS NombreProducto, 
-                    SUM(od.Quantity) AS CantidadVendida
-                FROM [Order Details] As od
-                INNER JOIN Products AS p ON od.ProductID = p.ProductID
-                GROUP BY p.ProductName
-                ORDER BY CantidadVendida DESC";
+                                    WITH ProductosVendidos AS (
+                                    SELECT 
+                                        p.ProductName AS NombreProducto, 
+                                        SUM(od.Quantity) AS CantidadVendida
+                                    FROM [Order Details] AS od
+                                    INNER JOIN Products AS p ON od.ProductID = p.ProductID
+                                    GROUP BY p.ProductName
+                                    )
+                                    SELECT TOP (@Cantidad)
+                                    ROW_NUMBER() OVER (ORDER BY CantidadVendida DESC) AS Posicion,
+                                    CONCAT(ROW_NUMBER() OVER (ORDER BY CantidadVendida DESC), '. ', NombreProducto) AS NombreProducto,
+                                    CantidadVendida
+                                    FROM ProductosVendidos
+                                    ORDER BY CantidadVendida DESC
+                                   ";        
             MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             try
             {
