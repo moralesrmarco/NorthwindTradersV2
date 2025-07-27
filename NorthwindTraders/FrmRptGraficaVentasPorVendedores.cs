@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
