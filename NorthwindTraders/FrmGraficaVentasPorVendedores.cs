@@ -53,7 +53,7 @@ namespace NorthwindTraders
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 

@@ -17,23 +17,19 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="NombreProducto">
-          <DataField>NombreProducto</DataField>
+        <Field Name="Vendedor">
+          <DataField>Vendedor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="CantidadVendida">
-          <DataField>CantidadVendida</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Posicion">
-          <DataField>Posicion</DataField>
-          <rd:TypeName>System.Int16</rd:TypeName>
+        <Field Name="TotalVentas">
+          <DataField>TotalVentas</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>NorthwindDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Dell\Documents\Visual Studio 2022\Projects\NorthwindTradersV2\NorthwindTraders\NorthwindDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>GraficaTopProductos</rd:TableName>
+        <rd:TableName>GraficaVentasPorVendedores</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -50,43 +46,37 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!NombreProducto.Value</GroupExpression>
+                      <GroupExpression>=Fields!Vendedor.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Posicion.Value</Value>
+                      <Value>=Fields!Vendedor.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!NombreProducto.Value</Label>
+                  <Label>=Fields!Vendedor.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Cantidad Vendida</Label>
+                  <Label>Total Ventas</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="CantidadVendida">
+                <ChartSeries Name="TotalVentas">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!CantidadVendida.Value)</Y>
+                        <Y>=Sum(Fields!TotalVentas.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
-                        <Style>
-                          <Format>n0</Format>
-                        </Style>
-                        <UseValueAsLabel>true</UseValueAsLabel>
-                        <Visible>true</Visible>
+                        <Style />
                       </ChartDataLabel>
-                      <Style>
-                        <Color>=Code.GetColor(Fields!Posicion.Value)</Color>
-                      </Style>
+                      <Style />
                       <ChartMarker>
                         <Style />
                       </ChartMarker>
@@ -94,7 +84,6 @@
                     </ChartDataPoint>
                   </ChartDataPoints>
                   <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -357,6 +346,24 @@
                 </Style>
               </ChartArea>
             </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="Legend1">
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartLegendTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </ChartLegendTitle>
+                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+              </ChartLegend>
+            </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
                 <Caption>=Parameters!Subtitulo.Value</Caption>
@@ -593,10 +600,6 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="NumProductos">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -607,11 +610,6 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>Subtitulo</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>NumProductos</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
