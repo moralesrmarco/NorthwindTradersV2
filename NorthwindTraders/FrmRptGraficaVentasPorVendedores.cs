@@ -1,14 +1,7 @@
 ﻿using Microsoft.Reporting.WinForms;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -29,7 +22,7 @@ namespace NorthwindTraders
             reportViewer1.LocalReport.DataSources.Clear();
             var rds = new ReportDataSource("DataSet1", dt);
             reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.LocalReport.SetParameters(new ReportParameter("Subtitulo", "Gráfico ventas por vendedores de todos los años"));
+            reportViewer1.LocalReport.SetParameters(new ReportParameter("Subtitulo", "Ventas por vendedores de todos los años"));
             reportViewer1.RefreshReport();
         }
 
