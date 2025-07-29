@@ -1,13 +1,7 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NorthwindTraders
@@ -56,6 +50,7 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(ex);
             }
+            MDIPrincipal.ActualizarBarraDeEstado();
             CmbVentas.SelectedIndex = 0; // Seleccionar el primer elemento por defecto
         }
 
