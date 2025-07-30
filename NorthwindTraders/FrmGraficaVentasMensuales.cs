@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -81,6 +82,8 @@ namespace NorthwindTraders
             serie.ToolTip = "Ventas de #VALX: #VALY{C2}";
             serie.IsValueShownAsLabel = true;
             serie.LabelFormat = "C2"; // Formato de moneda con 2 decimales
+            serie.MarkerStyle = MarkerStyle.Circle;
+            serie.MarkerSize = 10;
             // 3. Agrega puntos al gráfico
             foreach (var punto in datos)
             {
@@ -90,21 +93,27 @@ namespace NorthwindTraders
             var area = chartVentas.ChartAreas[0];
 
             // Formato de moneda sin decimales (“$12,345”)
-            area.AxisY.LabelStyle.Format = "C0";
 
             // PRIMERO: forzar cada mes
             area.AxisX.Interval = 1;
             // LUEGO: asignar formato al label
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.MajorGrid.Enabled = false;
-            // Títulos de ejes
             area.AxisX.Title = "Meses";
-            area.AxisY.Title = "Ventas Totales";
 
             chartVentas.Legends[0].Enabled = false;
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            area.AxisY.LabelStyle.Format = "C0";
+            area.AxisY.Title = "Ventas Totales";
+            area.AxisY.MajorGrid.Enabled = true;
+            area.AxisY.MajorGrid.LineColor = Color.Gray;
+            area.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
+            area.AxisY.MinorGrid.Enabled = true;
+            area.AxisY.MinorGrid.LineColor = Color.LightGray;
+            area.AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dash;
 
             // Crear el título
             Title titulo = new Title();
@@ -113,9 +122,19 @@ namespace NorthwindTraders
             titulo.ForeColor = Color.DarkBlue;
             titulo.Alignment = ContentAlignment.TopCenter;
 
+            decimal totalVentas = datos.Sum(x => x.Total);
+            Title subTitulo = new Title();
+            subTitulo.Text = $"Total de ventas del año {year}: {totalVentas:C2}";
+            subTitulo.Docking = Docking.Top;
+            subTitulo.Font = new Font("Arial", 8, FontStyle.Bold);
+            subTitulo.Alignment = ContentAlignment.TopRight;
+            //subTitulo.DockingOffset = 30;
+            subTitulo.IsDockedInsideChartArea = false;
+
             // Agregar el título al chart
             chartVentas.Titles.Clear(); // Limpiar títulos previos
             chartVentas.Titles.Add(titulo);
+            chartVentas.Titles.Add(subTitulo);
 
             GroupBox.Text = $"» Ventas mensuales del año: {year} «";
         }
