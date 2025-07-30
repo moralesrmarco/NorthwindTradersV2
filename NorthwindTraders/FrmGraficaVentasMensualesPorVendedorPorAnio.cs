@@ -158,7 +158,12 @@ namespace NorthwindTraders
                     ChartType = SeriesChartType.Line,
                     BorderWidth = 2,
                     MarkerStyle = MarkerStyle.Circle,
-                    ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}"
+                    MarkerSize = 6,
+                    ToolTip = "#SERIESNAME\nMes: #AXISLABEL\nVentas: #VALY{C2}",
+                    LabelForeColor = Color.Black,
+                    Font = new Font("Segoe UI", 8f, FontStyle.Regular),
+                    IsValueShownAsLabel = false,
+                    LabelFormat = "C2",
                 };
 
                 // Inicializamos meses 1–12 en caso de faltantes
@@ -182,6 +187,15 @@ namespace NorthwindTraders
 
                     // 3) Asignas el valor al punto correspondiente
                     serie.Points[mes - 1].YValues[0] = ventas;
+                }
+
+                // ← Aquí: filtro para mostrar etiqueta solo si Y > 0
+                foreach (DataPoint p in serie.Points)
+                {
+                    if (p.YValues[0] > 0)
+                    {
+                        p.IsValueShownAsLabel = true;                        
+                    }
                 }
 
                 chart1.Series.Add(serie);
