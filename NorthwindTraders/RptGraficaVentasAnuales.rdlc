@@ -80,7 +80,7 @@
                       <Direction>Descending</Direction>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!Año.Value &amp; " - Total: " &amp; Format(Sum(Fields!Total.Value), "C2")</Label>
+                  <Label>=Fields!Año.Value &amp; vbCrLf &amp; "Total: " &amp; vbCrLf &amp; Format(Sum(Fields!Total.Value), "C2")</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -2084,7 +2084,7 @@
             <Top>17.64453cm</Top>
             <Left>0.12249cm</Left>
             <Height>1.8cm</Height>
-            <Width>26.11876cm</Width>
+            <Width>26.11882cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>

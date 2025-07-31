@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -57,6 +58,16 @@ namespace NorthwindTraders
         {
             ChartVentasAnuales.Series.Clear();
             ChartVentasAnuales.Titles.Clear(); // Limpiar títulos previos
+            ChartVentasAnuales.Legends.Clear(); // Limpiar leyendas previas
+
+            var legend = new Legend("Default")
+            {
+                Docking = Docking.Top,
+                Alignment = StringAlignment.Center,
+                Font = new Font("Arial", 10, FontStyle.Regular)
+            };
+            ChartVentasAnuales.Legends.Add(legend);
+
             int yearActual = DateTime.Now.Year;
             for (int i = 1; i <= years; i++)
             {   
@@ -64,15 +75,18 @@ namespace NorthwindTraders
                     yearActual = 1998; // Si el año actual es 2023, se inicia desde 1998
                 else if (yearActual == 1995)
                     break;
+                var datos = ObtenerVentasMensuales(yearActual);
+                decimal totalAnual = datos.Sum(d => d.Total);
                 ChartVentasAnuales.Series.Add($"Ventas {yearActual}");
+                string nombreSerie = $"Ventas {yearActual}"; // Nombre de la serie para la leyenda
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].ChartType = SeriesChartType.Line;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = false;
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; // Formato de moneda
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; 
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 2;
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}"; // tooltip con moneda y 2 decimales
-                // 2. Obtiene los datos ADO.NET
-                var datos = ObtenerVentasMensuales(yearActual);
-                // 3. Agrega los puntos al gráfico
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}";
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].Legend = legend.Name; // Asignar leyenda a la serie
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].LegendText = $"{nombreSerie} (Total: {totalAnual:C2})";
+
                 foreach (var dato in datos)
                 {
                     string nombreMes = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(dato.Mes);
@@ -92,18 +106,17 @@ namespace NorthwindTraders
 
 
             var area = ChartVentasAnuales.ChartAreas[0];
-            // Formato de moneda sin decimales (“$12,345”)
-            area.AxisY.LabelStyle.Format = "C0";
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
-            area.AxisY.LabelStyle.Angle = -45;
-            // Títulos de ejes
             area.AxisX.Title = "Meses";
-            area.AxisY.Title = "Ventas Totales";
-
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            area.AxisY.LabelStyle.Format = "C0";
+            area.AxisY.LabelStyle.Angle = -45;
+            area.AxisY.Title = "Ventas Totales";
+
             // Crear el título
             Title titulo = new Title();
             if (ComboBox.SelectedIndex <= 0 & ComboBox.SelectedIndex < 1)
