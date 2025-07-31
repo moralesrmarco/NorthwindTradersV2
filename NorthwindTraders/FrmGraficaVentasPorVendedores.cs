@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -91,10 +92,21 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(ex);
             }
+            Title subTitulo = new Title
+            {
+                Text = $"Total de ventas: {serie.Points.Sum(pt => pt.YValues[0]):C2}",
+                Docking = Docking.Top,
+                Font = new Font("Arial", 8, FontStyle.Bold),
+                ForeColor = Color.Black,
+                IsDockedInsideChartArea = false,
+                Alignment = ContentAlignment.TopLeft,
+                DockingOffset = -3 
+            };
+            ChartVentasPorVendedores.Titles.Add(subTitulo);
             MDIPrincipal.ActualizarBarraDeEstado();
             // Configuración del eje X y Y
-            ChartVentasPorVendedores.ChartAreas[0].AxisX.Title = "Vendedores";
-            ChartVentasPorVendedores.ChartAreas[0].AxisY.Title = "Total Ventas ($)";
+            //ChartVentasPorVendedores.ChartAreas[0].AxisX.Title = "Vendedores";
+            //ChartVentasPorVendedores.ChartAreas[0].AxisY.Title = "Total Ventas ($)";
         }
     }
 }

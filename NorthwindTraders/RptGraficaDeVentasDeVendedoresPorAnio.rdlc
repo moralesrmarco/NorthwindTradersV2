@@ -372,6 +372,24 @@
                   <VerticalAlign>Top</VerticalAlign>
                 </Style>
               </ChartTitle>
+              <ChartTitle Name="Title1">
+                <Caption>="Total de ventas del año: " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                  <FontFamily>Arial Rounded MT Bold</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextAlign>Left</TextAlign>
+                  <VerticalAlign>Top</VerticalAlign>
+                </Style>
+                <Position>TopRight</Position>
+                <ChartElementPosition>
+                  <Top>6.5</Top>
+                  <Left>3</Left>
+                  <Height>3.947</Height>
+                  <Width>94</Width>
+                </ChartElementPosition>
+              </ChartTitle>
             </ChartTitles>
             <Palette>PacificSemiTransparent</Palette>
             <ChartBorderSkin>
