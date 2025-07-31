@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -71,8 +72,8 @@ namespace NorthwindTraders
         {
             chart1.Series.Clear();
             chart1.Titles.Clear();
-
             chart1.Legends.Clear();
+
             var leyenda = new Legend("Vendedores")
             {
                 Title = "Vendedores",
@@ -114,7 +115,6 @@ namespace NorthwindTraders
             serie["PieLabelStyle"] = "Outside";
             serie["PieDrawingStyle"] = "Cylinder";
             serie["DoughnutRadius"] = "60";
-            chart1.Series.Clear(); 
             chart1.Series.Add(serie);
             // Consulta SQL para obtener las ventas por vendedor del año seleccionado
             string query = @"
@@ -165,6 +165,17 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(ex);
             }
+            Title subTitulo = new Title
+            {
+                Text = $"Total de ventas del año: {serie.Points.Sum(p => p.YValues[0]):C2}",
+                Docking = Docking.Top,
+                Font = new Font("Arial", 8, FontStyle.Bold),
+                IsDockedInsideChartArea = false,
+                Alignment = ContentAlignment.TopLeft,
+                DockingOffset = -3
+            };
+            // Agregar el subtítulo al chart
+            chart1.Titles.Add(subTitulo);
             MDIPrincipal.ActualizarBarraDeEstado();
         }
     }
