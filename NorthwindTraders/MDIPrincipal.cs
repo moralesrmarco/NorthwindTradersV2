@@ -877,5 +877,20 @@ namespace NorthwindTraders
             };
             frmRptGraficaVentasMensualesPorVendedorPorAnio.Show();
         }
+
+        private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Utils.CerrarFormularios();
+            FrmGraficaVentasMensualesPorVendedorPorAnioBarras frmGraficaVentasMensualesPorVendedorPorAnioBarras = new FrmGraficaVentasMensualesPorVendedorPorAnioBarras
+            {
+                MdiParent = this
+            };
+            frmGraficaVentasMensualesPorVendedorPorAnioBarras.Show();
+        }
+
+        private void ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

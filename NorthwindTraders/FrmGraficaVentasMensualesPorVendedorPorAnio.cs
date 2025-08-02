@@ -79,26 +79,30 @@ namespace NorthwindTraders
                 Font = new Font("Arial", 16, FontStyle.Bold),
                 ForeColor = Color.FromArgb(0, 51, 102)
             };
+            chart1.Titles.Add(titulo);
             groupBox1.Text = titulo.Text; 
             // ChartArea
             var area = chart1.ChartAreas[0];
             area.AxisX.Interval = 1;
             area.AxisX.CustomLabels.Clear();
-
-            // Genera etiquetas para cada mes
-            for (int i = 1; i <= 12; i++)
-            {
-                var label = new CustomLabel
-                {
-                    FromPosition = i - 0.5,
-                    ToPosition = i + 0.5,
-                    Text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(i) // “Ene”, “Feb”, …
-                };
-                area.AxisX.CustomLabels.Add(label);
-            }
+            area.AxisX.MajorGrid.Enabled = true;
+            area.AxisX.MajorGrid.LineColor = Color.LightGray;
+            area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+            area.AxisX.LabelStyle.Angle = -45;
+            area.AxisX.LabelStyle.Font = new Font("Segoe UI", 8, FontStyle.Regular);
             area.AxisX.Title = "Meses";
+
             area.AxisY.Title = "Ventas totales";
             area.AxisY.LabelStyle.Format = "C0";
+            area.AxisY.MajorGrid.Enabled = true;
+            area.AxisY.MajorGrid.LineColor = Color.Gray;
+            area.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Solid;
+            area.AxisY.MinorGrid.Enabled = true;
+            area.AxisY.MinorGrid.LineColor = Color.LightGray;
+            area.AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dash;
+            area.AxisY.LabelStyle.Font = new Font("Segoe UI", 8, FontStyle.Regular);
+            area.AxisY.LabelStyle.Angle = -45;
+
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
@@ -163,11 +167,9 @@ namespace NorthwindTraders
                     LabelForeColor = Color.Black,
                     Font = new Font("Segoe UI", 8f, FontStyle.Regular),
                     IsValueShownAsLabel = false,
-                    LabelFormat = "C2",
+                    LabelFormat = "C2"
                 };
 
-                // Inicializamos meses 1–12 en caso de faltantes
-                // Inicializo 12 puntos con el nombre del mes como etiqueta X
                 for (int mes = 1; mes <= 12; mes++)
                 {
                     string nombreMes = mesesAbrev[mes - 1];
@@ -189,7 +191,7 @@ namespace NorthwindTraders
                     serie.Points[mes - 1].YValues[0] = ventas;
                 }
 
-                // ← Aquí: filtro para mostrar etiqueta solo si Y > 0
+                // filtro para mostrar etiqueta solo si Y > 0
                 foreach (DataPoint p in serie.Points)
                 {
                     if (p.YValues[0] > 0)
@@ -197,9 +199,20 @@ namespace NorthwindTraders
                         p.IsValueShownAsLabel = true;                        
                     }
                 }
+                // Sumar todos los valores Y de la serie
+                double totalVendedor = serie.Points.Sum(p => p.YValues[0]);
+
+                serie.LegendText = $"{serie.Name} (Total: {totalVendedor:C2})";
 
                 chart1.Series.Add(serie);
             }
+            Title subTitulo = new Title();
+            subTitulo.Text = $"Total de ventas del año: {dt.Compute("SUM(TotalVentas)", string.Empty):C2}";
+            subTitulo.Font = new Font("Arial", 8, FontStyle.Bold);
+            subTitulo.Alignment = ContentAlignment.TopLeft;
+            subTitulo.IsDockedInsideChartArea = false;
+            subTitulo.DockingOffset = -5;
+            chart1.Titles.Add(subTitulo);
             // ————— Aquí forzamos el recálculo de la escala del eje Y —————
             chart1.ResetAutoValues();
         }

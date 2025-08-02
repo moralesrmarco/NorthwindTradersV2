@@ -81,7 +81,7 @@
                           <Value>=Fields!Vendedor.Value</Value>
                         </SortExpression>
                       </SortExpressions>
-                      <Label>=Fields!Vendedor.Value</Label>
+                      <Label>=Fields!Vendedor.Value &amp; " Total: " &amp; Format(Sum(Fields!TotalVentas.Value),"C2")</Label>
                     </ChartMember>
                   </ChartMembers>
                 </ChartSeriesHierarchy>
@@ -405,6 +405,24 @@
                       <TextAlign>Left</TextAlign>
                       <VerticalAlign>Top</VerticalAlign>
                     </Style>
+                  </ChartTitle>
+                  <ChartTitle Name="Title1">
+                    <Caption>= "Total de ventas del año: " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
+                    <Style>
+                      <BackgroundGradientType>None</BackgroundGradientType>
+                      <FontFamily>Arial Rounded MT Bold</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <TextAlign>Left</TextAlign>
+                      <VerticalAlign>Top</VerticalAlign>
+                    </Style>
+                    <Position>TopLeft</Position>
+                    <DockOutsideChartArea>true</DockOutsideChartArea>
+                    <ChartElementPosition>
+                      <Top>6</Top>
+                      <Left>3</Left>
+                      <Height>2.927</Height>
+                      <Width>94</Width>
+                    </ChartElementPosition>
                   </ChartTitle>
                 </ChartTitles>
                 <Palette>PacificSemiTransparent</Palette>

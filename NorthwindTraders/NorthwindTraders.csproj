@@ -175,6 +175,12 @@
     <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnio.Designer.cs">
       <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.Designer.cs">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGraficaVentasPorVendedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -355,6 +361,12 @@
     <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnio.Designer.cs">
       <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.Designer.cs">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmRptGraficaVentasPorVendedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -526,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasMensualesPorVendedorPorAnio.resx">
       <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGraficaVentasMensualesPorVendedorPorAnioBarras.resx">
+      <DependentUpon>FrmGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGraficaVentasPorVendedores.resx">
       <DependentUpon>FrmGraficaVentasPorVendedores.cs</DependentUpon>
