@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -180,9 +176,9 @@ namespace NorthwindTraders
                                 Vendedor, MONTH(o.OrderDate);
                             ";
             var dt = new DataTable();
+            MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
             try
             {
-                MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
                 using (var cn = new SqlConnection(NorthwindTraders.Properties.Settings.Default.NwCn))
                 {
                     using (var da = new SqlDataAdapter(query, cn))
@@ -201,6 +197,7 @@ namespace NorthwindTraders
             {
                 Utils.MsgCatchOue(ex);
             }
+            MDIPrincipal.ActualizarBarraDeEstado();
             return dt;
         }
 

@@ -633,6 +633,9 @@
     <EmbeddedResource Include="FrmRptGraficaVentasMensualesPorVendedorPorAnio.resx">
       <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnio.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.resx">
+      <DependentUpon>FrmRptGraficaVentasMensualesPorVendedorPorAnioBarras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmRptGraficaVentasPorVendedores.resx">
       <DependentUpon>FrmRptGraficaVentasPorVendedores.cs</DependentUpon>
     </EmbeddedResource>
@@ -708,6 +711,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RptGraficaVentasMensualesPorVendedorPorAnio.rdlc" />
     <EmbeddedResource Include="RptGraficaDeVentasDeVendedoresPorAnio.rdlc" />
+    <EmbeddedResource Include="RptGraficaVentasMensualesPorVendedorPorAnioBarras.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasPorVendedores.rdlc" />
     <EmbeddedResource Include="RptGraficaVentasAnuales.rdlc" />
     <EmbeddedResource Include="RptGraficaTopProductosMásVendidos.rdlc" />
