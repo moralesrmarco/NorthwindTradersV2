@@ -92,16 +92,11 @@ namespace NorthwindTraders
             }
             var area = chartVentas.ChartAreas[0];
 
-            // Formato de moneda sin decimales (“$12,345”)
-
             // PRIMERO: forzar cada mes
             area.AxisX.Interval = 1;
             // LUEGO: asignar formato al label
             area.AxisX.LabelStyle.Angle = -45;
-            area.AxisX.MajorGrid.Enabled = false;
             area.AxisX.Title = "Meses";
-
-            chartVentas.Legends[0].Enabled = false;
             area.AxisX.MajorGrid.Enabled = true;
             area.AxisX.MajorGrid.LineColor = Color.LightGray;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
@@ -115,11 +110,12 @@ namespace NorthwindTraders
             area.AxisY.MinorGrid.LineColor = Color.LightGray;
             area.AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dash;
 
+            chartVentas.Legends[0].Enabled = false;
+
             // Crear el título
             Title titulo = new Title();
             titulo.Text = $"Ventas mensuales del año: {year}";
             titulo.Font = new Font("Arial", 14, FontStyle.Bold);
-            titulo.ForeColor = Color.DarkBlue;
             titulo.Alignment = ContentAlignment.TopCenter;
 
             decimal totalVentas = datos.Sum(x => x.Total);
