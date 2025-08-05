@@ -246,7 +246,7 @@
                             <Style>None</Style>
                           </Border>
                           <FontSize>8pt</FontSize>
-                          <Format>'$' #,0.00;'$' -#,0.00;''</Format>
+                          <Format>'$' #,0;'$' -#,0;''</Format>
                           <Color>#5c5c5c</Color>
                           <rd:FormatSymbolCulture>es-MX</rd:FormatSymbolCulture>
                         </Style>
@@ -423,8 +423,8 @@
               </Chart>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.17639cm</Top>
-            <Height>16.65578cm</Height>
+            <Top>0.14111cm</Top>
+            <Height>16.69106cm</Height>
             <Width>26.4cm</Width>
             <Style>
               <Border>

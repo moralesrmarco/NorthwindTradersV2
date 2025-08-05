@@ -83,7 +83,7 @@ namespace NorthwindTraders
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].IsValueShownAsLabel = false;
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].Label = "#VALY{C}"; 
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].BorderWidth = 2;
-                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = "Ventas de #VALX: #VALY{C2}";
+                ChartVentasAnuales.Series[$"Ventas {yearActual}"].ToolTip = $"{nombreSerie} #VALX: #VALY{{C2}}";
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].Legend = legend.Name; // Asignar leyenda a la serie
                 ChartVentasAnuales.Series[$"Ventas {yearActual}"].LegendText = $"{nombreSerie} (Total: {totalAnual:C2})";
 
@@ -116,6 +116,9 @@ namespace NorthwindTraders
             area.AxisY.LabelStyle.Format = "C0";
             area.AxisY.LabelStyle.Angle = -45;
             area.AxisY.Title = "Ventas Totales";
+            area.AxisY.MinorGrid.Enabled = true;
+            area.AxisY.MinorGrid.LineColor = Color.LightGray;
+            area.AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dash;
 
             // Crear el título
             Title titulo = new Title();

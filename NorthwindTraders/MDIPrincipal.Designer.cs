@@ -134,6 +134,7 @@
             this.ventasPorVendedoresDeTodosLosAñosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasPorVendedoresPorAñoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gráficaEjemploToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAdministracion = new System.Windows.Forms.ToolStripMenuItem();
             this.mantenimientoDeUsuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -170,7 +171,6 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslEstado = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -1044,6 +1044,13 @@
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem1.Text = "Ventas mensuales por vendedor por año";
             this.ventasMensualesPorVendedorPorAñoToolStripMenuItem1.Click += new System.EventHandler(this.ventasMensualesPorVendedorPorAñoToolStripMenuItem1_Click);
             // 
+            // ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1
+            // 
+            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Name = "ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1";
+            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Size = new System.Drawing.Size(413, 26);
+            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Text = "Ventas mensuales por vendedor por año (barras)";
+            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Click += new System.EventHandler(this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1_Click);
+            // 
             // gráficaEjemploToolStripMenuItem
             // 
             this.gráficaEjemploToolStripMenuItem.Name = "gráficaEjemploToolStripMenuItem";
@@ -1338,13 +1345,6 @@
             this.tsslEstado.Name = "tsslEstado";
             this.tsslEstado.Size = new System.Drawing.Size(47, 24);
             this.tsslEstado.Text = "Listo.";
-            // 
-            // ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1
-            // 
-            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Name = "ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1";
-            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Size = new System.Drawing.Size(413, 26);
-            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Text = "Ventas mensuales por vendedor por año (barras)";
-            this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1.Click += new System.EventHandler(this.ventasMensualesPorVendedorPorAñobarrasToolStripMenuItem1_Click);
             // 
             // MDIPrincipal
             // 
