@@ -57,16 +57,15 @@ namespace NorthwindTraders
             Title titulo = new Title();
             if (cantidad <= 0)
             {
-                titulo.Text = "» Top 10 productos más vendidos «";
-                GroupBox.Text = titulo.Text;
+                titulo.Text = "Top 10 productos más vendidos";
+                GroupBox.Text = $"» {titulo.Text} «";
             }
             else
             {
-                titulo.Text = $"» Top {cantidad} productos más vendidos «";
-                GroupBox.Text = titulo.Text;
+                titulo.Text = $"Top {cantidad} productos más vendidos";
+                GroupBox.Text = $"» {titulo.Text} «";
             }
             titulo.Font = new Font("Arial", 14, FontStyle.Bold);
-            titulo.ForeColor = Color.DarkBlue;
             titulo.Alignment = ContentAlignment.TopCenter;
             ChartTopProductos.Titles.Add(titulo);
 
@@ -102,26 +101,33 @@ namespace NorthwindTraders
                 idx++;
             }
 
+            ChartTopProductos.Legends.Clear();
+
             // Configurar ChartArea en 3D y ejes
             var area = ChartTopProductos.ChartAreas[0];
-            ChartTopProductos.Legends.Clear();
 
             area.Area3DStyle.Enable3D = true;
             area.Area3DStyle.Inclination = 30;
             area.Area3DStyle.Rotation = 20;
             area.Area3DStyle.LightStyle = LightStyle.Realistic;
 
-            area.AxisY.LabelStyle.Format = "N0";
             area.AxisX.Interval = 1;
             area.AxisX.LabelStyle.Angle = -45;
             area.AxisX.Title = "Productos más vendidos";
-            area.AxisY.Title = "Cantidad vendida (unidades)";
             area.AxisX.MajorGrid.Enabled = true;
-            area.AxisX.MajorGrid.LineColor = Color.LightGray;
+            area.AxisX.MajorGrid.LineColor = Color.Black;
             area.AxisX.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+
+            area.AxisY.LabelStyle.Format = "N0";
+            area.AxisY.LabelStyle.Angle = -45;
+            area.AxisY.LabelStyle.Font = new Font("Arial", 8, FontStyle.Regular);
+            area.AxisY.Title = "Cantidad vendida (unidades)";
             area.AxisY.MajorGrid.Enabled = true;
-            area.AxisY.MajorGrid.LineColor = Color.LightGray;
+            area.AxisY.MajorGrid.LineColor = Color.Black;
             area.AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
+            area.AxisY.MinorGrid.Enabled = true;
+            area.AxisY.MinorGrid.LineColor = Color.Black;
+            area.AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dash;
         }
 
         private DataTable ObtenerTopProductos(int cantidad)
@@ -134,7 +140,8 @@ namespace NorthwindTraders
                 FROM [Order Details] As od
                 INNER JOIN Products AS p ON od.ProductID = p.ProductID
                 GROUP BY p.ProductName
-                ORDER BY CantidadVendida DESC";
+                ORDER BY CantidadVendida DESC
+                ";
             try
             {
                 MDIPrincipal.ActualizarBarraDeEstado(Utils.clbdd);
