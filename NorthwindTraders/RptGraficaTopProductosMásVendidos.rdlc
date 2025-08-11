@@ -139,7 +139,7 @@
                     </ChartAxisTitle>
                     <Interval>1</Interval>
                     <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
+                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -411,12 +411,12 @@
       <Width>10.3937in</Width>
       <Page>
         <PageHeader>
-          <Height>1.8415cm</Height>
+          <Height>1.85561cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Line Name="Line1">
-              <Top>1.72332cm</Top>
+              <Top>1.73743cm</Top>
               <Height>0cm</Height>
               <Width>26.4cm</Width>
               <Style>
@@ -474,7 +474,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.5715cm</Top>
+              <Top>0.58561cm</Top>
               <Left>2.78124cm</Left>
               <Height>0.6cm</Height>
               <Width>23.24333cm</Width>
