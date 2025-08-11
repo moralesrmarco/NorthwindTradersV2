@@ -29,9 +29,8 @@ namespace NorthwindTraders
             // Título del gráfico
             Title titulo = new Title
             {
-                Text = "» Gráfica ventas por vendedores de todos los años «",
-                Font = new Font("Arial", 16, FontStyle.Bold),
-                ForeColor = Color.FromArgb(0, 51, 102)
+                Text = "Gráfica ventas por vendedores de todos los años",
+                Font = new Font("Arial", 16, FontStyle.Bold)
             };
             ChartVentasPorVendedores.Titles.Add(titulo);
             // Configuración de la serie
@@ -104,9 +103,6 @@ namespace NorthwindTraders
             };
             ChartVentasPorVendedores.Titles.Add(subTitulo);
             MDIPrincipal.ActualizarBarraDeEstado();
-            // Configuración del eje X y Y
-            //ChartVentasPorVendedores.ChartAreas[0].AxisX.Title = "Vendedores";
-            //ChartVentasPorVendedores.ChartAreas[0].AxisY.Title = "Total Ventas ($)";
         }
     }
 }
