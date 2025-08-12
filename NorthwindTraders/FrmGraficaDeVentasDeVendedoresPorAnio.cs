@@ -167,7 +167,7 @@ namespace NorthwindTraders
             }
             Title subTitulo = new Title
             {
-                Text = $"Total de ventas del año: {serie.Points.Sum(p => p.YValues[0]):C2}",
+                Text = $"Total de ventas del año {anio}: {serie.Points.Sum(p => p.YValues[0]):C2}",
                 Docking = Docking.Top,
                 Font = new Font("Arial", 8, FontStyle.Bold),
                 IsDockedInsideChartArea = false,
