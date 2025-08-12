@@ -373,7 +373,7 @@
                 </Style>
               </ChartTitle>
               <ChartTitle Name="Title1">
-                <Caption>="Total de ventas del año: " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
+                <Caption>="Total de ventas del año " &amp; Parameters!Anio.Value &amp; ": " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontFamily>Arial Rounded MT Bold</FontFamily>
