@@ -103,9 +103,7 @@
                             <Visible>true</Visible>
                           </ChartDataLabel>
                           <Style>
-                            <Border>
-                              <Width>2pt</Width>
-                            </Border>
+                            <Border />
                           </Style>
                           <ChartMarker>
                             <Type>Circle</Type>
@@ -262,14 +260,12 @@
                           </Border>
                           <FontSize>8pt</FontSize>
                           <Format>'$'#,0;('$'#,0)</Format>
-                          <Color>#5c5c5c</Color>
                           <rd:FormatSymbolCulture>es-MX</rd:FormatSymbolCulture>
                         </Style>
                         <ChartAxisTitle>
                           <Caption>Ventas totales</Caption>
                           <Style>
                             <FontSize>9pt</FontSize>
-                            <Color>#5c5c5c</Color>
                           </Style>
                         </ChartAxisTitle>
                         <ChartMajorGridLines>
@@ -406,7 +402,7 @@
                     </Style>
                   </ChartTitle>
                   <ChartTitle Name="Title1">
-                    <Caption>= "Total de ventas del año: " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
+                    <Caption>= "Total de ventas del año " &amp; Parameters!Anio.Value &amp; ": " &amp; Format(Sum(Fields!TotalVentas.Value), "C2")</Caption>
                     <Style>
                       <BackgroundGradientType>None</BackgroundGradientType>
                       <FontFamily>Arial Rounded MT Bold</FontFamily>
@@ -2092,7 +2088,6 @@
                     <Style>
                       <FontFamily>Arial Rounded MT Bold</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>

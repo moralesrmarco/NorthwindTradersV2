@@ -26,7 +26,7 @@
     <Shape ID="DesignTable:GraficaComparativoVentasAnuales" ZOrder="1" X="884" Y="49" Height="32" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="121" SplitterPosition="28" />
     <Shape ID="DesignTable:GraficaTopProductos" ZOrder="4" X="913" Y="99" Height="32" Width="220" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="98" SplitterPosition="28" />
     <Shape ID="DesignTable:GraficaVentasPorVendedores" ZOrder="2" X="921" Y="153" Height="32" Width="278" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="75" SplitterPosition="28" />
-    <Shape ID="DesignTable:GrafCompVentasMensVendAnio" ZOrder="3" X="904" Y="247" Height="125" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="28" SplitterPosition="121" />
+    <Shape ID="DesignTable:GrafCompVentasMensVendAnio" ZOrder="3" X="904" Y="246" Height="125" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="28" SplitterPosition="121" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Employees_Employees" ZOrder="23" LineWidth="11">
