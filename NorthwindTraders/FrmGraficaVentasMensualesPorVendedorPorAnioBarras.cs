@@ -68,11 +68,11 @@ namespace NorthwindTraders
 
             Title titulo = new Title()
             {
-                Text = $"» Ventas mensuales por vendedores del año {anio} «",
+                Text = $"Ventas mensuales por vendedores del año {anio}",
                 Font = new Font("Arial", 16, FontStyle.Bold)
             };
             chart1.Titles.Add(titulo);
-            groupBox1.Text = titulo.Text;
+            groupBox1.Text = $"» {titulo.Text} «";
 
             var area = chart1.ChartAreas[0];
             area.AxisX.Interval = 1;
