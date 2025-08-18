@@ -79,7 +79,7 @@
                       <Value>=Fields!Vendedor.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!Vendedor.Value &amp; " (Total = " &amp; Format(Sum(Fields!TotalVentas.Value),"C2") &amp; ")"</Label>
+                  <Label>=Fields!Vendedor.Value &amp; " (Total: " &amp; Format(Sum(Fields!TotalVentas.Value),"C2") &amp; ")"</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
@@ -2072,7 +2072,7 @@
                     <Style>
                       <FontFamily>Arial Rounded MT Bold</FontFamily>
                       <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
