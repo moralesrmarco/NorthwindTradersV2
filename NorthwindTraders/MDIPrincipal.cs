@@ -93,7 +93,6 @@ namespace NorthwindTraders
             if (permisosUsuarioLogueado.Count == 0)
             {
                 MessageBox.Show("El usuario no tiene permisos asignados.", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return;
             }
             ActualizarBarraDeEstado("Sesión iniciada correctamente");
         }
@@ -125,7 +124,7 @@ namespace NorthwindTraders
                 else if (permisoId == 7)
                     tsmiAdministracion.Enabled = true; // Permiso para Administración
                 else if (permisoId == 8)
-                    tsmiGraficas.Enabled = true; // Permiso para Administración
+                    tsmiGraficas.Enabled = true; 
             }
         }
 

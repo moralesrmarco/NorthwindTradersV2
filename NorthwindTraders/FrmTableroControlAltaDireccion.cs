@@ -93,11 +93,11 @@ namespace NorthwindTraders
             // Título del gráfico
             Title titulo = new Title
             {
-                Text = $"» Gráfica de ventas por vendedores del año {anio} «",
+                Text = $"Ventas por vendedores del año {anio}",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
             };
             chart5.Titles.Add(titulo);
-            groupBox5.Text = titulo.Text; // Actualizar el texto del GroupBox
+            groupBox5.Text = $"» {titulo.Text} «";
             Series serie = new Series
             {
                 Name = "Ventas",
@@ -131,7 +131,7 @@ namespace NorthwindTraders
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 
@@ -156,7 +156,8 @@ namespace NorthwindTraders
                         while (reader.Read())
                         {
                             string vendedor = reader.GetString(0);
-                            decimal totalVentas = reader.GetDecimal(1);
+                            //decimal totalVentas = reader.GetDecimal(1);
+                            decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
 
                             int idx = serie.Points.AddXY(vendedor, totalVentas);
                             serie.Points[idx].LegendText = string.Format(
@@ -185,7 +186,7 @@ namespace NorthwindTraders
             chart4.Titles.Clear();
             chart4.Titles.Add(new Title
             {
-                Text = "» Gráfica ventas por vendedores de todos los años «",
+                Text = "» Ventas por vendedores de todos los años «",
                 Docking = Docking.Top,
                 Font = new Font("Segoe UI", 8, FontStyle.Bold)
             });
@@ -220,7 +221,7 @@ namespace NorthwindTraders
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 
@@ -431,7 +432,6 @@ namespace NorthwindTraders
                 chart2.Series[$"Ventas {yearActual}"].Points.Clear();
                 // 2. Obtiene los datos ADO.NET
                 var datos = ObtenerVentasMensualesComparativo(yearActual);
-                //chart2.Legends["Default"].Font = new Font("Segoe UI", 7, FontStyle.Regular);
                 if (chart2.Legends.Count > 0)
                     chart2.Legends[0].Font = new Font("Segoe UI", 7, FontStyle.Regular);
                 // 3. Agrega los puntos al gráfico

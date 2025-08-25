@@ -82,6 +82,7 @@ namespace NorthwindTraders
                 Text = $"» Ventas mensuales por vendedores del año {anio} «",
                 Font = new Font("Segoe UI", 8, FontStyle.Bold),
             };
+            chart1.Titles.Add(titulo);
             groupBox1.Text = titulo.Text;
             // ChartArea
             var area = chart1.ChartAreas[0];
@@ -297,7 +298,7 @@ namespace NorthwindTraders
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 
@@ -322,7 +323,8 @@ namespace NorthwindTraders
                         while (reader.Read())
                         {
                             string vendedor = reader.GetString(0);
-                            decimal totalVentas = reader.GetDecimal(1);
+                            //decimal totalVentas = reader.GetDecimal(1);
+                            decimal totalVentas = Convert.ToDecimal(reader["TotalVentas"]);
 
                             int idx = serie.Points.AddXY(vendedor, totalVentas);
                             serie.Points[idx].LegendText = string.Format(
@@ -386,7 +388,7 @@ namespace NorthwindTraders
             string query = @"
                 SELECT 
                     CONCAT(e.FirstName, ' ', e.LastName) AS Vendedor,
-                    SUM(od.UnitPrice * od.Quantity) AS TotalVentas
+                    SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS TotalVentas
                 FROM 
                     Employees e
                 JOIN 
