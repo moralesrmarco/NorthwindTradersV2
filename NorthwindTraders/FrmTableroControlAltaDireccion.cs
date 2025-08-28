@@ -46,7 +46,7 @@ namespace NorthwindTraders
 
             LlenarCmbTipoGrafica();
         }
-
+        /******************************************************************************************************/
         private void LlenarCmbVentasMensualesAño()
         {
             cmbVentasMensualesAño.SelectedIndexChanged -= cmbVentasMensualesAño_SelectedIndexChanged;
@@ -226,7 +226,6 @@ namespace NorthwindTraders
             return lista;
         }
         /******************************************************************************************************/
-
         private void LlenarCmbUltimosAnios()
         {
             cmbUltimosAnios.SelectedIndexChanged -= cmbUltimosAnios_SelectedIndexChanged;
@@ -267,7 +266,6 @@ namespace NorthwindTraders
         {
             CargarComparativoVentasMensuales(Convert.ToInt32(cmbUltimosAnios.SelectedValue), (SeriesChartType)CmbTipoGrafica2.SelectedItem);
         }
-
 
         private void CargarComparativoVentasMensuales(int years, SeriesChartType tipoGrafica)
         {
@@ -402,7 +400,6 @@ namespace NorthwindTraders
             return ventasMensuales;
         }
         /******************************************************************************************************/
-
         private void LlenarCmbNumeroProductos()
         {
             cmbNumeroProductos.SelectedIndexChanged -= cmbNumeroProductos_SelectedIndexChanged;
@@ -537,7 +534,6 @@ namespace NorthwindTraders
             return dt;
         }
         /******************************************************************************************************/
-
         private void CargarVentasPorVendedores()
         {
             chart4.Series.Clear();
@@ -794,9 +790,7 @@ namespace NorthwindTraders
             MDIPrincipal.ActualizarBarraDeEstado();
             return dt;
         }
-
         /******************************************************************************************************/
-
         private void LlenarCmbTipoGrafica()
         {
             // Obtiene todos los valores del enum
@@ -852,7 +846,7 @@ namespace NorthwindTraders
         {
             DibujarGraficaChart6((SeriesChartType)cmbTipoGrafica.SelectedItem);
         }
-
+        /******************************************************************************************************/
         private class MonthlySales
         {
             public int Mes { get; set; }
