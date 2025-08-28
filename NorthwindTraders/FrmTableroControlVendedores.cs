@@ -24,7 +24,7 @@ namespace NorthwindTraders
         
         private void GrbPaint(object sender, PaintEventArgs e) => Utils.GrbPaint(this, sender, e);
 
-        private void FrmTableroControlAltaDireccion_Load(object sender, EventArgs e)
+        private void FrmTableroControlVendedores_Load(object sender, EventArgs e)
         {
             LlenarCmbVentasMensualesPorVendedorPorAño();
             LlenarCmbTipoGrafica1();
@@ -860,6 +860,5 @@ namespace NorthwindTraders
             public int Mes { get; set; }
             public decimal Total { get; set; }
         }
-
     }
 }
