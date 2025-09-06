@@ -41,6 +41,7 @@ namespace NorthwindTraders
                     else
                     {
                         Instance.ToolStripEstado.ForeColor = SystemColors.ControlText;
+                        Instance.ToolStripEstado.BackColor = SystemColors.Control;
                         Instance.ToolStripEstado.Font = new Font(Instance.ToolStripEstado.Font, FontStyle.Regular);
                     }
                 }
