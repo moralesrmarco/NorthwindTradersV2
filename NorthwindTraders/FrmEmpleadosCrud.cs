@@ -571,6 +571,7 @@ namespace NorthwindTraders
                     }
                     HabilitarControles();
                     btnOperacion.Enabled = true;
+                    btnCargar.Enabled = true;
                     LlenarCombos();
                     ActualizaDgv();
                 }
@@ -650,10 +651,10 @@ namespace NorthwindTraders
             {
                 if (txtId.Text == "")
                 {
-                    MessageBox.Show("Seleccione el empleado a eliminar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Seleccione el empleado a eliminar", Utils.nwtr, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-                DialogResult respuesta = MessageBox.Show($"¿Esta seguro de eliminar el empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult respuesta = MessageBox.Show($"¿Está seguro de eliminar el empleado con Id: {txtId.Text} y Nombre: {txtNombres.Text} {txtApellidos.Text}?", Utils.nwtr, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (respuesta == DialogResult.Yes)
                 {
                     btnOperacion.Enabled = false;
