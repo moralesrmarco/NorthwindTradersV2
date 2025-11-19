@@ -152,7 +152,7 @@ namespace NorthwindTraders
         private void ConfDgvEmpleados(DataGridView dgv)
         {
             dgv.Columns["Id"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns["Foto"].Width = 20;
+            dgv.Columns["Foto"].Width = 10;
             dgv.Columns["Foto"].DefaultCellStyle.Padding = new Padding(2, 2, 2, 2);
             ((DataGridViewImageColumn)dgv.Columns["Foto"]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             dgv.Columns["Título"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
